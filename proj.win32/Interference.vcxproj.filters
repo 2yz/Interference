@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{e3edf47a-75a5-49e2-ae40-ad0ca136e75d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\GameScene.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\GameBackgroundLayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\PlayerLayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\UILayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\BulletLayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\EnemyLayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\EnemyBulletLayer.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\EnemyUserData.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\PlayerUserData.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\GameScene.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\GameBackgroundLayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\PlayerLayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UILayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\BulletLayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\EnemyLayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\EnemyBulletLayer.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\EnemyUserData.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\PlayerUserData.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

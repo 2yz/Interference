@@ -18,6 +18,8 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+Debug.win32/
+Release.win32/
 
 # Roslyn cache directories
 *.ide/
