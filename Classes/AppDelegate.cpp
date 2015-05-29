@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
-#include "Game/GameScene.h"
+#include "GameScene.h"
 #include "HelloWorldScene.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
@@ -42,9 +43,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	// director->setAnimationInterval(1.0 / 60);
+	
+	// Initial ConfigUtil
+	ConfigUtil::visibleSize = Director::getInstance()->getVisibleSize();
+	ConfigUtil::visibleOrigin = Director::getInstance()->getVisibleOrigin();
+	ConfigUtil::visibleWidth = ConfigUtil::visibleOrigin.x + ConfigUtil::visibleSize.width;
+	ConfigUtil::visibleHeight = ConfigUtil::visibleOrigin.y + ConfigUtil::visibleSize.height;
 
 	FileUtils::getInstance()->addSearchPath("res");
-
+	
 	// 读取纹理贴度集合
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(UserDefault::getInstance()->getStringForKey("textureFileName"));
 

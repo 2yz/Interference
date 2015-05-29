@@ -1,6 +1,9 @@
 #include "EnemyLayer.h"
-#include "../HelloWorldScene.h"
+#include "HelloWorldScene.h"
 #include "GameScene.h"
+#include "EnemyUserData.h"
+#include "BulletUserData.h"
+#include "PlayerUserData.h"
 
 USING_NS_CC;
 
@@ -65,8 +68,7 @@ void EnemyLayer::addEnemySprite(float useless)
 		auto enemySprite = Sprite::createWithSpriteFrameName(enemyTextureName[randomLevel].c_str());
 		int randomX = CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width);
 		enemySprite->setPosition(randomX, visibleOrigin.y + visibleSize.height + enemySprite->getContentSize().height / 2);
-		// TODO EnemyUserData
-		// enemySprite->setUserData(new EnemyUserData(enemyInitHP[randomLevel]));
+		enemySprite->setUserData(new EnemyUserData(enemyInitHP[randomLevel]));
 		this->addChild(enemySprite);
 		allEnemy.pushBack(enemySprite);
 
@@ -85,10 +87,9 @@ void EnemyLayer::addEnemySprite(float useless)
 
 void EnemyLayer::enemyMoveFinished(Node* pSender)
 {
-	Sprite* enemy = (Sprite*)pSender;
+	Sprite* enemy = static_cast<Sprite*>(pSender);
 	allEnemy.eraseObject(enemy);
-	// TODO EnemyUserData
-	// delete static_cast<EnemyUserData*>(enemy->getUserData());
+	delete static_cast<EnemyUserData*>(enemy->getUserData());
 	this->removeChild(enemy, true);
 }
 
@@ -104,15 +105,88 @@ void EnemyLayer::stopAddEnemy()
 
 void EnemyLayer::update(float useless)
 {
-	log("enemy update");
+	Animation* animationExplosion = AnimationCache::getInstance()->getAnimation("explosion");
+	animationExplosion->setRestoreOriginalFrame(false);
+	animationExplosion->setDelayPerUnit(0.5f / 9.0f);
+	auto actionExplosion = Animate::create(animationExplosion);
+
+	//判断是否已经通关
+	if ((allEnemy.empty() == true) && (this->bossAppeared == true)) {
+		static_cast<ControlNode*>(this->getParent())->getEnemyBulletLayer()->bossStopShooting();
+		scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
+	}
+
+	//遍历敌机
+	for (Sprite* enemy : this->allEnemy) {
+		//判断敌机是否正在爆炸
+		if (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false) {
+			for (Sprite* bullet : static_cast<ControlNode*>(this->getParent())->getBulletLayer()->allBullet) {
+				FiniteTimeAction* enemyRemove = CallFuncN::create(CC_CALLBACK_1(EnemyLayer::enemyMoveFinished, this));
+				//判断子弹是否与敌机碰撞，之所以要重复判断是否isDeleting是为了防止两个弹头同时命中目标会造成程序崩溃的bug
+				if (bullet->getBoundingBox().intersectsRect(enemy->getBoundingBox()) && (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false)) {
+
+					//读取子弹的伤害，给敌机造成伤害
+					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(static_cast<BulletUserData*>(bullet->getUserData())->getDamage()) == false) {
+						enemy->stopAllActions();
+						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
+						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
+						//摧毁敌机后加分
+						static_cast<GameScene*>(this->getParent())->getUILayer()->addScoreBy(100);
+					}
+					//end读取子弹的伤害，给敌机造成伤害
+
+					//根据损血改变BOSS外观
+					if (this->bossAppeared == true){
+						if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3 * 2) && (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() > (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3))){
+							bossSprite->setSpriteFrame("enemyBossBroken.png");
+						}
+						else if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3)){
+							bossSprite->setSpriteFrame("enemyBossBrokenMore.png");
+						}
+					}//end根据损血改变BOSS外观
+
+					//回收子弹
+					static_cast<ControlNode*>(this->getParent())->getBulletLayer()->bulletMoveFinished(bullet);
+				}
+				//end判断子弹是否与敌机碰撞
+
+				//判断我方飞机是否与敌机碰撞
+				if (enemy->getBoundingBox().intersectsRect(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getBoundingBox()) && static_cast<PlayerUserData*>(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->getHP() > 0) {
+					//给敌机造成碰撞伤害
+					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(400) == false) {
+						enemy->stopAllActions();
+						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
+						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
+
+						//撞毁敌机后加分
+						static_cast<GameScene*>(this->getParent())->getUILayer()->addScoreBy(100);
+					}
+					//end给敌机造成碰撞伤害
+
+					//给我方飞机造成碰撞伤害
+					if (static_cast<PlayerUserData*>(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->isAliveUnderAttack(200) == false) {
+						static_cast<ControlNode*>(this->getParent())->getBulletLayer()->stopShooting();
+						static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->runAction(Sequence::create(actionExplosion, NULL));
+						scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
+					}
+					//end给我方飞机造成碰撞伤害
+
+					//更新HP指示器
+					static_cast<GameScene*>(this->getParent())->getUILayer()->updateHPIndicator();
+				}
+				//end判断我方飞机是否与敌机碰撞
+			}
+		}
+		//end判断敌机是否正在爆炸
+	}
+	//end遍历敌机
 }
 
 void EnemyLayer::addBossSprite()
 {
 	bossSprite = Sprite::createWithSpriteFrameName("enemyBoss.png");
 	bossSprite->setPosition((visibleOrigin.x + visibleSize.width) / 2, visibleOrigin.y + visibleSize.height + bossSprite->getContentSize().height);
-	// TODO EnemyUserData
-	// bossSprite->setUserData(new EnemyUserData(UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss")));
+	bossSprite->setUserData(new EnemyUserData(UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss")));
 	this->addChild(bossSprite);
 	allEnemy.pushBack(bossSprite);
 
@@ -155,6 +229,5 @@ void EnemyLayer::bossStartMove()
 	RepeatForever* bossMoveSequenceRepeat = RepeatForever::create(bossMoveSequence);
 	bossSprite->runAction(bossMoveSequenceRepeat);
 
-	// TODO EnemyBulletLayer
-	// static_cast<GameScene*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
+	static_cast<ControlNode*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
 }

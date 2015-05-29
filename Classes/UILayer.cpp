@@ -1,6 +1,8 @@
 #include "UILayer.h"
 #include <strstream>
-#include <HelloWorldScene.h>
+#include "HelloWorldScene.h"
+#include "GameScene.h"
+#include "PlayerUserData.h"
 
 USING_NS_CC;
 
@@ -64,12 +66,12 @@ void UILayer::addScoreBy(int addScore)
 
 void UILayer::updateHPIndicator()
 {
-	std::string strScore;
-	std::strstream ss;
-	ss << this->score;
-	ss >> strScore;
-	scoreLabel->setString(strScore.c_str());
-	// scoreLabel->setString(score);
+	int HP = static_cast<PlayerUserData*>(static_cast<GameScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getMyPlane()->getUserData())->getHP();
+	int initHP = static_cast<GameScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getInitHP();
+	float HPOld = HPIndicator->getPercentage();
+	float HPPercentage = static_cast<float>(HP) / static_cast<float>(initHP);
+	ProgressFromTo* animation = ProgressFromTo::create(0.2f, HPOld, HPPercentage * 100);
+	HPIndicator->runAction(animation);
 }
 
 void UILayer::setLaunchButtonEnable()

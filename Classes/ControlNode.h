@@ -1,43 +1,34 @@
-#ifndef GAMESCENE_H_
-#define GAMESCENE_H_
+#ifndef CAMERALAYER_H_
+#define CAMERALAYER_H_
 
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
-#include "PlayerLayer.h"
 #include "BulletLayer.h"
-#include "UILayer.h"
+#include "PlayerLayer.h"
 #include "EnemyBulletLayer.h"
 #include "EnemyLayer.h"
 
-class GameScene : public cocos2d::Scene
-{
+class ControlNode : public cocos2d::Node{
 public:
-	GameScene();
-	virtual ~GameScene();
+	ControlNode();
+	virtual ~ControlNode();
 	virtual bool init() override;
-	CREATE_FUNC(GameScene);
-	UILayer* getUILayer();
+	CREATE_FUNC(ControlNode);
+	float time;
+	GameBackgroundLayer* getGameBackgroundLayer();
 	BulletLayer* getBulletLayer();
 	PlayerLayer* getPlayerLayer();
 	EnemyBulletLayer* getEnemyBulletLayer();
 	EnemyLayer* getEnemyLayer();
-	void mouseDown(cocos2d::Event* event);
-	void mouseMove(cocos2d::Event* event);
 private:
 	static GameBackgroundLayer* gameBackgroundLayer;
-	static UILayer* uiLayer;
 	static BulletLayer* bulletLayer;
 	static PlayerLayer* playerLayer;
 	static EnemyBulletLayer* enemyBulletLayer;
 	static EnemyLayer* enemyLayer;
+	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	virtual void update(float delta) override;
 };
 
-/*
-class GameScene
-{
-public:
-	static cocos2d::Scene* create();
-};
-*/
-
-#endif /* GAMESCENE_H_ */
+#endif /* CAMERALAYER_H_ */

@@ -1,5 +1,6 @@
 #include "BulletLayer.h"
 #include "GameScene.h"
+#include "BulletUserData.h"
 
 USING_NS_CC;
 
@@ -29,15 +30,13 @@ bool BulletLayer::init()
 	this->addChild(bulletBatchNodeVector[3]);
 
 	this->startShooting();
-	schedule(schedule_selector(BulletLayer::addBullet), 0.1f, kRepeatForever, 0);
 	return true;
 }
 
 
 void BulletLayer::startShooting()
 {
-	// this->schedule(schedule_selector(BulletLayer::addBullet), UserDefault::getInstance()->getFloatForKey("intervalOfAddBullet"));
-	// schedule(schedule_selector(BulletLayer::addBullet), 0.1f, kRepeatForever, 0);
+	this->schedule(schedule_selector(BulletLayer::addBullet), UserDefault::getInstance()->getFloatForKey("intervalOfAddBullet"));
 }
 
 void BulletLayer::stopShooting()
@@ -62,12 +61,12 @@ void BulletLayer::launchBigBomb()
 void BulletLayer::addBullet(float useless)
 {
 	Sprite* bullet = Sprite::createWithSpriteFrameName(bulletTextureName[nowBulletLevel]);
-	Point planePosition = static_cast<GameScene*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
+	Point planePosition = static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
 
-	Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<GameScene*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
+	Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
 
 	bullet->setPosition(bulletPosition);
-	// bullet->setUserData(new BulletUserData(eachBulletDamage, nowBulletLevel));
+	bullet->setUserData(new BulletUserData(eachBulletDamage, nowBulletLevel));
 	allBullet.pushBack(bullet);
 	this->bulletBatchNodeVector[nowBulletLevel]->addChild(bullet);
 
@@ -86,10 +85,9 @@ void BulletLayer::addBullet(float useless)
 void BulletLayer::bulletMoveFinished(Node* pSender)
 {
 	Sprite* bullet = static_cast<Sprite*>(pSender);
-	// BulletUserData* bulletUserData = static_cast<BulletUserData*>(bullet->getUserData());
-	// int bulletLevel = bulletUserData->getBulletLevel();
-	// delete bulletUserData;
+	BulletUserData* bulletUserData = static_cast<BulletUserData*>(bullet->getUserData());
+	int bulletLevel = bulletUserData->getBulletLevel();
+	delete bulletUserData;
 	allBullet.eraseObject(bullet);
-	// this->bulletBatchNodeVector[bulletLevel]->removeChild(bullet, true);
-	this->bulletBatchNodeVector[0]->removeChild(bullet, true);
+	this->bulletBatchNodeVector[bulletLevel]->removeChild(bullet, true);
 }

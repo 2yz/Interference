@@ -14,13 +14,13 @@ public:
 	void addBullet(float useless);
 	void setBulletLevelUP();
 	void launchBigBomb();
-
+	void bulletMoveFinished(Node* pSender);
 private:
 	int eachBulletDamage;
 	int nowBulletLevel;
 	std::vector<std::string> bulletTextureName;
 	std::vector<cocos2d::SpriteBatchNode*> bulletBatchNodeVector;
-	void bulletMoveFinished(Node* pSender);
+	
 };
 
 #endif /* BULLETLAYER_H_ */

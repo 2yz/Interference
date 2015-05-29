@@ -11,7 +11,6 @@ public:
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(GameBackgroundLayer);
-	void updateOnce(float dt);
 private:
 	cocos2d::Sprite* background1;
 	cocos2d::Sprite* background2;

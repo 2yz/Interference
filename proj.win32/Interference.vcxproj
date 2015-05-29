@@ -136,30 +136,38 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\Game\BulletLayer.cpp" />
-    <ClCompile Include="..\Classes\Game\EnemyBulletLayer.cpp" />
-    <ClCompile Include="..\Classes\Game\EnemyLayer.cpp" />
-    <ClCompile Include="..\Classes\Game\EnemyUserData.cpp" />
-    <ClCompile Include="..\Classes\Game\GameBackgroundLayer.cpp" />
-    <ClCompile Include="..\Classes\Game\GameScene.cpp" />
-    <ClCompile Include="..\Classes\Game\PlayerUserData.cpp" />
-    <ClCompile Include="..\Classes\Game\PlayerLayer.cpp" />
-    <ClCompile Include="..\Classes\Game\UILayer.cpp" />
+    <ClCompile Include="..\Classes\BulletLayer.cpp" />
+    <ClCompile Include="..\Classes\BulletUserData.cpp" />
+    <ClCompile Include="..\Classes\ConfigUtil.cpp" />
+    <ClCompile Include="..\Classes\Controller.cpp" />
+    <ClCompile Include="..\Classes\ControlNode.cpp" />
+    <ClCompile Include="..\Classes\EnemyBulletLayer.cpp" />
+    <ClCompile Include="..\Classes\EnemyLayer.cpp" />
+    <ClCompile Include="..\Classes\EnemyUserData.cpp" />
+    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
+    <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\PlayerLayer.cpp" />
+    <ClCompile Include="..\Classes\PlayerUserData.cpp" />
+    <ClCompile Include="..\Classes\UILayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\Game\BulletLayer.h" />
-    <ClInclude Include="..\Classes\Game\EnemyBulletLayer.h" />
-    <ClInclude Include="..\Classes\Game\EnemyLayer.h" />
-    <ClInclude Include="..\Classes\Game\EnemyUserData.h" />
-    <ClInclude Include="..\Classes\Game\GameBackgroundLayer.h" />
-    <ClInclude Include="..\Classes\Game\GameScene.h" />
-    <ClInclude Include="..\Classes\Game\PlayerUserData.h" />
-    <ClInclude Include="..\Classes\Game\PlayerLayer.h" />
-    <ClInclude Include="..\Classes\Game\UILayer.h" />
+    <ClInclude Include="..\Classes\BulletLayer.h" />
+    <ClInclude Include="..\Classes\BulletUserData.h" />
+    <ClInclude Include="..\Classes\ConfigUtil.h" />
+    <ClInclude Include="..\Classes\Controller.h" />
+    <ClInclude Include="..\Classes\ControlNode.h" />
+    <ClInclude Include="..\Classes\EnemyBulletLayer.h" />
+    <ClInclude Include="..\Classes\EnemyLayer.h" />
+    <ClInclude Include="..\Classes\EnemyUserData.h" />
+    <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
+    <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\PlayerLayer.h" />
+    <ClInclude Include="..\Classes\PlayerUserData.h" />
+    <ClInclude Include="..\Classes\UILayer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
