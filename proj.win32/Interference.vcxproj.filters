@@ -75,6 +75,9 @@
     <ClCompile Include="..\Classes\PlayerPlane.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -132,6 +135,9 @@
       <Filter>src\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PlayerPlane.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLayer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

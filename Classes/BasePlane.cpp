@@ -12,14 +12,19 @@ BasePlane::BasePlane(float radius) : BaseObject(radius)
 	log("BasePlane(float radius)");
 }
 
+bool BasePlane::init()
+{
+	if (!BaseObject::init())
+	{
+		return false;
+	}
+	plane = Sprite::createWithSpriteFrameName("myPlane.png");
+	this->addChild(plane);
+	return true;
+}
+
 BasePlane* BasePlane::create()
 {
 	BasePlane* pRet = new(std::nothrow) BasePlane(50.0f);
 	CALL_INIT();
-}
-
-void BasePlane::onEnter()
-{
-	plane = Sprite::createWithSpriteFrameName("myPlane.png");
-	this->addChild(plane);
 }

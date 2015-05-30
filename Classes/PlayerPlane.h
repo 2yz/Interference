@@ -7,10 +7,13 @@ class PlayerPlane : public BasePlane
 {
 public:
 	PlayerPlane();
+	virtual bool init() override;
 	static PlayerPlane* create();
+	virtual void update(float delta) override;
 protected:
-	cocos2d::Sprite* plane;
-
+	const int initHP;
+	const float acceleration;
+	const float maxSpeed;
 };
 
 #endif /* PLAYERPLANE_H_ */

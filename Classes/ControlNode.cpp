@@ -1,6 +1,7 @@
 #include "ControlNode.h"
 #include "Controller.h"
 #include "ConfigUtil.h"
+#include "GameLayer.h"
 
 USING_NS_CC;
 
@@ -40,17 +41,8 @@ bool ControlNode::init()
 	enemyBulletLayer->setParent(this);
 	enemyLayer = EnemyLayer::create();
 	enemyLayer->setParent(this);
-
-	// gameBackgroundLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-	// gameBackgroundLayer->setPosition(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height / 2);
-	// playerLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-	// playerLayer->setPosition(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height / 2);
-	// bulletLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-	// bulletLayer->setPosition(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height / 2);
-	// enemyBulletLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-	// enemyBulletLayer->setPosition(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height / 2);
-	// enemyLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
-	// enemyLayer->setPosition(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height / 2);
+	auto gameLayer = GameLayer::create();
+	gameLayer->setParent(this);
 
 	this->addChild(gameBackgroundLayer);
 	this->addChild(bulletLayer);
@@ -58,11 +50,9 @@ bool ControlNode::init()
 	this->addChild(enemyBulletLayer);
 	this->addChild(enemyLayer);
 
-	// ¼àÌý¼üÅÌÊÂ¼þ
-	auto listener = EventListenerKeyboard::create();
-	listener->onKeyPressed = CC_CALLBACK_2(ControlNode::onKeyPressed, this);
-	listener->onKeyReleased = CC_CALLBACK_2(ControlNode::onKeyReleased, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	this->addChild(gameLayer);
+
+	
 
 	this->scheduleUpdate();
 
@@ -92,68 +82,6 @@ EnemyBulletLayer* ControlNode::getEnemyBulletLayer()
 EnemyLayer* ControlNode::getEnemyLayer()
 {
 	return this->enemyLayer;
-}
-
-void ControlNode::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-{
-	switch (keyCode)
-	{
-		//case 146: // W
-	case EventKeyboard::KeyCode::KEY_W:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_W:
-		// playerLayer->setMoveUp(true);
-		Controller::setMoveUp(true);
-		break;
-		// case 142: // S
-	case EventKeyboard::KeyCode::KEY_S:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_S:
-		// playerLayer->setMoveDown(true);
-		Controller::setMoveDown(true);
-		break;
-		// case 124: // A
-	case EventKeyboard::KeyCode::KEY_A:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_A:
-		// playerLayer->setMoveLeft(true);
-		Controller::setMoveLeft(true);
-		break;
-		// case 127: // D
-	case EventKeyboard::KeyCode::KEY_D:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_D:
-		// playerLayer->setMoveRight(true);
-		Controller::setMoveRight(true);
-		break;
-	}
-}
-
-void ControlNode::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-{
-	switch (keyCode)
-	{
-		//case 146: // W
-	case EventKeyboard::KeyCode::KEY_W:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_W:
-		// playerLayer->setMoveUp(false);
-		Controller::setMoveUp(false);
-		break;
-		// case 142: // S
-	case EventKeyboard::KeyCode::KEY_S:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_S:
-		// playerLayer->setMoveDown(false);
-		Controller::setMoveDown(false);
-		break;
-		// case 124: // A
-	case EventKeyboard::KeyCode::KEY_A:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_A:
-		// playerLayer->setMoveLeft(false);
-		Controller::setMoveLeft(false);
-		break;
-		// case 127: // D
-	case EventKeyboard::KeyCode::KEY_D:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_D:
-		// playerLayer->setMoveRight(false);
-		Controller::setMoveRight(false);
-		break;
-	}
 }
 
 void ControlNode::update(float delta)

@@ -23,7 +23,7 @@ public:
 private:
 	// static GameBackgroundLayer* gameBackgroundLayer;
 	static UILayer* uiLayer;
-	static ControlNode* cameraLayer;
+	static ControlNode* controlNode;
 	// static BulletLayer* bulletLayer;
 	// static PlayerLayer* playerLayer;
 	// static EnemyBulletLayer* enemyBulletLayer;

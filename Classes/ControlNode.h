@@ -1,5 +1,5 @@
-#ifndef CAMERALAYER_H_
-#define CAMERALAYER_H_
+#ifndef CONTROLNODE_H_
+#define CONTROLNODE_H_
 
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
@@ -26,9 +26,7 @@ private:
 	static PlayerLayer* playerLayer;
 	static EnemyBulletLayer* enemyBulletLayer;
 	static EnemyLayer* enemyLayer;
-	virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
-	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	virtual void update(float delta) override;
 };
 
-#endif /* CAMERALAYER_H_ */
+#endif /* CONTROLNODE_H_ */

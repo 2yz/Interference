@@ -8,8 +8,8 @@ class BasePlane : public BaseObject
 public:
 	BasePlane();
 	explicit BasePlane(float radius);
+	virtual bool init() override;
 	static BasePlane* create();
-	virtual void onEnter() override;
 protected:
 	cocos2d::Sprite* plane;
 
