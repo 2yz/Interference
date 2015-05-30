@@ -13,6 +13,9 @@
     <Filter Include="src\Base">
       <UniqueIdentifier>{8b019833-d4af-4d15-9627-373cc0089eaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\HellowWorld">
+      <UniqueIdentifier>{343c2f90-2b29-4341-a8d4-47d5dcf5e602}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,9 +54,6 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PlayerLayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -61,6 +61,18 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\UILayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BaseObject.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src\HellowWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BasePlane.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerPlane.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,9 +113,6 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PlayerLayer.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -111,6 +120,18 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\UILayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseObject.h">
+      <Filter>src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src\HellowWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BasePlane.h">
+      <Filter>src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerPlane.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -93,6 +93,19 @@ bool GameScene::init()
 	// enemyBulletLayer->setParent(this);
 	// enemyLayer = EnemyLayer::create();
 	// enemyLayer->setParent(this);
+	if (!Scene::init())
+	{
+		return false;
+	}
+
+	// 初始化物理世界
+	if (!this->initWithPhysics())
+	{
+		return false;
+	}
+
+	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+
 	cameraLayer = ControlNode::create();
 	cameraLayer->setPosition(Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2));
 	cameraLayer->setParent(this);

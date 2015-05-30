@@ -1,5 +1,6 @@
 #include "ControlNode.h"
 #include "Controller.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
@@ -159,7 +160,7 @@ void ControlNode::update(float delta)
 {
 	log("Camera X: %f Y: %f", this->getPositionX(), this->getPositionY());
 	log("Player X: %f Y: %f", playerLayer->getPlayerPositionX(), playerLayer->getPlayerPositionY());
-	// log("P in C X: %f Y: %f", playerLayer->getPlayerPositionX() - this->getPositionX() - visibleSize.width / 2, playerLayer->getPlayerPositionY() - this->getPositionY()-visibleSize.height/2);
+	log("P in C X: %f Y: %f", this->getPositionX() - ConfigUtil::visibleWidth / 2 - playerLayer->getPlayerPositionX(), this->getPositionY() - ConfigUtil::visibleHeight / 2 - playerLayer->getPlayerPositionY());
 	/*
 	time += delta;
 	float x, y;

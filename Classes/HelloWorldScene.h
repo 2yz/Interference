@@ -15,7 +15,15 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
+	virtual void onEnter() override;
 	void onClick();
+	void setPhyWorld(cocos2d::PhysicsWorld* world);
+private:
+	cocos2d::PhysicsWorld* m_world;
+	void addNewSpriteAtPosition(cocos2d::Point p);
+	void onMouseUp(cocos2d::Event *event);
+	bool onContactBegin(cocos2d::PhysicsContact& contact);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
