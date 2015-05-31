@@ -1,7 +1,7 @@
 #ifndef CAMERANODE_H_
 #define CAMERANODE_H_
 
-#include "cocos2d.h"
+#include "BaseCamera.h"
 #include "GameBackgroundLayer.h"
 #include "BulletLayer.h"
 #include "PlayerLayer.h"
@@ -9,7 +9,8 @@
 #include "EnemyLayer.h"
 #include "GameLayer.h"
 
-class CameraNode : public cocos2d::Node{
+class CameraNode : public BaseCamera
+{
 public:
 	CameraNode();
 	virtual ~CameraNode();
@@ -28,7 +29,7 @@ private:
 	static PlayerLayer* playerLayer;
 	static EnemyBulletLayer* enemyBulletLayer;
 	static EnemyLayer* enemyLayer;
-	virtual void update(float deltaTime) override;
+	// virtual void update(float deltaTime) override;
 };
 
 #endif /* CAMERANODE_H_ */

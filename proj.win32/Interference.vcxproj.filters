@@ -93,6 +93,15 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BaseCamera.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BaseTraced.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BasePlayer.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -154,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseCamera.h">
+      <Filter>src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseTraced.h">
+      <Filter>src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BasePlayer.h">
+      <Filter>src\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
