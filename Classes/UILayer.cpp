@@ -104,6 +104,7 @@ void UILayer::menuPauseCallback(cocos2d::Ref* pSender)
 	if (Director::getInstance()->isPaused())
 	{
 		Director::getInstance()->resume();
+		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1);
 		pauseButtonItem->setNormalImage(Sprite::createWithSpriteFrameName("pauseButton.png"));
 		pauseButtonItem->setSelectedImage(Sprite::createWithSpriteFrameName("startButton.png"));
 	}
@@ -111,6 +112,7 @@ void UILayer::menuPauseCallback(cocos2d::Ref* pSender)
 	{
 		//如果游戏正在进行
 		Director::getInstance()->pause();
+		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0);
 		pauseButtonItem->setNormalImage(Sprite::createWithSpriteFrameName("startButton.png"));
 		pauseButtonItem->setSelectedImage(Sprite::createWithSpriteFrameName("pauseButton.png"));
 	}

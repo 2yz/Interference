@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "UILayer.h"
-#include "ControlNode.h"
+#include "CameraNode.h"
 
 class GameScene : public cocos2d::Scene
 {
@@ -13,17 +13,15 @@ public:
 	virtual bool init() override;
 	CREATE_FUNC(GameScene);
 	UILayer* getUILayer();
-	ControlNode* getCameraLayer();
+	CameraNode* getCameraLayer();
 	// BulletLayer* getBulletLayer();
 	// PlayerLayer* getPlayerLayer();
 	// EnemyBulletLayer* getEnemyBulletLayer();
 	// EnemyLayer* getEnemyLayer();
-	void mouseDown(cocos2d::Event* event);
-	void mouseMove(cocos2d::Event* event);
 private:
 	// static GameBackgroundLayer* gameBackgroundLayer;
 	static UILayer* uiLayer;
-	static ControlNode* controlNode;
+	static CameraNode* CameraNode;
 	// static BulletLayer* bulletLayer;
 	// static PlayerLayer* playerLayer;
 	// static EnemyBulletLayer* enemyBulletLayer;

@@ -1,3 +1,7 @@
+/*
+* 此类已弃用
+*/
+
 #ifndef ENEMYLAYER_H_
 #define ENEMYLAYER_H_
 

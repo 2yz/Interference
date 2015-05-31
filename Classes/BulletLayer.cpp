@@ -1,3 +1,7 @@
+/*
+* 此类已弃用
+*/
+
 #include "BulletLayer.h"
 #include "GameScene.h"
 #include "BulletUserData.h"
@@ -61,9 +65,9 @@ void BulletLayer::launchBigBomb()
 void BulletLayer::addBullet(float useless)
 {
 	Sprite* bullet = Sprite::createWithSpriteFrameName(bulletTextureName[nowBulletLevel]);
-	Point planePosition = static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
+	Point planePosition = static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
 
-	Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
+	Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
 
 	bullet->setPosition(bulletPosition);
 	bullet->setUserData(new BulletUserData(eachBulletDamage, nowBulletLevel));

@@ -1,3 +1,7 @@
+/*
+* 此类已弃用
+*/
+
 #ifndef BULLETLAYER_H_
 #define BULLETLAYER_H_
 

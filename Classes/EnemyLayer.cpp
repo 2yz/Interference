@@ -1,16 +1,21 @@
+/*
+* 此类已弃用
+*/
+
 #include "EnemyLayer.h"
 #include "HelloWorldScene.h"
 #include "GameScene.h"
 #include "EnemyUserData.h"
 #include "BulletUserData.h"
 #include "PlayerUserData.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
 EnemyLayer::EnemyLayer() :
 visibleSize(Director::getInstance()->getVisibleSize()), visibleOrigin(Director::getInstance()->getVisibleOrigin()),
-baseEnemyAppearProbability(UserDefault::getInstance()->getFloatForKey("probabilityOfBaseEnemyAppear")),
-deltaEnemyAppearProbability(UserDefault::getInstance()->getFloatForKey("probabilityOfDeltaEnemyAppear")),
+baseEnemyAppearProbability(ConfigUtil::probabilityOfBaseEnemyAppear),
+deltaEnemyAppearProbability(ConfigUtil::probabilityOfDeltaEnemyAppear),
 nowEnemyAppearProbability(baseEnemyAppearProbability),
 bossAppeared(false), bossWarning(nullptr), bossSprite(nullptr)
 {
@@ -112,7 +117,7 @@ void EnemyLayer::update(float useless)
 
 	//判断是否已经通关
 	if ((allEnemy.empty() == true) && (this->bossAppeared == true)) {
-		static_cast<ControlNode*>(this->getParent())->getEnemyBulletLayer()->bossStopShooting();
+		static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStopShooting();
 		scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
 	}
 
@@ -120,7 +125,7 @@ void EnemyLayer::update(float useless)
 	for (Sprite* enemy : this->allEnemy) {
 		//判断敌机是否正在爆炸
 		if (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false) {
-			for (Sprite* bullet : static_cast<ControlNode*>(this->getParent())->getBulletLayer()->allBullet) {
+			for (Sprite* bullet : static_cast<CameraNode*>(this->getParent())->getBulletLayer()->allBullet) {
 				FiniteTimeAction* enemyRemove = CallFuncN::create(CC_CALLBACK_1(EnemyLayer::enemyMoveFinished, this));
 				//判断子弹是否与敌机碰撞，之所以要重复判断是否isDeleting是为了防止两个弹头同时命中目标会造成程序崩溃的bug
 				if (bullet->getBoundingBox().intersectsRect(enemy->getBoundingBox()) && (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false)) {
@@ -146,12 +151,12 @@ void EnemyLayer::update(float useless)
 					}//end根据损血改变BOSS外观
 
 					//回收子弹
-					static_cast<ControlNode*>(this->getParent())->getBulletLayer()->bulletMoveFinished(bullet);
+					static_cast<CameraNode*>(this->getParent())->getBulletLayer()->bulletMoveFinished(bullet);
 				}
 				//end判断子弹是否与敌机碰撞
 
 				//判断我方飞机是否与敌机碰撞
-				if (enemy->getBoundingBox().intersectsRect(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getBoundingBox()) && static_cast<PlayerUserData*>(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->getHP() > 0) {
+				if (enemy->getBoundingBox().intersectsRect(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getBoundingBox()) && static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->getHP() > 0) {
 					//给敌机造成碰撞伤害
 					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(400) == false) {
 						enemy->stopAllActions();
@@ -164,9 +169,9 @@ void EnemyLayer::update(float useless)
 					//end给敌机造成碰撞伤害
 
 					//给我方飞机造成碰撞伤害
-					if (static_cast<PlayerUserData*>(static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->isAliveUnderAttack(200) == false) {
-						static_cast<ControlNode*>(this->getParent())->getBulletLayer()->stopShooting();
-						static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->runAction(Sequence::create(actionExplosion, NULL));
+					if (static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->isAliveUnderAttack(200) == false) {
+						static_cast<CameraNode*>(this->getParent())->getBulletLayer()->stopShooting();
+						static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->runAction(Sequence::create(actionExplosion, NULL));
 						scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
 					}
 					//end给我方飞机造成碰撞伤害
@@ -229,5 +234,5 @@ void EnemyLayer::bossStartMove()
 	RepeatForever* bossMoveSequenceRepeat = RepeatForever::create(bossMoveSequence);
 	bossSprite->runAction(bossMoveSequenceRepeat);
 
-	static_cast<ControlNode*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
+	static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
 }

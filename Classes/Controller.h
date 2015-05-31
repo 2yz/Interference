@@ -9,21 +9,29 @@ public:
 	virtual ~Controller();
 	virtual bool init() override;
 	CREATE_FUNC(Controller);
-	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
-	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	static bool getMoveUp();
 	static bool getMoveDown();
 	static bool getMoveLeft();
 	static bool getMoveRight();
+	static bool getMouseDown();
+	static float getCursorX();
+	static float getCursorY();
 	// static void setMoveUp(bool value);
 	// static void setMoveDown(bool value);
 	// static void setMoveLeft(bool value);
 	// static void setMoveRight(bool value);
-private:
+protected:
 	static bool moveUp;
 	static bool moveDown;
 	static bool moveLeft;
 	static bool moveRight;
+	static bool mouseDown;
+	static float cursorX;
+	static float cursorY;
+	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	void onMouseDown(cocos2d::Event* event);
+	void onMouseMove(cocos2d::Event* event);
 };
 
 #endif /* CONTROLLER_H_ */

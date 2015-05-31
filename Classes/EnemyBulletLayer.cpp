@@ -1,3 +1,7 @@
+/*
+ * 此类已弃用
+ */
+
 #include "EnemyBulletLayer.h"
 #include "GameScene.h"
 #include "HelloWorldScene.h"
@@ -34,7 +38,7 @@ void EnemyBulletLayer::addBossBulletSet(float useless)
 {
 	Sprite* bulletSet = Sprite::createWithSpriteFrameName("enemyBulletSet.png");
 
-	Point bossPosition = static_cast<ControlNode*>(this->getParent())->getEnemyLayer()->getBossSprite()->getPosition();
+	Point bossPosition = static_cast<CameraNode*>(this->getParent())->getEnemyLayer()->getBossSprite()->getPosition();
 	bulletSet->setPosition(bossPosition);
 	allEnemyBullet.pushBack(bulletSet);
 	this->addChild(bulletSet);
@@ -59,14 +63,14 @@ void EnemyBulletLayer::update(float useless)
 	animationExplosion->setDelayPerUnit(0.5f / 9.0f);
 	actionExplosion = Animate::create(animationExplosion);
 
-	Sprite* myPlane = static_cast<ControlNode*>(this->getParent())->getPlayerLayer()->getMyPlane();
+	Sprite* myPlane = static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane();
 	for (Sprite* bullet : this->allEnemyBullet) {
 		if (bullet->getBoundingBox().intersectsRect(myPlane->getBoundingBox())) {
 
 			if (static_cast<PlayerUserData*>(myPlane->getUserData())->isAliveUnderAttack(200) == false){
 				//更新HP指示器
 				static_cast<GameScene*>(this->getParent())->getUILayer()->updateHPIndicator();
-				static_cast<ControlNode*>(this->getParent())->getBulletLayer()->stopShooting();
+				static_cast<CameraNode*>(this->getParent())->getBulletLayer()->stopShooting();
 				myPlane->runAction(Sequence::create(actionExplosion, NULL));
 				scheduleOnce(schedule_selector(EnemyBulletLayer::changeSceneCallBack), 1.0f);
 				this->bossStopShooting();

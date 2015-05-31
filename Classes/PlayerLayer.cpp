@@ -1,3 +1,7 @@
+/*
+* 此类已弃用
+*/
+
 #include "PlayerLayer.h"
 #include "PlayerUserData.h"
 #include "Controller.h"
@@ -67,14 +71,14 @@ float PlayerLayer::getPlayerPositionY()
 
 // TODO 判断游戏是否暂停
 
-void PlayerLayer::update(float delta)
+void PlayerLayer::update(float deltaTime)
 {
-	speedX -= frictionCoefficient * speedX * delta;
-	speedY -= frictionCoefficient * speedY * delta;
+	speedX -= frictionCoefficient * speedX * deltaTime;
+	speedY -= frictionCoefficient * speedY * deltaTime;
 
 	if (Controller::getMoveLeft() || Controller::getMoveRight())
 	{
-		speedX += acceleration * delta *(Controller::getMoveRight() - Controller::getMoveLeft());
+		speedX += acceleration * deltaTime *(Controller::getMoveRight() - Controller::getMoveLeft());
 		if (speedX > maxSpeed)
 			speedX = maxSpeed;
 		else if (speedX < -maxSpeed)
@@ -83,7 +87,7 @@ void PlayerLayer::update(float delta)
 
 	if (Controller::getMoveUp() || Controller::getMoveDown())
 	{
-		speedY += acceleration * delta *(Controller::getMoveUp() - Controller::getMoveDown());
+		speedY += acceleration * deltaTime *(Controller::getMoveUp() - Controller::getMoveDown());
 		if (speedY > maxSpeed)
 			speedY = maxSpeed;
 		else if (speedY < -maxSpeed)
@@ -91,8 +95,8 @@ void PlayerLayer::update(float delta)
 	}
 
 
-	playerPositionX = mPlayer->getPositionX() + speedX * delta;
-	playerPositionY = mPlayer->getPositionY() + speedY * delta;
+	playerPositionX = mPlayer->getPositionX() + speedX * deltaTime;
+	playerPositionY = mPlayer->getPositionY() + speedY * deltaTime;
 	/*
 	if (playerPositionX < visibleOrigin.x + mPlayer->getContentSize().width / 2)
 		playerPositionX = visibleOrigin.x + mPlayer->getContentSize().width / 2;

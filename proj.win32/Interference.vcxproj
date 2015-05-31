@@ -142,7 +142,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BulletUserData.cpp" />
     <ClCompile Include="..\Classes\ConfigUtil.cpp" />
     <ClCompile Include="..\Classes\Controller.cpp" />
-    <ClCompile Include="..\Classes\ControlNode.cpp" />
+    <ClCompile Include="..\Classes\CameraNode.cpp" />
     <ClCompile Include="..\Classes\EnemyBulletLayer.cpp" />
     <ClCompile Include="..\Classes\EnemyLayer.cpp" />
     <ClCompile Include="..\Classes\EnemyUserData.cpp" />
@@ -164,7 +164,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BulletUserData.h" />
     <ClInclude Include="..\Classes\ConfigUtil.h" />
     <ClInclude Include="..\Classes\Controller.h" />
-    <ClInclude Include="..\Classes\ControlNode.h" />
+    <ClInclude Include="..\Classes\CameraNode.h" />
     <ClInclude Include="..\Classes\EnemyBulletLayer.h" />
     <ClInclude Include="..\Classes\EnemyLayer.h" />
     <ClInclude Include="..\Classes\EnemyUserData.h" />

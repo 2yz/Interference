@@ -1,3 +1,7 @@
+/*
+* 此类已弃用
+*/
+
 #ifndef PLAYERLAYER_H_
 #define PLAYERLAYER_H_
 
@@ -30,7 +34,7 @@ private:
 	// bool moveLeft;
 	// bool moveRight;
 	cocos2d::Sprite* mPlayer;
-	virtual void update(float delta) override;
+	virtual void update(float deltaTime) override;
 };
 
 #endif /* PLAYERLAYER_H_ */

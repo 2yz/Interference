@@ -1,5 +1,5 @@
-#ifndef CONTROLNODE_H_
-#define CONTROLNODE_H_
+#ifndef CAMERANODE_H_
+#define CAMERANODE_H_
 
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
@@ -7,13 +7,14 @@
 #include "PlayerLayer.h"
 #include "EnemyBulletLayer.h"
 #include "EnemyLayer.h"
+#include "GameLayer.h"
 
-class ControlNode : public cocos2d::Node{
+class CameraNode : public cocos2d::Node{
 public:
-	ControlNode();
-	virtual ~ControlNode();
+	CameraNode();
+	virtual ~CameraNode();
 	virtual bool init() override;
-	CREATE_FUNC(ControlNode);
+	CREATE_FUNC(CameraNode);
 	float time;
 	GameBackgroundLayer* getGameBackgroundLayer();
 	BulletLayer* getBulletLayer();
@@ -22,11 +23,12 @@ public:
 	EnemyLayer* getEnemyLayer();
 private:
 	static GameBackgroundLayer* gameBackgroundLayer;
+	static GameLayer* gameLayer;
 	static BulletLayer* bulletLayer;
 	static PlayerLayer* playerLayer;
 	static EnemyBulletLayer* enemyBulletLayer;
 	static EnemyLayer* enemyLayer;
-	virtual void update(float delta) override;
+	virtual void update(float deltaTime) override;
 };
 
-#endif /* CONTROLNODE_H_ */
+#endif /* CAMERANODE_H_ */

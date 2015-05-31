@@ -16,51 +16,27 @@
     <Filter Include="src\HellowWorld">
       <UniqueIdentifier>{343c2f90-2b29-4341-a8d4-47d5dcf5e602}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Node">
+      <UniqueIdentifier>{e955ad60-2683-453f-9ad0-9ae85b702820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{659b06d5-3bb9-4ddb-a67f-10648ad01261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Layer">
+      <UniqueIdentifier>{dfb172ca-8f70-42af-ad76-66233e5f7235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UserData">
+      <UniqueIdentifier>{ccb8a5ae-265b-4331-b48d-9c3b2b4d0e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Deprecated">
+      <UniqueIdentifier>{b39af55f-be50-4dfe-abb9-4d4d1517bec8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BulletLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BulletUserData.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ConfigUtil.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Controller.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ControlNode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\EnemyBulletLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\EnemyLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\EnemyUserData.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PlayerLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PlayerUserData.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\UILayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BaseObject.cpp">
@@ -72,10 +48,49 @@
     <ClCompile Include="..\Classes\BasePlane.cpp">
       <Filter>src\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BulletLayer.cpp">
+      <Filter>src\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EnemyBulletLayer.cpp">
+      <Filter>src\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EnemyLayer.cpp">
+      <Filter>src\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerLayer.cpp">
+      <Filter>src\Deprecated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controller.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CameraNode.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\PlayerPlane.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletUserData.cpp">
+      <Filter>src\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EnemyUserData.cpp">
+      <Filter>src\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerUserData.cpp">
+      <Filter>src\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
+      <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameLayer.cpp">
+      <Filter>src\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UILayer.cpp">
+      <Filter>src\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,46 +98,7 @@
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BulletLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BulletUserData.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ConfigUtil.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Controller.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ControlNode.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\EnemyBulletLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\EnemyLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\EnemyUserData.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameBackgroundLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PlayerLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PlayerUserData.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UILayer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BaseObject.h">
@@ -134,10 +110,49 @@
     <ClInclude Include="..\Classes\BasePlane.h">
       <Filter>src\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\BulletLayer.h">
+      <Filter>src\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemyBulletLayer.h">
+      <Filter>src\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemyLayer.h">
+      <Filter>src\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerLayer.h">
+      <Filter>src\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controller.h">
+      <Filter>src\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CameraNode.h">
+      <Filter>src\Node</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\PlayerPlane.h">
-      <Filter>src</Filter>
+      <Filter>src\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletUserData.h">
+      <Filter>src\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemyUserData.h">
+      <Filter>src\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerUserData.h">
+      <Filter>src\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameBackgroundLayer.h">
+      <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameLayer.h">
+      <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UILayer.h">
+      <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

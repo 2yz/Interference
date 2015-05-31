@@ -13,6 +13,9 @@ public:
 	static float intervalOfAddBullet;
 	static float intervalOfAddEnemy;
 	static float intervalOfAddEnemyBullet;
+	
+	static float probabilityOfBaseEnemyAppear;
+	static float probabilityOfDeltaEnemyAppear;
 };
 
 #endif /* CONFIGUTIL_H_ */
