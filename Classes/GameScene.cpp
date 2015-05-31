@@ -31,6 +31,7 @@ bool GameScene::init()
 		return false;
 	}
 
+	// Set Physics Debug Mode
 	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 游戏控制器节点

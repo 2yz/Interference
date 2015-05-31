@@ -17,7 +17,14 @@ bool BasePlayer::init()
 	{
 		return false;
 	}
+	
+	normalShapeUp->setSpriteFrame("triangle.png");
+	normalShapeDown->setSpriteFrame("triangle.png");
+	smallShapeUp->setSpriteFrame("triangle.png");
+	smallShapeDown->setSpriteFrame("triangle.png");
+
 	this->scheduleUpdate();
+	
 	return true;
 }
 
@@ -35,6 +42,17 @@ void BasePlayer::update(float deltaTime)
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
+
+	float spriteRotation = normalShapeUp->getRotation() + sqrtf(physicsBody->getVelocity().lengthSquared()) *deltaTime;
+	if (spriteRotation > 36000)
+		spriteRotation -= 36000;
+	normalShapeUp->setRotation(spriteRotation);
+	// normalShapeDown->setRotation(180.0f - spriteRotation);
+	normalShapeDown->setRotation(-spriteRotation);
+	smallShapeUp->setRotation(spriteRotation * 2);
+	// smallShapeDown->setRotation(180.0f - spriteRotation * 2);
+	smallShapeDown->setRotation(-spriteRotation * 2);
+
 	log("Velocity X: %f Y: %f", physicsBody->getVelocity().x, physicsBody->getVelocity().y);
 	// log("Distance X: %f Y: %f", this->getPositionX() - lastPositionX, this->getPositionY() - lastPositionY);
 	// lastPositionX = this->getPositionX();

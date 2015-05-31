@@ -13,8 +13,8 @@ public:
 	PlayerPlane* getPlayerPlane();
 	
 protected:
-	static PlayerPlane* playerPlane;
-	
+	// static PlayerPlane* playerPlane;
+	PlayerPlane* playerPlane;
 	int initHP;
 
 	// cocos2d::Vector<cocos2d::Sprite*> allBullet;

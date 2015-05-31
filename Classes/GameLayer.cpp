@@ -8,9 +8,7 @@
 
 USING_NS_CC;
 
-PlayerPlane* GameLayer::playerPlane = nullptr;
-
-GameLayer::GameLayer() : initHP(1000)
+GameLayer::GameLayer() : playerPlane(nullptr), initHP(1000)
 {
 }
 

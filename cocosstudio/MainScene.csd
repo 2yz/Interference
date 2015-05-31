@@ -33,13 +33,13 @@
             <FileData Type="Normal" Path="HelloWorld.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Button_1" ActionTag="-917084999" Tag="3" IconVisible="False" LeftMargin="129.5000" RightMargin="770.5000" TopMargin="466.0000" BottomMargin="138.0000" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" OutlineSize="1" ShadowOffsetX="2" ShadowOffsetY="-2" ctype="ButtonObjectData">
+          <AbstractNodeData Name="Button_1" ActionTag="-917084999" Tag="3" IconVisible="False" LeftMargin="129.5000" RightMargin="1090.5000" TopMargin="546.0000" BottomMargin="138.0000" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" OutlineSize="1" ShadowOffsetX="2" ShadowOffsetY="-2" ctype="ButtonObjectData">
             <Size X="60.0000" Y="36.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="159.5000" Y="156.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.1661" Y="0.2438" />
+            <PrePosition X="0.1246" Y="0.2167" />
             <PreSize X="0.0625" Y="0.0562" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
@@ -48,7 +48,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="255" G="127" B="80" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Node_1" ActionTag="1057240493" Tag="4" IconVisible="True" LeftMargin="799.5000" RightMargin="160.5000" TopMargin="474.0000" BottomMargin="166.0000" ctype="SingleNodeObjectData">
+          <AbstractNodeData Name="Node_1" ActionTag="1057240493" Tag="4" IconVisible="True" LeftMargin="799.5000" RightMargin="480.5000" TopMargin="554.0000" BottomMargin="166.0000" ctype="SingleNodeObjectData">
             <Size />
             <Children>
               <AbstractNodeData Name="Button_2" ActionTag="-1389119711" Tag="5" IconVisible="False" LeftMargin="-23.0000" RightMargin="-23.0000" TopMargin="-50.0000" BottomMargin="14.0000" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" OutlineSize="1" ShadowOffsetX="2" ShadowOffsetY="-2" ctype="ButtonObjectData">
@@ -85,8 +85,30 @@
             <Position X="799.5000" Y="166.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.8328" Y="0.2594" />
+            <PrePosition X="0.6246" Y="0.2306" />
             <PreSize />
+          </AbstractNodeData>
+          <AbstractNodeData Name="hexagon_1" ActionTag="-1075525838" Tag="7" IconVisible="False" LeftMargin="969.5000" RightMargin="160.5000" TopMargin="238.0000" BottomMargin="332.0000" ctype="SpriteObjectData">
+            <Size X="150.0000" Y="150.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1044.5000" Y="407.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8160" Y="0.5653" />
+            <PreSize />
+            <FileData Type="MarkedSubImage" Path="hexagon.png" Plist="shape.plist" />
+            <BlendFunc Src="770" Dst="1" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="pentagon_2" ActionTag="-1189305290" Tag="8" IconVisible="False" LeftMargin="993.5000" RightMargin="136.5000" TopMargin="196.0000" BottomMargin="374.0000" ctype="SpriteObjectData">
+            <Size X="150.0000" Y="150.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1068.5000" Y="449.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.8348" Y="0.6236" />
+            <PreSize />
+            <FileData Type="MarkedSubImage" Path="pentagon.png" Plist="shape.plist" />
+            <BlendFunc Src="770" Dst="1" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

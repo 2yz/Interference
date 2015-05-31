@@ -9,9 +9,13 @@ public:
 	BasePlane();
 	explicit BasePlane(float radius);
 	virtual bool init() override;
-	static BasePlane* create();
+	virtual void onEnter() override;
+	// static BasePlane* create();
 protected:
-	cocos2d::Sprite* plane;
+	cocos2d::Sprite* normalShapeUp;
+	cocos2d::Sprite* normalShapeDown;
+	cocos2d::Sprite* smallShapeUp;
+	cocos2d::Sprite* smallShapeDown;
 
 };
 

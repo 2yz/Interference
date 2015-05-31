@@ -14,7 +14,8 @@ Scene* HelloWorld::createScene()
 	// 'scene' is an autorelease object
 	// auto scene = Scene::create();
 	auto scene = Scene::createWithPhysics();
-	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	// Set Physics Debug Mode
+	// scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 'layer' is an autorelease object
 	auto layer = HelloWorld::create();
@@ -51,10 +52,12 @@ bool HelloWorld::init()
 		return false;
 	}
 
-	auto rootNode = CSLoader::createNode("MainScene.csb");
+	Director::getInstance()->getOpenGLView()->setCursorVisible(true);
+
+	// auto rootNode = CSLoader::createNode("MainScene.csb");
 	// rootNode->getChildByName("")->
 
-	addChild(rootNode);
+	// addChild(rootNode);
 
 	auto edgeSp = Sprite::create();
 	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);

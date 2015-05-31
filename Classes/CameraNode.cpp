@@ -30,6 +30,7 @@ bool CameraNode::init()
 	{
 		return false;
 	}
+
 	gameBackgroundLayer = GameBackgroundLayer::create();
 	gameBackgroundLayer->setParent(this);
 	auto gameLayer = GameLayer::create();
@@ -37,8 +38,6 @@ bool CameraNode::init()
 	this->setTraceNode(gameLayer->getPlayerPlane());
 	this->addChild(gameBackgroundLayer);
 	this->addChild(gameLayer);
-
-	this->scheduleUpdate();
 
 	return true;
 }

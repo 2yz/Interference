@@ -1,5 +1,4 @@
 #include "PlayerPlane.h"
-#include "Controller.h"
 
 USING_NS_CC;
 

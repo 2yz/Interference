@@ -5,6 +5,11 @@
       <RootFolder Name=".">
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
+        <Image Name="hexagon.png" />
+        <Image Name="pentagon.png" />
+        <Image Name="square.png" />
+        <Image Name="triangle.png" />
+        <PlistInfo Name="shape.csi" Type="Plist" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -35,6 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		glview = GLViewImpl::createWithRect("Interference", Rect(0, 0, 1280, 720));
 		director->setOpenGLView(glview);
 	}
+	director->getOpenGLView()->setCursorVisible(false);
 	// 960 * 640
 	director->getOpenGLView()->setDesignResolutionSize(1280, 720, ResolutionPolicy::SHOW_ALL);
 
@@ -54,6 +55,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	// 读取纹理贴度集合
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(UserDefault::getInstance()->getStringForKey("textureFileName"));
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shape.plist");
 
 	//读取爆炸动画帧并存入AnimationCache
 	Vector<SpriteFrame*> explosionAnimationVector;
