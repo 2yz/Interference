@@ -47,11 +47,11 @@ void BasePlayer::update(float deltaTime)
 	if (spriteRotation > 36000)
 		spriteRotation -= 36000;
 	normalShapeUp->setRotation(spriteRotation);
-	// normalShapeDown->setRotation(180.0f - spriteRotation);
-	normalShapeDown->setRotation(-spriteRotation);
+	normalShapeDown->setRotation(180.0f - spriteRotation);
+	// normalShapeDown->setRotation(-spriteRotation);
 	smallShapeUp->setRotation(spriteRotation * 2);
-	// smallShapeDown->setRotation(180.0f - spriteRotation * 2);
-	smallShapeDown->setRotation(-spriteRotation * 2);
+	smallShapeDown->setRotation(180.0f - spriteRotation * 2);
+	// smallShapeDown->setRotation(-spriteRotation * 2);
 
 	log("Velocity X: %f Y: %f", physicsBody->getVelocity().x, physicsBody->getVelocity().y);
 	// log("Distance X: %f Y: %f", this->getPositionX() - lastPositionX, this->getPositionY() - lastPositionY);

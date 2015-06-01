@@ -8,8 +8,8 @@
         <Image Name="hexagon.png" />
         <Image Name="pentagon.png" />
         <Image Name="square.png" />
-        <Image Name="triangle.png" />
         <PlistInfo Name="shape.csi" Type="Plist" />
+        <Image Name="triangle.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
