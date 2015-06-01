@@ -7,8 +7,8 @@
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\AppDelegate.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BaseCamera" Collapsed="true">
-    <Position X="3.5" Y="6.5" Width="1.5" />
+  <Class Name="BaseCamera">
+    <Position X="2.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAASIAAAAAAAAEAAA=</HashCode>
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BaseCamera.h</FileName>
@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BaseTraced">
-    <Position X="3.5" Y="3" Width="1.5" />
+    <Position X="2.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgBAAAAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BaseTraced.h</FileName>
@@ -56,8 +56,8 @@
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BulletUserData.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CameraNode" Collapsed="true">
-    <Position X="3.5" Y="8" Width="1.5" />
+  <Class Name="CameraNode">
+    <Position X="2.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAEAAgIgAAAAQAAgAAAAABAAAABIAIzAAAAAAAAA=</HashCode>
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\CameraNode.h</FileName>
@@ -101,7 +101,7 @@
   <Class Name="GameBackgroundLayer" Collapsed="true">
     <Position X="6" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAEAAg=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameBackgroundLayer.h</FileName>
     </TypeIdentifier>
   </Class>

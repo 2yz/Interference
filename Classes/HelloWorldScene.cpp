@@ -116,54 +116,11 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
-	test->setTag(1);
+	int index = random(-2, -1);
+	// int index = 1;
+	test->getPhysicsBody()->setGroup(index);
+	test->setTag(index);
 	this->addChild(test);
-
-	// auto sp = Sprite::create();
-	// PhysicsBody* body;
-	// 
-	// 
-	// int index = static_cast<int>(p.x) % 3;
-	// 
-	// switch (index)
-	// {
-	// case 0:
-	// 	body = PhysicsBody::createBox(Size(40, 20));
-	// 	body->setVelocity(Vec2(random(-100, 100), random(-100, 100)));
-	// 	body->setGravityEnable(false);
-	// 	body->setCategoryBitmask(0x0000000F);
-	// 	body->setCollisionBitmask(0x0000000F);
-	// 	body->setContactTestBitmask(0x00000FFF);
-	// 	sp->setTag(1);
-	// 	sp->setPhysicsBody(body);
-	// 	sp->setPosition(p);
-	// 	this->addChild(sp);
-	// 	break;
-	// case 1:
-	// 	body = PhysicsBody::createBox(Size(80, 40));
-	// 	body->setVelocity(Vec2(random(-100, 100), random(-100, 100)));
-	// 	body->setGravityEnable(false);
-	// 	body->setCategoryBitmask(0x000000F0);
-	// 	body->setCollisionBitmask(0x000000F0);
-	// 	body->setContactTestBitmask(0x000000FF);
-	// 	sp->setTag(2);
-	// 	sp->setPhysicsBody(body);
-	// 	sp->setPosition(p);
-	// 	this->addChild(sp);
-	// 	break;
-	// case 2:
-	// 	body = PhysicsBody::createBox(Size(160, 80));
-	// 	body->setVelocity(Vec2(random(-100, 100), random(-100, 100)));
-	// 	body->setGravityEnable(false);
-	// 	body->setCategoryBitmask(0x00000F00);
-	// 	body->setCollisionBitmask(0x00000F00);
-	// 	body->setContactTestBitmask(0x00000F00);
-	// 	sp->setTag(3);
-	// 	sp->setPhysicsBody(body);
-	// 	sp->setPosition(p);
-	// 	this->addChild(sp);
-	// 	break;
-	// }
 }
 
 void HelloWorld::onMouseUp(cocos2d::Event* event)
@@ -178,24 +135,5 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
 	auto tag1 = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getTag();
 	auto tag2 = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getTag();
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
-	/*
-	auto sp = (Sprite*)contact.getShapeA()->getBody()->getNode();
-	int tag = 0;
-	tag = sp == nullptr ? 0: sp->getTag();
-	if (tag == 1)
-	{
-	sp->removeFromParentAndCleanup(true);
-	return false;
-	}
-
-	sp = (Sprite*)contact.getShapeB()->getBody()->getNode();
-	tag = sp == nullptr ? 0 : sp->getTag();
-	if (tag == 1)
-	{
-	sp->removeFromParentAndCleanup(true);
-	return false;
-	}
-	*/
-
 	return true;
 }

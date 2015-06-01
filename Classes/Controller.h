@@ -14,6 +14,7 @@ public:
 	static bool getMoveLeft();
 	static bool getMoveRight();
 	static bool getMouseDown();
+	static bool getKeyE();
 	static float getCursorX();
 	static float getCursorY();
 	// static void setMoveUp(bool value);
@@ -26,6 +27,7 @@ protected:
 	static bool moveLeft;
 	static bool moveRight;
 	static bool mouseDown;
+	static bool keyE;
 	static float cursorX;
 	static float cursorY;
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);

@@ -12,6 +12,7 @@ public:
 	void setTraceNode(BasePlayer* traceNode);
 protected:
 	BasePlayer* traceNode;
+	float scaleCoefficient;
 	virtual void update(float deltaTime) override;
 };
 
