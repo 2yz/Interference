@@ -24,8 +24,8 @@ bool BasePlane::init()
 	smallShapeUp = Sprite::create();
 	smallShapeDown = Sprite::create();
 
-	// normalShapeDown->setRotation(180.0f);
-	// smallShapeDown->setRotation(180.0f);
+	normalShapeDown->setRotation(180.0f);
+	smallShapeDown->setRotation(180.0f);
 
 	smallShapeUp->setScale(0.2f);
 	smallShapeDown->setScale(0.2f);

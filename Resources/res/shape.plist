@@ -7,7 +7,7 @@
 			<key>hexagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{150,150}}</string>
+				<string>{{0,200},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>pentagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,150},{150,150}}</string>
+				<string>{{0,350},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>square.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,300},{150,150}}</string>
+				<string>{{0,500},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,13 +40,13 @@
 			<key>triangle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,450},{150,150}}</string>
+				<string>{{0,0},{200,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{150,150}</string>
+				<string>{200,200}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -58,14 +58,14 @@
 			<key>realTextureFileName</key>
 			<string>shape.png</string>
 			<key>size</key>
-			<string>{150,600}</string>
+			<string>{200,650}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>150</integer>
+			<integer>200</integer>
 			<key>height</key>
-			<integer>600</integer>
+			<integer>650</integer>
 		</dict>
 	</dict>
 </plist>
