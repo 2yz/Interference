@@ -9,7 +9,6 @@ bool GameBackgroundLayer::init()
 	{
 		return false;
 	}
-
 	background1 = Sprite::create("img_bg_test.jpg");
 	this->addChild(background1);
 	return true;
