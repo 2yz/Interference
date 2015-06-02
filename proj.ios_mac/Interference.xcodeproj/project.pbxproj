@@ -70,6 +70,7 @@
 		818BE4C01B1C850D00F44D7E /* PlayerPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */; };
 		818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4AB1B1C850D00F44D7E /* PlayerUserData.cpp */; };
 		818BE4C21B1C850D00F44D7E /* UILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4AD1B1C850D00F44D7E /* UILayer.cpp */; };
+		818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4C71B1D485000F44D7E /* AnimationUtil.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -167,6 +168,8 @@
 		818BE4AC1B1C850D00F44D7E /* PlayerUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerUserData.h; sourceTree = "<group>"; };
 		818BE4AD1B1C850D00F44D7E /* UILayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayer.cpp; sourceTree = "<group>"; };
 		818BE4AE1B1C850D00F44D7E /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayer.h; sourceTree = "<group>"; };
+		818BE4C61B1D468700F44D7E /* AnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationUtil.h; sourceTree = "<group>"; };
+		818BE4C71B1D485000F44D7E /* AnimationUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationUtil.cpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -339,6 +342,8 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				818BE4C61B1D468700F44D7E /* AnimationUtil.h */,
+				818BE4C71B1D485000F44D7E /* AnimationUtil.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -548,6 +553,7 @@
 				818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */,
 				818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */,
 				818BE4B91B1C850D00F44D7E /* EnemyBulletLayer.cpp in Sources */,
+				818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */,
 				818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */,
 				818BE4BF1B1C850D00F44D7E /* PlayerLayer.cpp in Sources */,
 				818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */,
