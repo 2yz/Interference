@@ -75,7 +75,7 @@ bool HelloWorld::init()
 	// 	addNewSpriteAtPosition(location);
 	// };
 
-
+    
 
 	// auto nothing = rootNode->getChildByName("nothing");
 	// auto myScene = rootNode->getChildByName("Scene");
@@ -119,8 +119,7 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
-	int index = random(-2, -1);
-	// int index = 1;
+	int index = 1;
 	test->getPhysicsBody()->setGroup(index);
 	test->setTag(index);
 	this->addChild(test);
@@ -137,6 +136,17 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
 {
 	auto tag1 = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getTag();
 	auto tag2 = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getTag();
+    
+    if(tag1==1)
+    {
+        auto position = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getPosition();
+        Sprite* runSp = Sprite::create();
+        runSp->setPosition(position);
+        this->addChild(runSp);
+        Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
+        runSp->runAction(Animate::create(animation));
+    }
+    
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
 	return true;
 }
