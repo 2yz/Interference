@@ -66,6 +66,10 @@ bool HelloWorld::init()
 	edgeSp->setPhysicsBody(body);
 	addChild(edgeSp);
 	edgeSp->setTag(0);
+    
+    auto particle = ParticleSystemQuad::create("Background.plist");
+    particle->setPosition(Point(ConfigUtil::visibleSize.width / 2, ConfigUtil::visibleSize.height / 2));
+    this->addChild(particle);
 
 	auto listener = EventListenerMouse::create();
 	listener->onMouseUp = CC_CALLBACK_1(HelloWorld::onMouseUp, this);
@@ -140,13 +144,15 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
     if(tag1==1)
     {
         auto position = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getPosition();
-        Sprite* runSp = Sprite::create();
-        runSp->setPosition(position);
-        this->addChild(runSp);
-        Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
-        runSp->runAction(Animate::create(animation));
+        //Sprite* runSp = Sprite::create();
+        //runSp->setPosition(position);
+        //this->addChild(runSp);
+        //Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
+        //runSp->runAction(Animate::create(animation));
+        auto particle = ParticleSystemQuad::create("Square.plist");
+        particle->setPosition(position);
+        this->addChild(particle);
     }
-    
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
 	return true;
 }
