@@ -116,6 +116,7 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
+
 	int index = random(-2, -1);
 	// int index = 1;
 	test->getPhysicsBody()->setGroup(index);

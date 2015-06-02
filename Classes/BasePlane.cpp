@@ -51,6 +51,15 @@ void BasePlane::onEnter()
 	normalShapeDown->setBlendFunc(blend);
 	smallShapeUp->setBlendFunc(blend);
 	smallShapeDown->setBlendFunc(blend);
+
+	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+	auto tintTo3 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+	auto tintTo4 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+	normalShapeUp->runAction(tintTo1);
+	normalShapeDown->runAction(tintTo2);
+	smallShapeUp->runAction(tintTo3);
+	smallShapeDown->runAction(tintTo4);
 }
 
 // BasePlane* BasePlane::create()
