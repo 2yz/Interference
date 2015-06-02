@@ -5,8 +5,11 @@ USING_NS_CC;
 PlayerPlane::PlayerPlane() 
 {
 	log("PlayerPlane()");
+    maxSpeed = 300.0f;
 	
 }
+
+
 
 // bool PlayerPlane::init()
 // {
