@@ -7,6 +7,7 @@ bool Controller::moveDown = false;
 bool Controller::moveLeft = false;
 bool Controller::moveRight = false;
 bool Controller::mouseDown = false;
+bool Controller::keyE = false;
 float Controller::cursorX = 0.0f;
 float Controller::cursorY = 0.0f;
 
@@ -68,6 +69,11 @@ bool Controller::getMouseDown()
 	return mouseDown;
 }
 
+bool Controller::getKeyE()
+{
+	return keyE;
+}
+
 float Controller::getCursorX()
 {
 	return cursorX;
@@ -97,6 +103,9 @@ void Controller::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 	case EventKeyboard::KeyCode::KEY_Q:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
 		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f); break;
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		keyE = true;
 	default: break;
 	}
 }
@@ -120,6 +129,9 @@ void Controller::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	case EventKeyboard::KeyCode::KEY_Q:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
 		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f); break;
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		keyE = false;
 	default: break;
 	}
 }
