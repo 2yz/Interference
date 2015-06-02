@@ -33,7 +33,6 @@ Animation* AnimationUtil::createWithFrameNameAndNum(const char* name, int iNum, 
     
     Vector<SpriteFrame*> frameVec;;
     SpriteFrame* frame = NULL;
-    int index = 1;
     for (int i = 1; i <= iNum; i++)
     {
         frame = cache->getSpriteFrameByName(StringUtils::format("%s%d.png", name, i));
@@ -53,3 +52,18 @@ Animation* AnimationUtil::createWithFrameNameAndNum(const char* name, int iNum, 
     return animation;
 }
 
+
+//Demo
+/*
+Sprite* runSp = Sprite::create("run1.png");
+runSp->setPosition(Point(200, 200));
+this->addChild(runSp);
+
+SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
+frameCache->addSpriteFramesWithFile("boys.plist", "boys.png");
+
+Animation* animation = AnimationUtil::createWithSingleFrameName("run", 0.1f, -1);
+//Animation* animation = AnimationUtil::createWithFrameNameAndNum("run", 15, 0.1f, -1);
+
+runSp->runAction(Animate::create(animation));
+*/
