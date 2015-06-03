@@ -95,7 +95,7 @@ void BattleLayer::update(float deltaTime)
 			if (shootTimer >= shootCD)
 				shootEnterCD = false;
 		}
-		
+
 	}
 }
 
@@ -104,23 +104,25 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	auto nodeA = static_cast<Node*>(contact.getShapeA()->getBody()->getNode());
 	auto nodeB = static_cast<Node*>(contact.getShapeB()->getBody()->getNode());
 
-	log("CONTACT TEST A: %d B: %d", nodeA->getTag(), nodeB->getTag());
+	// log("CONTACT TEST A: %d B: %d", nodeA->getTag(), nodeB->getTag());
 
-	if (nodeA->getTag() == -2)
+	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
+		log("CONTACT TEST A: %d", nodeA->getTag());
 		auto particleA = ParticleSystemQuad::create("Boom.plist");
 		particleA->setPosition(nodeA->getPosition());
 		this->addChild(particleA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
-	if (nodeB->getTag() == -2)
+	if (nodeB != nullptr &&nodeB->getTag() == -2)
 	{
+		log("CONTACT TEST B: %d", nodeB->getTag());
 		auto particleB = ParticleSystemQuad::create("Boom.plist");
 		particleB->setPosition(nodeB->getPosition());
 		this->addChild(particleB);
 		nodeB->removeFromParentAndCleanup(true);
 	}
-	
+
 
 	return true;
 }

@@ -26,7 +26,6 @@ bool BaseObject::init()
 		return false;
 	}
 	physicsBody->setRotationEnable(false);
-	physicsBody->setGravityEnable(false);
 	this->setPhysicsBody(physicsBody);
 	return true;
 }
