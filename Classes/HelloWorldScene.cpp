@@ -79,13 +79,9 @@ bool HelloWorld::init()
 	// 	addNewSpriteAtPosition(location);
 	// };
 
-<<<<<<< HEAD
-	auto particle = ParticleSystemQuad::create("emit.plist");
+	auto particle = ParticleSystemQuad::create("Boom.plist");
 	particle->setPosition(640, 360);
 	this->addChild(particle);
-=======
-    
->>>>>>> origin/Zili
 
 	// auto nothing = rootNode->getChildByName("nothing");
 	// auto myScene = rootNode->getChildByName("Scene");
@@ -129,10 +125,7 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
-<<<<<<< HEAD
 	// int index = random(-2, -1);
-=======
->>>>>>> origin/Zili
 	int index = 1;
 	test->getPhysicsBody()->setGroup(index);
 	test->setTag(index);
