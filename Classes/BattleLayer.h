@@ -16,6 +16,10 @@ protected:
 	PlayerPlane* playerPlane;
 	int initHP;
 
+	const float shootCD = 0.1f;
+	float shootTimer;
+	bool shootEnterCD;
+
 	// Shoot Assist
 	cocos2d::Sprite* shootBox;
 	cocos2d::Sprite* shootLine;
@@ -23,6 +27,7 @@ protected:
 	float rotateAngle;
 
 	virtual void update(float deltaTime) override;
+	bool onContactBegin(cocos2d::PhysicsContact& contact);
 };
 
 #endif /* BattleLayer_H_ */

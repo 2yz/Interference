@@ -36,7 +36,7 @@ bool BattleScene::init()
 
 	// Set Physics Debug Mode
 	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-
+	// this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 	// 游戏控制器节点
 	auto controller = Controller::create();
 	// 游戏主节点

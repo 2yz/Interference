@@ -1,16 +1,12 @@
 #include "BattleLayer.h"
 #include "ConfigUtil.h"
-#include "BulletUserData.h"
-#include "EnemyUserData.h"
-#include "BattleScene.h"
 #include "PlayerUserData.h"
-#include "HelloWorldScene.h"
 #include "Controller.h"
 #include "PlayerBullet.h"
 
 USING_NS_CC;
 
-BattleLayer::BattleLayer() : playerPlane(nullptr), initHP(1000)
+BattleLayer::BattleLayer() : playerPlane(nullptr), initHP(1000), shootTimer(0.0f), shootEnterCD(false)
 {
 }
 
@@ -30,11 +26,12 @@ bool BattleLayer::init()
 	// Create Edge
 	auto edgeSp = Sprite::create();
 	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize * 2, PHYSICSBODY_MATERIAL_DEFAULT, 3);
+	body->setContactTestBitmask(0xFFFFFFFF);
 	edgeSp->setPosition(Point(0, 0));
 	edgeSp->setPhysicsBody(body);
 	edgeSp->setTag(0);
 	this->addChild(edgeSp);
-	
+
 	// Create Shoot Assist
 	shootBox = Sprite::createWithSpriteFrameName("ShootBox.png");
 	this->addChild(shootBox);
@@ -44,6 +41,10 @@ bool BattleLayer::init()
 
 	// Schedule update per frame
 	this->scheduleUpdate();
+
+	auto physicsListener = EventListenerPhysicsContact::create();
+	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
 	return true;
 }
@@ -77,11 +78,49 @@ void BattleLayer::update(float deltaTime)
 
 	if (Controller::getMouseDown())
 	{
-		auto velocity = boxPosition - playerPlane->getPosition();
-		velocity.normalize();
-		velocity *= 800;
-		auto playerBullet = PlayerBullet::create(velocity);
-		playerBullet->setPosition(playerPlane->getPosition());
-		this->addChild(playerBullet);
+		if (!shootEnterCD)
+		{
+			auto velocity = boxPosition - playerPlane->getPosition();
+			velocity.normalize();
+			velocity *= 800;
+			auto playerBullet = PlayerBullet::create(velocity);
+			playerBullet->setPosition(playerPlane->getPosition());
+			this->addChild(playerBullet);
+			shootEnterCD = true;
+			shootTimer = 0.0f;
+		}
+		else
+		{
+			shootTimer += deltaTime;
+			if (shootTimer >= shootCD)
+				shootEnterCD = false;
+		}
+		
 	}
+}
+
+bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
+{
+	auto nodeA = static_cast<Node*>(contact.getShapeA()->getBody()->getNode());
+	auto nodeB = static_cast<Node*>(contact.getShapeB()->getBody()->getNode());
+
+	log("CONTACT TEST A: %d B: %d", nodeA->getTag(), nodeB->getTag());
+
+	if (nodeA->getTag() == -2)
+	{
+		auto particleA = ParticleSystemQuad::create("Boom.plist");
+		particleA->setPosition(nodeA->getPosition());
+		this->addChild(particleA);
+		nodeA->removeFromParentAndCleanup(true);
+	}
+	if (nodeB->getTag() == -2)
+	{
+		auto particleB = ParticleSystemQuad::create("Boom.plist");
+		particleB->setPosition(nodeB->getPosition());
+		this->addChild(particleB);
+		nodeB->removeFromParentAndCleanup(true);
+	}
+	
+
+	return true;
 }

@@ -1,12 +1,15 @@
 #include "BasePlayer.h"
 #include "Controller.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
 BasePlayer::BasePlayer() : initHP(1000), acceleration(800.0f), maxSpeed(400.0f)
 {
 	setTraceCoefficient(maxSpeed, acceleration, 1.0f / 60.0f);
-	physicsBody->setContactTestBitmask(0xFFFFFFFF);
+	physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
+	physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
+	physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
 	physicsBody->setLinearDamping(1.0f);
 	physicsBody->setVelocityLimit(maxSpeed);
 }
@@ -17,8 +20,10 @@ bool BasePlayer::init()
 	{
 		return false;
 	}
-	
+	this->setTag(1);
 	normalShapeUp->setSpriteFrame("triangle.png");
+	auto test = SpriteFrameCache::getInstance()->getSpriteFrameByName("test");
+	normalShapeUp->getTextureRect();
 	normalShapeDown->setSpriteFrame("triangle.png");
 	smallShapeUp->setSpriteFrame("triangle.png");
 	smallShapeDown->setSpriteFrame("triangle.png");
