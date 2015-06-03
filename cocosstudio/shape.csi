@@ -2,11 +2,12 @@
   <PropertyGroup Type="Plist" Name="shape" ID="e613641a-8c8f-48c8-83ae-15ba51b59898" Version="2.2.6.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="True" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
+      <FilePathData Path="bullet.png" />
       <FilePathData Path="hexagon.png" />
       <FilePathData Path="pentagon.png" />
+      <FilePathData Path="ShootBox.png" />
       <FilePathData Path="square.png" />
       <FilePathData Path="triangle.png" />
-      <FilePathData Path="ShootBox.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

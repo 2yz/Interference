@@ -3,14 +3,6 @@
 
 USING_NS_CC;
 
-// GameBackgroundLayer* CameraNode::gameBackgroundLayer = nullptr;
-// BattleLayer* CameraNode::battleLayer = nullptr;
-// BulletLayer* CameraNode::bulletLayer = nullptr;
-// PlayerLayer* CameraNode::playerLayer = nullptr;
-// EnemyBulletLayer* CameraNode::enemyBulletLayer = nullptr;
-// EnemyLayer* CameraNode::enemyLayer = nullptr;
-
-
 CameraNode::CameraNode() : battleLayer(nullptr), gameBackgroundLayer(nullptr)
 {
 }
@@ -45,32 +37,7 @@ GameBackgroundLayer* CameraNode::getGameBackgroundLayer()
 	return this->gameBackgroundLayer;
 }
 
-// BulletLayer* CameraNode::getBulletLayer()
-// {
-// 	return this->bulletLayer;
-// }
-// 
-// PlayerLayer* CameraNode::getPlayerLayer()
-// {
-// 	return this->playerLayer;
-// }
-// 
-// EnemyBulletLayer* CameraNode::getEnemyBulletLayer()
-// {
-// 	return this->enemyBulletLayer;
-// }
-// 
-// EnemyLayer* CameraNode::getEnemyLayer()
-// {
-// 	return this->enemyLayer;
-// }
-
 BattleLayer* CameraNode::getBattleLayer()
 {
 	return this->battleLayer;
 }
-
-// void CameraNode::update(float deltaTime)
-// {	
-// 	
-// }

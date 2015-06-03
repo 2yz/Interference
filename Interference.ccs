@@ -12,6 +12,7 @@
         <Image Name="triangle.png" />
         <Image Name="ShootBox.png" />
         <Image Name="ShootLine.png" />
+        <Image Name="bullet.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

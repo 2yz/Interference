@@ -4,6 +4,17 @@
 	<dict>
 		<key>frames</key>
 		<dict>
+			<key>bullet.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,690},{15,15}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{15,15}</string>
+			</dict>
 			<key>hexagon.png</key>
 			<dict>
 				<key>frame</key>
@@ -25,6 +36,17 @@
 				<false />
 				<key>sourceSize</key>
 				<string>{150,150}</string>
+			</dict>
+			<key>ShootBox.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,650},{40,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{40,40}</string>
 			</dict>
 			<key>square.png</key>
 			<dict>
@@ -48,17 +70,6 @@
 				<key>sourceSize</key>
 				<string>{200,200}</string>
 			</dict>
-			<key>ShootBox.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,650},{40,40}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{40,40}</string>
-			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>
@@ -69,14 +80,14 @@
 			<key>realTextureFileName</key>
 			<string>shape.png</string>
 			<key>size</key>
-			<string>{200,690}</string>
+			<string>{200,705}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>200</integer>
 			<key>height</key>
-			<integer>690</integer>
+			<integer>705</integer>
 		</dict>
 	</dict>
 </plist>

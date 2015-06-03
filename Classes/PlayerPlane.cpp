@@ -6,9 +6,13 @@ PlayerPlane::PlayerPlane()
 {
 	log("PlayerPlane()");
     maxSpeed = 300.0f;
-	
 }
 
+// PlayerPlane* PlayerPlane::create(float x, float y)
+// {
+// 	PlayerPlane *pRet = new(std::nothrow) PlayerPlane(float x, float y);
+// 	CALL_INIT();
+// }
 
 
 // bool PlayerPlane::init()
