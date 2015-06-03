@@ -7,7 +7,7 @@
 #include "PlayerLayer.h"
 #include "EnemyBulletLayer.h"
 #include "EnemyLayer.h"
-#include "GameLayer.h"
+#include "BattleLayer.h"
 
 class CameraNode : public BaseCamera
 {
@@ -18,17 +18,18 @@ public:
 	CREATE_FUNC(CameraNode);
 	float time;
 	GameBackgroundLayer* getGameBackgroundLayer();
-	BulletLayer* getBulletLayer();
-	PlayerLayer* getPlayerLayer();
-	EnemyBulletLayer* getEnemyBulletLayer();
-	EnemyLayer* getEnemyLayer();
-private:
-	static GameBackgroundLayer* gameBackgroundLayer;
-	static GameLayer* gameLayer;
-	static BulletLayer* bulletLayer;
-	static PlayerLayer* playerLayer;
-	static EnemyBulletLayer* enemyBulletLayer;
-	static EnemyLayer* enemyLayer;
+	// BulletLayer* getBulletLayer();
+	// PlayerLayer* getPlayerLayer();
+	// EnemyBulletLayer* getEnemyBulletLayer();
+	// EnemyLayer* getEnemyLayer();
+	BattleLayer* getBattleLayer();
+protected:
+	BattleLayer* battleLayer;
+	GameBackgroundLayer* gameBackgroundLayer;
+	// static BulletLayer* bulletLayer;
+	// static PlayerLayer* playerLayer;
+	// static EnemyBulletLayer* enemyBulletLayer;
+	// static EnemyLayer* enemyLayer;
 	// virtual void update(float deltaTime) override;
 };
 

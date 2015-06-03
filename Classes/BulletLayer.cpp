@@ -3,7 +3,7 @@
 */
 
 #include "BulletLayer.h"
-#include "GameScene.h"
+#include "BattleScene.h"
 #include "BulletUserData.h"
 
 USING_NS_CC;
@@ -64,26 +64,26 @@ void BulletLayer::launchBigBomb()
 // TODO 是否有必要用静态函数获取player层
 void BulletLayer::addBullet(float useless)
 {
-	Sprite* bullet = Sprite::createWithSpriteFrameName(bulletTextureName[nowBulletLevel]);
-	Point planePosition = static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
+	// Sprite* bullet = Sprite::createWithSpriteFrameName(bulletTextureName[nowBulletLevel]);
+	// Point planePosition = static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getPosition();
 
-	Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
+	// Point bulletPosition = Point(planePosition.x, planePosition.y + static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getChildByName("PLAYER")->getContentSize().height);
 
-	bullet->setPosition(bulletPosition);
-	bullet->setUserData(new BulletUserData(eachBulletDamage, nowBulletLevel));
-	allBullet.pushBack(bullet);
-	this->bulletBatchNodeVector[nowBulletLevel]->addChild(bullet);
-
-	float bulletFlyLenth = Director::getInstance()->getWinSize().height - bulletPosition.y + (bullet->getContentSize().height / 2);
-	float bulletFlySpeed = 1000 / 1;
-	float bulletFltTime = bulletFlyLenth / bulletFlySpeed;
+	// bullet->setPosition(bulletPosition);
+	// bullet->setUserData(new BulletUserData(eachBulletDamage, nowBulletLevel));
+	// allBullet.pushBack(bullet);
+	// this->bulletBatchNodeVector[nowBulletLevel]->addChild(bullet);
+	// 
+	// float bulletFlyLenth = Director::getInstance()->getWinSize().height - bulletPosition.y + (bullet->getContentSize().height / 2);
+	// float bulletFlySpeed = 1000 / 1;
+	// float bulletFltTime = bulletFlyLenth / bulletFlySpeed;
 
 	// TODO 使用update绘制替代MoveTo
-	FiniteTimeAction* bulletMove = MoveTo::create(bulletFltTime, Point(bulletPosition.x, Director::getInstance()->getWinSize().height + bullet->getContentSize().height / 2));
-	FiniteTimeAction* bulletRemove = CallFuncN::create(CC_CALLBACK_1(BulletLayer::bulletMoveFinished, this));
-
-	auto bulleAction = Sequence::create(bulletMove, bulletRemove, NULL);
-	bullet->runAction(bulleAction);
+	// FiniteTimeAction* bulletMove = MoveTo::create(bulletFltTime, Point(bulletPosition.x, Director::getInstance()->getWinSize().height + bullet->getContentSize().height / 2));
+	// FiniteTimeAction* bulletRemove = CallFuncN::create(CC_CALLBACK_1(BulletLayer::bulletMoveFinished, this));
+	// 
+	// auto bulleAction = Sequence::create(bulletMove, bulletRemove, NULL);
+	// bullet->runAction(bulleAction);
 }
 
 void BulletLayer::bulletMoveFinished(Node* pSender)

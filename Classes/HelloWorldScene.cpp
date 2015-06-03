@@ -74,7 +74,9 @@ bool HelloWorld::init()
 	// 	addNewSpriteAtPosition(location);
 	// };
 
-
+	auto particle = ParticleSystemQuad::create("emit.plist");
+	particle->setPosition(640, 360);
+	this->addChild(particle);
 
 	// auto nothing = rootNode->getChildByName("nothing");
 	// auto myScene = rootNode->getChildByName("Scene");
@@ -117,8 +119,8 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
-	int index = random(-2, -1);
-	// int index = 1;
+	// int index = random(-2, -1);
+	int index = 1;
 	test->getPhysicsBody()->setGroup(index);
 	test->setTag(index);
 	this->addChild(test);
@@ -136,5 +138,10 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
 	auto tag1 = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getTag();
 	auto tag2 = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getTag();
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
+	if (tag1 == 1)
+	{
+		// auto position = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getPosition();
+		
+	}
 	return true;
 }

@@ -30,7 +30,7 @@ void BaseCamera::update(float deltaTime)
 {
 	auto cameraPosition = Director::getInstance()->getRunningScene()->getDefaultCamera()->getPosition3D();
 	// Director::getInstance()->getRunningScene()->getDefaultCamera()->lookAt()
-	log("CAMERA X: %f Y: %f Z:%f", cameraPosition.x, cameraPosition.y,cameraPosition.z);
+	// log("CAMERA X: %f Y: %f Z:%f", cameraPosition.x, cameraPosition.y,cameraPosition.z);
 	if (traceNode != nullptr)
 	{
 		auto positionDelta = this->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) + traceNode->getPosition()*scaleCoefficient;

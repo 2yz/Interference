@@ -151,8 +151,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\EnemyLayer.cpp" />
     <ClCompile Include="..\Classes\EnemyUserData.cpp" />
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
-    <ClCompile Include="..\Classes\GameLayer.cpp" />
-    <ClCompile Include="..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\Classes\BattleLayer.cpp" />
+    <ClCompile Include="..\Classes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\PlayerLayer.cpp" />
     <ClCompile Include="..\Classes\PlayerPlane.cpp" />
@@ -177,8 +177,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\EnemyLayer.h" />
     <ClInclude Include="..\Classes\EnemyUserData.h" />
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
-    <ClInclude Include="..\Classes\GameLayer.h" />
-    <ClInclude Include="..\Classes\GameScene.h" />
+    <ClInclude Include="..\Classes\BattleLayer.h" />
+    <ClInclude Include="..\Classes\BattleScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\PlayerLayer.h" />
     <ClInclude Include="..\Classes\PlayerPlane.h" />

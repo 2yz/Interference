@@ -6,7 +6,8 @@
       <FilePathData Path="pentagon.png" />
       <FilePathData Path="square.png" />
       <FilePathData Path="triangle.png" />
+      <FilePathData Path="ShootBox.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="2048" Height="2048" />
   </Content>
 </PlistInfoProjectFile>

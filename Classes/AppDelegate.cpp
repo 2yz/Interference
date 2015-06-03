@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "GameScene.h"
+#include "BattleScene.h"
 #include "HelloWorldScene.h"
 #include "ConfigUtil.h"
 
@@ -70,7 +70,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	AnimationCache::getInstance()->addAnimation(explosionAnimation, "explosion");
 
 	// create a scene. it's an autorelease object
-	auto scene = GameScene::create();
+	auto scene = BattleScene::create();
 	// auto scene = HelloWorld::createScene();
 
 	// run

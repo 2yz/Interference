@@ -4,7 +4,7 @@
 
 #include "EnemyLayer.h"
 #include "HelloWorldScene.h"
-#include "GameScene.h"
+#include "BattleScene.h"
 #include "EnemyUserData.h"
 #include "BulletUserData.h"
 #include "PlayerUserData.h"
@@ -110,81 +110,81 @@ void EnemyLayer::stopAddEnemy()
 
 void EnemyLayer::update(float useless)
 {
-	Animation* animationExplosion = AnimationCache::getInstance()->getAnimation("explosion");
-	animationExplosion->setRestoreOriginalFrame(false);
-	animationExplosion->setDelayPerUnit(0.5f / 9.0f);
-	auto actionExplosion = Animate::create(animationExplosion);
-
-	//判断是否已经通关
-	if ((allEnemy.empty() == true) && (this->bossAppeared == true)) {
-		static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStopShooting();
-		scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
-	}
-
-	//遍历敌机
-	for (Sprite* enemy : this->allEnemy) {
-		//判断敌机是否正在爆炸
-		if (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false) {
-			for (Sprite* bullet : static_cast<CameraNode*>(this->getParent())->getBulletLayer()->allBullet) {
-				FiniteTimeAction* enemyRemove = CallFuncN::create(CC_CALLBACK_1(EnemyLayer::enemyMoveFinished, this));
-				//判断子弹是否与敌机碰撞，之所以要重复判断是否isDeleting是为了防止两个弹头同时命中目标会造成程序崩溃的bug
-				if (bullet->getBoundingBox().intersectsRect(enemy->getBoundingBox()) && (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false)) {
-
-					//读取子弹的伤害，给敌机造成伤害
-					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(static_cast<BulletUserData*>(bullet->getUserData())->getDamage()) == false) {
-						enemy->stopAllActions();
-						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
-						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
-						//摧毁敌机后加分
-						static_cast<GameScene*>(this->getParent())->getUILayer()->addScoreBy(100);
-					}
-					//end读取子弹的伤害，给敌机造成伤害
-
-					//根据损血改变BOSS外观
-					if (this->bossAppeared == true){
-						if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3 * 2) && (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() > (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3))){
-							bossSprite->setSpriteFrame("enemyBossBroken.png");
-						}
-						else if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3)){
-							bossSprite->setSpriteFrame("enemyBossBrokenMore.png");
-						}
-					}//end根据损血改变BOSS外观
-
-					//回收子弹
-					static_cast<CameraNode*>(this->getParent())->getBulletLayer()->bulletMoveFinished(bullet);
-				}
-				//end判断子弹是否与敌机碰撞
-
-				//判断我方飞机是否与敌机碰撞
-				if (enemy->getBoundingBox().intersectsRect(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getBoundingBox()) && static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->getHP() > 0) {
-					//给敌机造成碰撞伤害
-					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(400) == false) {
-						enemy->stopAllActions();
-						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
-						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
-
-						//撞毁敌机后加分
-						static_cast<GameScene*>(this->getParent())->getUILayer()->addScoreBy(100);
-					}
-					//end给敌机造成碰撞伤害
-
-					//给我方飞机造成碰撞伤害
-					if (static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->isAliveUnderAttack(200) == false) {
-						static_cast<CameraNode*>(this->getParent())->getBulletLayer()->stopShooting();
-						static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->runAction(Sequence::create(actionExplosion, NULL));
-						scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
-					}
-					//end给我方飞机造成碰撞伤害
-
-					//更新HP指示器
-					static_cast<GameScene*>(this->getParent())->getUILayer()->updateHPIndicator();
-				}
-				//end判断我方飞机是否与敌机碰撞
-			}
-		}
-		//end判断敌机是否正在爆炸
-	}
-	//end遍历敌机
+//	Animation* animationExplosion = AnimationCache::getInstance()->getAnimation("explosion");
+//	animationExplosion->setRestoreOriginalFrame(false);
+//	animationExplosion->setDelayPerUnit(0.5f / 9.0f);
+//	auto actionExplosion = Animate::create(animationExplosion);
+//
+//	//判断是否已经通关
+//	if ((allEnemy.empty() == true) && (this->bossAppeared == true)) {
+//		static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStopShooting();
+//		scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
+//	}
+//
+//	//遍历敌机
+//	for (Sprite* enemy : this->allEnemy) {
+//		//判断敌机是否正在爆炸
+//		if (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false) {
+//			for (Sprite* bullet : static_cast<CameraNode*>(this->getParent())->getBulletLayer()->allBullet) {
+//				FiniteTimeAction* enemyRemove = CallFuncN::create(CC_CALLBACK_1(EnemyLayer::enemyMoveFinished, this));
+//				//判断子弹是否与敌机碰撞，之所以要重复判断是否isDeleting是为了防止两个弹头同时命中目标会造成程序崩溃的bug
+//				if (bullet->getBoundingBox().intersectsRect(enemy->getBoundingBox()) && (static_cast<EnemyUserData*>(enemy->getUserData())->getIsDeleting() == false)) {
+//
+//					//读取子弹的伤害，给敌机造成伤害
+//					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(static_cast<BulletUserData*>(bullet->getUserData())->getDamage()) == false) {
+//						enemy->stopAllActions();
+//						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
+//						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
+//						//摧毁敌机后加分
+//						static_cast<BattleScene*>(this->getParent())->getUILayer()->addScoreBy(100);
+//					}
+//					//end读取子弹的伤害，给敌机造成伤害
+//
+//					//根据损血改变BOSS外观
+//					if (this->bossAppeared == true){
+//						if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3 * 2) && (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() > (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3))){
+//							bossSprite->setSpriteFrame("enemyBossBroken.png");
+//						}
+//						else if (static_cast<EnemyUserData*>(bossSprite->getUserData())->getHP() < (UserDefault::getInstance()->getIntegerForKey("HPOfEnemyBoss") / 3)){
+//							bossSprite->setSpriteFrame("enemyBossBrokenMore.png");
+//						}
+//					}//end根据损血改变BOSS外观
+//
+//					//回收子弹
+//					static_cast<CameraNode*>(this->getParent())->getBulletLayer()->bulletMoveFinished(bullet);
+//				}
+//				//end判断子弹是否与敌机碰撞
+//
+//				//判断我方飞机是否与敌机碰撞
+//				if (enemy->getBoundingBox().intersectsRect(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getBoundingBox()) && static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->getHP() > 0) {
+//					//给敌机造成碰撞伤害
+//					if (static_cast<EnemyUserData*>(enemy->getUserData())->isAliveUnderAttack(400) == false) {
+//						enemy->stopAllActions();
+//						static_cast<EnemyUserData*>(enemy->getUserData())->setIsDeleting();
+//						enemy->runAction(Sequence::create(actionExplosion, enemyRemove, NULL));
+//
+//						//撞毁敌机后加分
+//						static_cast<BattleScene*>(this->getParent())->getUILayer()->addScoreBy(100);
+//					}
+//					//end给敌机造成碰撞伤害
+//
+//					//给我方飞机造成碰撞伤害
+//					if (static_cast<PlayerUserData*>(static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->getUserData())->isAliveUnderAttack(200) == false) {
+//						static_cast<CameraNode*>(this->getParent())->getBulletLayer()->stopShooting();
+//						static_cast<CameraNode*>(this->getParent())->getPlayerLayer()->getMyPlane()->runAction(Sequence::create(actionExplosion, NULL));
+//						scheduleOnce(schedule_selector(EnemyLayer::changeSceneCallBack), 1.0f);
+//					}
+//					//end给我方飞机造成碰撞伤害
+//
+//					//更新HP指示器
+//					static_cast<BattleScene*>(this->getParent())->getUILayer()->updateHPIndicator();
+//				}
+//				//end判断我方飞机是否与敌机碰撞
+//			}
+//		}
+//		//end判断敌机是否正在爆炸
+//	}
+//	//end遍历敌机
 }
 
 void EnemyLayer::addBossSprite()
@@ -219,20 +219,20 @@ void EnemyLayer::setBossWarningOn()
 
 void EnemyLayer::bossStartMove()
 {
-	Vector<FiniteTimeAction*> bossMoveBezier;
-
-	for (int i = 0; i < 10; i++) {
-		ccBezierConfig bezierConfig;
-		bezierConfig.controlPoint_1 = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height));
-		bezierConfig.controlPoint_2 = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height));
-		bezierConfig.endPosition = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), (visibleOrigin.y + visibleSize.height) / 3 * 2 + (CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height) / 3));
-		FiniteTimeAction* tempBossMoveBezier = BezierTo::create(3.0f, bezierConfig);
-		bossMoveBezier.pushBack(tempBossMoveBezier);
-	}
-
-	Sequence* bossMoveSequence = Sequence::create(bossMoveBezier.at(0), bossMoveBezier.at(1), bossMoveBezier.at(2), bossMoveBezier.at(3), bossMoveBezier.at(4), bossMoveBezier.at(5), bossMoveBezier.at(6), bossMoveBezier.at(7), bossMoveBezier.at(8), bossMoveBezier.at(9), NULL);
-	RepeatForever* bossMoveSequenceRepeat = RepeatForever::create(bossMoveSequence);
-	bossSprite->runAction(bossMoveSequenceRepeat);
-
-	static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
+//	Vector<FiniteTimeAction*> bossMoveBezier;
+//
+//	for (int i = 0; i < 10; i++) {
+//		ccBezierConfig bezierConfig;
+//		bezierConfig.controlPoint_1 = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height));
+//		bezierConfig.controlPoint_2 = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height));
+//		bezierConfig.endPosition = Point(CCRANDOM_0_1()*(visibleOrigin.x + visibleSize.width), (visibleOrigin.y + visibleSize.height) / 3 * 2 + (CCRANDOM_0_1()*(visibleOrigin.y + visibleSize.height) / 3));
+//		FiniteTimeAction* tempBossMoveBezier = BezierTo::create(3.0f, bezierConfig);
+//		bossMoveBezier.pushBack(tempBossMoveBezier);
+//	}
+//
+//	Sequence* bossMoveSequence = Sequence::create(bossMoveBezier.at(0), bossMoveBezier.at(1), bossMoveBezier.at(2), bossMoveBezier.at(3), bossMoveBezier.at(4), bossMoveBezier.at(5), bossMoveBezier.at(6), bossMoveBezier.at(7), bossMoveBezier.at(8), bossMoveBezier.at(9), NULL);
+//	RepeatForever* bossMoveSequenceRepeat = RepeatForever::create(bossMoveSequence);
+//	bossSprite->runAction(bossMoveSequenceRepeat);
+//
+//	static_cast<CameraNode*>(this->getParent())->getEnemyBulletLayer()->bossStartShooting();
 }

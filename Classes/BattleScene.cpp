@@ -1,24 +1,27 @@
-#include "GameScene.h"
+#include "BattleScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ConfigUtil.h"
 #include "Controller.h"
 
 USING_NS_CC;
 
-UILayer* GameScene::uiLayer = nullptr;
-CameraNode* GameScene::CameraNode = nullptr;
+BattleScene* BattleScene::battleScene = nullptr;
+UILayer* BattleScene::uiLayer = nullptr;
+CameraNode* BattleScene::cameraNode = nullptr;
 
-GameScene::GameScene()
+BattleScene::BattleScene()
 {
+	battleScene = this;
 }
 
-GameScene::~GameScene()
+BattleScene::~BattleScene()
 {
 	uiLayer = nullptr;
-	CameraNode = nullptr;
+	cameraNode = nullptr;
+	battleScene = nullptr;
 }
 
-bool GameScene::init()
+bool BattleScene::init()
 {
 	if (!Scene::init())
 	{
@@ -37,15 +40,16 @@ bool GameScene::init()
 	// 游戏控制器节点
 	auto controller = Controller::create();
 	// 游戏主节点
-	CameraNode = CameraNode::create();
-	CameraNode->setPosition(Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2));
-	CameraNode->setParent(this);
+	cameraNode = CameraNode::create();
+	cameraNode->setPosition(Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2));
+	cameraNode->setParent(this);
+	
 	// UI层
 	uiLayer = UILayer::create();
 	uiLayer->setParent(this);
 
 	this->addChild(controller);
-	this->addChild(CameraNode);
+	this->addChild(cameraNode);
 	this->addChild(uiLayer);
 
 	// auto lable = Label::createWithTTF("Label", "fonts/Marker Felt.ttf", 32);
@@ -55,12 +59,12 @@ bool GameScene::init()
 	return true;
 }
 
-UILayer* GameScene::getUILayer()
+UILayer* BattleScene::getUILayer()
 {
 	return this->uiLayer;
 }
 
-CameraNode* GameScene::getCameraLayer()
+CameraNode* BattleScene::getCameraLayer()
 {
-	return this->CameraNode;
+	return this->cameraNode;
 }

@@ -10,6 +10,8 @@
         <Image Name="square.png" />
         <PlistInfo Name="shape.csi" Type="Plist" />
         <Image Name="triangle.png" />
+        <Image Name="ShootBox.png" />
+        <Image Name="ShootLine.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

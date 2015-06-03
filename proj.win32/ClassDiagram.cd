@@ -105,18 +105,18 @@
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameBackgroundLayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GameLayer" Collapsed="true">
+  <Class Name="BattleLayer" Collapsed="true">
     <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAICABAgAAAEAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameLayer.h</FileName>
+      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BattleLayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GameScene" Collapsed="true">
+  <Class Name="BattleScene" Collapsed="true">
     <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAABAAQAIAAAAIAIBAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameScene.h</FileName>
+      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BattleScene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HelloWorld" Collapsed="true">

@@ -48,6 +48,17 @@
 				<key>sourceSize</key>
 				<string>{200,200}</string>
 			</dict>
+			<key>ShootBox.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,650},{40,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{40,40}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>
@@ -58,14 +69,14 @@
 			<key>realTextureFileName</key>
 			<string>shape.png</string>
 			<key>size</key>
-			<string>{200,650}</string>
+			<string>{200,690}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>200</integer>
 			<key>height</key>
-			<integer>650</integer>
+			<integer>690</integer>
 		</dict>
 	</dict>
 </plist>
