@@ -20,6 +20,7 @@ public:
 	void onClick();
 	void setPhyWorld(cocos2d::PhysicsWorld* world);
 private:
+    HelloWorld* helloworld;
 	cocos2d::PhysicsWorld* m_world;
 	void addNewSpriteAtPosition(cocos2d::Point p);
 	void onMouseUp(cocos2d::Event *event);

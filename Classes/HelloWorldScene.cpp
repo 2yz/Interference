@@ -4,6 +4,7 @@
 #include "ConfigUtil.h"
 #include "BasePlane.h"
 #include "PlayerPlane.h"
+#include "AnimationUtil.h"
 
 USING_NS_CC;
 
@@ -65,6 +66,10 @@ bool HelloWorld::init()
 	edgeSp->setPhysicsBody(body);
 	addChild(edgeSp);
 	edgeSp->setTag(0);
+    
+    auto particle = ParticleSystemQuad::create("Background.plist");
+    particle->setPosition(Point(ConfigUtil::visibleSize.width / 2, ConfigUtil::visibleSize.height / 2));
+    this->addChild(particle);
 
 	auto listener = EventListenerMouse::create();
 	listener->onMouseUp = CC_CALLBACK_1(HelloWorld::onMouseUp, this);
@@ -74,9 +79,13 @@ bool HelloWorld::init()
 	// 	addNewSpriteAtPosition(location);
 	// };
 
+<<<<<<< HEAD
 	auto particle = ParticleSystemQuad::create("emit.plist");
 	particle->setPosition(640, 360);
 	this->addChild(particle);
+=======
+    
+>>>>>>> origin/Zili
 
 	// auto nothing = rootNode->getChildByName("nothing");
 	// auto myScene = rootNode->getChildByName("Scene");
@@ -115,11 +124,15 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 {
 	auto test = PlayerPlane::create();
 	test->setPosition(p);
+        test->getPhysicsBody()->setGroup(random(-1,-2));
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
+<<<<<<< HEAD
 	// int index = random(-2, -1);
+=======
+>>>>>>> origin/Zili
 	int index = 1;
 	test->getPhysicsBody()->setGroup(index);
 	test->setTag(index);
@@ -137,6 +150,19 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
 {
 	auto tag1 = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getTag();
 	auto tag2 = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getTag();
+    
+    if(tag1==1)
+    {
+        auto position = static_cast<Node*>(contact.getShapeB()->getBody()->getNode())->getPosition();
+        //Sprite* runSp = Sprite::create();
+        //runSp->setPosition(position);
+        //this->addChild(runSp);
+        //Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
+        //runSp->runAction(Animate::create(animation));
+        auto particle = ParticleSystemQuad::create("Square.plist");
+        particle->setPosition(position);
+        this->addChild(particle);
+    }
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
 	if (tag1 == 1)
 	{
