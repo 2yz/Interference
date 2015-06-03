@@ -31,8 +31,4 @@ private:
 	// static EnemyLayer* enemyLayer;
 };
 
-inline BattleScene* BattleScene::getInstance()
-{
-}
-
 #endif /* BattleScene_H_ */

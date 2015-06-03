@@ -20,4 +20,5 @@ bool PlayerBullet::init()
 		return false;
 	}
 	bullet->setSpriteFrame("bullet.png");
+    return true;
 }
