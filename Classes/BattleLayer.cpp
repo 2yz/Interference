@@ -89,11 +89,14 @@ void BattleLayer::update(float deltaTime)
 			auto scaleToSmall = ScaleTo::create(0.1f, 0.6f);
 			auto scaleToBig = ScaleTo::create(0.1f, 1.0f);
 			shootBox->runAction(Sequence::create(scaleToSmall,scaleToBig,nullptr));
+			// shootBox->setScale(random(0.6f,0.6f));
 			shootEnterCD = true;
 			shootTimer = 0.0f;
+
 		}
 		else
 		{
+			// shootBox->setScale(1.0f);
 			shootTimer += deltaTime;
 			if (shootTimer >= shootCD)
 				shootEnterCD = false;
