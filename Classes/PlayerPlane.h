@@ -10,6 +10,8 @@ public:
 	// virtual bool init() override;
 	// static PlayerPlane* create(float x,float y);
 	CREATE_FUNC(PlayerPlane);
+
+	virtual void onEnter() override;
 };
 
 #endif /* PLAYERPLANE_H_ */

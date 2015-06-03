@@ -8,6 +8,13 @@ PlayerPlane::PlayerPlane()
     maxSpeed = 300.0f;
 }
 
+void PlayerPlane::onEnter()
+{
+	BasePlayer::onEnter();
+	auto particle = ParticleSystemQuad::create("Tail.plist");
+	this->addChild(particle);
+}
+
 // PlayerPlane* PlayerPlane::create(float x, float y)
 // {
 // 	PlayerPlane *pRet = new(std::nothrow) PlayerPlane(float x, float y);

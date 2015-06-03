@@ -86,6 +86,9 @@ void BattleLayer::update(float deltaTime)
 			auto playerBullet = PlayerBullet::create(velocity);
 			playerBullet->setPosition(playerPlane->getPosition());
 			this->addChild(playerBullet);
+			auto scaleToSmall = ScaleTo::create(0.1f, 0.6f);
+			auto scaleToBig = ScaleTo::create(0.1f, 1.0f);
+			shootBox->runAction(Sequence::create(scaleToSmall,scaleToBig,nullptr));
 			shootEnterCD = true;
 			shootTimer = 0.0f;
 		}

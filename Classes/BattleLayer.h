@@ -16,7 +16,7 @@ protected:
 	PlayerPlane* playerPlane;
 	int initHP;
 
-	const float shootCD = 0.1f;
+	const float shootCD = 0.04f;
 	float shootTimer;
 	bool shootEnterCD;
 
