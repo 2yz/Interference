@@ -64,8 +64,6 @@
 		818BE4BA1B1C850D00F44D7E /* EnemyLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE49D1B1C850D00F44D7E /* EnemyLayer.cpp */; };
 		818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE49F1B1C850D00F44D7E /* EnemyUserData.cpp */; };
 		818BE4BC1B1C850D00F44D7E /* GameBackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */; };
-		818BE4BD1B1C850D00F44D7E /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A31B1C850D00F44D7E /* GameLayer.cpp */; };
-		818BE4BE1B1C850D00F44D7E /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A51B1C850D00F44D7E /* GameScene.cpp */; };
 		818BE4BF1B1C850D00F44D7E /* PlayerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */; };
 		818BE4C01B1C850D00F44D7E /* PlayerPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */; };
 		818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4AB1B1C850D00F44D7E /* PlayerUserData.cpp */; };
@@ -99,6 +97,10 @@
 		818BE68E1B1DB2D000F44D7E /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE68D1B1DB2D000F44D7E /* Boom.plist */; };
 		818BE6901B1DB60E00F44D7E /* Square.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE68F1B1DB60E00F44D7E /* Square.plist */; };
 		818BE6921B1DB7D600F44D7E /* Background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE6911B1DB7D600F44D7E /* Background.plist */; };
+		81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */; };
+		81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF01B1F637E0016364D /* BattleScene.cpp */; };
+		81BE3AF61B1F637E0016364D /* PlayerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */; };
+		81BE3AF81B1F63CE0016364D /* BaseBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -184,10 +186,6 @@
 		818BE4A01B1C850D00F44D7E /* EnemyUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyUserData.h; sourceTree = "<group>"; };
 		818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameBackgroundLayer.cpp; sourceTree = "<group>"; };
 		818BE4A21B1C850D00F44D7E /* GameBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBackgroundLayer.h; sourceTree = "<group>"; };
-		818BE4A31B1C850D00F44D7E /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLayer.cpp; sourceTree = "<group>"; };
-		818BE4A41B1C850D00F44D7E /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
-		818BE4A51B1C850D00F44D7E /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
-		818BE4A61B1C850D00F44D7E /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerLayer.cpp; sourceTree = "<group>"; };
 		818BE4A81B1C850D00F44D7E /* PlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLayer.h; sourceTree = "<group>"; };
 		818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerPlane.cpp; sourceTree = "<group>"; };
@@ -226,6 +224,14 @@
 		818BE68D1B1DB2D000F44D7E /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
 		818BE68F1B1DB60E00F44D7E /* Square.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Square.plist; sourceTree = "<group>"; };
 		818BE6911B1DB7D600F44D7E /* Background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Background.plist; sourceTree = "<group>"; };
+		81BE3AED1B1F637E0016364D /* BaseBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBullet.h; sourceTree = "<group>"; };
+		81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleLayer.cpp; sourceTree = "<group>"; };
+		81BE3AEF1B1F637E0016364D /* BattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleLayer.h; sourceTree = "<group>"; };
+		81BE3AF01B1F637E0016364D /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
+		81BE3AF11B1F637E0016364D /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
+		81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerBullet.cpp; sourceTree = "<group>"; };
+		81BE3AF31B1F637E0016364D /* PlayerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBullet.h; sourceTree = "<group>"; };
+		81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseBullet.cpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -382,6 +388,14 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */,
+				81BE3AED1B1F637E0016364D /* BaseBullet.h */,
+				81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */,
+				81BE3AEF1B1F637E0016364D /* BattleLayer.h */,
+				81BE3AF01B1F637E0016364D /* BattleScene.cpp */,
+				81BE3AF11B1F637E0016364D /* BattleScene.h */,
+				81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */,
+				81BE3AF31B1F637E0016364D /* PlayerBullet.h */,
 				818BE4871B1C850D00F44D7E /* BaseCamera.cpp */,
 				818BE4881B1C850D00F44D7E /* BaseCamera.h */,
 				818BE4891B1C850D00F44D7E /* BaseObject.cpp */,
@@ -410,10 +424,6 @@
 				818BE4A01B1C850D00F44D7E /* EnemyUserData.h */,
 				818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */,
 				818BE4A21B1C850D00F44D7E /* GameBackgroundLayer.h */,
-				818BE4A31B1C850D00F44D7E /* GameLayer.cpp */,
-				818BE4A41B1C850D00F44D7E /* GameLayer.h */,
-				818BE4A51B1C850D00F44D7E /* GameScene.cpp */,
-				818BE4A61B1C850D00F44D7E /* GameScene.h */,
 				818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */,
 				818BE4A81B1C850D00F44D7E /* PlayerLayer.h */,
 				818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */,
@@ -651,21 +661,23 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */,
+				81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */,
 				818BE4BA1B1C850D00F44D7E /* EnemyLayer.cpp in Sources */,
 				818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				818BE4C01B1C850D00F44D7E /* PlayerPlane.cpp in Sources */,
 				818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */,
-				818BE4BD1B1C850D00F44D7E /* GameLayer.cpp in Sources */,
-				818BE4BE1B1C850D00F44D7E /* GameScene.cpp in Sources */,
 				818BE4C21B1C850D00F44D7E /* UILayer.cpp in Sources */,
 				818BE4B51B1C850D00F44D7E /* BulletUserData.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				818BE4B31B1C850D00F44D7E /* BaseTraced.cpp in Sources */,
 				818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */,
 				818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */,
+				81BE3AF81B1F63CE0016364D /* BaseBullet.cpp in Sources */,
 				818BE4B91B1C850D00F44D7E /* EnemyBulletLayer.cpp in Sources */,
+				81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */,
 				818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */,
+				81BE3AF61B1F637E0016364D /* PlayerBullet.cpp in Sources */,
 				818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */,
 				818BE4BF1B1C850D00F44D7E /* PlayerLayer.cpp in Sources */,
 				818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */,
