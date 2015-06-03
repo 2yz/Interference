@@ -137,6 +137,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AnimationUtil.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\BaseBullet.cpp" />
     <ClCompile Include="..\Classes\BaseCamera.cpp" />
     <ClCompile Include="..\Classes\BaseObject.cpp" />
     <ClCompile Include="..\Classes\BasePlane.cpp" />
@@ -154,6 +155,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BattleLayer.cpp" />
     <ClCompile Include="..\Classes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\PlayerBullet.cpp" />
     <ClCompile Include="..\Classes\PlayerLayer.cpp" />
     <ClCompile Include="..\Classes\PlayerPlane.cpp" />
     <ClCompile Include="..\Classes\PlayerUserData.cpp" />
@@ -163,6 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AnimationUtil.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\BaseBullet.h" />
     <ClInclude Include="..\Classes\BaseCamera.h" />
     <ClInclude Include="..\Classes\BaseObject.h" />
     <ClInclude Include="..\Classes\BasePlane.h" />
@@ -180,6 +183,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BattleLayer.h" />
     <ClInclude Include="..\Classes\BattleScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\PlayerBullet.h" />
     <ClInclude Include="..\Classes\PlayerLayer.h" />
     <ClInclude Include="..\Classes\PlayerPlane.h" />
     <ClInclude Include="..\Classes\PlayerUserData.h" />

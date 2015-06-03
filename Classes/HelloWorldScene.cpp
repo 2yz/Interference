@@ -66,10 +66,6 @@ bool HelloWorld::init()
 	edgeSp->setPhysicsBody(body);
 	addChild(edgeSp);
 	edgeSp->setTag(0);
-    
-    auto particle = ParticleSystemQuad::create("Background.plist");
-    particle->setPosition(Point(ConfigUtil::visibleSize.width / 2, ConfigUtil::visibleSize.height / 2));
-    this->addChild(particle);
 
 	auto listener = EventListenerMouse::create();
 	listener->onMouseUp = CC_CALLBACK_1(HelloWorld::onMouseUp, this);
@@ -78,10 +74,6 @@ bool HelloWorld::init()
 	// 	auto location = touch->getLocation();
 	// 	addNewSpriteAtPosition(location);
 	// };
-
-	auto particle = ParticleSystemQuad::create("Boom.plist");
-	particle->setPosition(640, 360);
-	this->addChild(particle);
 
 	// auto nothing = rootNode->getChildByName("nothing");
 	// auto myScene = rootNode->getChildByName("Scene");

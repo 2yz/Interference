@@ -105,6 +105,12 @@
     <ClCompile Include="..\Classes\BattleLayer.cpp">
       <Filter>src\Layer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BaseBullet.cpp">
+      <Filter>src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerBullet.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -178,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BattleLayer.h">
       <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseBullet.h">
+      <Filter>src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerBullet.h">
+      <Filter>src\Node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -41,6 +41,7 @@ bool Controller::init()
 	// Mouse Listener
 	auto listenerMouse = EventListenerMouse::create();
 	listenerMouse->onMouseDown = CC_CALLBACK_1(Controller::onMouseDown, this);
+	listenerMouse->onMouseUp = CC_CALLBACK_1(Controller::onMouseUp, this);
 	listenerMouse->onMouseMove = CC_CALLBACK_1(Controller::onMouseMove, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerMouse, this);
 
@@ -163,9 +164,16 @@ void Controller::onMouseDown(cocos2d::Event* event)
 {
 	// auto e = static_cast<EventMouse*>(event);
 	// log("# Down # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	mouseDown = true;
 	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
 	// cursorX = e->getCursorX();
 	// cursorY = e->getCursorY();
+}
+
+void Controller::onMouseUp(cocos2d::Event* event)
+{
+	mouseDown = false;
+	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
 }
 
 void Controller::onMouseMove(cocos2d::Event* event)

@@ -6,6 +6,7 @@
 #include "PlayerUserData.h"
 #include "HelloWorldScene.h"
 #include "Controller.h"
+#include "PlayerBullet.h"
 
 USING_NS_CC;
 
@@ -73,4 +74,14 @@ void BattleLayer::update(float deltaTime)
 		}
 	}
 	shootLine->setRotation(-rotateAngle);
+
+	if (Controller::getMouseDown())
+	{
+		auto velocity = boxPosition - playerPlane->getPosition();
+		velocity.normalize();
+		velocity *= 800;
+		auto playerBullet = PlayerBullet::create(velocity);
+		playerBullet->setPosition(playerPlane->getPosition());
+		this->addChild(playerBullet);
+	}
 }

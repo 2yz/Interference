@@ -35,7 +35,7 @@ bool BattleScene::init()
 	}
 
 	// Set Physics Debug Mode
-	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 游戏控制器节点
 	auto controller = Controller::create();
