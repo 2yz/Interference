@@ -2,6 +2,7 @@
 #include "BattleScene.h"
 #include "HelloWorldScene.h"
 #include "ConfigUtil.h"
+#include "AnimationUtil.h"
 
 USING_NS_CC;
 
@@ -56,19 +57,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// 读取纹理贴度集合
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(UserDefault::getInstance()->getStringForKey("textureFileName"));
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shape.plist");
-
-	//读取爆炸动画帧并存入AnimationCache
-	Vector<SpriteFrame*> explosionAnimationVector;
-	for (int i = 0; i < 9; i++)
-	{
-		char animitionFileName[32] = { 0 };
-		sprintf(animitionFileName, "explosion%02d.png", i + 1);
-		auto fm = SpriteFrameCache::getInstance()->getSpriteFrameByName(animitionFileName);
-		explosionAnimationVector.pushBack(fm);
-	}
-	auto explosionAnimation = Animation::createWithSpriteFrames(explosionAnimationVector, 0.5f / 9.0f, 1);
-	AnimationCache::getInstance()->addAnimation(explosionAnimation, "explosion");
-
+    
+    // Add Animation
+    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.05f, 1),"Shockwave");
+    
 	// create a scene. it's an autorelease object
 	auto scene = BattleScene::create();
 	// auto scene = HelloWorld::createScene();

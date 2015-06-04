@@ -3,6 +3,7 @@
 #include "PlayerUserData.h"
 #include "Controller.h"
 #include "PlayerBullet.h"
+#include "AnimationManager.h"
 
 USING_NS_CC;
 
@@ -58,8 +59,9 @@ bool BattleLayer::init()
     auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
     Block->runAction(tintTo1);
     this->addChild(Block);
+    AnimationManager::runAnimation("Shockwave", this, Block);
 
-	return true;
+    return true;
 }
 
 PlayerPlane* BattleLayer::getPlayerPlane()
