@@ -48,7 +48,7 @@ void BasePlayer::update(float deltaTime)
 	}
     
     
-    TailFire->cocos2d::ParticleSystem::setTotalParticles((int)sqrt(physicsBody->getVelocity().lengthSquared()/1.5));
+    TailFire->cocos2d::ParticleSystem::setTotalParticles((int)sqrt(physicsBody->getVelocity().lengthSquared()/1.5f));
     TailFire->cocos2d::ParticleSystem::setAngleVar(50-(int)(sqrt(physicsBody->getVelocity().lengthSquared())/10));
     float angle;
     if(physicsBody->getVelocity().x == 0)
