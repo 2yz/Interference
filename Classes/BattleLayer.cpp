@@ -3,7 +3,7 @@
 #include "PlayerUserData.h"
 #include "Controller.h"
 #include "PlayerBullet.h"
-#include "AnimationManager.h"
+#include "AnimationUtil.h"
 
 USING_NS_CC;
 
@@ -47,20 +47,38 @@ bool BattleLayer::init()
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
     
-    // Create Block
-    auto Block = Sprite::create();
-    Block->setSpriteFrame("square.png");
-    auto body1 = PhysicsBody::createEdgeBox(Block->getTextureRect().size);
+    // Create Block1
+    auto Block1 = Sprite::create();
+    Block1->setSpriteFrame("square.png");
+    auto body1 = PhysicsBody::createEdgeBox(Block1->getTextureRect().size);
     body1->setContactTestBitmask(0xffffffff);
-    Block->setPhysicsBody(body1);
-    Block->setPosition(Point(200, 200));
+    Block1->setPhysicsBody(body1);
+    Block1->setPosition(Point(200, 200));
     BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
-    Block->setBlendFunc(blend);
+    Block1->setBlendFunc(blend);
     auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-    Block->runAction(tintTo1);
-    this->addChild(Block);
-    AnimationManager::runAnimation("Shockwave", this, Block);
+    Block1->runAction(tintTo1);
+    this->addChild(Block1);
+    
+    // Run Animation
+    AnimationUtil::runPictureAnimation("Shockwave", this, Block1);
 
+    // Create Block2
+    auto Block2 = Sprite::create();
+    Block2->setSpriteFrame("square.png");
+    auto body2 = PhysicsBody::createEdgeBox(Block2->getTextureRect().size);
+    body2->setContactTestBitmask(0xffffffff);
+    Block2->setPhysicsBody(body1);
+    Block2->setPosition(Point(500, 200));
+    BlendFunc blend2 = { GL_SRC_ALPHA, GL_ONE };
+    Block2->setBlendFunc(blend2);
+    auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block2->runAction(tintTo2);
+    this->addChild(Block2);
+    
+    // Run Animation
+    AnimationUtil::runParticleAnimation("Boom.plist", this, Block2);
+    
     return true;
 }
 

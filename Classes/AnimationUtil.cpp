@@ -68,5 +68,27 @@ Animation* AnimationUtil::createWithSingleSpriteNameAndNum(const char* name, int
     return animation;
 }
 
+bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* target)
+{
+    if (parent == nullptr || target == nullptr)
+    {
+        return false;
+    }
+    Sprite* animation = Sprite::create();
+    animation->setPosition(target->getPosition());
+    parent->addChild(animation);
+    animation->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(name)));
+    return true;
+}
 
-
+bool AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target)
+{
+    if (parent == nullptr || target == nullptr)
+    {
+        return false;
+    }
+    auto particle = ParticleSystemQuad::create(name);
+    particle->setPosition(target->getPosition());
+    parent->addChild(particle);
+    return true;
+}

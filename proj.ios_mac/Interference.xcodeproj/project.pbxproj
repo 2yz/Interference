@@ -51,7 +51,6 @@
 		68DF4CD48FF618773F3C8241 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */; };
 		7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
 		811A67851B2001B2001CD8D2 /* Tail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811A67841B2001B2001CD8D2 /* Tail.plist */; };
-		814C57D41B20935400A259C4 /* AnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 814C57D31B20935400A259C4 /* AnimationManager.cpp */; };
 		818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4871B1C850D00F44D7E /* BaseCamera.cpp */; };
 		818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4891B1C850D00F44D7E /* BaseObject.cpp */; };
 		818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48B1B1C850D00F44D7E /* BasePlane.cpp */; };
@@ -161,8 +160,6 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.6/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<absolute>"; };
 		811A67841B2001B2001CD8D2 /* Tail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tail.plist; sourceTree = "<group>"; };
-		814C57D21B2091ED00A259C4 /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
-		814C57D31B20935400A259C4 /* AnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationManager.cpp; sourceTree = "<group>"; };
 		818BE4871B1C850D00F44D7E /* BaseCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCamera.cpp; sourceTree = "<group>"; };
 		818BE4881B1C850D00F44D7E /* BaseCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCamera.h; sourceTree = "<group>"; };
 		818BE4891B1C850D00F44D7E /* BaseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseObject.cpp; sourceTree = "<group>"; };
@@ -444,8 +441,6 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				818BE4C61B1D468700F44D7E /* AnimationUtil.h */,
 				818BE4C71B1D485000F44D7E /* AnimationUtil.cpp */,
-				814C57D21B2091ED00A259C4 /* AnimationManager.h */,
-				814C57D31B20935400A259C4 /* AnimationManager.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -668,7 +663,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				814C57D41B20935400A259C4 /* AnimationManager.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */,
 				81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */,
