@@ -45,6 +45,19 @@ bool BattleLayer::init()
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
+    
+    // Create Block
+    auto Block = Sprite::create();
+    Block->setSpriteFrame("square.png");
+    auto body1 = PhysicsBody::createEdgeBox(Block->getTextureRect().size);
+    body1->setContactTestBitmask(0xffffffff);
+    Block->setPhysicsBody(body1);
+    Block->setPosition(Point(200, 200));
+    BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
+    Block->setBlendFunc(blend);
+    auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block->runAction(tintTo1);
+    this->addChild(Block);
 
 	return true;
 }
@@ -104,16 +117,16 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	auto nodeA = static_cast<Node*>(contact.getShapeA()->getBody()->getNode());
 	auto nodeB = static_cast<Node*>(contact.getShapeB()->getBody()->getNode());
 
-	log("CONTACT TEST A: %d B: %d", nodeA->getTag(), nodeB->getTag());
+	// log("CONTACT TEST A: %d B: %d", nodeA->getTag(), nodeB->getTag());
 
-	if (nodeA->getTag() == -2)
+	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
 		auto particleA = ParticleSystemQuad::create("Boom.plist");
 		particleA->setPosition(nodeA->getPosition());
 		this->addChild(particleA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
-	if (nodeB->getTag() == -2)
+	if (nodeB != nullptr && nodeB->getTag() == -2)
 	{
 		auto particleB = ParticleSystemQuad::create("Boom.plist");
 		particleB->setPosition(nodeB->getPosition());
