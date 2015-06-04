@@ -22,7 +22,6 @@ bool BasePlayer::init()
 	}
 	this->setTag(1);
 	normalShapeUp->setSpriteFrame("triangle.png");
-	auto test = SpriteFrameCache::getInstance()->getSpriteFrameByName("test");
 	normalShapeUp->getTextureRect();
 	normalShapeDown->setSpriteFrame("triangle.png");
 	smallShapeUp->setSpriteFrame("triangle.png");
@@ -47,8 +46,11 @@ void BasePlayer::update(float deltaTime)
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
-
-	float spriteRotation = normalShapeUp->getRotation() + sqrtf(physicsBody->getVelocity().lengthSquared()) *deltaTime;
+    TailFire->cocos2d::ParticleSystem::setTotalParticles((int)sqrt(physicsBody->getVelocity().lengthSquared()));
+    TailFire->cocos2d::ParticleSystem::setAngleVar(50-(int)(sqrt(physicsBody->getVelocity().lengthSquared())/9.5));
+    TailFire->cocos2d::ParticleSystem::setAngle();
+    float spriteRotation = normalShapeUp->getRotation() + sqrtf(physicsBody->getVelocity().lengthSquared()) *deltaTime;
+    
 	if (spriteRotation > 36000)
 		spriteRotation -= 36000;
 	normalShapeUp->setRotation(spriteRotation);
@@ -62,4 +64,6 @@ void BasePlayer::update(float deltaTime)
 	// log("Distance X: %f Y: %f", this->getPositionX() - lastPositionX, this->getPositionY() - lastPositionY);
 	// lastPositionX = this->getPositionX();
 	// lastPositionY = this->getPositionY();
+    
+    
 }

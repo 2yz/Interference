@@ -16,6 +16,7 @@ protected:
 	cocos2d::Sprite* normalShapeDown;
 	cocos2d::Sprite* smallShapeUp;
 	cocos2d::Sprite* smallShapeDown;
+    cocos2d::ParticleSystemQuad* TailFire;
 
 };
 

@@ -23,9 +23,15 @@ bool BasePlane::init()
 	normalShapeDown = Sprite::create();
 	smallShapeUp = Sprite::create();
 	smallShapeDown = Sprite::create();
+    TailFire = ParticleSystemQuad::create("Tail.plist");
+    
 
 	normalShapeDown->setRotation(180.0f);
 	smallShapeDown->setRotation(180.0f);
+    TailFire->setAngle(0.0f);
+    //TailFire->set(360.0f);
+    TailFire->cocos2d::ParticleSystem::setTotalParticles(0.0f);
+    TailFire->cocos2d::ParticleSystem::setAngleVar(180.0f);
 
 	smallShapeUp->setScale(0.2f);
 	smallShapeDown->setScale(0.2f);
@@ -39,6 +45,7 @@ bool BasePlane::init()
 	this->addChild(normalShapeDown);
 	this->addChild(smallShapeUp);
 	this->addChild(smallShapeDown);
+    this->addChild(TailFire);
 
 	return true;
 }
@@ -60,6 +67,7 @@ void BasePlane::onEnter()
 	normalShapeDown->runAction(tintTo2);
 	smallShapeUp->runAction(tintTo3);
 	smallShapeDown->runAction(tintTo4);
+
 }
 
 // BasePlane* BasePlane::create()
