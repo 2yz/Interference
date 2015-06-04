@@ -61,7 +61,9 @@ bool BattleLayer::init()
     this->addChild(Block1);
     
     // Run Animation
-    AnimationUtil::runPictureAnimation("Shockwave", this, Block1);
+    AnimationUtil::runPictureAnimation("Shockwave1", this, Block1);
+    AnimationUtil::runPictureAnimation("Shockwave2", this, Block1);
+    
 
     // Create Block2
     auto Block2 = Sprite::create();

@@ -59,7 +59,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shape.plist");
     
     // Add Animation
-    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.05f, 1),"Shockwave");
+    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.05f, -1),"Shockwave1");
+    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.5f, -1),"Shockwave2");
     
 	// create a scene. it's an autorelease object
 	auto scene = BattleScene::create();
