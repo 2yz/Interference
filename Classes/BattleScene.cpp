@@ -28,14 +28,19 @@ bool BattleScene::init()
 		return false;
 	}
 
-	// 初始化物理世界
+	// Init Physics World
 	if (!this->initWithPhysics())
 	{
 		return false;
 	}
 
+	if (!this->initWithSize(ConfigUtil::visibleSize*2.5))
+	{
+		return false;
+	}
+
 	// Set Physics Debug Mode
-	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 
 	// 游戏控制器节点
@@ -57,6 +62,8 @@ bool BattleScene::init()
 	// lable->setPosition(200, 200);
 	// this->addChild(lable, 2);
 
+	// _camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 1.0f, 1000.0f);
+
 	return true;
 }
 
@@ -68,4 +75,9 @@ UILayer* BattleScene::getUILayer()
 CameraNode* BattleScene::getCameraLayer()
 {
 	return this->cameraNode;
+}
+
+void BattleScene::update(float deltaTime)
+{
+	
 }

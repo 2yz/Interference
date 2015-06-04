@@ -11,9 +11,7 @@ public:
 	BasePlayer();
 	virtual bool init() override;
 protected:
-	int initHP;
-	float acceleration;
-	float maxSpeed;
+	// int initHP;
 	virtual void update(float deltaTime) override;
 };
 

@@ -2,14 +2,9 @@
 
 USING_NS_CC;
 
-BasePlane::BasePlane() : BasePlane(50.0f)
-{
-	log("BasePlane()");
-}
 
-BasePlane::BasePlane(float radius) : BaseObject(radius)
+BasePlane::BasePlane(float radius) : shapeRadius(radius), rotateVelocity(360.0f)
 {
-	log("BasePlane(float radius)");
 }
 
 bool BasePlane::init()
@@ -19,26 +14,35 @@ bool BasePlane::init()
 		return false;
 	}
 
-	normalShapeUp = Sprite::create();
-	normalShapeDown = Sprite::create();
-	smallShapeUp = Sprite::create();
-	smallShapeDown = Sprite::create();
+	auto sprite1 = Sprite::create();
+	auto sprite2 = Sprite::create();
+	auto sprite3 = Sprite::create();
+	auto sprite4 = Sprite::create();
 
-	normalShapeDown->setRotation(180.0f);
-	smallShapeDown->setRotation(180.0f);
+	sprite2->setRotation(180.0f);
+	sprite4->setRotation(180.0f);
 
-	smallShapeUp->setScale(0.2f);
-	smallShapeDown->setScale(0.2f);
+	sprite3->setScale(0.2f);
+	sprite4->setScale(0.2f);
 
 	// normalShapeUp->setPosition(0.0f, 10.0f);
 	// normalShapeDown->setPosition(0.0f, -10.0f);
 	// smallShapeUp->setPosition(0.0f, 2.0f);
 	// smallShapeDown->setPosition(0.0f, -2.0f);
 
-	this->addChild(normalShapeUp);
-	this->addChild(normalShapeDown);
-	this->addChild(smallShapeUp);
-	this->addChild(smallShapeDown);
+	spriteVector.pushBack(sprite1);
+	spriteVector.pushBack(sprite2);
+	extraSpriteVector.pushBack(sprite3);
+	extraSpriteVector.pushBack(sprite4);
+
+	this->addChild(sprite1);
+	this->addChild(sprite2);
+	this->addChild(sprite3);
+	this->addChild(sprite4);
+
+	physicsBody->addShape(PhysicsShapeCircle::create(shapeRadius));
+
+	this->scheduleUpdate();
 
 	return true;
 }
@@ -46,20 +50,37 @@ bool BasePlane::init()
 void BasePlane::onEnter()
 {
 	BaseObject::onEnter();
-	BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
-	normalShapeUp->setBlendFunc(blend);
-	normalShapeDown->setBlendFunc(blend);
-	smallShapeUp->setBlendFunc(blend);
-	smallShapeDown->setBlendFunc(blend);
+	// TODO check action
+	// auto rotateBy = RepeatForever::create(RotateBy::create(0.5f, 360.0f));
+	// auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+	// auto spwan = Spawn::createWithTwoActions(rotateBy, tintTo);
+	// for (auto sprite : spriteVector)
+	// {
+	// 	// Blend has been set in base class
+	// 	sprite->runAction(rotateBy->clone());
+	// 	sprite->runAction(TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f)));
+	// }
+	for (auto extraSprite : extraSpriteVector)
+	{
+		extraSprite->setBlendFunc(blend);
+		// extraSprite->runAction(rotateBy->clone());
+		// extraSprite->runAction(TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f)));
+	}
+}
 
-	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo3 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo4 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	normalShapeUp->runAction(tintTo1);
-	normalShapeDown->runAction(tintTo2);
-	smallShapeUp->runAction(tintTo3);
-	smallShapeDown->runAction(tintTo4);
+void BasePlane::update(float deltaTime)
+{
+	BaseObject::update(deltaTime);
+
+	if (spriteVector.at(0) == nullptr || spriteVector.at(1) == nullptr || extraSpriteVector.at(0) == nullptr || extraSpriteVector.at(1) == nullptr)
+		return;
+	float spriteRotation = spriteVector.at(0)->getRotation() + rotateVelocity*deltaTime*timeCoefficient;
+	if (spriteRotation > 360000.0f)
+		spriteRotation -= 360000.0f;
+	spriteVector.at(0)->setRotation(spriteRotation);
+	spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	extraSpriteVector.at(0)->setRotation(spriteRotation * 2.0f);
+	extraSpriteVector.at(1)->setRotation(180.0f - spriteRotation * 2.0f);
 }
 
 // BasePlane* BasePlane::create()

@@ -23,12 +23,14 @@ bool PlayerBullet::initWithSpriteFrameName(const std::string& spriteFrameName)
 	{
 		return false;
 	}
-	log("Texture Rect X: %f Y: %f", this->getTextureRect().size.width, this->getTextureRect().size.height);
+	// log("Texture Rect X: %f Y: %f", this->getTextureRect().size.width, this->getTextureRect().size.height);
 	physicsBody = PhysicsBody::createBox(this->getTextureRect().size);
 	physicsBody->setVelocity(velocity);
 	physicsBody->setRotationEnable(false);
 	physicsBody->setGroup(BULLET_GROUP);
 	physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);
+	physicsBody->setCollisionBitmask(BULLET_COLLISION_MASK);
+	physicsBody->setCategoryBitmask(BULLET_CATEGORY_MASK);
 	this->setPhysicsBody(physicsBody);
 	this->setTag(BULLET_TAG);
 	return true;

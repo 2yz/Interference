@@ -25,6 +25,8 @@ private:
 	static BattleScene* battleScene;
 	static UILayer* uiLayer;
 	static CameraNode* cameraNode;
+	cocos2d::Camera* _camera;
+	virtual void update(float deltaTime) override;
 	// static BulletLayer* bulletLayer;
 	// static PlayerLayer* playerLayer;
 	// static EnemyBulletLayer* enemyBulletLayer;
