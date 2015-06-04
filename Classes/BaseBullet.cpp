@@ -2,29 +2,37 @@
 #include "ConfigUtil.h"
 USING_NS_CC;
 
-BaseBullet::BaseBullet(cocos2d::Size size) : BaseObject(size)
+
+BaseBullet::BaseBullet()
 {
-	physicsBody->setGroup(-1);
-	physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);
-	physicsBody->setCollisionBitmask(BULLET_COLLISION_MASK);
-	physicsBody->setCategoryBitmask(BULLET_CATEGORY_MASK);
-	physicsBody->setVelocityLimit(800.0f);
 }
 
 bool BaseBullet::init()
 {
-	if (!BaseObject::init())
+	if (!Sprite::init())
 	{
 		return false;
 	}
-	this->setTag(-2);
-	bullet = Sprite::create();
-	this->addChild(bullet);
+	// this->setTag(-2);
+	// bullet = Sprite::create();
+	// this->addChild(bullet);
+	return true;
+	// physicsBody = PhysicsBody::create();
+	// return BaseBullet::initWithSpriteFrameName("");
+}
+
+bool BaseBullet::initWithSpriteFrameName(const std::string& spriteFrameName)
+{
+	if (!Sprite::initWithSpriteFrameName(spriteFrameName))
+	{
+		return false;
+	}
 	return true;
 }
 
 void BaseBullet::onEnter()
 {
+	Sprite::onEnter();
 	BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
-	bullet->setBlendFunc(blend);
+	this->setBlendFunc(blend);
 }

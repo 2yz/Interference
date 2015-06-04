@@ -35,18 +35,18 @@ bool BasePlayer::init()
 
 void BasePlayer::update(float deltaTime)
 {
-	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
-	{
-		physicsBody->setVelocity(physicsBody->getVelocity() + acceleration * deltaTime *
-			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()) / static_cast<float>(sqrt(2.0)),
-			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown()) / static_cast<float>(sqrt(2.0))));
-	}
-	else if (Controller::getMoveUp() || Controller::getMoveDown() || Controller::getMoveLeft() || Controller::getMoveRight())
-	{
-		physicsBody->setVelocity(physicsBody->getVelocity() + acceleration * deltaTime *
-			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
-			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
-	}
+	// if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
+	// {
+	// 	physicsBody->setVelocity(physicsBody->getVelocity() + acceleration * deltaTime *
+	// 		Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()) / static_cast<float>(sqrt(2.0)),
+	// 		static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown()) / static_cast<float>(sqrt(2.0))));
+	// }
+	// else if (Controller::getMoveUp() || Controller::getMoveDown() || Controller::getMoveLeft() || Controller::getMoveRight())
+	// {
+	// 	physicsBody->setVelocity(physicsBody->getVelocity() + acceleration * deltaTime *
+	// 		Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
+	// 		static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
+	// }
 
 	float spriteRotation = normalShapeUp->getRotation() + sqrtf(physicsBody->getVelocity().lengthSquared()) *deltaTime;
 	if (spriteRotation > 36000)
