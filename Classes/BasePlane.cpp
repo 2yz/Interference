@@ -29,8 +29,8 @@ bool BasePlane::init()
 	normalShapeDown->setRotation(180.0f);
 	smallShapeDown->setRotation(180.0f);
     TailFire->setAngle(0.0f);
-    //TailFire->set(360.0f);
     TailFire->cocos2d::ParticleSystem::setTotalParticles(0.0f);
+    TailFire->cocos2d::ParticleSystem::setAngle(0.0f);
     TailFire->cocos2d::ParticleSystem::setAngleVar(180.0f);
 
 	smallShapeUp->setScale(0.2f);

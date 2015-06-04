@@ -46,9 +46,25 @@ void BasePlayer::update(float deltaTime)
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
+    
     TailFire->cocos2d::ParticleSystem::setTotalParticles((int)sqrt(physicsBody->getVelocity().lengthSquared()));
-    TailFire->cocos2d::ParticleSystem::setAngleVar(50-(int)(sqrt(physicsBody->getVelocity().lengthSquared())/9.5));
-    TailFire->cocos2d::ParticleSystem::setAngle();
+    TailFire->cocos2d::ParticleSystem::setAngleVar(50-(int)(sqrt(physicsBody->getVelocity().lengthSquared())/10));
+    
+    float angle;
+    if(physicsBody->getVelocity().x == 0)
+    {
+        angle = 90;
+    }
+    else
+    {
+        angle = atan(physicsBody->getVelocity().y/physicsBody->getVelocity().x)/M_PI*180;
+        if(physicsBody->getVelocity().x < 0)
+            angle += 180;
+    }
+        angle += 180;
+   TailFire->cocos2d::ParticleSystem::setAngle((int)angle);
+    
+    
     float spriteRotation = normalShapeUp->getRotation() + sqrtf(physicsBody->getVelocity().lengthSquared()) *deltaTime;
     
 	if (spriteRotation > 36000)
