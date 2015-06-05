@@ -40,7 +40,7 @@ protected:
 	// cocos2d::Size size;
 	cocos2d::PhysicsBody* physicsBody;
 	cocos2d::Vector<cocos2d::Sprite*> spriteVector;
-	cocos2d::BlendFunc blend;
+	// cocos2d::BlendFunc blend;
 	float velocityMagnitudeMax;
 	float accelerationMagnitude;
 	float timeCoefficient;

@@ -12,20 +12,21 @@ public:
 	virtual ~BattleScene();
 	virtual bool init() override;
 	CREATE_FUNC(BattleScene);
-	static BattleScene* getInstance();
+	// static BattleScene* getInstance();
 	UILayer* getUILayer();
-	CameraNode* getCameraLayer();
+	// CameraNode* getCameraLayer();
 
 	// BulletLayer* getBulletLayer();
 	// PlayerLayer* getPlayerLayer();
 	// EnemyBulletLayer* getEnemyBulletLayer();
 	// EnemyLayer* getEnemyLayer();
-private:
+protected:
 	// static GameBackgroundLayer* gameBackgroundLayer;
 	static BattleScene* battleScene;
+	BattleLayer* battleLayer;
 	static UILayer* uiLayer;
-	static CameraNode* cameraNode;
-	cocos2d::Camera* _camera;
+	// static CameraNode* cameraNode;
+	// cocos2d::Camera* _camera;
 	virtual void update(float deltaTime) override;
 	// static BulletLayer* bulletLayer;
 	// static PlayerLayer* playerLayer;

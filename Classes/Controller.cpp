@@ -162,8 +162,9 @@ void Controller::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 
 void Controller::onMouseDown(cocos2d::Event* event)
 {
-	// auto e = static_cast<EventMouse*>(event);
-	// log("# Down # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	auto e = static_cast<EventMouse*>(event);
+	log("# Down # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	
 	mouseDown = true;
 	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
 	// cursorX = e->getCursorX();
@@ -178,8 +179,8 @@ void Controller::onMouseUp(cocos2d::Event* event)
 
 void Controller::onMouseMove(cocos2d::Event* event)
 {
-	// auto e = static_cast<EventMouse*>(event);
-	// log("# Move # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	auto e = static_cast<EventMouse*>(event);
+	log("# Move # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
 	// cursorX = e->getCursorX();
 	// cursorY = e->getCursorY();
 	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();

@@ -92,6 +92,27 @@ bool HelloWorld::init()
 	// 播放动画： 
 	// action->gotoFrameAndPlay(0, 60, true);//从第0帧到60帧循环播放。还有其他重载函数
 
+	auto test = PlayerPlane::create();
+	test->setPosition(200,200);
+	test->getPhysicsBody()->setGroup(random(-1, -2));
+	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
+	test->getPhysicsBody()->setGravityEnable(false);
+	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
+
+	// int index = random(-2, -1);
+	int index = 1;
+	test->getPhysicsBody()->setGroup(index);
+	test->setTag(index);
+	this->addChild(test);
+
+
+	camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0, 1000);
+	camera->setCameraFlag(CameraFlag::USER1);
+	this->addChild(camera);
+	camera->setPosition3D(Vec3(0, 0, 0));
+	this->setCameraMask(1 << 1);
+
+
 	return true;
 }
 
@@ -112,16 +133,22 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 {
 	auto test = PlayerPlane::create();
 	test->setPosition(p);
-        test->getPhysicsBody()->setGroup(random(-1,-2));
+    test->getPhysicsBody()->setGroup(random(-1,-2));
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
+
+	test->setCameraMask(1 << 1);
 
 	// int index = random(-2, -1);
 	int index = 1;
 	test->getPhysicsBody()->setGroup(index);
 	test->setTag(index);
 	this->addChild(test);
+
+	camera->setPosition3D(Vec3(p.x, p.y, 0));
+	camera->lookAt(Vec3(p.x, p.y, 0));
+
 }
 
 void HelloWorld::onMouseUp(cocos2d::Event* event)
@@ -154,5 +181,6 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
 		// auto position = static_cast<Node*>(contact.getShapeA()->getBody()->getNode())->getPosition();
 		
 	}
+	log("Children: %d", static_cast<int>(this->getChildrenCount()));
 	return true;
 }

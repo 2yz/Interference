@@ -62,7 +62,7 @@ void BasePlane::onEnter()
 	// }
 	for (auto extraSprite : extraSpriteVector)
 	{
-		extraSprite->setBlendFunc(blend);
+		extraSprite->setBlendFunc(BlendFunc::ADDITIVE);
 		// extraSprite->runAction(rotateBy->clone());
 		// extraSprite->runAction(TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f)));
 	}

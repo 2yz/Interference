@@ -8,11 +8,15 @@ class BattleLayer : public cocos2d::Layer
 {
 public:
 	BattleLayer();
+	virtual ~BattleLayer();
 	virtual bool init() override;
 	CREATE_FUNC(BattleLayer);
+	// virtual void onEnter() override;
 	PlayerPlane* getPlayerPlane();
 	// BasePlayer* getBasePlayer();
 protected:
+	cocos2d::Camera* _camera;
+
 	PlayerPlane* playerPlane;
 	int initHP;
 

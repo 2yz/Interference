@@ -5,7 +5,7 @@ USING_NS_CC;
 BaseObject::BaseObject() : timeCoefficient(1.0f)
 {
 	physicsBody = PhysicsBody::create();
-	blend = { GL_SRC_ALPHA, GL_ONE };
+	// blend = { GL_SRC_ALPHA, GL_ONE };
 }
 
 // BaseObject::BaseObject(float radius)
@@ -36,7 +36,7 @@ void BaseObject::onEnter()
 	Node::onEnter();
 	for (auto sprite : spriteVector)
 	{
-		sprite->setBlendFunc(blend);
+		sprite->setBlendFunc(BlendFunc::ADDITIVE);
 	}
 }
 

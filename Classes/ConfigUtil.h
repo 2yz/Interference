@@ -23,6 +23,8 @@ public:
 	static cocos2d::Vec2 visibleOrigin;
 	static float visibleWidth;
 	static float visibleHeight;
+	static float battleSceneWidth;
+	static float battleSceneHeight;
 	static float intervalOfAddBullet;
 	static float intervalOfAddEnemy;
 	static float intervalOfAddEnemyBullet;

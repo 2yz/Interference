@@ -32,8 +32,8 @@ void BaseCamera::update(float deltaTime)
 	// log("CAMERA X: %f Y: %f Z:%f", cameraPosition.x, cameraPosition.y,cameraPosition.z);
 	if (traceNode != nullptr)
 	{
-		auto positionDelta = this->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) + traceNode->getPosition();
-		this->setPosition(this->getPosition() - positionDelta * traceNode->getTraceCoefficient() * deltaTime);
+		//auto positionDelta = this->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) + traceNode->getPosition();
+		//this->setPosition(this->getPosition() - positionDelta * traceNode->getTraceCoefficient() * deltaTime);
 	
 		// auto positionDelta = this->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) + traceNode->getPosition()*scaleCoefficient;
 		// log("P Delta X: %f Y: %f", positionDelta.x, positionDelta.y);
