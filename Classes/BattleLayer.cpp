@@ -61,8 +61,8 @@ bool BattleLayer::init()
     this->addChild(Block1);
     
     // Run Animation
-    AnimationUtil::runPictureAnimation("Shockwave1", this, Block1);
-    AnimationUtil::runPictureAnimation("Shockwave2", this, Block1);
+    AnimationUtil::runParticleAnimation("Birth_1.plist", this, Block1);
+    AnimationUtil::runParticleAnimation("Birth_2.plist", this, Block1);
     
 
     // Create Block2
@@ -79,7 +79,7 @@ bool BattleLayer::init()
     this->addChild(Block2);
     
     // Run Animation
-    AnimationUtil::runParticleAnimation("Boom.plist", this, Block2);
+    AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
     
     return true;
 }
@@ -143,16 +143,12 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
-		auto particleA = ParticleSystemQuad::create("Boom.plist");
-		particleA->setPosition(nodeA->getPosition());
-		this->addChild(particleA);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
 	if (nodeB != nullptr && nodeB->getTag() == -2)
 	{
-		auto particleB = ParticleSystemQuad::create("Boom.plist");
-		particleB->setPosition(nodeB->getPosition());
-		this->addChild(particleB);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeB);
 		nodeB->removeFromParentAndCleanup(true);
 	}
 	
