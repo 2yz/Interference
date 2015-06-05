@@ -70,14 +70,18 @@ bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* ta
     return true;
 }
 
-bool AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target)
+ParticleSystemQuad* AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target)
 {
     if (parent == nullptr || target == nullptr)
     {
-        return false;
+        return nullptr;
     }
     auto particle = ParticleSystemQuad::create(name);
+    if (particle == nullptr)
+    {
+        return nullptr;
+    }
     particle->setPosition(target->getPosition());
     parent->addChild(particle);
-    return true;
+    return particle;
 }

@@ -15,7 +15,7 @@ public:
     
     // Run Picture Or Particle Animation
     static bool runPictureAnimation(const char* name, Node* parent, Node* target);
-    static bool runParticleAnimation(const char* name, Node* parent, Node* target);
+    static ParticleSystemQuad* runParticleAnimation(const char* name, Node* parent, Node* target);
 };
 
 #endif

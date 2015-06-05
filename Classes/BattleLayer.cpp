@@ -61,6 +61,7 @@ bool BattleLayer::init()
     this->addChild(Block1);
     
     // Run Animation
+    AnimationUtil::runParticleAnimation("Birth.plist", this, Block1);
     AnimationUtil::runParticleAnimation("Cloud.plist", this, Block1);
     
     
@@ -79,7 +80,9 @@ bool BattleLayer::init()
     this->addChild(Block2);
     
     // Run Animation
-    AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
+    auto iLoop = AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
+    
+    
     
     return true;
 }
@@ -143,12 +146,14 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
-        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeA);
+        AnimationUtil::runParticleAnimation("Birth.plist", this, nodeA);
+        AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
 	if (nodeB != nullptr && nodeB->getTag() == -2)
 	{
-        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeB);
+        AnimationUtil::runParticleAnimation("Birth.plist", this, nodeB);
+        AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeB);
 		nodeB->removeFromParentAndCleanup(true);
 	}
 	
