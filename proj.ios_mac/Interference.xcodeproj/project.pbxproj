@@ -50,10 +50,13 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		68DF4CD48FF618773F3C8241 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */; };
 		7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
-		811A67851B2001B2001CD8D2 /* Tail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811A67841B2001B2001CD8D2 /* Tail.plist */; };
-		814C57E21B213E3700A259C4 /* Birth_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57DF1B213E3700A259C4 /* Birth_1.plist */; };
-		814C57E31B213E3700A259C4 /* Birth_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E01B213E3700A259C4 /* Birth_2.plist */; };
-		814C57E41B213E3700A259C4 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E11B213E3700A259C4 /* Death.plist */; };
+		814C57EC1B213F5500A259C4 /* Background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E51B213F5500A259C4 /* Background.plist */; };
+		814C57ED1B213F5500A259C4 /* Birth_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E61B213F5500A259C4 /* Birth_1.plist */; };
+		814C57EE1B213F5500A259C4 /* Birth_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E71B213F5500A259C4 /* Birth_2.plist */; };
+		814C57EF1B213F5500A259C4 /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E81B213F5500A259C4 /* Boom.plist */; };
+		814C57F01B213F5500A259C4 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E91B213F5500A259C4 /* Death.plist */; };
+		814C57F11B213F5500A259C4 /* Square.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57EA1B213F5500A259C4 /* Square.plist */; };
+		814C57F21B213F5500A259C4 /* Tail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57EB1B213F5500A259C4 /* Tail.plist */; };
 		818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4871B1C850D00F44D7E /* BaseCamera.cpp */; };
 		818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4891B1C850D00F44D7E /* BaseObject.cpp */; };
 		818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48B1B1C850D00F44D7E /* BasePlane.cpp */; };
@@ -98,9 +101,6 @@
 		818BE63F1B1DACE100F44D7E /* Shockwave23.png in Resources */ = {isa = PBXBuildFile; fileRef = 818BE5DB1B1DACE100F44D7E /* Shockwave23.png */; };
 		818BE6401B1DACE100F44D7E /* Shockwave24.png in Resources */ = {isa = PBXBuildFile; fileRef = 818BE5DC1B1DACE100F44D7E /* Shockwave24.png */; };
 		818BE6411B1DACE100F44D7E /* Shockwave25.png in Resources */ = {isa = PBXBuildFile; fileRef = 818BE5DD1B1DACE100F44D7E /* Shockwave25.png */; };
-		818BE68E1B1DB2D000F44D7E /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE68D1B1DB2D000F44D7E /* Boom.plist */; };
-		818BE6901B1DB60E00F44D7E /* Square.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE68F1B1DB60E00F44D7E /* Square.plist */; };
-		818BE6921B1DB7D600F44D7E /* Background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818BE6911B1DB7D600F44D7E /* Background.plist */; };
 		81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */; };
 		81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF01B1F637E0016364D /* BattleScene.cpp */; };
 		81BE3AF61B1F637E0016364D /* PlayerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */; };
@@ -162,10 +162,13 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.6/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<absolute>"; };
-		811A67841B2001B2001CD8D2 /* Tail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tail.plist; sourceTree = "<group>"; };
-		814C57DF1B213E3700A259C4 /* Birth_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth_1.plist; sourceTree = "<group>"; };
-		814C57E01B213E3700A259C4 /* Birth_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth_2.plist; sourceTree = "<group>"; };
-		814C57E11B213E3700A259C4 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Death.plist; sourceTree = "<group>"; };
+		814C57E51B213F5500A259C4 /* Background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Background.plist; sourceTree = "<group>"; };
+		814C57E61B213F5500A259C4 /* Birth_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth_1.plist; sourceTree = "<group>"; };
+		814C57E71B213F5500A259C4 /* Birth_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth_2.plist; sourceTree = "<group>"; };
+		814C57E81B213F5500A259C4 /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
+		814C57E91B213F5500A259C4 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Death.plist; sourceTree = "<group>"; };
+		814C57EA1B213F5500A259C4 /* Square.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Square.plist; sourceTree = "<group>"; };
+		814C57EB1B213F5500A259C4 /* Tail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tail.plist; sourceTree = "<group>"; };
 		818BE4871B1C850D00F44D7E /* BaseCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCamera.cpp; sourceTree = "<group>"; };
 		818BE4881B1C850D00F44D7E /* BaseCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCamera.h; sourceTree = "<group>"; };
 		818BE4891B1C850D00F44D7E /* BaseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseObject.cpp; sourceTree = "<group>"; };
@@ -229,9 +232,6 @@
 		818BE5DB1B1DACE100F44D7E /* Shockwave23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shockwave23.png; path = Shockwave/Shockwave23.png; sourceTree = "<group>"; };
 		818BE5DC1B1DACE100F44D7E /* Shockwave24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shockwave24.png; path = Shockwave/Shockwave24.png; sourceTree = "<group>"; };
 		818BE5DD1B1DACE100F44D7E /* Shockwave25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shockwave25.png; path = Shockwave/Shockwave25.png; sourceTree = "<group>"; };
-		818BE68D1B1DB2D000F44D7E /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
-		818BE68F1B1DB60E00F44D7E /* Square.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Square.plist; sourceTree = "<group>"; };
-		818BE6911B1DB7D600F44D7E /* Background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Background.plist; sourceTree = "<group>"; };
 		81BE3AED1B1F637E0016364D /* BaseBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBullet.h; sourceTree = "<group>"; };
 		81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleLayer.cpp; sourceTree = "<group>"; };
 		81BE3AEF1B1F637E0016364D /* BattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleLayer.h; sourceTree = "<group>"; };
@@ -359,13 +359,13 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				814C57DF1B213E3700A259C4 /* Birth_1.plist */,
-				814C57E01B213E3700A259C4 /* Birth_2.plist */,
-				814C57E11B213E3700A259C4 /* Death.plist */,
-				811A67841B2001B2001CD8D2 /* Tail.plist */,
-				818BE6911B1DB7D600F44D7E /* Background.plist */,
-				818BE68F1B1DB60E00F44D7E /* Square.plist */,
-				818BE68D1B1DB2D000F44D7E /* Boom.plist */,
+				814C57E51B213F5500A259C4 /* Background.plist */,
+				814C57E61B213F5500A259C4 /* Birth_1.plist */,
+				814C57E71B213F5500A259C4 /* Birth_2.plist */,
+				814C57E81B213F5500A259C4 /* Boom.plist */,
+				814C57E91B213F5500A259C4 /* Death.plist */,
+				814C57EA1B213F5500A259C4 /* Square.plist */,
+				814C57EB1B213F5500A259C4 /* Tail.plist */,
 				818BE5C51B1DACE100F44D7E /* Shockwave1.png */,
 				818BE5C61B1DACE100F44D7E /* Shockwave2.png */,
 				818BE5C71B1DACE100F44D7E /* Shockwave3.png */,
@@ -621,8 +621,7 @@
 			files = (
 				818BE6381B1DACE100F44D7E /* Shockwave16.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				814C57E31B213E3700A259C4 /* Birth_2.plist in Resources */,
-				818BE6901B1DB60E00F44D7E /* Square.plist in Resources */,
+				814C57EC1B213F5500A259C4 /* Background.plist in Resources */,
 				818BE63A1B1DACE100F44D7E /* Shockwave18.png in Resources */,
 				818BE62B1B1DACE100F44D7E /* Shockwave3.png in Resources */,
 				818BE6361B1DACE100F44D7E /* Shockwave14.png in Resources */,
@@ -630,29 +629,30 @@
 				818BE62E1B1DACE100F44D7E /* Shockwave6.png in Resources */,
 				818BE6291B1DACE100F44D7E /* Shockwave1.png in Resources */,
 				818BE63D1B1DACE100F44D7E /* Shockwave21.png in Resources */,
-				818BE6921B1DB7D600F44D7E /* Background.plist in Resources */,
 				818BE6331B1DACE100F44D7E /* Shockwave11.png in Resources */,
+				814C57F01B213F5500A259C4 /* Death.plist in Resources */,
 				818BE63E1B1DACE100F44D7E /* Shockwave22.png in Resources */,
-				811A67851B2001B2001CD8D2 /* Tail.plist in Resources */,
 				818BE62A1B1DACE100F44D7E /* Shockwave2.png in Resources */,
+				814C57ED1B213F5500A259C4 /* Birth_1.plist in Resources */,
 				818BE62C1B1DACE100F44D7E /* Shockwave4.png in Resources */,
-				814C57E21B213E3700A259C4 /* Birth_1.plist in Resources */,
 				818BE6321B1DACE100F44D7E /* Shockwave10.png in Resources */,
 				818BE6341B1DACE100F44D7E /* Shockwave12.png in Resources */,
+				814C57EE1B213F5500A259C4 /* Birth_2.plist in Resources */,
 				818BE6301B1DACE100F44D7E /* Shockwave8.png in Resources */,
 				818BE6371B1DACE100F44D7E /* Shockwave15.png in Resources */,
-				818BE68E1B1DB2D000F44D7E /* Boom.plist in Resources */,
 				818BE6401B1DACE100F44D7E /* Shockwave24.png in Resources */,
+				814C57F21B213F5500A259C4 /* Tail.plist in Resources */,
 				818BE6411B1DACE100F44D7E /* Shockwave25.png in Resources */,
 				818BE62D1B1DACE100F44D7E /* Shockwave5.png in Resources */,
 				818BE63B1B1DACE100F44D7E /* Shockwave19.png in Resources */,
 				818BE62F1B1DACE100F44D7E /* Shockwave7.png in Resources */,
+				814C57F11B213F5500A259C4 /* Square.plist in Resources */,
 				818BE6391B1DACE100F44D7E /* Shockwave17.png in Resources */,
 				818BE6351B1DACE100F44D7E /* Shockwave13.png in Resources */,
 				818BE6311B1DACE100F44D7E /* Shockwave9.png in Resources */,
+				814C57EF1B213F5500A259C4 /* Boom.plist in Resources */,
 				7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */,
 				818BE63C1B1DACE100F44D7E /* Shockwave20.png in Resources */,
-				814C57E41B213E3700A259C4 /* Death.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
