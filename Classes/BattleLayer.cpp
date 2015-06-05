@@ -61,8 +61,7 @@ bool BattleLayer::init()
     this->addChild(Block1);
     
     // Run Animation
-    AnimationUtil::runParticleAnimation("Birth_1.plist", this, Block1);
-    AnimationUtil::runParticleAnimation("Birth_2.plist", this, Block1);
+    AnimationUtil::runParticleAnimation("Cloud.plist", this, Block1);
     
     
 
@@ -144,16 +143,12 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
-        //AnimationUtil::runParticleAnimation("Boom.plist", this, nodeA);
-        AnimationUtil::runParticleAnimation("Birth_1.plist", this, nodeA);
-        AnimationUtil::runParticleAnimation("Birth_2.plist", this, nodeA);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
 	if (nodeB != nullptr && nodeB->getTag() == -2)
 	{
-        //AnimationUtil::runParticleAnimation("Boom.plist", this, nodeB);
-        AnimationUtil::runParticleAnimation("Birth_1.plist", this, nodeB);
-        AnimationUtil::runParticleAnimation("Birth_2.plist", this, nodeB);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeB);
 		nodeB->removeFromParentAndCleanup(true);
 	}
 	
