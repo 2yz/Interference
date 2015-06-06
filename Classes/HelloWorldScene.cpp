@@ -133,8 +133,8 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 {
 	auto test = Player::create();
 	test->setPosition(p);
-    // test->getPhysicsBody()->setGroup(random(-1,-2));
-	test->getPhysicsBody()->setGroup(-2);
+    test->getPhysicsBody()->setGroup(random(-1,-2));
+	// test->getPhysicsBody()->setGroup(-2);
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);

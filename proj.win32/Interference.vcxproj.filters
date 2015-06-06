@@ -13,9 +13,6 @@
     <Filter Include="src\HellowWorld">
       <UniqueIdentifier>{343c2f90-2b29-4341-a8d4-47d5dcf5e602}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Node">
-      <UniqueIdentifier>{e955ad60-2683-453f-9ad0-9ae85b702820}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Scene">
       <UniqueIdentifier>{659b06d5-3bb9-4ddb-a67f-10648ad01261}</UniqueIdentifier>
     </Filter>
@@ -37,22 +34,19 @@
     <Filter Include="src\Object\Bullet">
       <UniqueIdentifier>{865054b0-529f-4e25-99f2-d65b000a4eda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Util">
+      <UniqueIdentifier>{23d8e220-f069-4352-80eb-28dbd702ef43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ConfigUtil.cpp">
-      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BaseObject.cpp">
       <Filter>src\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src\HellowWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Controller.cpp">
-      <Filter>src\Node</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BulletUserData.cpp">
       <Filter>src\UserData</Filter>
@@ -70,9 +64,6 @@
       <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\AnimationUtil.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BattleScene.cpp">
@@ -105,13 +96,28 @@
     <ClCompile Include="..\Classes\Boss.cpp">
       <Filter>src\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\BaseSkill.cpp">
-      <Filter>src\Skill</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Attack.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Defense.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Kill.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Support.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnimationUtil.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ConfigUtil.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controller.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Skill.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,17 +125,11 @@
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ConfigUtil.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\BaseObject.h">
       <Filter>src\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src\HellowWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Controller.h">
-      <Filter>src\Node</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BulletUserData.h">
       <Filter>src\UserData</Filter>
@@ -147,9 +147,6 @@
       <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\AnimationUtil.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BattleScene.h">
@@ -182,13 +179,28 @@
     <ClInclude Include="..\Classes\Boss.h">
       <Filter>src\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\BaseSkill.h">
-      <Filter>src\Skill</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Attack.h">
       <Filter>src\Skill</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Defense.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Kill.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Support.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnimationUtil.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ConfigUtil.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controller.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Skill.h">
       <Filter>src\Skill</Filter>
     </ClInclude>
   </ItemGroup>
