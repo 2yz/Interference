@@ -2,7 +2,7 @@
 #define BattleLayer_H_
 
 #include "cocos2d.h"
-#include "PlayerPlane.h"
+#include "Player.h"
 
 class BattleLayer : public cocos2d::Layer
 {
@@ -12,12 +12,12 @@ public:
 	virtual bool init() override;
 	CREATE_FUNC(BattleLayer);
 	// virtual void onEnter() override;
-	PlayerPlane* getPlayerPlane();
+	Player* getPlayer();
 	// BasePlayer* getBasePlayer();
 protected:
 	cocos2d::Camera* _camera;
 
-	PlayerPlane* playerPlane;
+	Player* Player;
 	int initHP;
 
 	const float shootCD = 0.04f;

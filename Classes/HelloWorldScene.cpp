@@ -3,7 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "ConfigUtil.h"
 #include "BasePlane.h"
-#include "PlayerPlane.h"
+#include "Player.h"
 #include "AnimationUtil.h"
 
 USING_NS_CC;
@@ -92,7 +92,7 @@ bool HelloWorld::init()
 	// 播放动画： 
 	// action->gotoFrameAndPlay(0, 60, true);//从第0帧到60帧循环播放。还有其他重载函数
 
-	auto test = PlayerPlane::create();
+	auto test = Player::create();
 	test->setPosition(200,200);
 	test->getPhysicsBody()->setGroup(random(-1, -2));
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
@@ -106,11 +106,11 @@ bool HelloWorld::init()
 	this->addChild(test);
 
 
-	camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0, 1000);
-	camera->setCameraFlag(CameraFlag::USER1);
-	this->addChild(camera);
-	camera->setPosition3D(Vec3(0, 0, 0));
-	this->setCameraMask(1 << 1);
+	// camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0, 1000);
+	// camera->setCameraFlag(CameraFlag::USER1);
+	// this->addChild(camera);
+	// camera->setPosition3D(Vec3(0, 0, 0));
+	// this->setCameraMask(1 << 1);
 
 
 	return true;
@@ -131,14 +131,15 @@ void HelloWorld::setPhyWorld(cocos2d::PhysicsWorld* world)
 
 void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 {
-	auto test = PlayerPlane::create();
+	auto test = Player::create();
 	test->setPosition(p);
-    test->getPhysicsBody()->setGroup(random(-1,-2));
+    // test->getPhysicsBody()->setGroup(random(-1,-2));
+	test->getPhysicsBody()->setGroup(-2);
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
 	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
-	test->setCameraMask(1 << 1);
+	// test->setCameraMask(1 << 1);
 
 	// int index = random(-2, -1);
 	int index = 1;
@@ -146,8 +147,8 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 	test->setTag(index);
 	this->addChild(test);
 
-	camera->setPosition3D(Vec3(p.x, p.y, 0));
-	camera->lookAt(Vec3(p.x, p.y, 0));
+	// camera->setPosition3D(Vec3(p.x, p.y, 0));
+	// camera->lookAt(Vec3(p.x, p.y, 0));
 
 }
 

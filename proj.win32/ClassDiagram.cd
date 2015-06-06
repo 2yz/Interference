@@ -133,11 +133,11 @@
       <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\PlayerLayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlayerPlane">
+  <Class Name="Player">
     <Position X="0.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\PlayerPlane.h</FileName>
+      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerUserData" Collapsed="true">

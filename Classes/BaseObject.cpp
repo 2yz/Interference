@@ -3,21 +3,8 @@
 USING_NS_CC;
 
 BaseObject::BaseObject() : timeCoefficient(1.0f)
-{
-	physicsBody = PhysicsBody::create();
-	// blend = { GL_SRC_ALPHA, GL_ONE };
+{	
 }
-
-// BaseObject::BaseObject(float radius)
-// {
-// 	physicsBody = PhysicsBody::createCircle(radius);
-// 	log("BaseObject(float radius)");
-// }
-// 
-// BaseObject::BaseObject(cocos2d::Size& size)
-// {
-// 	physicsBody = PhysicsBody::createBox(size);
-// }
 
 bool BaseObject::init()
 {
@@ -25,9 +12,12 @@ bool BaseObject::init()
 	{
 		return false;
 	}
+
+	// Create Physics Body
+	physicsBody = PhysicsBody::create();
 	physicsBody->setRotationEnable(false);
 	this->setPhysicsBody(physicsBody);
-	this->scheduleUpdate();
+
 	return true;
 }
 
@@ -38,6 +28,10 @@ void BaseObject::onEnter()
 	{
 		sprite->setBlendFunc(BlendFunc::ADDITIVE);
 	}
+}
+
+void BaseObject::onDestory()
+{
 }
 
 void BaseObject::onContact(cocos2d::Node* contactNode)
@@ -64,8 +58,3 @@ float BaseObject::getVelocityDirection()
 {
 	return 0.0f;
 }
-
-// void BaseObject::update(float deltaTime)
-// {
-// 	log("BaseObject::update(float deltaTime)");
-// }

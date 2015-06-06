@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "UILayer.h"
-#include "CameraNode.h"
+#include "BattleLayer.h"
 
 class BattleScene : public cocos2d::Scene
 {
