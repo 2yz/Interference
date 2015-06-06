@@ -1,9 +1,9 @@
 #include "BattleLayer.h"
 #include "ConfigUtil.h"
-#include "PlayerUserData.h"
 #include "Controller.h"
 #include "GameBackgroundLayer.h"
 #include "Bullet.h"
+#include "AnimationUtil.h"
 
 USING_NS_CC;
 
@@ -29,9 +29,6 @@ bool BattleLayer::init()
 	_camera->setPosition3D(Vec3((ConfigUtil::battleSceneWidth - ConfigUtil::visibleWidth) / 2, (ConfigUtil::battleSceneHeight - ConfigUtil::visibleHeight) / 2, 400));
 	_camera->lookAt(Vec3((ConfigUtil::battleSceneWidth - ConfigUtil::visibleWidth) / 2, (ConfigUtil::battleSceneHeight - ConfigUtil::visibleHeight) / 2, 0));
 	this->addChild(_camera);
-	// _camera = Camera::createPerspective(60, static_cast<GLfloat>(ConfigUtil::visibleWidth) / ConfigUtil::visibleHeight, 1, 500);
-	//_camera->setPosition3D(Vec3(0, 0, 400));
-	//_camera->lookAt(Vec3(0, 0, 0));
 
 	// Create Background
 	auto gameBackgroundLayer = GameBackgroundLayer::create();
@@ -45,14 +42,13 @@ bool BattleLayer::init()
 	edgeSp->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
 	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize * 2, PHYSICSBODY_MATERIAL_DEFAULT, 3);
 	body->setGroup(EDGE_GROUP);
-	//body->setContactTestBitmask(0xFFFFFFFF);
+	body->setContactTestBitmask(0xFFFFFFFF);
 	edgeSp->setPhysicsBody(body);
 	this->addChild(edgeSp);
 
 	// Create Player
 	Player = Player::create();
 	Player->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
-	Player->setUserData(new PlayerUserData(initHP));
 	this->addChild(Player);
 
 	// Create Shoot Assist
@@ -68,8 +64,40 @@ bool BattleLayer::init()
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
-
-	return true;
+    
+    // Create Block1
+    auto Block1 = Sprite::create();
+    Block1->setSpriteFrame("square.png");
+    auto body1 = PhysicsBody::createEdgeBox(Block1->getTextureRect().size);
+    body1->setContactTestBitmask(0xffffffff);
+    Block1->setPhysicsBody(body1);
+    Block1->setPosition(Point(800, 600));
+    Block1->setBlendFunc(BlendFunc::ADDITIVE);
+    auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block1->runAction(tintTo1);
+	Block1->setCameraMask(1 << 1);
+    this->addChild(Block1);
+    
+    // Run Animation
+    AnimationUtil::runParticleAnimation("Cloud.plist", this, Block1);   
+    
+    // Create Block2
+    auto Block2 = Sprite::create();
+    Block2->setSpriteFrame("square.png");
+    auto body2 = PhysicsBody::createEdgeBox(Block2->getTextureRect().size);
+    body2->setContactTestBitmask(0xffffffff);
+    Block2->setPhysicsBody(body2);
+    Block2->setPosition(Point(1200, 600));
+	Block2->setBlendFunc(BlendFunc::ADDITIVE);
+    auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block2->runAction(tintTo2);
+	Block2->setCameraMask(1 << 1);
+    this->addChild(Block2);
+    
+    // Run Animation
+    AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
+    
+    return true;
 }
 
 Player* BattleLayer::getPlayer()
@@ -141,6 +169,7 @@ void BattleLayer::update(float deltaTime)
 
 bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 {
+
 	Node* nodeArray[2][2];
 	nodeArray[0][0] = static_cast<Node*>(contact.getShapeA()->getBody()->getNode());
 	nodeArray[0][1] = static_cast<Node*>(contact.getShapeB()->getBody()->getNode());
@@ -154,16 +183,12 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	{
 		if (nodeArray[i][0] != nullptr&&nodeArray != nullptr)
 		{
+			log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
 			switch (nodeArray[i][0]->getTag())
 			{
-			case 2:
-				return false;
-			case -2:
+			case BULLET_TAG:
 			{
-				log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
-				auto particleA = ParticleSystemQuad::create("Boom.plist");
-				particleA->setPosition(nodeArray[i][0]->getPosition());
-				this->addChild(particleA);
+				AnimationUtil::runParticleAnimation("Boom.plist", this, nodeArray[i][0]);
 				nodeArray[i][0]->removeFromParentAndCleanup(true);
 			}
 			break;
@@ -171,8 +196,6 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 				break;
 			}
 		}
-
 	}
-
 	return true;
 }

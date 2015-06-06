@@ -3,52 +3,42 @@
 Animation* AnimationUtil::createWithSingleFrameName(const char* name, float delay, int iLoops)
 {
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-    
     Vector<SpriteFrame*> frameVec;
     SpriteFrame* frame = NULL;
     int index = 1;
     do {
         frame = cache->getSpriteFrameByName(StringUtils::format("%s%d.png", name,index++));
-        
         if (frame == NULL)
         {
             break;
         }
-        
         frameVec.pushBack(frame);
     } while (true);
-    
     Animation* animation = Animation::createWithSpriteFrames(frameVec);
     animation->setLoops(iLoops);
     animation->setRestoreOriginalFrame(true);
     animation->setDelayPerUnit(delay);
-    
     return animation;
 }
-
 
 Animation* AnimationUtil::createWithFrameNameAndNum(const char* name, int iNum, float delay, int iLoops)
 {
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-    
     Vector<SpriteFrame*> frameVec;;
     SpriteFrame* frame = NULL;
     for (int i = 1; i <= iNum; i++)
     {
         frame = cache->getSpriteFrameByName(StringUtils::format("%s%d.png", name, i));
-        
         if (frame == NULL)
         {
             break;
         }
         frameVec.pushBack(frame);
     }
-    
     Animation* animation = Animation::createWithSpriteFrames(frameVec);
     animation->setLoops(iLoops);
     animation->setRestoreOriginalFrame(true);
     animation->setDelayPerUnit(delay);
-    
     return animation;
 }
 
@@ -67,18 +57,27 @@ Animation* AnimationUtil::createWithSingleSpriteNameAndNum(const char* name, int
     return animation;
 }
 
-//Demo
-/*
-Sprite* runSp = Sprite::create("run1.png");
-runSp->setPosition(Point(200, 200));
-this->addChild(runSp);
+bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* target)
+{
+    if (parent == nullptr || target == nullptr)
+    {
+        return false;
+    }
+    Sprite* animation = Sprite::create();
+    animation->setPosition(target->getPosition());
+    parent->addChild(animation);
+    animation->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(name)));
+    return true;
+}
 
-SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
-frameCache->addSpriteFramesWithFile("boys.plist", "boys.png");
-
-Animation* animation = AnimationUtil::createWithSingleFrameName("run", 0.1f, -1);
-//Animation* animation = AnimationUtil::createWithFrameNameAndNum("run", 15, 0.1f, -1);
-//Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 100, 0.05f, -1);
-
-runSp->runAction(Animate::create(animation));
-*/
+bool AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target)
+{
+    if (parent == nullptr || target == nullptr)
+    {
+        return false;
+    }
+    auto particle = ParticleSystemQuad::create(name);
+    particle->setPosition(target->getPosition());
+    parent->addChild(particle);
+    return true;
+}

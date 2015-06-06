@@ -10,10 +10,6 @@ public:
 	virtual bool init() override;
 	// static BasePlane* create();
 protected:
-	// cocos2d::Sprite* normalShapeUp;
-	// cocos2d::Sprite* normalShapeDown;
-	// cocos2d::Sprite* smallShapeUp;
-	// cocos2d::Sprite* smallShapeDown;
 	float linearDamping;
 	float physicsRadius;
 	float rotateVelocity; // degree per second
