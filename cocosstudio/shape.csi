@@ -3,11 +3,11 @@
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="True" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="bullet.png" />
-      <FilePathData Path="hexagon.png" />
       <FilePathData Path="pentagon.png" />
       <FilePathData Path="ShootBox.png" />
       <FilePathData Path="square.png" />
       <FilePathData Path="triangle.png" />
+      <FilePathData Path="hexagon.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="2048" />
   </Content>

@@ -6,6 +6,7 @@
 class Defense : public Skill
 {
 public:
+	CREATE_FUNC(Defense);
 	Defense();
 };
 

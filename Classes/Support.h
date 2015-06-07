@@ -6,6 +6,7 @@
 class Support : public Skill
 {
 public:
+	CREATE_FUNC(Support);
 	Support();
 };
 

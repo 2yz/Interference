@@ -3,7 +3,11 @@
 USING_NS_CC;
 
 
-BasePlane::BasePlane(float radius) :BaseObject(), physicsRadius(radius), rotateVelocity(360.0f)
+BasePlane::BasePlane(float radius) :BaseObject(), physicsRadius(radius), rotateVelocity(180.0f)
+{
+}
+
+BasePlane::~BasePlane()
 {
 }
 
@@ -38,6 +42,10 @@ bool BasePlane::init()
 	return true;
 }
 
+void BasePlane::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
+{
+}
+
 void BasePlane::update(float deltaTime)
 {
 	BaseObject::update(deltaTime);
@@ -50,9 +58,3 @@ void BasePlane::update(float deltaTime)
 	spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
 	spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
 }
-
-// BasePlane* BasePlane::create()
-// {
-// 	BasePlane* pRet = new(std::nothrow) BasePlane(50.0f);
-// 	CALL_INIT();
-// }

@@ -6,6 +6,7 @@
 class Kill : public Skill
 {
 public:
+	CREATE_FUNC(Kill);
 	Kill();
 };
 

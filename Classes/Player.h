@@ -13,6 +13,7 @@ public:
 	virtual void onEnter() override;
 	float getTraceCoefficient();
 	void setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime);
+	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0) override;
 protected:
 	float traceCoefficient;
 	virtual void update(float deltaTime) override;

@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-BaseObject::BaseObject() : timeCoefficient(1.0f)
+BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false), timeCoefficient(1.0f)
 {	
 }
 
@@ -27,6 +27,8 @@ void BaseObject::onEnter()
 	for (auto sprite : spriteVector)
 	{
 		sprite->setBlendFunc(BlendFunc::ADDITIVE);
+		sprite->setColor(Color3B(255, 0, 0));
+
 	}
 }
 
@@ -34,8 +36,15 @@ void BaseObject::onDestory()
 {
 }
 
-void BaseObject::onContact(cocos2d::Node* contactNode)
+void BaseObject::onContact(BaseObject* contactNode)
 {
+	log("BaseObject::onContact(BaseObject* contactNode)");
+}
+
+void BaseObject::reduceHP(float reduceValue)
+{
+	if (!_neverDie)
+		_HP -= reduceValue;
 }
 
 void BaseObject::setVelocity(const cocos2d::Vect& velocity)

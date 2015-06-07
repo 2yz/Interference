@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "ConfigUtil.h"
 #include "Controller.h"
+#include "Attack.h"
 
 USING_NS_CC;
 
@@ -17,9 +18,14 @@ bool Player::init()
 		return false;
 	}
 
+	// Create Skill
+	auto attack = Attack::create();
+	_skillVec.pushBack(attack);
+	this->addChild(attack);
+
 	// Set Camera Trace Cofficient
 	this->setTraceCoefficient(velocityMagnitudeMax, accelerationMagnitude, 1.0f / 60.0f);
-	
+
 	// Set Physics Body
 	physicsBody->setGroup(PLAYER_GROUP);
 	physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
@@ -33,7 +39,7 @@ bool Player::init()
 
 	for (auto sprite : spriteVector)
 	{
-		sprite->setSpriteFrame("triangle.png");
+		sprite->setSpriteFrame("hexagon.png");
 	}
 
 	this->scheduleUpdate();
@@ -56,6 +62,25 @@ float Player::getTraceCoefficient()
 void Player::setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime)
 {
 	traceCoefficient = 1.0f / (maxSpeed / acceleration + deltaTime);
+}
+
+void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
+{
+	BasePlane::runSkill(velocity, skillCategory, skillIndex);
+	for (auto skill : _skillVec)
+	{
+		if (skill->getSkillCategory() == skillCategory)
+		{
+			if (skillIndex == 0)
+			{
+				skill->run(velocity,this->getParent(),this);
+			}
+			else
+			{
+				--skillIndex;
+			}
+		}
+	}
 }
 
 void Player::update(float deltaTime)

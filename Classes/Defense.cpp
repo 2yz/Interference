@@ -2,4 +2,5 @@
 
 Defense::Defense()
 {
+	_skillCategory = DEFENSE;
 }

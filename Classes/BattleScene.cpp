@@ -82,5 +82,4 @@ UILayer* BattleScene::getUILayer()
 
 void BattleScene::update(float deltaTime)
 {
-
 }

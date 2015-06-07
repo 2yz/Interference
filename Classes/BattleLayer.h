@@ -17,12 +17,8 @@ public:
 protected:
 	cocos2d::Camera* _camera;
 
-	Player* Player;
+	Player* player;
 	int initHP;
-
-	const float shootCD = 0.04f;
-	float shootTimer;
-	bool shootEnterCD;
 
 	// Shoot Assist
 	cocos2d::Sprite* shootBox;
