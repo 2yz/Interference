@@ -7,8 +7,11 @@ bool Controller::moveDown = false;
 bool Controller::moveLeft = false;
 bool Controller::moveRight = false;
 bool Controller::mouseDown = false;
-float Controller::cursorX = 0.0f;
-float Controller::cursorY = 0.0f;
+cocos2d::Vec2 Controller::mouseLocation = Vec2();
+bool Controller::keyEPressed = false;
+bool Controller::keyEReleased = false;
+// float Controller::cursorY = 0.0f;
+// float Controller::cursorX = 0.0f;
 
 Controller::~Controller()
 {
@@ -17,8 +20,9 @@ Controller::~Controller()
 	moveLeft = false;
 	moveRight = false;
 	mouseDown = false;
-	cursorX = 0.0f;
-	cursorY = 0.0f;
+	mouseLocation = Vec2();
+	// cursorX = 0.0f;
+	// cursorY = 0.0f;
 }
 
 bool Controller::init()
@@ -34,9 +38,10 @@ bool Controller::init()
 	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(Controller::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
 
-	// ¼àÌýÊó±êÊÂ¼þ
+	// Mouse Listener
 	auto listenerMouse = EventListenerMouse::create();
 	listenerMouse->onMouseDown = CC_CALLBACK_1(Controller::onMouseDown, this);
+	listenerMouse->onMouseUp = CC_CALLBACK_1(Controller::onMouseUp, this);
 	listenerMouse->onMouseMove = CC_CALLBACK_1(Controller::onMouseMove, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerMouse, this);
 
@@ -68,15 +73,40 @@ bool Controller::getMouseDown()
 	return mouseDown;
 }
 
-float Controller::getCursorX()
+bool Controller::getKeyEPressed()
 {
-	return cursorX;
+	if (keyEPressed == true)
+	{
+		keyEPressed = false;
+		return true;
+	}
+	return false;
 }
 
-float Controller::getCursorY()
+bool Controller::getKeyEReleased()
 {
-	return cursorY;
+	if (keyEReleased == true)
+	{
+		keyEReleased = false;
+		return true;
+	}
+	return false;
 }
+
+cocos2d::Vec2& Controller::getMouseLocation()
+{
+	return mouseLocation;
+}
+
+// float Controller::getCursorX()
+// {
+// 	return cursorX;
+// }
+// 
+// float Controller::getCursorY()
+// {
+// 	return cursorY;
+// }
 
 void Controller::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
 {
@@ -97,6 +127,9 @@ void Controller::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 	case EventKeyboard::KeyCode::KEY_Q:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
 		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f); break;
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		keyEPressed = true;
 	default: break;
 	}
 }
@@ -120,6 +153,9 @@ void Controller::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	case EventKeyboard::KeyCode::KEY_Q:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
 		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f); break;
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		keyEReleased = false;
 	default: break;
 	}
 }
@@ -127,17 +163,28 @@ void Controller::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 void Controller::onMouseDown(cocos2d::Event* event)
 {
 	auto e = static_cast<EventMouse*>(event);
-	log("#DOWN# X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
-	cursorX = e->getCursorX();
-	cursorY = e->getCursorY();
+	log("# Down # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	
+	mouseDown = true;
+	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
+	// cursorX = e->getCursorX();
+	// cursorY = e->getCursorY();
+}
+
+void Controller::onMouseUp(cocos2d::Event* event)
+{
+	mouseDown = false;
+	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
 }
 
 void Controller::onMouseMove(cocos2d::Event* event)
 {
 	auto e = static_cast<EventMouse*>(event);
-	log("#MOVE# X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
-	cursorX = e->getCursorX();
-	cursorY = e->getCursorY();
+	log("# Move # X: %f ; Y: %f", e->getCursorX(), e->getCursorY());
+	// cursorX = e->getCursorX();
+	// cursorY = e->getCursorY();
+	mouseLocation = static_cast<EventMouse*>(event)->getLocationInView();
+	// log("# Mouse Location # X: %f Y: %f", mouseLocation.x, mouseLocation.y);
 }
 
 // void Controller::setMoveUp(bool value)

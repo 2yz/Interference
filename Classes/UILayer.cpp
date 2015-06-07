@@ -1,7 +1,7 @@
 #include "UILayer.h"
 #include <strstream>
 #include "HelloWorldScene.h"
-#include "GameScene.h"
+#include "BattleScene.h"
 #include "PlayerUserData.h"
 
 USING_NS_CC;
@@ -35,25 +35,25 @@ bool UILayer::init()
 	pauseButton->setPosition(75, visibleOrigin.y + visibleSize.height - 75);
 	this->addChild(pauseButton);
 
-	Sprite* HPBottomSprite = Sprite::createWithSpriteFrameName("HPBottom.png");
-	HPBottomSprite->setPosition(100, 100);
-	this->addChild(HPBottomSprite);
-
-	Sprite* HP = Sprite::createWithSpriteFrameName("HP.png");
-	HPIndicator = ProgressTimer::create(HP);
-	HPIndicator->setType(ProgressTimer::Type::RADIAL);
-	HPIndicator->setPercentage(100);
-	HPIndicator->setPosition(100, 100);
-	this->addChild(HPIndicator, 0, 0);
-
-	launchButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("launchButton.png"), Sprite::createWithSpriteFrameName("launchButton.png"), Sprite::createWithSpriteFrameName("launchButtonUnable.png"), CC_CALLBACK_1(UILayer::menuLaunchCallback, this));
-	launchButton = Menu::create(launchButtonItem, nullptr);
-	launchButton->setPosition(100, 100);
-
-	launchButtonItem->setEnabled(false);
-	launchButton->setEnabled(false);
-
-	this->addChild(launchButton);
+	// Sprite* HPBottomSprite = Sprite::createWithSpriteFrameName("HPBottom.png");
+	// HPBottomSprite->setPosition(100, 100);
+	// this->addChild(HPBottomSprite);
+	// 
+	// Sprite* HP = Sprite::createWithSpriteFrameName("HP.png");
+	// HPIndicator = ProgressTimer::create(HP);
+	// HPIndicator->setType(ProgressTimer::Type::RADIAL);
+	// HPIndicator->setPercentage(100);
+	// HPIndicator->setPosition(100, 100);
+	// this->addChild(HPIndicator, 0, 0);
+	// 
+	// launchButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("launchButton.png"), Sprite::createWithSpriteFrameName("launchButton.png"), Sprite::createWithSpriteFrameName("launchButtonUnable.png"), CC_CALLBACK_1(UILayer::menuLaunchCallback, this));
+	// launchButton = Menu::create(launchButtonItem, nullptr);
+	// launchButton->setPosition(100, 100);
+	// 
+	// launchButtonItem->setEnabled(false);
+	// launchButton->setEnabled(false);
+	// 
+	// this->addChild(launchButton);
 
 	return true;
 }
@@ -66,12 +66,12 @@ void UILayer::addScoreBy(int addScore)
 
 void UILayer::updateHPIndicator()
 {
-	int HP = static_cast<PlayerUserData*>(static_cast<GameScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getMyPlane()->getUserData())->getHP();
-	int initHP = static_cast<GameScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getInitHP();
-	float HPOld = HPIndicator->getPercentage();
-	float HPPercentage = static_cast<float>(HP) / static_cast<float>(initHP);
-	ProgressFromTo* animation = ProgressFromTo::create(0.2f, HPOld, HPPercentage * 100);
-	HPIndicator->runAction(animation);
+	// int HP = static_cast<PlayerUserData*>(static_cast<BattleScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getMyPlane()->getUserData())->getHP();
+	// int initHP = static_cast<BattleScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getInitHP();
+	// float HPOld = HPIndicator->getPercentage();
+	// float HPPercentage = static_cast<float>(HP) / static_cast<float>(initHP);
+	// ProgressFromTo* animation = ProgressFromTo::create(0.2f, HPOld, HPPercentage * 100);
+	// HPIndicator->runAction(animation);
 }
 
 void UILayer::setLaunchButtonEnable()
@@ -94,7 +94,7 @@ void UILayer::updateScore()
 	scoreLabel->setString(strScore.c_str());
 	// TODO GiftLayer
 	// if (this->score % 1000 == 0){
-	// 	static_cast<GameScene*>(this->getParent())->getUFOLayer()->addGiftSprite();
+	// 	static_cast<BattleScene*>(this->getParent())->getUFOLayer()->addGiftSprite();
 	// }
 }
 

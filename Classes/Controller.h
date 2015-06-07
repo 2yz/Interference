@@ -14,8 +14,11 @@ public:
 	static bool getMoveLeft();
 	static bool getMoveRight();
 	static bool getMouseDown();
-	static float getCursorX();
-	static float getCursorY();
+	static bool getKeyEPressed();
+	static bool getKeyEReleased();
+	static cocos2d::Vec2& getMouseLocation();
+	// static float getCursorX();
+	// static float getCursorY();
 	// static void setMoveUp(bool value);
 	// static void setMoveDown(bool value);
 	// static void setMoveLeft(bool value);
@@ -26,11 +29,15 @@ protected:
 	static bool moveLeft;
 	static bool moveRight;
 	static bool mouseDown;
-	static float cursorX;
-	static float cursorY;
+	static bool keyEPressed;
+	static bool keyEReleased;
+	static cocos2d::Vec2 mouseLocation;
+	// static float cursorX;
+	// static float cursorY;
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void onMouseDown(cocos2d::Event* event);
+	void onMouseUp(cocos2d::Event* event);
 	void onMouseMove(cocos2d::Event* event);
 };
 

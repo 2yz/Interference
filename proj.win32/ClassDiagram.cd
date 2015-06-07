@@ -1,158 +1,193 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AnimationUtil" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAgAQAEAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\AnimationUtil.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="AppDelegate" Collapsed="true">
-    <Position X="6" Y="0.5" Width="1.5" />
+    <Position X="16.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAACAAAAAAAAACAAQAAAEAAAAAAAAAAAAk=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\AppDelegate.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\AppDelegate.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BaseCamera" Collapsed="true">
-    <Position X="3.5" Y="6.5" Width="1.5" />
+  <Class Name="Attack" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAASIAAAAAAAAEAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BaseCamera.h</FileName>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Attack.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BaseObject">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="BaseBullet" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAEAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BaseObject.h</FileName>
+      <HashCode>AAAAAABAAAAAEAAAAAAAAAAAQAQAAAZAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BaseBullet.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasePlane">
-    <Position X="0.5" Y="3" Width="1.5" />
+  <Class Name="BaseObject" Collapsed="true">
+    <Position X="6.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAgCAAAAAAAAAAAAIAAgAACACAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BasePlane.h</FileName>
+      <HashCode>AAIBAAAIEAAAJAAAABAASAAAAAAAEAZAAAAAIACAgAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BaseObject.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasePlayer">
-    <Position X="0.5" Y="6" Width="1.5" />
+  <Class Name="BasePlane" Collapsed="true">
+    <Position X="9.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAAQAAAAAAAAAAAAAAAYCAAAAAAAEAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BasePlayer.h</FileName>
+      <HashCode>IAAAAAAAAAAAAAAACQEAAAEAAQAAAAIgAAAACAAEAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BasePlane.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BaseTraced">
-    <Position X="3.5" Y="3" Width="1.5" />
+  <Class Name="BattleLayer" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgBAAAAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BaseTraced.h</FileName>
+      <HashCode>AAAAAAAAADAAAQAAAAABAAAIAAAAEAIDABAAACAEAIA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BattleLayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BulletLayer" Collapsed="true">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+  <Class Name="BattleScene" Collapsed="true">
+    <Position X="19.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAMAAAEAAAAAAIAAIAAIBCAIAABAEAACAAIA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BulletLayer.h</FileName>
+      <HashCode>AAAggAAAAAAAAAAAAAAAAAAQAAAAEAIAABAAAAAEAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BattleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Block" Collapsed="true">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Block.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boss" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Boss.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bullet" Collapsed="true">
+    <Position X="5.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAQAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Bullet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BulletUserData" Collapsed="true">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Position X="14.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAASAAAAAAAgAAAAEAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\BulletUserData.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\BulletUserData.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CameraNode" Collapsed="true">
-    <Position X="3.5" Y="8" Width="1.5" />
+  <Class Name="ClearBullet" Collapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAEAAgIgAAAAQAAgAAAAABAAAABIAIzAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\CameraNode.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\ClearBullet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ConfigUtil" Collapsed="true">
-    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Position X="16.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAIAAAAgAAAACACQAAAABAAAAAAIAAAABA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\ConfigUtil.h</FileName>
+      <HashCode>BAAAIAAAAAAKAAAAgAAAACACQAAAABAAAAAAIAAAABA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\ConfigUtil.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Controller" Collapsed="true">
-    <Position X="6" Y="1.5" Width="1.5" />
+    <Position X="18" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAZAQABQIAgEAAAEAAAEAAQAAAgAAIAABAAC0AAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\Controller.h</FileName>
+      <HashCode>AAIBAQADRIAgFAAAEAAAEAAQAACgAAIAABAACEAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Controller.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EnemyBulletLayer" Collapsed="true">
-    <Position X="7.75" Y="1.5" Width="1.5" />
+  <Class Name="Defense" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAIAAhBQAAAAAQAQAAAAAIAABAgAAAEQAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\EnemyBulletLayer.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAgAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Defense.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EnemyLayer" Collapsed="true">
-    <Position X="9.5" Y="1.5" Width="1.5" />
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="12" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAYAAQAAIAIAABAAIQIACAIQgAABAoAABAIRAAsCAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\EnemyLayer.h</FileName>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyUserData" Collapsed="true">
-    <Position X="11.25" Y="1.5" Width="1.5" />
+    <Position X="19.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAgAAAAgAAwAAACAAAAAAAAEAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\EnemyUserData.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\EnemyUserData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameBackgroundLayer" Collapsed="true">
-    <Position X="6" Y="2.5" Width="1.5" />
+    <Position X="14.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAEAAg=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameBackgroundLayer.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GameLayer" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAICABAgAAAEAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameLayer.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GameScene" Collapsed="true">
-    <Position X="9.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAABAAQAIAAAAIAIBAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\GameScene.h</FileName>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\GameBackgroundLayer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HelloWorld" Collapsed="true">
-    <Position X="11.25" Y="2.5" Width="1.5" />
+    <Position X="16.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIIAAAAQAAACAAAAAABAAAQAAAAAgIAABAAAACAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\HelloWorldScene.h</FileName>
+      <HashCode>AAIIAAAAQgAACAAAAAABAAAQAAAAAgIAIBAAAACAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\HelloWorldScene.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlayerLayer" Collapsed="true">
-    <Position X="6" Y="3.5" Width="1.5" />
+  <Class Name="Kill" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgCAAAAAAQAAQAAAAAAAgAEAQYCABIAAAAEgAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\PlayerLayer.h</FileName>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Kill.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlayerPlane">
-    <Position X="0.5" Y="9" Width="1.5" />
+  <Class Name="Player" Collapsed="true">
+    <Position X="9.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\PlayerPlane.h</FileName>
+      <HashCode>IAAgAAAAAAAAAAAAAAAAAAAACAAAAAIAABCAAQCEAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerUserData" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="18" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAQAAAAACAAAAAAEAAAAA=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\PlayerUserData.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\PlayerUserData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Skill" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAAAAAgARAAAAAAAAAAAAAAAAYAAAAAAAEEQAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Skill.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Support" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Support.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UILayer" Collapsed="true">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+    <Position X="19.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABCAAgCIAIAAAAgAAIQAAAAAAAAAKABFAAAIQAEAI=</HashCode>
-      <FileName>D:\Yezersky\Documents\Cocos\CocosProjects\Interference\Classes\UILayer.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\UILayer.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Enum Name="SkillCategory" Collapsed="true">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAIIAAAAAAAAAAAAAgAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\Skill.h</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Microsoft YaHei UI" Size="9" />
 </ClassDiagram>

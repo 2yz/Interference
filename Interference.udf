@@ -27,5 +27,14 @@
         <LastRunType Value="Unknown" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="MainScene.csd" />
+          <FilePathData Path="shape.csi" />
+        </OpenedDocuments>
+        <ActiveDocument Path="shape.csi" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

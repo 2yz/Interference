@@ -13,9 +13,8 @@ public:
 	CREATE_FUNC(GameBackgroundLayer);
 private:
 	cocos2d::Sprite* background1;
-	cocos2d::Sprite* background2;
 	// cocos2d::Size visibleSize;
-	void update(float useless) override;
+
 };
 
 #endif /* GAMEBACKGROUNDLAYER_H_ */
