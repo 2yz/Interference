@@ -146,14 +146,14 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	if (nodeA != nullptr && nodeA->getTag() == -2)
 	{
-        AnimationUtil::runParticleAnimation("Birth.plist", this, nodeA);
-        AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeA);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeA);
+        //AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeA);
 		nodeA->removeFromParentAndCleanup(true);
 	}
 	if (nodeB != nullptr && nodeB->getTag() == -2)
 	{
-        AnimationUtil::runParticleAnimation("Birth.plist", this, nodeB);
-        AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeB);
+        AnimationUtil::runParticleAnimation("Boom.plist", this, nodeB);
+        //AnimationUtil::runParticleAnimation("Cloud.plist", this, nodeB);
 		nodeB->removeFromParentAndCleanup(true);
 	}
 	
