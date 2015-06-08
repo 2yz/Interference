@@ -36,7 +36,7 @@ bool Block::init()
 		auto block = Sprite::createWithSpriteFrameName("square.png");
 		spriteVector.pushBack(block);
 		this->addChild(block);
-		physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, PhysicsMaterial(0.0f, 0.0f, 10.0f)));
+		physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, MATERIAL_BLOCK));
 	}
 	physicsBody->setContactTestBitmask(BLOCK_CONTACT_MASK);
 

@@ -30,7 +30,7 @@ bool Bullet::init()
 	this->addChild(sprite);
 
 	// Set Physics Body
-	physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size));
+	physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, MATERIAL_BULLET));
 	physicsBody->setVelocity(velocityVec);
 	physicsBody->setGroup(BULLET_GROUP);
 	physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);

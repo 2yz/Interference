@@ -21,8 +21,6 @@ Controller::~Controller()
 	moveRight = false;
 	mouseDown = false;
 	mouseLocation = Vec2();
-	// cursorX = 0.0f;
-	// cursorY = 0.0f;
 }
 
 bool Controller::init()

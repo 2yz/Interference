@@ -28,7 +28,9 @@
 #define BLOCK_TAG 10
 #define BLOCK_CONTACT_MASK 0x0000F000
 
-
+#define MATERIAL_PLANE PhysicsMaterial(10.0f, 0.0f, 1.0f)
+#define MATERIAL_BULLET PhysicsMaterial(0.5f, 0.0f, 1.0f)
+#define MATERIAL_BLOCK PhysicsMaterial(50.0f, 0.0f, 1.0f)
 
 class ConfigUtil
 {
