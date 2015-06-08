@@ -14,7 +14,6 @@ bool Block::init()
     return true;
 }
 
-
 cocos2d::Sprite* Block::createBlock(const char* name, float PositionX, float PositionY)
 {
     if (name == nullptr || PositionX > ConfigUtil::battleSceneWidth || PositionX > ConfigUtil::battleSceneWidth || PositionX < 0 || PositionY < 0)
