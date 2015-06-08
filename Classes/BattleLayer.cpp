@@ -57,6 +57,17 @@ bool BattleLayer::init()
 	shootLine = Sprite::create("ShootLine.png");
 	shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
 	this->addChild(shootLine);
+    
+    auto Block = Sprite::create();
+    Block->setSpriteFrame("square.png");
+    auto body1 = PhysicsBody::createEdgeBox(Block->getTextureRect().size);
+    Block->setPhysicsBody(body1);
+    Block->setPosition(Point(200, 200));
+    BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
+    Block->setBlendFunc(blend);
+    auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block->runAction(tintTo1);
+    this->addChild(Block);
 
 	// Schedule update per frame
 	this->scheduleUpdate();
@@ -64,38 +75,6 @@ bool BattleLayer::init()
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
-
-	// Create Block1
-	auto Block1 = Sprite::create();
-	Block1->setSpriteFrame("square.png");
-	auto body1 = PhysicsBody::createEdgeBox(Block1->getTextureRect().size);
-	body1->setContactTestBitmask(0xffffffff);
-	Block1->setPhysicsBody(body1);
-	Block1->setPosition(Point(800, 600));
-	Block1->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block1->runAction(tintTo1);
-	Block1->setCameraMask(1 << 1);
-	this->addChild(Block1);
-
-	// Run Animation
-	AnimationUtil::runParticleAnimation("Cloud.plist", this, Block1);
-
-	// Create Block2
-	auto Block2 = Sprite::create();
-	Block2->setSpriteFrame("square.png");
-	auto body2 = PhysicsBody::createEdgeBox(Block2->getTextureRect().size);
-	body2->setContactTestBitmask(0xffffffff);
-	Block2->setPhysicsBody(body2);
-	Block2->setPosition(Point(1200, 600));
-	Block2->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block2->runAction(tintTo2);
-	Block2->setCameraMask(1 << 1);
-	this->addChild(Block2);
-
-	// Run Animation
-	AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
 
 	return true;
 }
@@ -107,7 +86,7 @@ Player* BattleLayer::getPlayer()
 
 void BattleLayer::update(float deltaTime)
 {
-	log("BattleScene Node Num: %d", this->getChildrenCount());
+	log("BattleScene Node Num: %zd", this->getChildrenCount());
 
 	this->setCameraMask(1 << 1);
 	// log("BattleLayer::update(float deltaTime)");
@@ -162,7 +141,7 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	for (int i = 0; i < 2; ++i)
 	{
-		if (nodeArray[i][0] != nullptr&&nodeArray != nullptr)
+		if (nodeArray[i][0] != nullptr)
 		{
 			log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
 			switch (nodeArray[i][0]->getTag())

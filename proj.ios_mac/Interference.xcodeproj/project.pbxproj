@@ -70,7 +70,6 @@
 		81613DD71B25381100D4C6CF /* Support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DCB1B25381100D4C6CF /* Support.cpp */; };
 		818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4891B1C850D00F44D7E /* BaseObject.cpp */; };
 		818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48B1B1C850D00F44D7E /* BasePlane.cpp */; };
-		818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */; };
 		818BE4B51B1C850D00F44D7E /* BulletUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4931B1C850D00F44D7E /* BulletUserData.cpp */; };
 		818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */; };
 		818BE4B81B1C850D00F44D7E /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4991B1C850D00F44D7E /* Controller.cpp */; };
@@ -197,7 +196,6 @@
 		818BE48A1B1C850D00F44D7E /* BaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObject.h; sourceTree = "<group>"; };
 		818BE48B1B1C850D00F44D7E /* BasePlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasePlane.cpp; sourceTree = "<group>"; };
 		818BE48C1B1C850D00F44D7E /* BasePlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePlane.h; sourceTree = "<group>"; };
-		818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasePlayer.cpp; sourceTree = "<group>"; };
 		818BE4931B1C850D00F44D7E /* BulletUserData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletUserData.cpp; sourceTree = "<group>"; };
 		818BE4941B1C850D00F44D7E /* BulletUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletUserData.h; sourceTree = "<group>"; };
 		818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigUtil.cpp; sourceTree = "<group>"; };
@@ -437,7 +435,6 @@
 				818BE48A1B1C850D00F44D7E /* BaseObject.h */,
 				818BE48B1B1C850D00F44D7E /* BasePlane.cpp */,
 				818BE48C1B1C850D00F44D7E /* BasePlane.h */,
-				818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */,
 				818BE4931B1C850D00F44D7E /* BulletUserData.cpp */,
 				818BE4941B1C850D00F44D7E /* BulletUserData.h */,
 				818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */,
@@ -707,7 +704,6 @@
 				81613DD71B25381100D4C6CF /* Support.cpp in Sources */,
 				81613DD21B25381100D4C6CF /* Defense.cpp in Sources */,
 				818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */,
-				818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */,
 				818BE4BC1B1C850D00F44D7E /* GameBackgroundLayer.cpp in Sources */,
 				818BE4B81B1C850D00F44D7E /* Controller.cpp in Sources */,
 				81613DD41B25381100D4C6CF /* Kill.cpp in Sources */,
