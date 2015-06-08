@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-BasePlane::BasePlane(float radius) :BaseObject(), physicsRadius(radius), rotateVelocity(180.0f)
+BasePlane::BasePlane(float radius) :BaseObject(), _physicsRadius(radius), _rotateVelocity(180.0f)
 {
 }
 
@@ -17,8 +17,6 @@ bool BasePlane::init()
 	{
 		return false;
 	}
-
-	physicsBody->addShape(PhysicsShapeCircle::create(physicsRadius, MATERIAL_PLANE));
 
 	this->scheduleUpdate();
 

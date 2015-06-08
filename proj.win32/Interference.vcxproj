@@ -149,6 +149,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\ConfigUtil.cpp" />
     <ClCompile Include="..\Classes\Controller.cpp" />
     <ClCompile Include="..\Classes\Defense.cpp" />
+    <ClCompile Include="..\Classes\BaseEnemy.cpp" />
     <ClCompile Include="..\Classes\Enemy.cpp" />
     <ClCompile Include="..\Classes\EnemyUserData.cpp" />
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
@@ -180,6 +181,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\ConfigUtil.h" />
     <ClInclude Include="..\Classes\Controller.h" />
     <ClInclude Include="..\Classes\Defense.h" />
+    <ClInclude Include="..\Classes\BaseEnemy.h" />
     <ClInclude Include="..\Classes\Enemy.h" />
     <ClInclude Include="..\Classes\EnemyUserData.h" />
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />

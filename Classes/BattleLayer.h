@@ -29,6 +29,7 @@ protected:
 
 	virtual void update(float deltaTime) override;
 	bool onContactBegin(cocos2d::PhysicsContact& contact);
+	void addEnemy(float deltaTime);
 };
 
 #endif /* BattleLayer_H_ */

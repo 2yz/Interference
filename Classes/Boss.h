@@ -1,9 +1,9 @@
 #ifndef BOSS_H_
 #define BOSS_H_
 
-#include "BasePlane.h"
+#include "BaseEnemy.h"
 
-class Boss : public BasePlane
+class Boss : public BaseEnemy
 {
 public:
 	CREATE_FUNC(Boss);

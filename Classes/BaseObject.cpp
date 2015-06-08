@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false)
+BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false), _velocityMagnitudeMax(400.0f)
 {
 }
 
@@ -14,9 +14,9 @@ bool BaseObject::init()
 	}
 
 	// Create Physics Body
-	physicsBody = PhysicsBody::create();
-	physicsBody->setRotationEnable(false);
-	this->setPhysicsBody(physicsBody);
+	_physicsBody = PhysicsBody::create();
+	_physicsBody->setRotationEnable(false);
+	this->setPhysicsBody(_physicsBody);
 
 	this->scheduleUpdate();
 
@@ -26,7 +26,7 @@ bool BaseObject::init()
 void BaseObject::onEnter()
 {
 	Node::onEnter();
-	for (auto sprite : spriteVector)
+	for (auto sprite : _spriteVector)
 	{
 		sprite->setBlendFunc(BlendFunc::ADDITIVE);
 	}
@@ -68,7 +68,7 @@ void BaseObject::update(float deltaTime)
 
 float BaseObject::getVelocityMagnitude()
 {
-	return physicsBody->getVelocity().length();
+	return _physicsBody->getVelocity().length();
 }
 
 // TODO getVelocityDirection

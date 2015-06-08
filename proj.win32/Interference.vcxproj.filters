@@ -126,6 +126,9 @@
     <ClCompile Include="..\Classes\Boss.cpp">
       <Filter>src\Object\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BaseEnemy.cpp">
+      <Filter>src\Object\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\Enemy.cpp">
       <Filter>src\Object\Enemy</Filter>
     </ClCompile>
@@ -213,6 +216,9 @@
       <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Boss.h">
+      <Filter>src\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseEnemy.h">
       <Filter>src\Object\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy.h">

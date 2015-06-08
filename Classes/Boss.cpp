@@ -6,7 +6,7 @@ Boss::Boss()
 
 bool Boss::init()
 {
-	if (!BasePlane::init())
+	if (!BaseEnemy::init())
 	{
 		return false;
 	}

@@ -27,18 +27,18 @@ bool Block::init()
 	if (_isEdge)
 	{
 		_neverDie = true;
-		physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::visibleSize * 2, PHYSICSSHAPE_MATERIAL_DEFAULT, 10.0f));
+		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::visibleSize * 2, PHYSICSSHAPE_MATERIAL_DEFAULT, 20.0f));
 	}
 	else
 	{
 		_HP = 500.0f;
 		// Create Block
 		auto block = Sprite::createWithSpriteFrameName("square.png");
-		spriteVector.pushBack(block);
+		_spriteVector.pushBack(block);
 		this->addChild(block);
-		physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, MATERIAL_BLOCK));
+		_physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, MATERIAL_BLOCK));
 	}
-	physicsBody->setContactTestBitmask(BLOCK_CONTACT_MASK);
+	_physicsBody->setContactTestBitmask(BLOCK_CONTACT_MASK);
 
 	return true;
 }
@@ -47,7 +47,7 @@ void Block::onEnter()
 {
 	BaseObject::onEnter();
 	auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	for (auto sprite : spriteVector)
+	for (auto sprite : _spriteVector)
 		sprite->runAction(tintTo->clone());
 	AnimationUtil::runParticleAnimation("Cloud.plist", this->getParent(), this);
 }

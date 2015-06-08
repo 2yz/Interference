@@ -29,12 +29,12 @@ public:
 	void reduceHP(float reduceValue);
 	void setVelocity(const cocos2d::Vect& velocity);
 protected:
-	cocos2d::PhysicsBody* physicsBody;
-	cocos2d::Vector<cocos2d::Sprite*> spriteVector;
+	cocos2d::PhysicsBody* _physicsBody;
+	cocos2d::Vector<cocos2d::Sprite*> _spriteVector;
 	float _HP;
-	bool _neverDie;
-	float velocityMagnitudeMax;
-	float accelerationMagnitude;
+	bool _neverDie; // Is never under attack
+	float _velocityMagnitudeMax;
+	float _accelerationMagnitude;
 	virtual void update(float deltaTime) override;
 	float getVelocityMagnitude();
 	float getVelocityDirection();

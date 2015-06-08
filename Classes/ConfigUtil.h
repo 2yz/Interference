@@ -12,6 +12,10 @@
 #define PLAYER_CATEGORY_MASK 0x0000000F
 
 #define ENEMY_TAG 2
+#define ENEMY_GROUP 2
+#define ENEMY_CONTACT_MASK 0x0000F000
+#define ENEMY_COLLISION_MASK 0x0000000F
+#define ENEMY_CATEGORY_MASK 0x0000000F
 
 #define BULLET_TAG -2
 #define BULLET_GROUP -2
@@ -28,9 +32,9 @@
 #define BLOCK_TAG 10
 #define BLOCK_CONTACT_MASK 0x0000F000
 
-#define MATERIAL_PLANE PhysicsMaterial(10.0f, 0.0f, 1.0f)
-#define MATERIAL_BULLET PhysicsMaterial(0.5f, 0.0f, 1.0f)
-#define MATERIAL_BLOCK PhysicsMaterial(50.0f, 0.0f, 1.0f)
+#define MATERIAL_PLANE PhysicsMaterial(10.0f, 0.0f, 0.0f)
+#define MATERIAL_BULLET PhysicsMaterial(0.5f, 0.0f, 0.0f)
+#define MATERIAL_BLOCK PhysicsMaterial(100.0f, 0.0f, 0.0f)
 
 class ConfigUtil
 {

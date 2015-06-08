@@ -4,6 +4,7 @@
 #include "GameBackgroundLayer.h"
 #include "AnimationUtil.h"
 #include "Block.h"
+#include "Enemy.h"
 
 USING_NS_CC;
 
@@ -65,6 +66,10 @@ bool BattleLayer::init()
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
+
+	// schedule(schedule_selector(BattleLayer::addEnemy), 10.0f, 30, 0);
+	scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);
+	// addEnemy(0.0f);
 
 	return true;
 }
@@ -140,4 +145,17 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 		}
 	}
 	return true;
+}
+
+void BattleLayer::addEnemy(float deltaTime)
+{
+	int num = random(4, 9);
+	Enemy* enemy;
+	for (int i = 0; i < num; ++i)
+	{
+		enemy = Enemy::create();
+		enemy->setPosition(Vec2(random(50.0f, 2000.0f), random(50.0f, 1200.0f)));
+		this->addChild(enemy);
+		log("ENEMY CONTACT TEST %08X", enemy->getPhysicsBody()->getContactTestBitmask());
+	}
 }

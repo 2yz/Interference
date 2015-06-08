@@ -26,16 +26,16 @@ bool Bullet::init()
 
 	// Set Sprite Texture
 	auto sprite = Sprite::createWithSpriteFrameName("bullet.png");
-	spriteVector.pushBack(sprite);
+	_spriteVector.pushBack(sprite);
 	this->addChild(sprite);
 
 	// Set Physics Body
-	physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, MATERIAL_BULLET));
-	physicsBody->setVelocity(velocityVec);
-	physicsBody->setGroup(BULLET_GROUP);
-	physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);
-	physicsBody->setCollisionBitmask(BULLET_COLLISION_MASK);
-	physicsBody->setCategoryBitmask(BULLET_CATEGORY_MASK);
+	_physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, MATERIAL_BULLET));
+	_physicsBody->setVelocity(velocityVec);
+	_physicsBody->setGroup(BULLET_GROUP);
+	_physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);
+	_physicsBody->setCollisionBitmask(BULLET_COLLISION_MASK);
+	_physicsBody->setCategoryBitmask(BULLET_CATEGORY_MASK);
 
 	return true;
 }

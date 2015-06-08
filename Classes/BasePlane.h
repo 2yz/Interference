@@ -14,9 +14,9 @@ public:
 	// static BasePlane* create();
 protected:
 	float linearDamping;
-	float physicsRadius;
-	float rotateVelocity; // degree per second
-	bool _beDestroyable;
+	float _physicsRadius;
+	float _rotateVelocity; // degree per second
+	bool _beDestroyable; // Is destroyable when contact
 	cocos2d::Vector<Skill*> _skillVec;
 	virtual void update(float deltaTime) override;
 };

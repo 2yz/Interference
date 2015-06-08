@@ -7,9 +7,11 @@ USING_NS_CC;
 
 Player::Player() : traceCoefficient(0)
 {
-	velocityMagnitudeMax = 400.0f;
-	accelerationMagnitude = 800.0f;
+	_velocityMagnitudeMax = 400.0f;
+	_accelerationMagnitude = 800.0f;
 	_HP = 2000.0f;
+	_physicsRadius = 60.0f;
+	_rotateVelocity = 180.0f;
 }
 
 bool Player::init()
@@ -18,7 +20,7 @@ bool Player::init()
 	{
 		return false;
 	}
-	
+
 	// Create Sprite
 	auto sprite1 = Sprite::create();
 	auto sprite2 = Sprite::create();
@@ -28,16 +30,16 @@ bool Player::init()
 	sprite4->setRotation(180.0f);
 	sprite3->setScale(0.2f);
 	sprite4->setScale(0.2f);
-	spriteVector.pushBack(sprite1);
-	spriteVector.pushBack(sprite2);
-	spriteVector.pushBack(sprite3);
-	spriteVector.pushBack(sprite4);
+	_spriteVector.pushBack(sprite1);
+	_spriteVector.pushBack(sprite2);
+	_spriteVector.pushBack(sprite3);
+	_spriteVector.pushBack(sprite4);
 	this->addChild(sprite1);
 	this->addChild(sprite2);
 	this->addChild(sprite3);
 	this->addChild(sprite4);
 	// Set Sprite Frame
-	for (auto sprite : spriteVector)
+	for (auto sprite : _spriteVector)
 	{
 		sprite->setSpriteFrame("hexagon.png");
 	}
@@ -48,15 +50,10 @@ bool Player::init()
 	this->addChild(attack);
 
 	// Set Camera Trace Cofficient
-	this->setTraceCoefficient(velocityMagnitudeMax, accelerationMagnitude, 1.0f / 60.0f);
+	this->setTraceCoefficient(_velocityMagnitudeMax, _accelerationMagnitude, 1.0f / 60.0f);
 
-	// Set Physics Body
-	physicsBody->setGroup(PLAYER_GROUP);
-	physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
-	physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
-	physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
-	physicsBody->setLinearDamping(1.0f);
-	physicsBody->setVelocityLimit(velocityMagnitudeMax);
+	// Set Physics Shape
+	_physicsBody->addShape(PhysicsShapeCircle::create(_physicsRadius, MATERIAL_PLANE));
 
 	// Set Node Tag
 	this->setTag(PLAYER_TAG);
@@ -69,11 +66,20 @@ bool Player::init()
 void Player::onEnter()
 {
 	BasePlane::onEnter();
+
+	// Set Physics Body
+	_physicsBody->setGroup(PLAYER_GROUP);
+	_physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
+	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
+	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
+	_physicsBody->setLinearDamping(1.0f);
+	_physicsBody->setVelocityLimit(_velocityMagnitudeMax);
+
 	auto particle = ParticleSystemQuad::create("Tail.plist");
 	this->addChild(particle);
-	for (auto sprite : spriteVector)
+	for (auto sprite : _spriteVector)
 	{
-		sprite->setColor(Color3B(255, 0, 0));
+		sprite->setColor(Color3B(128, 0, 0));
 	}
 }
 
@@ -96,7 +102,7 @@ void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory
 		{
 			if (skillIndex == 0)
 			{
-				skill->run(velocity,this->getParent(),this);
+				skill->run(velocity, this->getParent(), this);
 			}
 			else
 			{
@@ -111,23 +117,23 @@ void Player::update(float deltaTime)
 	BasePlane::update(deltaTime);
 
 	// Sprite Rotation
-	float spriteRotation = spriteVector.at(0)->getRotation() + rotateVelocity*deltaTime*getTimeCoefficient();
+	float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
 	if (spriteRotation > 360000.0f)
 		spriteRotation -= 360000.0f;
-	spriteVector.at(0)->setRotation(spriteRotation);
-	spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	_spriteVector.at(0)->setRotation(spriteRotation);
+	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
 
 	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
 	{
-		physicsBody->setVelocity(physicsBody->getVelocity() + accelerationMagnitude * deltaTime *
+		_physicsBody->setVelocity(_physicsBody->getVelocity() + _accelerationMagnitude * deltaTime *
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()) / static_cast<float>(sqrt(2.0)),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown()) / static_cast<float>(sqrt(2.0))));
 	}
 	else if (Controller::getMoveUp() || Controller::getMoveDown() || Controller::getMoveLeft() || Controller::getMoveRight())
 	{
-		physicsBody->setVelocity(physicsBody->getVelocity() + accelerationMagnitude * deltaTime *
+		_physicsBody->setVelocity(_physicsBody->getVelocity() + _accelerationMagnitude * deltaTime *
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
