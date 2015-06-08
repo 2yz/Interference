@@ -67,35 +67,17 @@ bool BattleLayer::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
 	// Create Block1
-	auto Block1 = Sprite::create();
-	Block1->setSpriteFrame("square.png");
-	auto body1 = PhysicsBody::createEdgeBox(Block1->getTextureRect().size);
-	body1->setContactTestBitmask(0xffffffff);
-	Block1->setPhysicsBody(body1);
-	Block1->setPosition(Point(800, 600));
-	Block1->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block1->runAction(tintTo1);
-	Block1->setCameraMask(1 << 1);
-	this->addChild(Block1);
+    auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
 
-	// Create Block2
-	auto Block2 = Sprite::create();
-	Block2->setSpriteFrame("square.png");
-	auto body2 = PhysicsBody::createEdgeBox(Block2->getTextureRect().size);
-	body2->setContactTestBitmask(0xffffffff);
-	Block2->setPhysicsBody(body2);
-	Block2->setPosition(Point(1200, 600));
-	Block2->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block2->runAction(tintTo2);
-	Block2->setCameraMask(1 << 1);
-	this->addChild(Block2);
-    
-    // Create Block3
+    auto Block1 = Block::createBlock("square.png", 800, 600);
+	this->addChild(Block1);
+	auto Block2 = Block::createBlock("square.png", 1200, 600);
+    this->addChild(Block2);
     auto Block3 = Block::createBlock("square.png", 1000, 400);
-    Block3->runAction(tintTo2);
     this->addChild(Block3);
+    Block1->runAction(tintTo);
+    Block2->runAction(tintTo);
+    Block3->runAction(tintTo);
     
 	return true;
 }
