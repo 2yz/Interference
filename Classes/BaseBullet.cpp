@@ -20,7 +20,7 @@ bool BaseBullet::init()
 void BaseBullet::onDestory()
 {
 	BaseObject::onDestory();
-	auto particle = AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this);
+	AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this, true);
 	this->removeFromParentAndCleanup(true);
 }
 

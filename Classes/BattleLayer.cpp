@@ -4,6 +4,7 @@
 #include "GameBackgroundLayer.h"
 #include "Bullet.h"
 #include "AnimationUtil.h"
+#include "Block.h"
 
 USING_NS_CC;
 
@@ -90,6 +91,11 @@ bool BattleLayer::init()
 	Block2->runAction(tintTo2);
 	Block2->setCameraMask(1 << 1);
 	this->addChild(Block2);
+    
+    // Create Block3
+    auto Block3 = Block::createBlock("square.png", 1000, 400);
+    Block3->runAction(tintTo2);
+    this->addChild(Block3);
     
 	return true;
 }
