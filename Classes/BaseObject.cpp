@@ -2,8 +2,8 @@
 
 USING_NS_CC;
 
-BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false), timeCoefficient(1.0f)
-{	
+BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false)
+{
 }
 
 bool BaseObject::init()
@@ -18,6 +18,8 @@ bool BaseObject::init()
 	physicsBody->setRotationEnable(false);
 	this->setPhysicsBody(physicsBody);
 
+	this->scheduleUpdate();
+
 	return true;
 }
 
@@ -27,18 +29,24 @@ void BaseObject::onEnter()
 	for (auto sprite : spriteVector)
 	{
 		sprite->setBlendFunc(BlendFunc::ADDITIVE);
-		sprite->setColor(Color3B(255, 0, 0));
-
 	}
+	this->setCameraMask(1 << 1);
 }
 
-void BaseObject::onDestory()
+void BaseObject::onDestroy()
 {
+	this->removeFromParentAndCleanup(true);
 }
 
 void BaseObject::onContact(BaseObject* contactNode)
 {
 	log("BaseObject::onContact(BaseObject* contactNode)");
+}
+
+void BaseObject::setParent(Node* parent)
+{
+	Node::setParent(parent);
+	setTimeParent(dynamic_cast<TimeCoefficient*>(parent));
 }
 
 void BaseObject::reduceHP(float reduceValue)
@@ -52,9 +60,10 @@ void BaseObject::setVelocity(const cocos2d::Vect& velocity)
 	this->getPhysicsBody()->setVelocity(velocity);
 }
 
-void BaseObject::setTimeCoefficient(float coefficient)
+void BaseObject::update(float deltaTime)
 {
-	this->timeCoefficient = coefficient;
+	if (!_neverDie && _HP < 0.0f)
+		onDestroy();
 }
 
 float BaseObject::getVelocityMagnitude()

@@ -9,6 +9,7 @@ Player::Player() : traceCoefficient(0)
 {
 	velocityMagnitudeMax = 400.0f;
 	accelerationMagnitude = 800.0f;
+	_HP = 2000.0f;
 }
 
 bool Player::init()
@@ -16,6 +17,29 @@ bool Player::init()
 	if (!BasePlane::init())
 	{
 		return false;
+	}
+	
+	// Create Sprite
+	auto sprite1 = Sprite::create();
+	auto sprite2 = Sprite::create();
+	auto sprite3 = Sprite::create();
+	auto sprite4 = Sprite::create();
+	sprite2->setRotation(180.0f);
+	sprite4->setRotation(180.0f);
+	sprite3->setScale(0.2f);
+	sprite4->setScale(0.2f);
+	spriteVector.pushBack(sprite1);
+	spriteVector.pushBack(sprite2);
+	spriteVector.pushBack(sprite3);
+	spriteVector.pushBack(sprite4);
+	this->addChild(sprite1);
+	this->addChild(sprite2);
+	this->addChild(sprite3);
+	this->addChild(sprite4);
+	// Set Sprite Frame
+	for (auto sprite : spriteVector)
+	{
+		sprite->setSpriteFrame("hexagon.png");
 	}
 
 	// Create Skill
@@ -37,11 +61,6 @@ bool Player::init()
 	// Set Node Tag
 	this->setTag(PLAYER_TAG);
 
-	for (auto sprite : spriteVector)
-	{
-		sprite->setSpriteFrame("hexagon.png");
-	}
-
 	this->scheduleUpdate();
 
 	return true;
@@ -52,6 +71,10 @@ void Player::onEnter()
 	BasePlane::onEnter();
 	auto particle = ParticleSystemQuad::create("Tail.plist");
 	this->addChild(particle);
+	for (auto sprite : spriteVector)
+	{
+		sprite->setColor(Color3B(255, 0, 0));
+	}
 }
 
 float Player::getTraceCoefficient()
@@ -86,6 +109,16 @@ void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory
 void Player::update(float deltaTime)
 {
 	BasePlane::update(deltaTime);
+
+	// Sprite Rotation
+	float spriteRotation = spriteVector.at(0)->getRotation() + rotateVelocity*deltaTime*getTimeCoefficient();
+	if (spriteRotation > 360000.0f)
+		spriteRotation -= 360000.0f;
+	spriteVector.at(0)->setRotation(spriteRotation);
+	spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+	spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+
 	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
 	{
 		physicsBody->setVelocity(physicsBody->getVelocity() + accelerationMagnitude * deltaTime *

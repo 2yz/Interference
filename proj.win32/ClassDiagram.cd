@@ -28,13 +28,6 @@
       <FileName>C:\Develop\Interference\Classes\BaseBullet.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BaseObject" Collapsed="true">
-    <Position X="6.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIBAAAIEAAAJAAAABAASAAAAAAAEAZAAAAAIACAgAA=</HashCode>
-      <FileName>C:\Develop\Interference\Classes\BaseObject.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BasePlane" Collapsed="true">
     <Position X="9.75" Y="5" Width="1.5" />
     <TypeIdentifier>
@@ -180,6 +173,13 @@
     <TypeIdentifier>
       <HashCode>AAABCAAgCIAIAAAAgAAIQAAAAAAAAAKABFAAAIQAEAI=</HashCode>
       <FileName>C:\Develop\Interference\Classes\UILayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseObject" Collapsed="true">
+    <Position X="6.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBAAAIEAAABAAAABAASAAAAAAAEAZAAAAAIADAgAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\BaseObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="SkillCategory" Collapsed="true">

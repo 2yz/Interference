@@ -4,7 +4,7 @@
 Attack::Attack()
 {
 	_skillCategory = ATTACK;
-	_CDTime = 0.2f;
+	_CDTime = 0.02f;
 }
 
 bool Attack::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target)
@@ -14,7 +14,6 @@ bool Attack::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::
 		return false;
 	}
 	auto bullet = Bullet::create(velocity);
-	bullet->setParent(parent);
 	bullet->setPosition(target->getPosition());
 	parent->addChild(bullet);
 	return true;

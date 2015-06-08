@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-BaseBullet::BaseBullet(int bulletParent) : _bulletParent(bulletParent)
+BaseBullet::BaseBullet(int bulletParent) : _bulletParent(bulletParent), _damage(100.0f)
 {
 }
 
@@ -17,11 +17,10 @@ bool BaseBullet::init()
 	return true;
 }
 
-void BaseBullet::onDestory()
+void BaseBullet::onDestroy()
 {
-	BaseObject::onDestory();
 	AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this);
-	this->removeFromParentAndCleanup(true);
+	BaseObject::onDestroy();
 }
 
 void BaseBullet::onContact(BaseObject* contactNode)
@@ -31,5 +30,5 @@ void BaseBullet::onContact(BaseObject* contactNode)
 	{
 		contactNode->reduceHP(_damage);
 	}
-	this->onDestory();
+	this->onDestroy();
 }

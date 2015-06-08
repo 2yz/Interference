@@ -2,8 +2,8 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "GameBackgroundLayer.h"
-#include "Bullet.h"
 #include "AnimationUtil.h"
+#include "Block.h"
 
 USING_NS_CC;
 
@@ -32,31 +32,32 @@ bool BattleLayer::init()
 
 	// Create Background
 	auto gameBackgroundLayer = GameBackgroundLayer::create();
-	gameBackgroundLayer->setParent(this);
 	this->addChild(gameBackgroundLayer);
 
 	// Create Edge
-	auto edgeSp = Sprite::create();
-	edgeSp->setTag(EDGE_TAG);
-	edgeSp->setParent(this);
-	edgeSp->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
-	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize * 2, PHYSICSBODY_MATERIAL_DEFAULT, 3);
-	body->setGroup(EDGE_GROUP);
-	body->setContactTestBitmask(0xFFFFFFFF);
-	edgeSp->setPhysicsBody(body);
-	this->addChild(edgeSp);
+	auto edgeBlock = Block::create(true);
+	edgeBlock->setPosition(ConfigUtil::visibleSize);
+	this->addChild(edgeBlock);
 
 	// Create Player
 	player = Player::create();
 	player->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
 	this->addChild(player);
 
-	// Create Shoot Assist
-	shootBox = Sprite::createWithSpriteFrameName("ShootBox.png");
-	this->addChild(shootBox);
+	// Create Shoot Assist Line
 	shootLine = Sprite::create("ShootLine.png");
 	shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
 	this->addChild(shootLine);
+
+	// Create Block1
+	auto block1 = Block::create();
+	block1->setPosition(Point(1000, 500));
+	this->addChild(block1);
+
+	// Create Block2
+	auto block2 = Block::create();
+	block2->setPosition(Point(1400, 500));
+	this->addChild(block2);
 
 	// Schedule update per frame
 	this->scheduleUpdate();
@@ -64,38 +65,6 @@ bool BattleLayer::init()
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
-
-	// Create Block1
-	auto Block1 = Sprite::create();
-	Block1->setSpriteFrame("square.png");
-	auto body1 = PhysicsBody::createEdgeBox(Block1->getTextureRect().size);
-	body1->setContactTestBitmask(0xffffffff);
-	Block1->setPhysicsBody(body1);
-	Block1->setPosition(Point(800, 600));
-	Block1->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block1->runAction(tintTo1);
-	Block1->setCameraMask(1 << 1);
-	this->addChild(Block1);
-
-	// Run Animation
-	AnimationUtil::runParticleAnimation("Cloud.plist", this, Block1);
-
-	// Create Block2
-	auto Block2 = Sprite::create();
-	Block2->setSpriteFrame("square.png");
-	auto body2 = PhysicsBody::createEdgeBox(Block2->getTextureRect().size);
-	body2->setContactTestBitmask(0xffffffff);
-	Block2->setPhysicsBody(body2);
-	Block2->setPosition(Point(1200, 600));
-	Block2->setBlendFunc(BlendFunc::ADDITIVE);
-	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	Block2->runAction(tintTo2);
-	Block2->setCameraMask(1 << 1);
-	this->addChild(Block2);
-
-	// Run Animation
-	AnimationUtil::runParticleAnimation("Death.plist", this, Block2);
 
 	return true;
 }
@@ -107,10 +76,11 @@ Player* BattleLayer::getPlayer()
 
 void BattleLayer::update(float deltaTime)
 {
-	log("BattleScene Node Num: %d", this->getChildrenCount());
+	// Count Children Nodes
+	// log("ChildrenCount %d", this->getChildrenCount());
 
+	// TODO setCameraMask at Every Node
 	this->setCameraMask(1 << 1);
-	// log("BattleLayer::update(float deltaTime)");
 
 	// Use Default Camera
 	auto positionDelta = player->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) - _camera->getPosition();
@@ -119,34 +89,28 @@ void BattleLayer::update(float deltaTime)
 	eye.z = 0.0f;
 	_camera->lookAt(eye);
 
+	mousePositionInLayer = _camera->getPosition() + Controller::getMouseLocation();
 	// Update Shoot Assist
-	boxPosition = _camera->getPosition() + Controller::getMouseLocation();
-	shootBox->setPosition(boxPosition);
 	shootLine->setPosition(player->getPosition());
-	if (boxPosition.x - player->getPosition().x == 0)
+	if (mousePositionInLayer.x - player->getPosition().x == 0)
 	{
-		rotateAngle = 90;
+		shootLineRotateAngle = 90;
 	}
 	else
 	{
-		rotateAngle = atan((boxPosition.y - player->getPosition().y) / (boxPosition.x - player->getPosition().x)) / M_PI * 180;
-		if (boxPosition.x - player->getPosition().x < 0)
+		shootLineRotateAngle = atan((mousePositionInLayer.y - player->getPosition().y) / (mousePositionInLayer.x - player->getPosition().x)) / M_PI * 180;
+		if (mousePositionInLayer.x - player->getPosition().x < 0)
 		{
-			rotateAngle += 180;
+			shootLineRotateAngle += 180;
 		}
 	}
-	shootLine->setRotation(-rotateAngle);
-
+	shootLine->setRotation(-shootLineRotateAngle);
+	// Launch Skill when Mouse Down
 	if (Controller::getMouseDown())
 	{
-		auto velocity = boxPosition - player->getPosition();
+		auto velocity = mousePositionInLayer - player->getPosition();
 		velocity.normalize();
 		player->runSkill(velocity * 800, ATTACK);
-
-		// Shoot Box Animation
-		auto scaleToSmall = ScaleTo::create(0.1f, 0.6f);
-		auto scaleToBig = ScaleTo::create(0.1f, 1.0f);
-		shootBox->runAction(Sequence::create(scaleToSmall, scaleToBig, nullptr));
 	}
 
 }

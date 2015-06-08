@@ -37,6 +37,9 @@
     <Filter Include="src\Util">
       <UniqueIdentifier>{23d8e220-f069-4352-80eb-28dbd702ef43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Object\Enemy">
+      <UniqueIdentifier>{de5e8626-f11d-44de-b21e-4658ad76401f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,12 +93,6 @@
     <ClCompile Include="..\Classes\Block.cpp">
       <Filter>src\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemy.cpp">
-      <Filter>src\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Boss.cpp">
-      <Filter>src\Object</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Attack.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
@@ -119,6 +116,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Skill.cpp">
       <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TimeCoefficient.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MouseLayer.cpp">
+      <Filter>src\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Boss.cpp">
+      <Filter>src\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemy.cpp">
+      <Filter>src\Object\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,12 +182,6 @@
     <ClInclude Include="..\Classes\Block.h">
       <Filter>src\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemy.h">
-      <Filter>src\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Boss.h">
-      <Filter>src\Object</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Attack.h">
       <Filter>src\Skill</Filter>
     </ClInclude>
@@ -202,6 +205,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Skill.h">
       <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TimeCoefficient.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MouseLayer.h">
+      <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Boss.h">
+      <Filter>src\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemy.h">
+      <Filter>src\Object\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

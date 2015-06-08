@@ -156,10 +156,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Kill.cpp" />
+    <ClCompile Include="..\Classes\MouseLayer.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PlayerUserData.cpp" />
     <ClCompile Include="..\Classes\Skill.cpp" />
     <ClCompile Include="..\Classes\Support.cpp" />
+    <ClCompile Include="..\Classes\TimeCoefficient.cpp" />
     <ClCompile Include="..\Classes\UILayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -185,10 +187,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BattleScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\Kill.h" />
+    <ClInclude Include="..\Classes\MouseLayer.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PlayerUserData.h" />
     <ClInclude Include="..\Classes\Skill.h" />
     <ClInclude Include="..\Classes\Support.h" />
+    <ClInclude Include="..\Classes\TimeCoefficient.h" />
     <ClInclude Include="..\Classes\UILayer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

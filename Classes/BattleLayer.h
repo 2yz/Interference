@@ -3,8 +3,9 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "TimeCoefficient.h"
 
-class BattleLayer : public cocos2d::Layer
+class BattleLayer : public cocos2d::Layer, public TimeCoefficient
 {
 public:
 	BattleLayer();
@@ -20,11 +21,11 @@ protected:
 	Player* player;
 	int initHP;
 
-	// Shoot Assist
-	cocos2d::Sprite* shootBox;
+	// Shoot Assist Line
+	// cocos2d::Sprite* shootBox;
+	cocos2d::Vec2 mousePositionInLayer;
 	cocos2d::Sprite* shootLine;
-	cocos2d::Vec2 boxPosition;
-	float rotateAngle;
+	float shootLineRotateAngle;
 
 	virtual void update(float deltaTime) override;
 	bool onContactBegin(cocos2d::PhysicsContact& contact);

@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ConfigUtil.h"
 #include "Controller.h"
+#include "MouseLayer.h"
 
 USING_NS_CC;
 
@@ -39,33 +40,24 @@ bool BattleScene::init()
 	}
 
 	// Set Physics Debug Mode
-	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+	this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 
-
-	// 游戏控制器节点
+	// Game Controller Node
 	auto controller = Controller::create();
 	this->addChild(controller);
 
-	// 游戏主节点
-	// cameraNode = CameraNode::create();
-	// cameraNode->setPosition(Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2));
-	// cameraNode->setParent(this);
-	// this->addChild(cameraNode);
-
 	// Battle Layer
 	battleLayer = BattleLayer::create();
-	battleLayer->setParent(this);
 	this->addChild(battleLayer);
 
 	// UI Layer
 	uiLayer = UILayer::create();
-	uiLayer->setParent(this);
 	this->addChild(uiLayer);
 
-	// auto lable = Label::createWithTTF("Label", "fonts/Marker Felt.ttf", 32);
-	// lable->setPosition(200, 200);
-	// this->addChild(lable, 2);
+	// Mouse Layer
+	auto mouseLayer = MouseLayer::create();
+	this->addChild(mouseLayer);
 
 	return true;
 }

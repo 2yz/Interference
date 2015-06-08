@@ -8,7 +8,7 @@ class BaseBullet : public BaseObject
 public:
 	BaseBullet(int bulletParent=0);
 	virtual bool init() override;
-	virtual void onDestory() override;
+	virtual void onDestroy() override;
 	virtual void onContact(BaseObject* contactNode) override;
 protected:
 	cocos2d::Vec2 velocityVec;

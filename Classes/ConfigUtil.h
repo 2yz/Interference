@@ -22,8 +22,13 @@
 #define PLAYER 1
 #define ENEMY 2
 
-#define EDGE_TAG 10
-#define EDGE_GROUP 1
+//#define EDGE_TAG 10
+//#define EDGE_GROUP 1
+
+#define BLOCK_TAG 10
+#define BLOCK_CONTACT_MASK 0x0000F000
+
+
 
 class ConfigUtil
 {

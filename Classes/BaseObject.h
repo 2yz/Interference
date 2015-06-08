@@ -2,6 +2,7 @@
 #define BASEOBJECT_H_
 
 #include "cocos2d.h"
+#include "TimeCoefficient.h"
 
 #define CALL_INIT() \
 if (pRet && pRet->init()) \
@@ -16,17 +17,17 @@ else \
 	return NULL; \
 } 
 
-class BaseObject : public cocos2d::Node
+class BaseObject : public cocos2d::Node, public TimeCoefficient
 {
 public:
 	BaseObject();
 	virtual bool init() override;
 	virtual void onEnter() override;
-	virtual void onDestory();
+	virtual void onDestroy();
 	virtual void onContact(BaseObject* contactNode);
+	virtual void setParent(Node* parent) override;
 	void reduceHP(float reduceValue);
 	void setVelocity(const cocos2d::Vect& velocity);
-	void setTimeCoefficient(float coefficient);
 protected:
 	cocos2d::PhysicsBody* physicsBody;
 	cocos2d::Vector<cocos2d::Sprite*> spriteVector;
@@ -34,7 +35,7 @@ protected:
 	bool _neverDie;
 	float velocityMagnitudeMax;
 	float accelerationMagnitude;
-	float timeCoefficient;
+	virtual void update(float deltaTime) override;
 	float getVelocityMagnitude();
 	float getVelocityDirection();
 };
