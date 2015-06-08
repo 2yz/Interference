@@ -50,8 +50,6 @@ bool Player::init()
 void Player::onEnter()
 {
 	BasePlane::onEnter();
-	auto particle = ParticleSystemQuad::create("Tail.plist");
-	this->addChild(particle);
 }
 
 float Player::getTraceCoefficient()
