@@ -1,14 +1,11 @@
 #include "BaseBullet.h"
+#include "AnimationUtil.h"
 #include "ConfigUtil.h"
+
 USING_NS_CC;
 
-BaseBullet::BaseBullet(cocos2d::Size size) : BaseObject(size)
+BaseBullet::BaseBullet(int bulletParent) : _bulletParent(bulletParent)
 {
-	physicsBody->setGroup(-1);
-	physicsBody->setContactTestBitmask(BULLET_CONTACT_MASK);
-	physicsBody->setCollisionBitmask(BULLET_COLLISION_MASK);
-	physicsBody->setCategoryBitmask(BULLET_CATEGORY_MASK);
-	physicsBody->setVelocityLimit(800.0f);
 }
 
 bool BaseBullet::init()
@@ -17,14 +14,22 @@ bool BaseBullet::init()
 	{
 		return false;
 	}
-	this->setTag(-2);
-	bullet = Sprite::create();
-	this->addChild(bullet);
 	return true;
 }
 
-void BaseBullet::onEnter()
+void BaseBullet::onDestory()
 {
-	BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
-	bullet->setBlendFunc(blend);
+	BaseObject::onDestory();
+	AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this);
+	this->removeFromParentAndCleanup(true);
+}
+
+void BaseBullet::onContact(BaseObject* contactNode)
+{
+	BaseObject::onContact(contactNode);
+	if (_bulletParent != contactNode->getTag())
+	{
+		contactNode->reduceHP(_damage);
+	}
+	this->onDestory();
 }

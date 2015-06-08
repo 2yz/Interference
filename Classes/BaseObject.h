@@ -16,26 +16,27 @@ else \
 	return NULL; \
 } 
 
-// enum BaseShape
-// {
-// 	CIRCLE,
-// 	BOX,
-// 	NOSHAPE
-// };
-
 class BaseObject : public cocos2d::Node
 {
 public:
 	BaseObject();
-	explicit BaseObject(float radius);
-	explicit BaseObject(cocos2d::Size& size);
 	virtual bool init() override;
+	virtual void onEnter() override;
+	virtual void onDestory();
+	virtual void onContact(BaseObject* contactNode);
+	void reduceHP(float reduceValue);
+	void setVelocity(const cocos2d::Vect& velocity);
+	void setTimeCoefficient(float coefficient);
 protected:
-	// BaseShape baseShape;
-	// float radius;
-	// cocos2d::Size size;
 	cocos2d::PhysicsBody* physicsBody;
-	float timer;
+	cocos2d::Vector<cocos2d::Sprite*> spriteVector;
+	float _HP;
+	bool _neverDie;
+	float velocityMagnitudeMax;
+	float accelerationMagnitude;
+	float timeCoefficient;
+	float getVelocityMagnitude();
+	float getVelocityDirection();
 };
 
 #endif /* BASEOBJECT_H_ */

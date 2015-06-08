@@ -2,22 +2,23 @@
 #define BASEPLANE_H_
 
 #include "BaseObject.h"
+#include "Skill.h"
 
 class BasePlane : public BaseObject
 {
 public:
-	BasePlane();
-	explicit BasePlane(float radius);
+	explicit BasePlane(float radius = 60.0f);
+	virtual ~BasePlane();
 	virtual bool init() override;
-	virtual void onEnter() override;
+	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0);
 	// static BasePlane* create();
 protected:
-	cocos2d::Sprite* normalShapeUp;
-	cocos2d::Sprite* normalShapeDown;
-	cocos2d::Sprite* smallShapeUp;
-	cocos2d::Sprite* smallShapeDown;
-    cocos2d::ParticleSystemQuad* TailFire;
-
+	float linearDamping;
+	float physicsRadius;
+	float rotateVelocity; // degree per second
+	bool _beDestroyable;
+	cocos2d::Vector<Skill*> _skillVec;
+	virtual void update(float deltaTime) override;
 };
 
 #endif /* BASEPLANE_H_ */

@@ -57,22 +57,25 @@
 		814C57F01B213F5500A259C4 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E91B213F5500A259C4 /* Death.plist */; };
 		814C57F11B213F5500A259C4 /* Square.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57EA1B213F5500A259C4 /* Square.plist */; };
 		814C57F21B213F5500A259C4 /* Tail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57EB1B213F5500A259C4 /* Tail.plist */; };
-		818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4871B1C850D00F44D7E /* BaseCamera.cpp */; };
+		81613DCD1B25381100D4C6CF /* Attack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DB71B25381100D4C6CF /* Attack.cpp */; };
+		81613DCE1B25381100D4C6CF /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DB91B25381100D4C6CF /* Block.cpp */; };
+		81613DCF1B25381100D4C6CF /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DBB1B25381100D4C6CF /* Boss.cpp */; };
+		81613DD01B25381100D4C6CF /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DBD1B25381100D4C6CF /* Bullet.cpp */; };
+		81613DD11B25381100D4C6CF /* ClearBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DBF1B25381100D4C6CF /* ClearBullet.cpp */; };
+		81613DD21B25381100D4C6CF /* Defense.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DC11B25381100D4C6CF /* Defense.cpp */; };
+		81613DD31B25381100D4C6CF /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DC31B25381100D4C6CF /* Enemy.cpp */; };
+		81613DD41B25381100D4C6CF /* Kill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DC51B25381100D4C6CF /* Kill.cpp */; };
+		81613DD51B25381100D4C6CF /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DC71B25381100D4C6CF /* Player.cpp */; };
+		81613DD61B25381100D4C6CF /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DC91B25381100D4C6CF /* Skill.cpp */; };
+		81613DD71B25381100D4C6CF /* Support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DCB1B25381100D4C6CF /* Support.cpp */; };
 		818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4891B1C850D00F44D7E /* BaseObject.cpp */; };
 		818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48B1B1C850D00F44D7E /* BasePlane.cpp */; };
 		818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */; };
-		818BE4B31B1C850D00F44D7E /* BaseTraced.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE48F1B1C850D00F44D7E /* BaseTraced.cpp */; };
-		818BE4B41B1C850D00F44D7E /* BulletLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4911B1C850D00F44D7E /* BulletLayer.cpp */; };
 		818BE4B51B1C850D00F44D7E /* BulletUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4931B1C850D00F44D7E /* BulletUserData.cpp */; };
-		818BE4B61B1C850D00F44D7E /* CameraNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4951B1C850D00F44D7E /* CameraNode.cpp */; };
 		818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */; };
 		818BE4B81B1C850D00F44D7E /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4991B1C850D00F44D7E /* Controller.cpp */; };
-		818BE4B91B1C850D00F44D7E /* EnemyBulletLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE49B1B1C850D00F44D7E /* EnemyBulletLayer.cpp */; };
-		818BE4BA1B1C850D00F44D7E /* EnemyLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE49D1B1C850D00F44D7E /* EnemyLayer.cpp */; };
 		818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE49F1B1C850D00F44D7E /* EnemyUserData.cpp */; };
 		818BE4BC1B1C850D00F44D7E /* GameBackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */; };
-		818BE4BF1B1C850D00F44D7E /* PlayerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */; };
-		818BE4C01B1C850D00F44D7E /* PlayerPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */; };
 		818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4AB1B1C850D00F44D7E /* PlayerUserData.cpp */; };
 		818BE4C21B1C850D00F44D7E /* UILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4AD1B1C850D00F44D7E /* UILayer.cpp */; };
 		818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818BE4C71B1D485000F44D7E /* AnimationUtil.cpp */; };
@@ -103,7 +106,6 @@
 		818BE6411B1DACE100F44D7E /* Shockwave25.png in Resources */ = {isa = PBXBuildFile; fileRef = 818BE5DD1B1DACE100F44D7E /* Shockwave25.png */; };
 		81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */; };
 		81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF01B1F637E0016364D /* BattleScene.cpp */; };
-		81BE3AF61B1F637E0016364D /* PlayerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */; };
 		81BE3AF81B1F63CE0016364D /* BaseBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
@@ -169,38 +171,43 @@
 		814C57E91B213F5500A259C4 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Death.plist; sourceTree = "<group>"; };
 		814C57EA1B213F5500A259C4 /* Square.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Square.plist; sourceTree = "<group>"; };
 		814C57EB1B213F5500A259C4 /* Tail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tail.plist; sourceTree = "<group>"; };
-		818BE4871B1C850D00F44D7E /* BaseCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCamera.cpp; sourceTree = "<group>"; };
-		818BE4881B1C850D00F44D7E /* BaseCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCamera.h; sourceTree = "<group>"; };
+		81613DB71B25381100D4C6CF /* Attack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attack.cpp; sourceTree = "<group>"; };
+		81613DB81B25381100D4C6CF /* Attack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attack.h; sourceTree = "<group>"; };
+		81613DB91B25381100D4C6CF /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
+		81613DBA1B25381100D4C6CF /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		81613DBB1B25381100D4C6CF /* Boss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Boss.cpp; sourceTree = "<group>"; };
+		81613DBC1B25381100D4C6CF /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
+		81613DBD1B25381100D4C6CF /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		81613DBE1B25381100D4C6CF /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		81613DBF1B25381100D4C6CF /* ClearBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClearBullet.cpp; sourceTree = "<group>"; };
+		81613DC01B25381100D4C6CF /* ClearBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearBullet.h; sourceTree = "<group>"; };
+		81613DC11B25381100D4C6CF /* Defense.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Defense.cpp; sourceTree = "<group>"; };
+		81613DC21B25381100D4C6CF /* Defense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defense.h; sourceTree = "<group>"; };
+		81613DC31B25381100D4C6CF /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		81613DC41B25381100D4C6CF /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		81613DC51B25381100D4C6CF /* Kill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Kill.cpp; sourceTree = "<group>"; };
+		81613DC61B25381100D4C6CF /* Kill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kill.h; sourceTree = "<group>"; };
+		81613DC71B25381100D4C6CF /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		81613DC81B25381100D4C6CF /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		81613DC91B25381100D4C6CF /* Skill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skill.cpp; sourceTree = "<group>"; };
+		81613DCA1B25381100D4C6CF /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		81613DCB1B25381100D4C6CF /* Support.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Support.cpp; sourceTree = "<group>"; };
+		81613DCC1B25381100D4C6CF /* Support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Support.h; sourceTree = "<group>"; };
 		818BE4891B1C850D00F44D7E /* BaseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseObject.cpp; sourceTree = "<group>"; };
 		818BE48A1B1C850D00F44D7E /* BaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseObject.h; sourceTree = "<group>"; };
 		818BE48B1B1C850D00F44D7E /* BasePlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasePlane.cpp; sourceTree = "<group>"; };
 		818BE48C1B1C850D00F44D7E /* BasePlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePlane.h; sourceTree = "<group>"; };
 		818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasePlayer.cpp; sourceTree = "<group>"; };
-		818BE48E1B1C850D00F44D7E /* BasePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePlayer.h; sourceTree = "<group>"; };
-		818BE48F1B1C850D00F44D7E /* BaseTraced.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseTraced.cpp; sourceTree = "<group>"; };
-		818BE4901B1C850D00F44D7E /* BaseTraced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTraced.h; sourceTree = "<group>"; };
-		818BE4911B1C850D00F44D7E /* BulletLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletLayer.cpp; sourceTree = "<group>"; };
-		818BE4921B1C850D00F44D7E /* BulletLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletLayer.h; sourceTree = "<group>"; };
 		818BE4931B1C850D00F44D7E /* BulletUserData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletUserData.cpp; sourceTree = "<group>"; };
 		818BE4941B1C850D00F44D7E /* BulletUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletUserData.h; sourceTree = "<group>"; };
-		818BE4951B1C850D00F44D7E /* CameraNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraNode.cpp; sourceTree = "<group>"; };
-		818BE4961B1C850D00F44D7E /* CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraNode.h; sourceTree = "<group>"; };
 		818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigUtil.cpp; sourceTree = "<group>"; };
 		818BE4981B1C850D00F44D7E /* ConfigUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigUtil.h; sourceTree = "<group>"; };
 		818BE4991B1C850D00F44D7E /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
 		818BE49A1B1C850D00F44D7E /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		818BE49B1B1C850D00F44D7E /* EnemyBulletLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyBulletLayer.cpp; sourceTree = "<group>"; };
-		818BE49C1B1C850D00F44D7E /* EnemyBulletLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyBulletLayer.h; sourceTree = "<group>"; };
-		818BE49D1B1C850D00F44D7E /* EnemyLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyLayer.cpp; sourceTree = "<group>"; };
-		818BE49E1B1C850D00F44D7E /* EnemyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyLayer.h; sourceTree = "<group>"; };
 		818BE49F1B1C850D00F44D7E /* EnemyUserData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyUserData.cpp; sourceTree = "<group>"; };
 		818BE4A01B1C850D00F44D7E /* EnemyUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyUserData.h; sourceTree = "<group>"; };
 		818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameBackgroundLayer.cpp; sourceTree = "<group>"; };
 		818BE4A21B1C850D00F44D7E /* GameBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBackgroundLayer.h; sourceTree = "<group>"; };
-		818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerLayer.cpp; sourceTree = "<group>"; };
-		818BE4A81B1C850D00F44D7E /* PlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLayer.h; sourceTree = "<group>"; };
-		818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerPlane.cpp; sourceTree = "<group>"; };
-		818BE4AA1B1C850D00F44D7E /* PlayerPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerPlane.h; sourceTree = "<group>"; };
 		818BE4AB1B1C850D00F44D7E /* PlayerUserData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerUserData.cpp; sourceTree = "<group>"; };
 		818BE4AC1B1C850D00F44D7E /* PlayerUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerUserData.h; sourceTree = "<group>"; };
 		818BE4AD1B1C850D00F44D7E /* UILayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayer.cpp; sourceTree = "<group>"; };
@@ -237,8 +244,6 @@
 		81BE3AEF1B1F637E0016364D /* BattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleLayer.h; sourceTree = "<group>"; };
 		81BE3AF01B1F637E0016364D /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		81BE3AF11B1F637E0016364D /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
-		81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerBullet.cpp; sourceTree = "<group>"; };
-		81BE3AF31B1F637E0016364D /* PlayerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBullet.h; sourceTree = "<group>"; };
 		81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseBullet.cpp; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -400,42 +405,45 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				81613DB71B25381100D4C6CF /* Attack.cpp */,
+				81613DB81B25381100D4C6CF /* Attack.h */,
+				81613DB91B25381100D4C6CF /* Block.cpp */,
+				81613DBA1B25381100D4C6CF /* Block.h */,
+				81613DBB1B25381100D4C6CF /* Boss.cpp */,
+				81613DBC1B25381100D4C6CF /* Boss.h */,
+				81613DBD1B25381100D4C6CF /* Bullet.cpp */,
+				81613DBE1B25381100D4C6CF /* Bullet.h */,
+				81613DBF1B25381100D4C6CF /* ClearBullet.cpp */,
+				81613DC01B25381100D4C6CF /* ClearBullet.h */,
+				81613DC11B25381100D4C6CF /* Defense.cpp */,
+				81613DC21B25381100D4C6CF /* Defense.h */,
+				81613DC31B25381100D4C6CF /* Enemy.cpp */,
+				81613DC41B25381100D4C6CF /* Enemy.h */,
+				81613DC51B25381100D4C6CF /* Kill.cpp */,
+				81613DC61B25381100D4C6CF /* Kill.h */,
+				81613DC71B25381100D4C6CF /* Player.cpp */,
+				81613DC81B25381100D4C6CF /* Player.h */,
+				81613DC91B25381100D4C6CF /* Skill.cpp */,
+				81613DCA1B25381100D4C6CF /* Skill.h */,
+				81613DCB1B25381100D4C6CF /* Support.cpp */,
+				81613DCC1B25381100D4C6CF /* Support.h */,
 				81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */,
 				81BE3AED1B1F637E0016364D /* BaseBullet.h */,
 				81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */,
 				81BE3AEF1B1F637E0016364D /* BattleLayer.h */,
-				818BE4A71B1C850D00F44D7E /* PlayerLayer.cpp */,
-				818BE4A81B1C850D00F44D7E /* PlayerLayer.h */,
-				818BE4A91B1C850D00F44D7E /* PlayerPlane.cpp */,
-				818BE4AA1B1C850D00F44D7E /* PlayerPlane.h */,
 				81BE3AF01B1F637E0016364D /* BattleScene.cpp */,
 				81BE3AF11B1F637E0016364D /* BattleScene.h */,
-				81BE3AF21B1F637E0016364D /* PlayerBullet.cpp */,
-				81BE3AF31B1F637E0016364D /* PlayerBullet.h */,
-				818BE4871B1C850D00F44D7E /* BaseCamera.cpp */,
-				818BE4881B1C850D00F44D7E /* BaseCamera.h */,
 				818BE4891B1C850D00F44D7E /* BaseObject.cpp */,
 				818BE48A1B1C850D00F44D7E /* BaseObject.h */,
 				818BE48B1B1C850D00F44D7E /* BasePlane.cpp */,
 				818BE48C1B1C850D00F44D7E /* BasePlane.h */,
 				818BE48D1B1C850D00F44D7E /* BasePlayer.cpp */,
-				818BE48E1B1C850D00F44D7E /* BasePlayer.h */,
-				818BE48F1B1C850D00F44D7E /* BaseTraced.cpp */,
-				818BE4901B1C850D00F44D7E /* BaseTraced.h */,
-				818BE4911B1C850D00F44D7E /* BulletLayer.cpp */,
-				818BE4921B1C850D00F44D7E /* BulletLayer.h */,
 				818BE4931B1C850D00F44D7E /* BulletUserData.cpp */,
 				818BE4941B1C850D00F44D7E /* BulletUserData.h */,
-				818BE4951B1C850D00F44D7E /* CameraNode.cpp */,
-				818BE4961B1C850D00F44D7E /* CameraNode.h */,
 				818BE4971B1C850D00F44D7E /* ConfigUtil.cpp */,
 				818BE4981B1C850D00F44D7E /* ConfigUtil.h */,
 				818BE4991B1C850D00F44D7E /* Controller.cpp */,
 				818BE49A1B1C850D00F44D7E /* Controller.h */,
-				818BE49B1B1C850D00F44D7E /* EnemyBulletLayer.cpp */,
-				818BE49C1B1C850D00F44D7E /* EnemyBulletLayer.h */,
-				818BE49D1B1C850D00F44D7E /* EnemyLayer.cpp */,
-				818BE49E1B1C850D00F44D7E /* EnemyLayer.h */,
 				818BE49F1B1C850D00F44D7E /* EnemyUserData.cpp */,
 				818BE4A01B1C850D00F44D7E /* EnemyUserData.h */,
 				818BE4A11B1C850D00F44D7E /* GameBackgroundLayer.cpp */,
@@ -675,32 +683,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81613DD31B25381100D4C6CF /* Enemy.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				81613DD11B25381100D4C6CF /* ClearBullet.cpp in Sources */,
 				818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */,
+				81613DCE1B25381100D4C6CF /* Block.cpp in Sources */,
 				81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */,
-				818BE4BA1B1C850D00F44D7E /* EnemyLayer.cpp in Sources */,
+				81613DCF1B25381100D4C6CF /* Boss.cpp in Sources */,
 				818BE4B11B1C850D00F44D7E /* BasePlane.cpp in Sources */,
+				81613DD61B25381100D4C6CF /* Skill.cpp in Sources */,
+				81613DD51B25381100D4C6CF /* Player.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				818BE4C01B1C850D00F44D7E /* PlayerPlane.cpp in Sources */,
+				81613DCD1B25381100D4C6CF /* Attack.cpp in Sources */,
 				818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */,
 				818BE4C21B1C850D00F44D7E /* UILayer.cpp in Sources */,
 				818BE4B51B1C850D00F44D7E /* BulletUserData.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
-				818BE4B31B1C850D00F44D7E /* BaseTraced.cpp in Sources */,
 				818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */,
 				818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */,
 				81BE3AF81B1F63CE0016364D /* BaseBullet.cpp in Sources */,
-				818BE4B91B1C850D00F44D7E /* EnemyBulletLayer.cpp in Sources */,
 				81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */,
+				81613DD01B25381100D4C6CF /* Bullet.cpp in Sources */,
+				81613DD71B25381100D4C6CF /* Support.cpp in Sources */,
+				81613DD21B25381100D4C6CF /* Defense.cpp in Sources */,
 				818BE4C81B1D485000F44D7E /* AnimationUtil.cpp in Sources */,
-				81BE3AF61B1F637E0016364D /* PlayerBullet.cpp in Sources */,
-				818BE4AF1B1C850D00F44D7E /* BaseCamera.cpp in Sources */,
-				818BE4BF1B1C850D00F44D7E /* PlayerLayer.cpp in Sources */,
 				818BE4B21B1C850D00F44D7E /* BasePlayer.cpp in Sources */,
 				818BE4BC1B1C850D00F44D7E /* GameBackgroundLayer.cpp in Sources */,
-				818BE4B61B1C850D00F44D7E /* CameraNode.cpp in Sources */,
 				818BE4B81B1C850D00F44D7E /* Controller.cpp in Sources */,
-				818BE4B41B1C850D00F44D7E /* BulletLayer.cpp in Sources */,
+				81613DD41B25381100D4C6CF /* Kill.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

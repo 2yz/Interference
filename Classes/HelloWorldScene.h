@@ -22,6 +22,7 @@ public:
 private:
     HelloWorld* helloworld;
 	cocos2d::PhysicsWorld* m_world;
+	cocos2d::Camera* camera;
 	void addNewSpriteAtPosition(cocos2d::Point p);
 	void onMouseUp(cocos2d::Event *event);
 	bool onContactBegin(cocos2d::PhysicsContact& contact);

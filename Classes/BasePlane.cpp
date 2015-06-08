@@ -2,14 +2,13 @@
 
 USING_NS_CC;
 
-BasePlane::BasePlane() : BasePlane(50.0f)
+
+BasePlane::BasePlane(float radius) :BaseObject(), physicsRadius(radius), rotateVelocity(180.0f)
 {
-	log("BasePlane()");
 }
 
-BasePlane::BasePlane(float radius) : BaseObject(radius)
+BasePlane::~BasePlane()
 {
-	log("BasePlane(float radius)");
 }
 
 bool BasePlane::init()
@@ -19,59 +18,43 @@ bool BasePlane::init()
 		return false;
 	}
 
-	normalShapeUp = Sprite::create();
-	normalShapeDown = Sprite::create();
-	smallShapeUp = Sprite::create();
-	smallShapeDown = Sprite::create();
-    TailFire = ParticleSystemQuad::create("Tail.plist");
-    
+	auto sprite1 = Sprite::create();
+	auto sprite2 = Sprite::create();
+	auto sprite3 = Sprite::create();
+	auto sprite4 = Sprite::create();
+	sprite2->setRotation(180.0f);
+	sprite4->setRotation(180.0f);
+	sprite3->setScale(0.2f);
+	sprite4->setScale(0.2f);
+	spriteVector.pushBack(sprite1);
+	spriteVector.pushBack(sprite2);
+	spriteVector.pushBack(sprite3);
+	spriteVector.pushBack(sprite4);
+	this->addChild(sprite1);
+	this->addChild(sprite2);
+	this->addChild(sprite3);
+	this->addChild(sprite4);
 
-	normalShapeDown->setRotation(180.0f);
-	smallShapeDown->setRotation(180.0f);
-    TailFire->setAngle(0.0f);
-    TailFire->cocos2d::ParticleSystem::setTotalParticles(0.0f);
-    TailFire->cocos2d::ParticleSystem::setAngle(0.0f);
-    TailFire->cocos2d::ParticleSystem::setAngleVar(180.0f);
+	physicsBody->addShape(PhysicsShapeCircle::create(physicsRadius));
 
-	smallShapeUp->setScale(0.2f);
-	smallShapeDown->setScale(0.2f);
-
-	// normalShapeUp->setPosition(0.0f, 10.0f);
-	// normalShapeDown->setPosition(0.0f, -10.0f);
-	// smallShapeUp->setPosition(0.0f, 2.0f);
-	// smallShapeDown->setPosition(0.0f, -2.0f);
-
-	this->addChild(normalShapeUp);
-	this->addChild(normalShapeDown);
-	this->addChild(smallShapeUp);
-	this->addChild(smallShapeDown);
-    this->addChild(TailFire);
+	this->scheduleUpdate();
 
 	return true;
 }
 
-void BasePlane::onEnter()
+void BasePlane::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
 {
-	BaseObject::onEnter();
-	BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
-	normalShapeUp->setBlendFunc(blend);
-	normalShapeDown->setBlendFunc(blend);
-	smallShapeUp->setBlendFunc(blend);
-	smallShapeDown->setBlendFunc(blend);
-
-	auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo2 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo3 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	auto tintTo4 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	normalShapeUp->runAction(tintTo1);
-	normalShapeDown->runAction(tintTo2);
-	smallShapeUp->runAction(tintTo3);
-	smallShapeDown->runAction(tintTo4);
-
 }
 
-// BasePlane* BasePlane::create()
-// {
-// 	BasePlane* pRet = new(std::nothrow) BasePlane(50.0f);
-// 	CALL_INIT();
-// }
+void BasePlane::update(float deltaTime)
+{
+	BaseObject::update(deltaTime);
+
+	float spriteRotation = spriteVector.at(0)->getRotation() + rotateVelocity*deltaTime*timeCoefficient;
+	if (spriteRotation > 360000.0f)
+		spriteRotation -= 360000.0f;
+	spriteVector.at(0)->setRotation(spriteRotation);
+	spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+	spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+}

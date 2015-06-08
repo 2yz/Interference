@@ -8,6 +8,7 @@ class AnimationUtil
 {
 public:
 
+<<<<<<< HEAD
     // Create Animation With Different Method
     static Animation* createWithSingleFrameName(const char* name, float delay, int iLoops);
     static Animation* createWithFrameNameAndNum(const char* name, int iNum, float delay, int iLoops);
@@ -16,6 +17,16 @@ public:
     // Run Picture Or Particle Animation
     static bool runPictureAnimation(const char* name, Node* parent, Node* target);
     static ParticleSystemQuad* runParticleAnimation(const char* name, Node* parent, Node* target);
+=======
+	// Create Animation With Different Method
+	static Animation* createWithSingleFrameName(const char* name, float delay, int iLoops);
+	static Animation* createWithFrameNameAndNum(const char* name, int iNum, float delay, int iLoops);
+	static Animation* createWithSingleSpriteNameAndNum(const char* name, int iNum, float delay, int iLoops);
+
+	// Run Picture Or Particle Animation
+	static bool runPictureAnimation(const char* name, Node* parent, Node* target);
+	static bool runParticleAnimation(const char* name, Node* parent, Node* target, bool removeOnFinish = true);
+>>>>>>> yizhe
 };
 
 #endif
