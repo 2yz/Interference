@@ -58,6 +58,17 @@ bool BattleLayer::init()
 	shootLine = Sprite::create("ShootLine.png");
 	shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
 	this->addChild(shootLine);
+    
+    auto Block = Sprite::create();
+    Block->setSpriteFrame("square.png");
+    auto body1 = PhysicsBody::createEdgeBox(Block->getTextureRect().size);
+    Block->setPhysicsBody(body1);
+    Block->setPosition(Point(200, 200));
+    BlendFunc blend = { GL_SRC_ALPHA, GL_ONE };
+    Block->setBlendFunc(blend);
+    auto tintTo1 = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    Block->runAction(tintTo1);
+    this->addChild(Block);
 
 	// Schedule update per frame
 	this->scheduleUpdate();
@@ -66,6 +77,7 @@ bool BattleLayer::init()
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
+<<<<<<< HEAD
 	// Create Block1
     auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
 
@@ -79,6 +91,8 @@ bool BattleLayer::init()
     Block2->runAction(tintTo);
     Block3->runAction(tintTo);
     
+=======
+>>>>>>> yizhe
 	return true;
 }
 
