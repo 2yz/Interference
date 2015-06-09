@@ -5,6 +5,7 @@
 #include "AnimationUtil.h"
 #include "Block.h"
 #include "Enemy.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -70,7 +71,8 @@ bool BattleLayer::init()
 	// schedule(schedule_selector(BattleLayer::addEnemy), 10.0f, 30, 0);
 	scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);
 	// addEnemy(0.0f);
-
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
 	return true;
 }
 
