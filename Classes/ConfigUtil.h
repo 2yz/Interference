@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 
 
-
 #define PLAYER_TAG 1
 #define PLAYER_GROUP 1
 #define PLAYER_CATEGORY_MASK 0x0000000F

@@ -70,15 +70,15 @@ bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* ta
 	return true;
 }
 
-bool AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target, bool removeOnFinish)
+ParticleSystemQuad* AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target, bool removeOnFinish)
 {
 	if (parent == nullptr || target == nullptr)
 	{
-		return false;
+		return nullptr;
 	}
 	auto particle = ParticleSystemQuad::create(name);
 	particle->setPosition(target->getPosition());
 	particle->setAutoRemoveOnFinish(removeOnFinish);
 	parent->addChild(particle);
-	return true;
+	return particle;
 }

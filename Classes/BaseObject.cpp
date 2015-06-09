@@ -39,7 +39,6 @@ void BaseObject::onEnter()
 
 void BaseObject::onDestroy()
 {
-	// _spriteVector.clear();
 	this->removeFromParentAndCleanup(true);
 }
 
