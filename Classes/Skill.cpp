@@ -1,6 +1,6 @@
 #include "Skill.h"
 
-Skill::Skill() : _CD(false), _CDTime(1.0f), _timer(0.0f), _skillCategory(NA)
+Skill::Skill() : _timer(0.0f), _CD(false)
 {
 }
 

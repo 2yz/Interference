@@ -5,7 +5,6 @@
 
 enum SkillCategory
 {
-	NA,
 	ATTACK,
 	DEFENSE,
 	SUPPORT,
@@ -21,9 +20,9 @@ public:
 	virtual bool run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent);
 	SkillCategory getSkillCategory();
 protected:
+	float _timer;
 	bool _CD;
 	float _CDTime;
-	float _timer;
 	SkillCategory _skillCategory;
 	virtual void update(float deltaTime) override;
 };

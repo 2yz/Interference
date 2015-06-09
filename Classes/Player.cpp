@@ -10,7 +10,7 @@ Player::Player() : _accelerationMagnitude(800.0f)
 	_HP = 2000.0f;
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
-	_linearDamping = 0.0f;
+	_linearDamping = 1.0f;
 	_physicsRadius = 60.0f;
 	_rotateVelocity = 180.0f;
 	_beDestroyable = true;	
