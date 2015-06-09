@@ -174,9 +174,9 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
         //this->addChild(runSp);
         //Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
         //runSp->runAction(Animate::create(animation));
-        auto particle = ParticleSystemQuad::create("Square.plist");
-        particle->setPosition(position);
-        this->addChild(particle);
+        //auto particle = ParticleSystemQuad::create("Square.plist");
+        //particle->setPosition(position);
+        //this->addChild(particle);
     }
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
 	if (tag1 == 1)

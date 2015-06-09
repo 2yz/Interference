@@ -59,8 +59,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shape.plist");
     
     // Add Animation
-    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave/Shockwave", 25, 0.05f, -1),"Shockwave1");
-    AnimationCache::getInstance()->addAnimation(AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave/Shockwave", 25, 0.5f, -1),"Shockwave2");
+    Director::getInstance()->getTextureCache()->addImage("Death.png");
+    Director::getInstance()->getTextureCache()->addImage("Boom.png");
+    Director::getInstance()->getTextureCache()->addImage("Cloud.png");
+    Director::getInstance()->getTextureCache()->addImage("Birth.png");
+
     
 	// create a scene. it's an autorelease object
 	auto scene = BattleScene::create();

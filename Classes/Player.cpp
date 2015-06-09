@@ -10,7 +10,7 @@ Player::Player() : _accelerationMagnitude(800.0f)
 	_HP = 2000.0f;
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
-	_linearDamping = 0.0f;
+	_linearDamping = 1.0f;
 	_physicsRadius = 60.0f;
 	_rotateVelocity = 180.0f;
 	_beDestroyable = true;	
@@ -78,8 +78,6 @@ void Player::onEnter()
 	_physicsBody->setLinearDamping(_linearDamping);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
 
-	auto particle = ParticleSystemQuad::create("Tail.plist");
-	this->addChild(particle);
 	for (auto sprite : _spriteVector)
 	{
 		sprite->setColor(Color3B(128, 0, 0));

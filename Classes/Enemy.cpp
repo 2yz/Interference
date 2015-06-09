@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "ConfigUtil.h"
 #include "AnimationUtil.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -72,7 +73,8 @@ void Enemy::onEnter()
 
 void Enemy::onDestroy()
 {
-	auto test = AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
+	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
 	// test->setTexture(TextureCache::addImage(""));
 	BaseEnemy::onDestroy();
 }

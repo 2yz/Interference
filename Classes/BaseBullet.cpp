@@ -19,7 +19,7 @@ bool BaseBullet::init()
 
 void BaseBullet::onDestroy()
 {
-	AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this);
+	AnimationUtil::runParticleAnimation("Boom", this->getParent(), this);
 	BaseObject::onDestroy();
 }
 
