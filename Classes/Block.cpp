@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "ConfigUtil.h"
+#include "AnimationUtil.h"
 
 Block::Block()
 {
