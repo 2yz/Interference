@@ -4,7 +4,7 @@
 Attack::Attack()
 {
 	_skillCategory = ATTACK;
-	_CDTime = 0.02f;
+	_CDTime = 0.04f;
 }
 
 bool Attack::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent)

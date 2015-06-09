@@ -96,9 +96,6 @@
     <ClCompile Include="..\Classes\Attack.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Defense.cpp">
-      <Filter>src\Skill</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Kill.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
@@ -131,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Enemy.cpp">
       <Filter>src\Object\Plane\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Defense.cpp">
+      <Filter>src\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

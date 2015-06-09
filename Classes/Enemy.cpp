@@ -72,7 +72,8 @@ void Enemy::onEnter()
 
 void Enemy::onDestroy()
 {
-	AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
+	auto test = AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
+	// test->setTexture(TextureCache::addImage(""));
 	BaseEnemy::onDestroy();
 }
 

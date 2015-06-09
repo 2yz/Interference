@@ -81,6 +81,9 @@
 		81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */; };
 		81BE3AF51B1F637E0016364D /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF01B1F637E0016364D /* BattleScene.cpp */; };
 		81BE3AF81B1F63CE0016364D /* BaseBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */; };
+		81C55BE11B26DE7A00CF3C90 /* BaseEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C55BD91B26DE7A00CF3C90 /* BaseEnemy.cpp */; };
+		81C55BE31B26DE7A00CF3C90 /* MouseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C55BDC1B26DE7A00CF3C90 /* MouseLayer.cpp */; };
+		81C55BE41B26DE7A00CF3C90 /* TimeCoefficient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C55BDE1B26DE7A00CF3C90 /* TimeCoefficient.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -196,6 +199,12 @@
 		81BE3AF01B1F637E0016364D /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		81BE3AF11B1F637E0016364D /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		81BE3AF71B1F63CE0016364D /* BaseBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseBullet.cpp; sourceTree = "<group>"; };
+		81C55BD91B26DE7A00CF3C90 /* BaseEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEnemy.cpp; sourceTree = "<group>"; };
+		81C55BDA1B26DE7A00CF3C90 /* BaseEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEnemy.h; sourceTree = "<group>"; };
+		81C55BDC1B26DE7A00CF3C90 /* MouseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseLayer.cpp; sourceTree = "<group>"; };
+		81C55BDD1B26DE7A00CF3C90 /* MouseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseLayer.h; sourceTree = "<group>"; };
+		81C55BDE1B26DE7A00CF3C90 /* TimeCoefficient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeCoefficient.cpp; sourceTree = "<group>"; };
+		81C55BDF1B26DE7A00CF3C90 /* TimeCoefficient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCoefficient.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -328,12 +337,21 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				8139A6861B2731B700E9C92C /* BaseEnemy.cpp */,
 				8139A6871B2731B700E9C92C /* BaseEnemy.h */,
 				8139A6881B2731B700E9C92C /* MouseLayer.cpp */,
 				8139A6891B2731B700E9C92C /* MouseLayer.h */,
 				8139A68A1B2731B700E9C92C /* TimeCoefficient.cpp */,
 				8139A68B1B2731B700E9C92C /* TimeCoefficient.h */,
+=======
+				81C55BD91B26DE7A00CF3C90 /* BaseEnemy.cpp */,
+				81C55BDA1B26DE7A00CF3C90 /* BaseEnemy.h */,
+				81C55BDC1B26DE7A00CF3C90 /* MouseLayer.cpp */,
+				81C55BDD1B26DE7A00CF3C90 /* MouseLayer.h */,
+				81C55BDE1B26DE7A00CF3C90 /* TimeCoefficient.cpp */,
+				81C55BDF1B26DE7A00CF3C90 /* TimeCoefficient.h */,
+>>>>>>> origin/yizhe
 				81613DB71B25381100D4C6CF /* Attack.cpp */,
 				81613DB81B25381100D4C6CF /* Attack.h */,
 				81613DB91B25381100D4C6CF /* Block.cpp */,
@@ -587,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81613DD31B25381100D4C6CF /* Enemy.cpp in Sources */,
+				81C55BE31B26DE7A00CF3C90 /* MouseLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				81613DD11B25381100D4C6CF /* ClearBullet.cpp in Sources */,
 				818BE4C11B1C850D00F44D7E /* PlayerUserData.cpp in Sources */,
@@ -597,10 +616,12 @@
 				81613DD61B25381100D4C6CF /* Skill.cpp in Sources */,
 				81613DD51B25381100D4C6CF /* Player.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				81C55BE11B26DE7A00CF3C90 /* BaseEnemy.cpp in Sources */,
 				81613DCD1B25381100D4C6CF /* Attack.cpp in Sources */,
 				818BE4B01B1C850D00F44D7E /* BaseObject.cpp in Sources */,
 				818BE4C21B1C850D00F44D7E /* UILayer.cpp in Sources */,
 				818BE4B51B1C850D00F44D7E /* BulletUserData.cpp in Sources */,
+				81C55BE41B26DE7A00CF3C90 /* TimeCoefficient.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				818BE4B71B1C850D00F44D7E /* ConfigUtil.cpp in Sources */,
 				818BE4BB1B1C850D00F44D7E /* EnemyUserData.cpp in Sources */,
