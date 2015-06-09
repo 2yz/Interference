@@ -117,7 +117,7 @@ void BattleLayer::update(float deltaTime)
 	{
 		auto velocity = mousePositionInLayer - player->getPosition();
 		velocity.normalize();
-		player->runSkill(velocity * 800, ATTACK);
+		player->runSkill(velocity, ATTACK);
 	}
 
 }
