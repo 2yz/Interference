@@ -30,8 +30,8 @@ bool Player::init()
 	auto sprite4 = Sprite::create();
 	sprite2->setRotation(180.0f);
 	sprite4->setRotation(180.0f);
-	sprite3->setScale(0.2f);
-	sprite4->setScale(0.2f);
+	sprite3->setScale(0.4f);
+	sprite4->setScale(0.4f);
 	_spriteVector.pushBack(sprite1);
 	_spriteVector.pushBack(sprite2);
 	_spriteVector.pushBack(sprite3);
@@ -40,6 +40,7 @@ bool Player::init()
 	this->addChild(sprite2);
 	this->addChild(sprite3);
 	this->addChild(sprite4);
+
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
 	{
@@ -119,13 +120,16 @@ void Player::update(float deltaTime)
 	BasePlane::update(deltaTime);
 
 	// Sprite Rotation
-	float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
-	if (spriteRotation > 360000.0f)
-		spriteRotation -= 360000.0f;
-	_spriteVector.at(0)->setRotation(spriteRotation);
-	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	if (_spriteVector.size() == 4)
+	{
+		float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
+		if (spriteRotation > 360000.0f)
+			spriteRotation -= 360000.0f;
+		_spriteVector.at(0)->setRotation(spriteRotation);
+		_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+		_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+		_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	}
 
 	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
 	{

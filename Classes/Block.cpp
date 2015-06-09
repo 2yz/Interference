@@ -32,6 +32,10 @@ bool Block::init()
 	// Set Sprite and Physics Shape
 	if (_isEdge)
 	{
+		// Create Block
+		auto block = Sprite::create("edge.png");
+		_spriteVector.pushBack(block);
+		this->addChild(block);
 		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::visibleSize * 2, PHYSICSSHAPE_MATERIAL_DEFAULT, 20.0f));
 	}
 	else
