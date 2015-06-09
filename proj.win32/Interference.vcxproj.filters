@@ -37,7 +37,7 @@
     <Filter Include="src\Util">
       <UniqueIdentifier>{23d8e220-f069-4352-80eb-28dbd702ef43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Object\Enemy">
+    <Filter Include="src\Object\Plane\Enemy">
       <UniqueIdentifier>{de5e8626-f11d-44de-b21e-4658ad76401f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -124,13 +124,13 @@
       <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Boss.cpp">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BaseEnemy.cpp">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Enemy.cpp">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,13 +216,13 @@
       <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Boss.h">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BaseEnemy.h">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy.h">
-      <Filter>src\Object\Enemy</Filter>
+      <Filter>src\Object\Plane\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
