@@ -8,7 +8,7 @@ Enemy::Enemy()
 {
 	_HP = 500.0f;
 	_neverDie = false;
-	_velocityMagnitudeMax = 400.0f;
+	_velocityMagnitude = 400.0f;
 	_linearDamping = 0.0f;
 	_physicsRadius = 40.0f;
 	_rotateVelocity = 100.0f;
@@ -66,7 +66,7 @@ void Enemy::onEnter()
 	_physicsBody->setContactTestBitmask(ENEMY_CONTACT_MASK);
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_MASK);
-	_physicsBody->setVelocityLimit(_velocityMagnitudeMax);
+	_physicsBody->setVelocityLimit(_velocityMagnitude);
 	_physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
 }
 

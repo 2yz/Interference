@@ -7,7 +7,7 @@ USING_NS_CC;
 
 Player::Player() : traceCoefficient(0)
 {
-	_velocityMagnitudeMax = 400.0f;
+	_velocityMagnitude = 400.0f;
 	_accelerationMagnitude = 800.0f;
 	_HP = 2000.0f;
 	_physicsRadius = 60.0f;
@@ -51,7 +51,7 @@ bool Player::init()
 	this->addChild(attack);
 
 	// Set Camera Trace Cofficient
-	this->setTraceCoefficient(_velocityMagnitudeMax, _accelerationMagnitude, 1.0f / 60.0f);
+	this->setTraceCoefficient(_velocityMagnitude, _accelerationMagnitude, 1.0f / 60.0f);
 
 	// Set Physics Shape
 	_physicsBody->addShape(PhysicsShapeCircle::create(_physicsRadius, MATERIAL_PLANE));
@@ -74,7 +74,7 @@ void Player::onEnter()
 	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
 	_physicsBody->setLinearDamping(_linearDamping);
-	_physicsBody->setVelocityLimit(_velocityMagnitudeMax);
+	_physicsBody->setVelocityLimit(_velocityMagnitude);
 
 	auto particle = ParticleSystemQuad::create("Tail.plist");
 	this->addChild(particle);
@@ -103,7 +103,7 @@ void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory
 		{
 			if (skillIndex == 0)
 			{
-				skill->run(velocity, this->getParent(), this);
+				skill->run(velocity, this->getParent(), this, PLAYER);
 			}
 			else
 			{

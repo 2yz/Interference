@@ -18,7 +18,7 @@ public:
 	Skill();
 	virtual ~Skill();
 	virtual bool init() override;
-	virtual bool run(const cocos2d::Vec2& velocity,cocos2d::Node* parent,cocos2d::Node* target);
+	virtual bool run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent);
 	SkillCategory getSkillCategory();
 protected:
 	bool _CD;

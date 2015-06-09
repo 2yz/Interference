@@ -18,7 +18,7 @@ bool Skill::init()
 	return true;
 }
 
-bool Skill::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target)
+bool Skill::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent)
 {
 	if (_CD)
 		return false;

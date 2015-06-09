@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-BaseBullet::BaseBullet(int bulletParent) : _damage(100.0f), _bulletParent(bulletParent)
+BaseBullet::BaseBullet()
 {
 }
 

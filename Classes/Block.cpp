@@ -17,7 +17,7 @@ Block::Block(bool isEdge) : _isEdge(isEdge)
 		_neverDie = true;
 	else
 		_neverDie = false;
-	_velocityMagnitudeMax = 100.0f;
+	_velocityMagnitude = 100.0f;
 }
 
 bool Block::init()
