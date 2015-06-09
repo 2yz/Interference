@@ -2,7 +2,11 @@
 
 USING_NS_CC;
 
-BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false), _velocityMagnitudeMax(400.0f)
+BaseObject::BaseObject() : _timer(0.0f)
+{
+}
+
+BaseObject::~BaseObject()
 {
 }
 
@@ -35,6 +39,7 @@ void BaseObject::onEnter()
 
 void BaseObject::onDestroy()
 {
+	// _spriteVector.clear();
 	this->removeFromParentAndCleanup(true);
 }
 
@@ -62,7 +67,7 @@ void BaseObject::setVelocity(const cocos2d::Vect& velocity)
 
 void BaseObject::update(float deltaTime)
 {
-	if (!_neverDie && _HP < 0.0f)
+	if (!_neverDie && _HP <= 0.0f)
 		onDestroy();
 }
 

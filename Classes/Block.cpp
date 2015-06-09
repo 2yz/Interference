@@ -12,6 +12,12 @@ Block* Block::create(bool isEdge)
 
 Block::Block(bool isEdge) : _isEdge(isEdge)
 {
+	_HP = 1000.0f;
+	if (isEdge)
+		_neverDie = true;
+	else
+		_neverDie = false;
+	_velocityMagnitudeMax = 100.0f;
 }
 
 bool Block::init()
@@ -23,21 +29,20 @@ bool Block::init()
 
 	this->setTag(BLOCK_TAG);
 
-	// Set Sprite and Physics Body
+	// Set Sprite and Physics Shape
 	if (_isEdge)
 	{
-		_neverDie = true;
 		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::visibleSize * 2, PHYSICSSHAPE_MATERIAL_DEFAULT, 20.0f));
 	}
 	else
 	{
-		_HP = 500.0f;
 		// Create Block
 		auto block = Sprite::createWithSpriteFrameName("square.png");
 		_spriteVector.pushBack(block);
 		this->addChild(block);
 		_physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, MATERIAL_BLOCK));
 	}
+	// Set Physics Body
 	_physicsBody->setContactTestBitmask(BLOCK_CONTACT_MASK);
 
 	return true;
@@ -49,7 +54,7 @@ void Block::onEnter()
 	auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
 	for (auto sprite : _spriteVector)
 		sprite->runAction(tintTo->clone());
-	AnimationUtil::runParticleAnimation("Cloud.plist", this->getParent(), this);
+	AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
 }
 
 void Block::onDestroy()

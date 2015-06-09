@@ -131,7 +131,7 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 
 	for (int i = 0; i < 2; ++i)
 	{
-		if (nodeArray[i][0] != nullptr&&nodeArray != nullptr)
+		if (nodeArray[i][0] != nullptr&&nodeArray[i][1] != nullptr)
 		{
 			log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
 			switch (nodeArray[i][0]->getTag())

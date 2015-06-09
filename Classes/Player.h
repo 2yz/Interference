@@ -15,6 +15,7 @@ public:
 	void setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime);
 	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0) override;
 protected:
+	float _accelerationMagnitude;
 	float traceCoefficient;
 	virtual void update(float deltaTime) override;
 };

@@ -13,7 +13,7 @@ public:
 	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0);
 	// static BasePlane* create();
 protected:
-	float linearDamping;
+	float _linearDamping;
 	float _physicsRadius;
 	float _rotateVelocity; // degree per second
 	bool _beDestroyable; // Is destroyable when contact

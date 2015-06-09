@@ -6,7 +6,13 @@ USING_NS_CC;
 
 Enemy::Enemy()
 {
+	_HP = 500.0f;
+	_neverDie = false;
+	_velocityMagnitudeMax = 400.0f;
+	_linearDamping = 0.0f;
+	_physicsRadius = 40.0f;
 	_rotateVelocity = 100.0f;
+	_beDestroyable = true;
 }
 
 bool Enemy::init()
@@ -36,6 +42,7 @@ bool Enemy::init()
 	this->addChild(sprite2);
 	this->addChild(sprite3);
 	this->addChild(sprite4);
+	this->setScale(0.7f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
@@ -55,13 +62,11 @@ void Enemy::onEnter()
 {
 	BaseEnemy::onEnter();
 	// Set Physics Body
-	//_physicsBody->setGroup(ENEMY_GROUP);
+	_physicsBody->setGroup(ENEMY_GROUP);
 	_physicsBody->setContactTestBitmask(ENEMY_CONTACT_MASK);
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_MASK);
-	_physicsBody->setLinearDamping(1.0f);
 	_physicsBody->setVelocityLimit(_velocityMagnitudeMax);
-
 	_physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
 }
 
@@ -75,11 +80,14 @@ void Enemy::update(float deltaTime)
 {
 	BaseEnemy::update(deltaTime);
 	// Sprite Rotation
-	float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
-	if (spriteRotation > 360000.0f)
-		spriteRotation -= 360000.0f;
-	_spriteVector.at(0)->setRotation(spriteRotation);
-	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	if (_spriteVector.size() == 4)
+	{
+		float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
+		if (spriteRotation > 360000.0f)
+			spriteRotation -= 360000.0f;
+		_spriteVector.at(0)->setRotation(spriteRotation);
+		_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+		_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+		_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	}
 }

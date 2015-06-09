@@ -21,6 +21,7 @@ class BaseObject : public cocos2d::Node, public TimeCoefficient
 {
 public:
 	BaseObject();
+	virtual ~BaseObject();
 	virtual bool init() override;
 	virtual void onEnter() override;
 	virtual void onDestroy();
@@ -31,10 +32,10 @@ public:
 protected:
 	cocos2d::PhysicsBody* _physicsBody;
 	cocos2d::Vector<cocos2d::Sprite*> _spriteVector;
+	float _timer;
 	float _HP;
 	bool _neverDie; // Is never under attack
 	float _velocityMagnitudeMax;
-	float _accelerationMagnitude;
 	virtual void update(float deltaTime) override;
 	float getVelocityMagnitude();
 	float getVelocityDirection();

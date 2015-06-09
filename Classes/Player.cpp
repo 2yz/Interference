@@ -12,6 +12,7 @@ Player::Player() : traceCoefficient(0)
 	_HP = 2000.0f;
 	_physicsRadius = 60.0f;
 	_rotateVelocity = 180.0f;
+	_linearDamping = 0.0f;
 }
 
 bool Player::init()
@@ -72,7 +73,7 @@ void Player::onEnter()
 	_physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
 	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
-	_physicsBody->setLinearDamping(1.0f);
+	_physicsBody->setLinearDamping(_linearDamping);
 	_physicsBody->setVelocityLimit(_velocityMagnitudeMax);
 
 	auto particle = ParticleSystemQuad::create("Tail.plist");
