@@ -50,6 +50,9 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		68DF4CD48FF618773F3C8241 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */; };
 		7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
+		8139A68C1B2731B700E9C92C /* BaseEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8139A6861B2731B700E9C92C /* BaseEnemy.cpp */; };
+		8139A68D1B2731B700E9C92C /* MouseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8139A6881B2731B700E9C92C /* MouseLayer.cpp */; };
+		8139A68E1B2731B700E9C92C /* TimeCoefficient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8139A68A1B2731B700E9C92C /* TimeCoefficient.cpp */; };
 		814A12B41B2142B0005859F6 /* Cloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814A12B31B2142B0005859F6 /* Cloud.plist */; };
 		814A12B61B214443005859F6 /* Birth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814A12B51B214443005859F6 /* Birth.plist */; };
 		814C57EF1B213F5500A259C4 /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814C57E81B213F5500A259C4 /* Boom.plist */; };
@@ -135,6 +138,12 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.6/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<absolute>"; };
+		8139A6861B2731B700E9C92C /* BaseEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEnemy.cpp; sourceTree = "<group>"; };
+		8139A6871B2731B700E9C92C /* BaseEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEnemy.h; sourceTree = "<group>"; };
+		8139A6881B2731B700E9C92C /* MouseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseLayer.cpp; sourceTree = "<group>"; };
+		8139A6891B2731B700E9C92C /* MouseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseLayer.h; sourceTree = "<group>"; };
+		8139A68A1B2731B700E9C92C /* TimeCoefficient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeCoefficient.cpp; sourceTree = "<group>"; };
+		8139A68B1B2731B700E9C92C /* TimeCoefficient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCoefficient.h; sourceTree = "<group>"; };
 		814A12B31B2142B0005859F6 /* Cloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cloud.plist; sourceTree = "<group>"; };
 		814A12B51B214443005859F6 /* Birth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth.plist; sourceTree = "<group>"; };
 		814C57E81B213F5500A259C4 /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
@@ -319,6 +328,12 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8139A6861B2731B700E9C92C /* BaseEnemy.cpp */,
+				8139A6871B2731B700E9C92C /* BaseEnemy.h */,
+				8139A6881B2731B700E9C92C /* MouseLayer.cpp */,
+				8139A6891B2731B700E9C92C /* MouseLayer.h */,
+				8139A68A1B2731B700E9C92C /* TimeCoefficient.cpp */,
+				8139A68B1B2731B700E9C92C /* TimeCoefficient.h */,
 				81613DB71B25381100D4C6CF /* Attack.cpp */,
 				81613DB81B25381100D4C6CF /* Attack.h */,
 				81613DB91B25381100D4C6CF /* Block.cpp */,
@@ -557,6 +572,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				8139A68C1B2731B700E9C92C /* BaseEnemy.cpp in Sources */,
+				8139A68E1B2731B700E9C92C /* TimeCoefficient.cpp in Sources */,
+				8139A68D1B2731B700E9C92C /* MouseLayer.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
