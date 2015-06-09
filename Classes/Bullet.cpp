@@ -13,7 +13,7 @@ Bullet::Bullet(const cocos2d::Vec2& unitVelocity, int bulletParent)
 {
 	_HP = 100.0f;
 	_neverDie = true;
-	_velocityMagnitude = 400.0f;
+	_velocityMagnitude = 800.0f;
 	_velocityVec = unitVelocity * _velocityMagnitude;
 	_damage = 100.0f;
 	_bulletParent = bulletParent;

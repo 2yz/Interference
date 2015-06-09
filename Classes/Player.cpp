@@ -5,14 +5,15 @@
 
 USING_NS_CC;
 
-Player::Player() : traceCoefficient(0)
+Player::Player() : _accelerationMagnitude(800.0f)
 {
-	_velocityMagnitude = 400.0f;
-	_accelerationMagnitude = 800.0f;
 	_HP = 2000.0f;
+	_neverDie = false;
+	_velocityMagnitude = 400.0f;
+	_linearDamping = 0.0f;
 	_physicsRadius = 60.0f;
 	_rotateVelocity = 180.0f;
-	_linearDamping = 0.0f;
+	_beDestroyable = true;	
 }
 
 bool Player::init()
@@ -86,12 +87,12 @@ void Player::onEnter()
 
 float Player::getTraceCoefficient()
 {
-	return traceCoefficient;
+	return _traceCoefficient;
 }
 
 void Player::setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime)
 {
-	traceCoefficient = 1.0f / (maxSpeed / acceleration + deltaTime);
+	_traceCoefficient = 1.0f / (maxSpeed / acceleration + deltaTime);
 }
 
 void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
