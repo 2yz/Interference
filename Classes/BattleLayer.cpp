@@ -134,14 +134,15 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 		if (nodeArray[i][0] != nullptr&&nodeArray[i][1] != nullptr)
 		{
 			log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
-			switch (nodeArray[i][0]->getTag())
-			{
-			case BULLET_TAG:
-				nodeArray[i][0]->onContact(nodeArray[i][1]);
-				break;
-			default:
-				break;
-			}
+			nodeArray[i][0]->onContact(nodeArray[i][1]);
+			// switch (nodeArray[i][0]->getTag())
+			// {
+			// case BULLET_TAG:
+			// 	nodeArray[i][0]->onContact(nodeArray[i][1]);
+			// 	break;
+			// default:
+			// 	break;
+			// }
 		}
 	}
 	return true;
