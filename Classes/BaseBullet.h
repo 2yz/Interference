@@ -9,7 +9,7 @@ public:
 	BaseBullet();
 	virtual bool init() override;
 	virtual void onDestroy() override;
-	virtual void onContact(BaseObject* contactNode) override;
+	virtual bool onContact(BaseObject* contactNode) override;
 protected:
 	cocos2d::Vec2 _velocityVec;
 	float _damage;

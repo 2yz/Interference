@@ -39,12 +39,14 @@ void BaseObject::onEnter()
 
 void BaseObject::onDestroy()
 {
+	this->unscheduleUpdate();
 	this->removeFromParentAndCleanup(true);
 }
 
-void BaseObject::onContact(BaseObject* contactNode)
+bool BaseObject::onContact(BaseObject* contactNode)
 {
 	log("BaseObject::onContact(BaseObject* contactNode)");
+	return false;
 }
 
 void BaseObject::setParent(Node* parent)

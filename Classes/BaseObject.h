@@ -25,7 +25,7 @@ public:
 	virtual bool init() override;
 	virtual void onEnter() override;
 	virtual void onDestroy();
-	virtual void onContact(BaseObject* contactNode);
+	virtual bool onContact(BaseObject* contactNode);
 	virtual void setParent(Node* parent) override;
 	void reduceHP(float reduceValue);
 	void setVelocity(const cocos2d::Vect& velocity);

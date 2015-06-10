@@ -16,7 +16,6 @@ protected:
 	float _linearDamping;
 	float _physicsRadius;
 	float _rotateVelocity; // degree per second
-	bool _beDestroyable; // Is destroyable when contact
 	cocos2d::Vector<Skill*> _skillVec;
 	virtual void update(float deltaTime) override;
 };

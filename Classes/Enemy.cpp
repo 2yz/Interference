@@ -14,6 +14,7 @@ Enemy::Enemy()
 	_physicsRadius = 40.0f;
 	_rotateVelocity = 100.0f;
 	_beDestroyable = true;
+	_destroyDamage = 100.0f;
 }
 
 bool Enemy::init()
@@ -53,7 +54,7 @@ bool Enemy::init()
 
 	// Set Physics Shape
 	_physicsBody->addShape(PhysicsShapeCircle::create(_physicsRadius, MATERIAL_PLANE));
-	
+
 	this->scheduleUpdate();
 
 	return true;
@@ -74,7 +75,7 @@ void Enemy::onEnter()
 void Enemy::onDestroy()
 {
 	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3", false, 1.0f);
 	// test->setTexture(TextureCache::addImage(""));
 	BaseEnemy::onDestroy();
 }
@@ -83,14 +84,11 @@ void Enemy::update(float deltaTime)
 {
 	BaseEnemy::update(deltaTime);
 	// Sprite Rotation
-	if (_spriteVector.size() == 4)
-	{
-		float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
-		if (spriteRotation > 360000.0f)
-			spriteRotation -= 360000.0f;
-		_spriteVector.at(0)->setRotation(spriteRotation);
-		_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-		_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-		_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
-	}
+	float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
+	if (spriteRotation > 360000.0f)
+		spriteRotation -= 360000.0f;
+	_spriteVector.at(0)->setRotation(spriteRotation);
+	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
 }
