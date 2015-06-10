@@ -1,6 +1,7 @@
 #include "Block.h"
 #include "AnimationUtil.h"
 #include "ConfigUtil.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -58,11 +59,14 @@ void Block::onEnter()
 	auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
 	for (auto sprite : _spriteVector)
 		sprite->runAction(tintTo->clone());
-	AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
+	AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
 }
 
 void Block::onDestroy()
 {
-	AnimationUtil::runParticleAnimation("Death.plist", this->getParent(), this);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
+    
+	auto particle = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+    particle->setTexture(Director::getInstance()->getTextureCache()->addImage("Death.png"));
 	BaseObject::onDestroy();
 }

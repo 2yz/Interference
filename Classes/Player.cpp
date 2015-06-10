@@ -78,8 +78,6 @@ void Player::onEnter()
 	_physicsBody->setLinearDamping(_linearDamping);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
 
-	auto particle = ParticleSystemQuad::create("Tail.plist");
-	this->addChild(particle);
 	for (auto sprite : _spriteVector)
 	{
 		sprite->setColor(Color3B(128, 0, 0));

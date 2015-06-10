@@ -5,6 +5,7 @@
 #include "AnimationUtil.h"
 #include "Block.h"
 #include "Enemy.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -67,15 +68,21 @@ bool BattleLayer::init()
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
-	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 10, 0);
+	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 5, 1.0f);
 	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);
-	// addEnemy(0.0f);
 
+	// addEnemy(0.0f);
+    
+    // Add BackgroundMusic
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+    
 	return true;
 }
 
 Player* BattleLayer::getPlayer()
 {
+    
 	return player;
 }
 

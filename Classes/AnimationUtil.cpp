@@ -70,15 +70,16 @@ bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* ta
 	return true;
 }
 
-ParticleSystemQuad* AnimationUtil::runParticleAnimation(const char* name, Node* parent, Node* target, bool removeOnFinish)
+ParticleSystemQuad* AnimationUtil::runParticleAnimation(const std::string& name, Node* parent, Node* target, bool removeOnFinish)
 {
 	if (parent == nullptr || target == nullptr)
 	{
 		return nullptr;
 	}
-	auto particle = ParticleSystemQuad::create(name);
+	auto particle = ParticleSystemQuad::create(name + ".plist");
 	particle->setPosition(target->getPosition());
 	particle->setAutoRemoveOnFinish(removeOnFinish);
 	parent->addChild(particle);
+    particle->setTexture(Director::getInstance()->getTextureCache()->getTextureForKey(name + ".png"));
 	return particle;
 }
