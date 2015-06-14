@@ -2,5 +2,5 @@
 
 Kill::Kill()
 {
-	_skillCategory = KILL;
+	skill_category_ = KILL;
 }

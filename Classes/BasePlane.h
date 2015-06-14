@@ -10,13 +10,17 @@ public:
 	explicit BasePlane(float radius = 60.0f);
 	virtual ~BasePlane();
 	virtual bool init() override;
-	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0);
+	virtual void addSkill(Skill* skill);
+	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
+	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer = nullptr);
+	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer = nullptr);
+	//virtual void castSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0);
 	// static BasePlane* create();
 protected:
-	float _linearDamping;
-	float _physicsRadius;
-	float _rotateVelocity; // degree per second
-	cocos2d::Vector<Skill*> _skillVec;
+	float linear_damping_;
+	float physics_radius_;
+	float rotate_velocity_; // degree per second
+	cocos2d::Vector<Skill*> skill_vector_;
 	virtual void update(float deltaTime) override;
 };
 

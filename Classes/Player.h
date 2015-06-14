@@ -9,14 +9,17 @@ public:
 	CREATE_FUNC(Player);
 	Player();
 	virtual bool init() override;
-	// static Player* create(float x,float y);
+	virtual void initMessage() override;
 	virtual void onEnter() override;
+	virtual void onDestroy() override;
+	virtual void onContact(Message& message) override;
 	float getTraceCoefficient();
 	void setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime);
-	virtual void runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0) override;
+	inline void updateMove(float deltaTime);
+	inline void updateSkillCast(float deltaTime);
+	virtual void update(float deltaTime) override;
 protected:
 	float _accelerationMagnitude;
-	virtual void update(float deltaTime) override;
 private:
 	float _traceCoefficient;
 };

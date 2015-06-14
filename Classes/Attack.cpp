@@ -1,45 +1,38 @@
 #include "Attack.h"
 #include "Bullet.h"
-#include "SimpleAudioEngine.h"
+#include "ConfigUtil.h"
 
 Attack::Attack()
 {
-	_CDTime = 0.08f;
-	_skillCategory = ATTACK;
+	cd_time_ = 0.08f;
+	skill_category_ = ATTACK;
 }
 
-bool Attack::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent)
+void Attack::onEnter()
 {
-	if (!Skill::run(velocity, parent, target, bulletParent))
+	Skill::onEnter();
+	switch (getParent()->getTag())
 	{
+	case PLAYER_TAG:
+		skill_parent_ = PLAYER;
+		break;
+	case ENEMY_TAG:
+		skill_parent_ = ENEMY;
+		break;
+	default:
+		skill_parent_ = 0;
+		break;
+	}
+}
+
+bool Attack::cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+{
+	if (!Skill::cast(battle_layer,skill_parent,direction,skill_targer))
 		return false;
-	}
-
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("bullet.mp3", false, 1.5f);
-
-	auto bullet = Bullet::create(velocity, bulletParent);
-	bullet->setPosition(target->getPosition());
-	parent->addChild(bullet);
-	
-	for (int num = 1; num < 10; num++)
-	{
-		auto v2 = cocos2d::Vec2(velocity.y*sin(M_PI*num / 5) + velocity.x*cos(M_PI*num / 5), velocity.x*sin(M_PI*num / 5) + velocity.y*cos(M_PI*num / 5));
-		auto bullet2 = Bullet::create(v2, bulletParent);
-		bullet2->setPosition(target->getPosition());
-		parent->addChild(bullet2);
-	}
-
-	/* */
-	// float random1 = cocos2d::random(7.0f, 13.0f);
-	// auto v2 = cocos2d::Vec2(velocity.y*sin(M_PI / random1) + velocity.x*cos(M_PI / random1), velocity.x*sin(M_PI / random1) + velocity.y*cos(M_PI / random1));
-	// auto bullet2 = Bullet::create(v2, bulletParent);
-	// bullet2->setPosition(target->getPosition());
-	// parent->addChild(bullet2);
-	// // int random2 = cocos2d::random(5, 10);
-	// auto v3 = cocos2d::Vec2(velocity.y*sin(-M_PI / random1) + velocity.x*cos(-M_PI / random1), velocity.x*sin(-M_PI / random1) + velocity.y*cos(-M_PI / random1));
-	// auto bullet3 = Bullet::create(v3, bulletParent);
-	// bullet3->setPosition(target->getPosition());
-	// parent->addChild(bullet3);
-
+	if (skill_parent_ == 0)
+		return false;
+	auto bullet = Bullet::create(skill_parent_, direction);
+	bullet->setPosition(skill_parent->getPosition());
+	battle_layer->addChild(bullet);
 	return true;
 }

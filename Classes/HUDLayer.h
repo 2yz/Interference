@@ -3,12 +3,13 @@
 
 #include "cocos2d.h"
 
-class UILayer : public cocos2d::Layer
+class HUDLayer : public cocos2d::Layer
 {
 public:
-	UILayer();
+	CREATE_FUNC(HUDLayer);
+	HUDLayer();
 	virtual bool init() override;
-	CREATE_FUNC(UILayer);
+	void setEventListener();
 	void addScoreBy(int addScore);
 	void updateHPIndicator();
 	void setLaunchButtonEnable();

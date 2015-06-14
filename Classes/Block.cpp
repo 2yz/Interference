@@ -64,9 +64,20 @@ void Block::onEnter()
 
 void Block::onDestroy()
 {
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false);
 	auto particle = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
     particle->setTexture(Director::getInstance()->getTextureCache()->addImage("Death.png"));
 	BaseObject::onDestroy();
+}
+
+void Block::onContact(Message& message)
+{
+	if (message.getInt("Tag") == PLAYER_BULLET_TAG && !_neverDie)
+		_HP -= message.getFloat("Damage");
+}
+
+void Block::initMessage()
+{
+	_message.putString("Name", "Block");
+	_message.putInt("Tag", BLOCK_TAG);
 }

@@ -8,6 +8,7 @@ BaseObject::BaseObject() : _timer(0.0f)
 
 BaseObject::~BaseObject()
 {
+	_spriteVector.clear();
 }
 
 bool BaseObject::init()
@@ -16,6 +17,8 @@ bool BaseObject::init()
 	{
 		return false;
 	}
+	// Initial Message
+	initMessage();
 
 	// Create Physics Body
 	_physicsBody = PhysicsBody::create();
@@ -43,10 +46,18 @@ void BaseObject::onDestroy()
 	this->removeFromParentAndCleanup(true);
 }
 
-bool BaseObject::onContact(BaseObject* contactNode)
+void BaseObject::onContact(Message& message)
 {
-	log("BaseObject::onContact(BaseObject* contactNode)");
-	return false;
+	log("BaseObject::onContact(Message& message)");
+}
+
+void BaseObject::initMessage()
+{
+}
+
+Message BaseObject::getMessage()
+{
+	return _message;
 }
 
 void BaseObject::setParent(Node* parent)
@@ -55,21 +66,9 @@ void BaseObject::setParent(Node* parent)
 	setTimeParent(dynamic_cast<TimeCoefficient*>(parent));
 }
 
-void BaseObject::reduceHP(float reduceValue)
-{
-	if (!_neverDie)
-		_HP -= reduceValue;
-}
-
 void BaseObject::setVelocity(const cocos2d::Vect& velocity)
 {
 	this->getPhysicsBody()->setVelocity(velocity);
-}
-
-void BaseObject::update(float deltaTime)
-{
-	if (!_neverDie && _HP <= 0.0f)
-		onDestroy();
 }
 
 float BaseObject::getVelocityMagnitude()
@@ -81,4 +80,10 @@ float BaseObject::getVelocityMagnitude()
 float BaseObject::getVelocityDirection()
 {
 	return 0.0f;
+}
+
+void BaseObject::update(float deltaTime)
+{
+	if (!_neverDie && _HP <= 0.0f)
+		this->onDestroy();
 }

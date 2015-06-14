@@ -168,11 +168,11 @@
       <FileName>C:\Develop\Interference\Classes\Support.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UILayer" Collapsed="true">
+  <Class Name="HUDLayer" Collapsed="true">
     <Position X="19.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABCAAgCIAIAAAAgAAIQAAAAAAAAAKABFAAAIQAEAI=</HashCode>
-      <FileName>C:\Develop\Interference\Classes\UILayer.h</FileName>
+      <FileName>C:\Develop\Interference\Classes\HUDLayer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseObject" Collapsed="true">

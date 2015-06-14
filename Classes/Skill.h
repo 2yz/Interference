@@ -2,6 +2,7 @@
 #define Skill_H_
 
 #include "cocos2d.h"
+#include "BasePlane.h"
 
 enum SkillCategory
 {
@@ -17,13 +18,13 @@ public:
 	Skill();
 	virtual ~Skill();
 	virtual bool init() override;
-	virtual bool run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent);
+	virtual bool cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
 	SkillCategory getSkillCategory();
 protected:
-	float _timer;
-	bool _CD;
-	float _CDTime;
-	SkillCategory _skillCategory;
+	float timer_;
+	bool cd_;
+	float cd_time_;
+	SkillCategory skill_category_;
 	virtual void update(float deltaTime) override;
 };
 

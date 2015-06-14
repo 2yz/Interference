@@ -23,12 +23,7 @@ void BaseBullet::onDestroy()
 	BaseObject::onDestroy();
 }
 
-bool BaseBullet::onContact(BaseObject* contactNode)
+void BaseBullet::onContact(Message& message)
 {
-	if (_bulletParent != contactNode->getTag())
-	{
-		contactNode->reduceHP(_damage);
-	}
 	this->onDestroy();
-	return true;
 }

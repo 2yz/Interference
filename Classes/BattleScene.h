@@ -2,7 +2,7 @@
 #define BattleScene_H_
 
 #include "cocos2d.h"
-#include "UILayer.h"
+#include "HUDLayer.h"
 #include "BattleLayer.h"
 
 class BattleScene : public cocos2d::Scene
@@ -13,7 +13,7 @@ public:
 	virtual bool init() override;
 	CREATE_FUNC(BattleScene);
 	// static BattleScene* getInstance();
-	UILayer* getUILayer();
+	HUDLayer* getHUDLayer();
 	// CameraNode* getCameraLayer();
 
 	// BulletLayer* getBulletLayer();
@@ -24,7 +24,7 @@ protected:
 	// static GameBackgroundLayer* gameBackgroundLayer;
 	static BattleScene* battleScene;
 	BattleLayer* battleLayer;
-	static UILayer* uiLayer;
+	HUDLayer* _HUDLayer;
 	// static CameraNode* cameraNode;
 	// cocos2d::Camera* _camera;
 	virtual void update(float deltaTime) override;

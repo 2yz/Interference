@@ -1,6 +1,6 @@
 #include "Skill.h"
 
-Skill::Skill() : _timer(0.0f), _CD(false)
+Skill::Skill() : timer_(0.0f), cd_(false)
 {
 }
 
@@ -18,30 +18,31 @@ bool Skill::init()
 	return true;
 }
 
-bool Skill::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target, int bulletParent)
+bool Skill::cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
-	if (_CD)
+	if (battle_layer == nullptr)
 		return false;
-	_CD = true;
+	if (cd_)
+		return false;
+	cd_ = true;
 	return true;
 }
 
-
 SkillCategory Skill::getSkillCategory()
 {
-	return _skillCategory;
+	return skill_category_;
 }
 
 void Skill::update(float deltaTime)
 {
 	Node::update(deltaTime);
-	if (_CD)
+	if (cd_)
 	{
-		_timer += deltaTime;
-		if (_timer >= _CDTime)
+		timer_ += deltaTime;
+		if (timer_ >= cd_time_)
 		{
-			_CD = false;
-			_timer = 0.0f;
+			cd_ = false;
+			timer_ = 0.0f;
 		}
 	}
 }

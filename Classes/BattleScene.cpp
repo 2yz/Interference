@@ -3,21 +3,21 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "MouseLayer.h"
+#include <SimpleAudioEngine.h>
 
 USING_NS_CC;
 
 BattleScene* BattleScene::battleScene = nullptr;
-UILayer* BattleScene::uiLayer = nullptr;
 // CameraNode* BattleScene::cameraNode = nullptr;
 
-BattleScene::BattleScene()
+BattleScene::BattleScene() : _HUDLayer(nullptr)
 {
 	battleScene = this;
 }
 
 BattleScene::~BattleScene()
 {
-	uiLayer = nullptr;
+	_HUDLayer = nullptr;
 	battleScene = nullptr;
 }
 
@@ -52,19 +52,23 @@ bool BattleScene::init()
 	this->addChild(battleLayer);
 
 	// UI Layer
-	uiLayer = UILayer::create();
-	this->addChild(uiLayer);
+	_HUDLayer = HUDLayer::create();
+	this->addChild(_HUDLayer);
 
 	// Mouse Layer
 	auto mouseLayer = MouseLayer::create();
 	this->addChild(mouseLayer);
 
+	// Add BackgroundMusic
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Title.mp3", true);
+	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+
 	return true;
 }
 
-UILayer* BattleScene::getUILayer()
+HUDLayer* BattleScene::getHUDLayer()
 {
-	return this->uiLayer;
+	return this->_HUDLayer;
 }
 
 // CameraNode* BattleScene::getCameraLayer()

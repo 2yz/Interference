@@ -127,8 +127,7 @@ void Controller::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f); break;
 	case EventKeyboard::KeyCode::KEY_E:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
-		keyEPressed = true;
-	default: break;
+		keyEPressed = true; break;
 	}
 }
 

@@ -63,9 +63,6 @@
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
       <Filter>src\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\UILayer.cpp">
-      <Filter>src\Layer</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -129,8 +126,14 @@
     <ClCompile Include="..\Classes\Enemy.cpp">
       <Filter>src\Object\Plane\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Message.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\Defense.cpp">
-      <Filter>src\Object</Filter>
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HUDLayer.cpp">
+      <Filter>src\Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,9 +156,6 @@
       <Filter>src\UserData</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameBackgroundLayer.h">
-      <Filter>src\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\UILayer.h">
       <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -223,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy.h">
       <Filter>src\Object\Plane\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Message.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HUDLayer.h">
+      <Filter>src\Layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

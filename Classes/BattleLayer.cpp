@@ -2,20 +2,24 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "GameBackgroundLayer.h"
-#include "AnimationUtil.h"
 #include "Block.h"
 #include "Enemy.h"
-#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
-BattleLayer::BattleLayer() : _camera(nullptr), player(nullptr), initHP(1000)
+BattleLayer* BattleLayer::battle_layer_ = nullptr;
+
+BattleLayer::BattleLayer() : _timer(0.0f), _camera(nullptr), _player(nullptr), shootLine(nullptr)
 {
+	battle_layer_ = this;
 }
 
 BattleLayer::~BattleLayer()
 {
+	battle_layer_ = nullptr;
 	_camera = nullptr;
+	_player = nullptr;
+	shootLine = nullptr;
 }
 
 bool BattleLayer::init()
@@ -42,14 +46,14 @@ bool BattleLayer::init()
 	this->addChild(edgeBlock);
 
 	// Create Player
-	player = Player::create();
-	player->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
-	this->addChild(player);
-
-	// Create Shoot Assist Line
-	shootLine = Sprite::create("ShootLine.png");
-	shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
-	this->addChild(shootLine);
+	if (!_player)
+	{
+		auto player = Player::create();
+		player->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
+		auto fadeIn = FadeIn::create(1.0f);
+		player->runAction(fadeIn);
+		this->addChild(player);
+	}
 
 	// Create Block1
 	auto block1 = Block::create();
@@ -71,88 +75,135 @@ bool BattleLayer::init()
 	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 5, 1.0f);
 	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);
 
-	// addEnemy(0.0f);
-    
-    // Add BackgroundMusic
-    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
-    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
-    
 	return true;
 }
 
-Player* BattleLayer::getPlayer()
+BattleLayer* BattleLayer::getInstance()
 {
-    
-	return player;
+	return battle_layer_;
 }
 
-void BattleLayer::update(float deltaTime)
+void BattleLayer::addChild(Node* child)
 {
-	// Count Children Nodes
-	// log("ChildrenCount %d", this->getChildrenCount());
-
-	// TODO setCameraMask at Every Node
-	this->setCameraMask(1 << 1);
-
-	// Use Default Camera
-	auto positionDelta = player->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) - _camera->getPosition();
-	auto eye = _camera->getPosition3D() + Vec3(positionDelta.x * player->getTraceCoefficient() * deltaTime, positionDelta.y * player->getTraceCoefficient() * deltaTime, 0.0f);
-	_camera->setPosition3D(eye);
-	eye.z = 0.0f;
-	_camera->lookAt(eye);
-
-	mousePositionInLayer = _camera->getPosition() + Controller::getMouseLocation();
-	// Update Shoot Assist
-	shootLine->setPosition(player->getPosition());
-	if (mousePositionInLayer.x - player->getPosition().x == 0)
-	{
-		shootLineRotateAngle = 90;
-	}
-	else
-	{
-		shootLineRotateAngle = atan((mousePositionInLayer.y - player->getPosition().y) / (mousePositionInLayer.x - player->getPosition().x)) / M_PI * 180;
-		if (mousePositionInLayer.x - player->getPosition().x < 0)
-		{
-			shootLineRotateAngle += 180;
-		}
-	}
-	shootLine->setRotation(-shootLineRotateAngle);
-	// Launch Skill when Mouse Down
-	if (Controller::getMouseDown())
-	{
-		auto velocity = mousePositionInLayer - player->getPosition();
-		velocity.normalize();
-		player->runSkill(velocity, ATTACK);
-	}
-
+	Layer::addChild(child);
+	addLayerChild(child);
 }
 
-bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
+void BattleLayer::addChild(Node* child, int localZOrder)
 {
+	Layer::addChild(child, localZOrder);
+	addLayerChild(child);
+}
 
-	BaseObject* nodeArray[2][2];
-	nodeArray[0][0] = static_cast<BaseObject*>(contact.getShapeA()->getBody()->getNode());
-	nodeArray[0][1] = static_cast<BaseObject*>(contact.getShapeB()->getBody()->getNode());
-	nodeArray[1][0] = nodeArray[0][1];
-	nodeArray[1][1] = nodeArray[0][0];
-
-	for (int i = 0; i < 2; ++i)
+void BattleLayer::addLayerChild(Node* child)
+{
+	switch (child->getTag())
 	{
-		if (nodeArray[i][0] != nullptr&&nodeArray[i][1] != nullptr)
+	case PLAYER_TAG:
+		if (!_player)
+			_player = dynamic_cast<Player*>(child);
+		this->enableShootLine();
+		break;
+	case ENEMY_TAG:
+		if (_enemy.empty())
 		{
-			log("CONTACT TEST TAG: %d", nodeArray[i][0]->getTag());
-			nodeArray[i][0]->onContact(nodeArray[i][1]);
-			// switch (nodeArray[i][0]->getTag())
-			// {
-			// case BULLET_TAG:
-			// 	nodeArray[i][0]->onContact(nodeArray[i][1]);
-			// 	break;
-			// default:
-			// 	break;
-			// }
+			_enemy.reserve(4);
 		}
+		_enemy.pushBack(child);
+		break;
+	case BLOCK_TAG:
+		if (_block.empty())
+		{
+			_block.reserve(4);
+		}
+		_block.pushBack(child);
+		break;
 	}
-	return true;
+}
+
+void BattleLayer::removeChild(Node* child, bool cleanup)
+{
+	switch (child->getTag())
+	{
+	case PLAYER_TAG:
+		_player = nullptr;
+		disableShootLine();
+		break;
+	case ENEMY_TAG:
+		if (!_enemy.empty())
+		{
+			auto index = _enemy.getIndex(child);
+			if (index != CC_INVALID_INDEX)
+				_enemy.erase(index);
+		}
+		break;
+	case BLOCK_TAG:
+		if (!_block.empty())
+		{
+			auto index = _block.getIndex(child);
+			if (index != CC_INVALID_INDEX)
+				_block.erase(index);
+		}
+		break;
+	}
+	Layer::removeChild(child, cleanup);
+}
+
+void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
+{
+	_player = nullptr;
+	_enemy.clear();
+	_block.clear();
+	Layer::removeAllChildrenWithCleanup(cleanup);
+}
+
+cocos2d::Vec2 BattleLayer::getPlayerDirection()
+{
+	Vec2 direction;
+	if (_player != nullptr)
+	{
+		direction = _camera->getPosition() + Controller::getMouseLocation() - _player->getPosition();
+		direction.normalize();
+	}
+	return direction;
+}
+
+cocos2d::Vec2 BattleLayer::getPlayerPosition()
+{
+	if (_player != nullptr)
+		return _player->getPosition();
+	return Vec2();
+}
+
+void BattleLayer::enableShootLine()
+{
+	if (_player == nullptr)
+		return;
+	if (shootLine == nullptr)
+	{
+		// Create Shoot Assist Line
+		shootLine = Sprite::create("ShootLine.png");
+		shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
+		this->addChild(shootLine);
+	}
+	auto fadeIn = FadeIn::create(10.0f);
+	shootLine->runAction(fadeIn);
+}
+
+void BattleLayer::disableShootLine()
+{
+	if (shootLine == nullptr)
+		return;
+	auto fadeOut = FadeOut::create(1.0f);
+	shootLine->runAction(fadeOut);
+}
+
+void BattleLayer::playerStateMachine()
+{
+}
+
+void BattleLayer::enemyStateMachine()
+{
 }
 
 void BattleLayer::addEnemy(float deltaTime)
@@ -166,4 +217,74 @@ void BattleLayer::addEnemy(float deltaTime)
 		this->addChild(enemy);
 		log("ENEMY CONTACT TEST %08X", enemy->getPhysicsBody()->getContactTestBitmask());
 	}
+}
+
+bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
+{
+
+	auto nodeA = dynamic_cast<BaseObject*>(contact.getShapeA()->getBody()->getNode());
+	auto nodeB = dynamic_cast<BaseObject*>(contact.getShapeB()->getBody()->getNode());
+	if (nodeA != nullptr && nodeB != nullptr)
+	{
+		auto messageA = nodeA->getMessage();
+		auto messageB = nodeB->getMessage();
+		nodeA->onContact(messageB);
+		nodeB->onContact(messageA);
+	}
+	return true;
+}
+
+void BattleLayer::updateCamera(float deltaTime)
+{
+	if (_player == nullptr)
+		return;
+	// Use Default Camera
+	auto positionDelta = _player->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) - _camera->getPosition();
+	auto eye = _camera->getPosition3D() + Vec3(positionDelta.x * _player->getTraceCoefficient() * deltaTime, positionDelta.y * _player->getTraceCoefficient() * deltaTime, 0.0f);
+	_camera->setPosition3D(eye);
+	eye.z = 0.0f;
+	_camera->lookAt(eye);
+}
+
+void BattleLayer::updateShootLine(float deltaTime)
+{
+	if (_player == nullptr)
+		return;
+	auto mousePositionInLayer = _camera->getPosition() + Controller::getMouseLocation();
+	// Update Shoot Assist
+	shootLine->setPosition(_player->getPosition());
+	float shootLineRotateAngle;
+	if (mousePositionInLayer.x - _player->getPosition().x == 0)
+	{
+		shootLineRotateAngle = 90;
+	}
+	else
+	{
+		shootLineRotateAngle = atan((mousePositionInLayer.y - _player->getPosition().y) / (mousePositionInLayer.x - _player->getPosition().x)) / M_PI * 180;
+		if (mousePositionInLayer.x - _player->getPosition().x < 0)
+		{
+			shootLineRotateAngle += 180;
+		}
+	}
+	shootLine->setRotation(-shootLineRotateAngle);
+
+}
+
+void BattleLayer::update(float deltaTime)
+{
+	_timer += deltaTime*getTimeCoefficient();
+	// TODO setCameraMask at Every Node
+	this->setCameraMask(1 << 1);
+	// Update Camera
+	updateCamera(deltaTime);
+	// Update ShootLine
+	updateShootLine(deltaTime);
+
+	int test = 10000.0f * deltaTime;
+	log("Update %d", test);
+	int* buf = new int(test);
+	EventCustom event("TimeEvent");
+	event.setUserData(buf);
+	_eventDispatcher->dispatchEvent(&event);
+	CC_SAFE_DELETE(buf);
 }

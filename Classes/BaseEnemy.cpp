@@ -14,13 +14,10 @@ bool BaseEnemy::init()
 	return true;
 }
 
-bool BaseEnemy::onContact(BaseObject* contactNode)
+void BaseEnemy::onContact(Message& message)
 {
-	if (contactNode->getTag() == PLAYER_TAG)
-	{
-		contactNode->reduceHP(_destroyDamage);
+	if (message.getInt("Tag") == PLAYER_TAG && _beDestroyable)
 		this->onDestroy();
-		return true;
-	}
-	return false;
+	if (message.getInt("Tag") == PLAYER_BULLET_TAG)
+		_HP -= message.getFloat("Damage");
 }

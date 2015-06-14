@@ -2,18 +2,20 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "Attack.h"
+#include "BattleLayer.h"
+#include <SimpleAudioEngine.h>
+#include "AnimationUtil.h"
 
 USING_NS_CC;
 
 Player::Player() : _accelerationMagnitude(800.0f)
 {
-	_HP = 2000.0f;
+	_HP = 300.0f;
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
-	_linearDamping = 1.0f;
-	_physicsRadius = 60.0f;
-	_rotateVelocity = 180.0f;
-	_beDestroyable = true;	
+	linear_damping_ = 1.0f;
+	physics_radius_ = 60.0f;
+	rotate_velocity_ = 180.0f;
 }
 
 bool Player::init()
@@ -24,22 +26,16 @@ bool Player::init()
 	}
 
 	// Create Sprite
-	auto sprite1 = Sprite::create();
-	auto sprite2 = Sprite::create();
-	auto sprite3 = Sprite::create();
-	auto sprite4 = Sprite::create();
-	sprite2->setRotation(180.0f);
-	sprite4->setRotation(180.0f);
-	sprite3->setScale(0.4f);
-	sprite4->setScale(0.4f);
-	_spriteVector.pushBack(sprite1);
-	_spriteVector.pushBack(sprite2);
-	_spriteVector.pushBack(sprite3);
-	_spriteVector.pushBack(sprite4);
-	this->addChild(sprite1);
-	this->addChild(sprite2);
-	this->addChild(sprite3);
-	this->addChild(sprite4);
+	for (int i = 0; i < 4; ++i)
+	{
+		auto sprite = Sprite::create();
+		_spriteVector.pushBack(sprite);
+		this->addChild(sprite);
+	}
+	_spriteVector.at(1)->setRotation(180.0f);
+	_spriteVector.at(3)->setRotation(180.0f);
+	_spriteVector.at(2)->setScale(0.4f);
+	_spriteVector.at(3)->setScale(0.4f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
@@ -49,14 +45,13 @@ bool Player::init()
 
 	// Create Skill
 	auto attack = Attack::create();
-	_skillVec.pushBack(attack);
-	this->addChild(attack);
+	addSkill(attack);
 
 	// Set Camera Trace Cofficient
 	this->setTraceCoefficient(_velocityMagnitude, _accelerationMagnitude, 1.0f / 60.0f);
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(_physicsRadius, MATERIAL_PLANE));
+	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_PLANE));
 
 	// Set Node Tag
 	this->setTag(PLAYER_TAG);
@@ -64,6 +59,12 @@ bool Player::init()
 	this->scheduleUpdate();
 
 	return true;
+}
+
+void Player::initMessage()
+{
+	_message.putString("Name", "Player");
+	_message.putInt("Tag", PLAYER_TAG);
 }
 
 void Player::onEnter()
@@ -75,13 +76,28 @@ void Player::onEnter()
 	_physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
 	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
-	_physicsBody->setLinearDamping(_linearDamping);
+	_physicsBody->setLinearDamping(linear_damping_);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
 
 	for (auto sprite : _spriteVector)
 	{
 		sprite->setColor(Color3B(128, 0, 0));
 	}
+}
+
+void Player::onDestroy()
+{
+	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3", false, 1.0f);
+	BasePlane::onDestroy();
+}
+
+void Player::onContact(Message& message)
+{
+	if (message.getInt("Tag") == ENEMY_TAG)
+		_HP -= message.getFloat("DestroyDamage");
+	if (message.getInt("Tag") == ENEMY_BULLET_TAG)
+		_HP -= message.getFloat("Damage");
 }
 
 float Player::getTraceCoefficient()
@@ -94,41 +110,8 @@ void Player::setTraceCoefficient(float maxSpeed, float acceleration, float delta
 	_traceCoefficient = 1.0f / (maxSpeed / acceleration + deltaTime);
 }
 
-void Player::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
+void Player::updateMove(float deltaTime)
 {
-	BasePlane::runSkill(velocity, skillCategory, skillIndex);
-	for (auto skill : _skillVec)
-	{
-		if (skill->getSkillCategory() == skillCategory)
-		{
-			if (skillIndex == 0)
-			{
-				skill->run(velocity, this->getParent(), this, PLAYER);
-			}
-			else
-			{
-				--skillIndex;
-			}
-		}
-	}
-}
-
-void Player::update(float deltaTime)
-{
-	BasePlane::update(deltaTime);
-
-	// Sprite Rotation
-	if (_spriteVector.size() == 4)
-	{
-		float spriteRotation = _spriteVector.at(0)->getRotation() + _rotateVelocity*deltaTime*getTimeCoefficient();
-		if (spriteRotation > 360000.0f)
-			spriteRotation -= 360000.0f;
-		_spriteVector.at(0)->setRotation(spriteRotation);
-		_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-		_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-		_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
-	}
-
 	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
 	{
 		_physicsBody->setVelocity(_physicsBody->getVelocity() + _accelerationMagnitude * deltaTime *
@@ -141,4 +124,32 @@ void Player::update(float deltaTime)
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
+}
+
+void Player::updateSkillCast(float deltaTime)
+{
+	if (Controller::getMouseDown())
+	{
+		auto battle_layer = BattleLayer::getInstance();
+		if (battle_layer != nullptr)
+			castSkill(battle_layer, battle_layer->getPlayerDirection(), 0);
+	}
+}
+
+void Player::update(float deltaTime)
+{
+	deltaTime *= getTimeCoefficient();
+	// Sprite Rotation
+	float spriteRotation = _spriteVector.at(0)->getRotation() + rotate_velocity_*deltaTime*getTimeCoefficient();
+	if (spriteRotation > 360000.0f)
+		spriteRotation -= 360000.0f;
+	_spriteVector.at(0)->setRotation(spriteRotation);
+	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
+	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
+	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+
+	updateMove(deltaTime);
+	updateSkillCast(deltaTime);
+
+	BasePlane::update(deltaTime);
 }

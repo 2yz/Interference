@@ -2,5 +2,5 @@
 
 Defense::Defense()
 {
-	_skillCategory = DEFENSE;
+	skill_category_ = DEFENSE;
 }

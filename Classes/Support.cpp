@@ -2,5 +2,5 @@
 
 Support::Support()
 {
-	_skillCategory = SUPPORT;
+	skill_category_ = SUPPORT;
 }
