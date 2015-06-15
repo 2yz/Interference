@@ -38,7 +38,7 @@ bool Block::init()
 		auto block = Sprite::createWithSpriteFrameName("Border.png");
 		_spriteVector.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::border_size_, PHYSICSSHAPE_MATERIAL_DEFAULT, 20.0f));
+		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::border_size_, MATERIAL_BLOCK, 20.0f));
 	}
 	else
 	{

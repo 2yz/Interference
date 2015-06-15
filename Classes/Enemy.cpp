@@ -12,7 +12,7 @@ Enemy::Enemy()
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 0.0f;
-	physics_radius_ = 40.0f;
+	physics_radius_ = 30.0f;
 	rotate_velocity_ = 100.0f;
 	_beDestroyable = true;
 	_destroyDamage = 100.0f;
@@ -30,22 +30,16 @@ bool Enemy::init()
 	this->setTag(ENEMY_TAG);
 
 	// Create Sprite
-	auto sprite1 = Sprite::create();
-	auto sprite2 = Sprite::create();
-	auto sprite3 = Sprite::create();
-	auto sprite4 = Sprite::create();
-	sprite2->setRotation(180.0f);
-	sprite4->setRotation(180.0f);
-	sprite3->setScale(0.6f);
-	sprite4->setScale(0.6f);
-	_spriteVector.pushBack(sprite1);
-	_spriteVector.pushBack(sprite2);
-	_spriteVector.pushBack(sprite3);
-	_spriteVector.pushBack(sprite4);
-	this->addChild(sprite1);
-	this->addChild(sprite2);
-	this->addChild(sprite3);
-	this->addChild(sprite4);
+	for (int i = 0; i < 4; ++i)
+	{
+		auto sprite = Sprite::create();
+		_spriteVector.pushBack(sprite);
+		this->addChild(sprite);
+	}
+	_spriteVector.at(1)->setRotation(180.0f);
+	_spriteVector.at(3)->setRotation(180.0f);
+	_spriteVector.at(2)->setScale(0.6f);
+	_spriteVector.at(3)->setScale(0.6f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)

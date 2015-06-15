@@ -14,7 +14,7 @@ Player::Player() : _accelerationMagnitude(800.0f)
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
-	physics_radius_ = 60.0f;
+	physics_radius_ = 50.0f;
 	rotate_velocity_ = 180.0f;
 }
 
@@ -34,9 +34,9 @@ bool Player::init()
 	}
 	_spriteVector.at(1)->setRotation(180.0f);
 	_spriteVector.at(3)->setRotation(180.0f);
-	_spriteVector.at(2)->setScale(0.4f);
-	_spriteVector.at(3)->setScale(0.4f);
-	this->setScale(0.7f);
+	_spriteVector.at(2)->setScale(0.5f);
+	_spriteVector.at(3)->setScale(0.5f);
+	this->setScale(0.6f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
