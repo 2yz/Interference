@@ -1,6 +1,7 @@
 #include "Attack.h"
 #include "Bullet.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 Attack::Attack()
 {
@@ -17,6 +18,7 @@ bool Attack::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::
 	auto bullet = Bullet::create(velocity,bulletParent);
 	bullet->setPosition(target->getPosition());
 	parent->addChild(bullet);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("bullet.mp3",false,1.5f);
+    //CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hoot.mp3",false,1.5f);
+    cocos2d::experimental::AudioEngine::play2d("Shoot.mp3",false,0.3f);
 	return true;
 }

@@ -1,6 +1,7 @@
 #include "BaseBullet.h"
 #include "AnimationUtil.h"
 #include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -29,6 +30,7 @@ void BaseBullet::onContact(BaseObject* contactNode)
 	if (_bulletParent != contactNode->getTag())
 	{
 		contactNode->reduceHP(_damage);
+        cocos2d::experimental::AudioEngine::play2d("Impact.mp3",false,1.5f);
 	}
 	this->onDestroy();
 }

@@ -2,6 +2,7 @@
 #include "ConfigUtil.h"
 #include "AnimationUtil.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -68,14 +69,17 @@ void Enemy::onEnter()
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_MASK);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
-	_physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+    _physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+    auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    for (auto sprite : _spriteVector)
+        sprite->runAction(tintTo->clone());
 }
 
 void Enemy::onDestroy()
 {
-	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
-	// test->setTexture(TextureCache::addImage(""));
+    AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+    //CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3",false,1.0f);
+    cocos2d::experimental::AudioEngine::play2d("Death.mp3");
 	BaseEnemy::onDestroy();
 }
 

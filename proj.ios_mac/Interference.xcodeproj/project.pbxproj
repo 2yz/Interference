@@ -50,6 +50,7 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		68DF4CD48FF618773F3C8241 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */; };
 		7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
+		81445B8E1B2967B90004968F /* Cloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81445B8D1B2967B90004968F /* Cloud.plist */; };
 		81613DCD1B25381100D4C6CF /* Attack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DB71B25381100D4C6CF /* Attack.cpp */; };
 		81613DCE1B25381100D4C6CF /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DB91B25381100D4C6CF /* Block.cpp */; };
 		81613DCF1B25381100D4C6CF /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81613DBB1B25381100D4C6CF /* Boss.cpp */; };
@@ -76,7 +77,6 @@
 		81A2E8BD1B275067006AF135 /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8B51B275067006AF135 /* Boom.plist */; };
 		81A2E8BE1B275067006AF135 /* Boom.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8B61B275067006AF135 /* Boom.png */; };
 		81A2E8BF1B275067006AF135 /* Cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8B71B275067006AF135 /* Cloud.png */; };
-		81A2E8C01B275067006AF135 /* Colud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8B81B275067006AF135 /* Colud.plist */; };
 		81A2E8C11B275067006AF135 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8B91B275067006AF135 /* Death.plist */; };
 		81A2E8C21B275067006AF135 /* Death.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A2E8BA1B275067006AF135 /* Death.png */; };
 		81BE3AF41B1F637E0016364D /* BattleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81BE3AEE1B1F637E0016364D /* BattleLayer.cpp */; };
@@ -142,6 +142,7 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d Mac.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.6/prebuilt/mac/libcocos2d Mac.a"; sourceTree = "<absolute>"; };
+		81445B8D1B2967B90004968F /* Cloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cloud.plist; sourceTree = "<group>"; };
 		81613DB71B25381100D4C6CF /* Attack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attack.cpp; sourceTree = "<group>"; };
 		81613DB81B25381100D4C6CF /* Attack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attack.h; sourceTree = "<group>"; };
 		81613DB91B25381100D4C6CF /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
@@ -189,7 +190,6 @@
 		81A2E8B51B275067006AF135 /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
 		81A2E8B61B275067006AF135 /* Boom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom.png; sourceTree = "<group>"; };
 		81A2E8B71B275067006AF135 /* Cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud.png; sourceTree = "<group>"; };
-		81A2E8B81B275067006AF135 /* Colud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colud.plist; sourceTree = "<group>"; };
 		81A2E8B91B275067006AF135 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Death.plist; sourceTree = "<group>"; };
 		81A2E8BA1B275067006AF135 /* Death.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death.png; sourceTree = "<group>"; };
 		81BE3AED1B1F637E0016364D /* BaseBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBullet.h; sourceTree = "<group>"; };
@@ -323,12 +323,12 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81445B8D1B2967B90004968F /* Cloud.plist */,
 				81A2E8B31B275067006AF135 /* Birth.plist */,
 				81A2E8B41B275067006AF135 /* Birth.png */,
 				81A2E8B51B275067006AF135 /* Boom.plist */,
 				81A2E8B61B275067006AF135 /* Boom.png */,
 				81A2E8B71B275067006AF135 /* Cloud.png */,
-				81A2E8B81B275067006AF135 /* Colud.plist */,
 				81A2E8B91B275067006AF135 /* Death.plist */,
 				81A2E8BA1B275067006AF135 /* Death.png */,
 				FA144D09A52357282113E0F8 /* res */,
@@ -541,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81445B8E1B2967B90004968F /* Cloud.plist in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -572,7 +573,6 @@
 				81A2E8BC1B275067006AF135 /* Birth.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				81A2E8C11B275067006AF135 /* Death.plist in Resources */,
-				81A2E8C01B275067006AF135 /* Colud.plist in Resources */,
 				81A2E8C21B275067006AF135 /* Death.png in Resources */,
 				81A2E8BD1B275067006AF135 /* Boom.plist in Resources */,
 				81A2E8BF1B275067006AF135 /* Cloud.png in Resources */,

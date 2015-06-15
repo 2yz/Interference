@@ -6,6 +6,7 @@
 #include "Block.h"
 #include "Enemy.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -74,8 +75,9 @@ bool BattleLayer::init()
 	// addEnemy(0.0f);
     
     // Add BackgroundMusic
-    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
-    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+    //CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
+    //CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+    cocos2d::experimental::AudioEngine::play2d("Demo.mp3",true,0.3f);
     
 	return true;
 }
