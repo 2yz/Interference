@@ -25,7 +25,7 @@ void Attack::onEnter()
 	}
 }
 
-bool Attack::cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+bool Attack::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
 	if (!Skill::cast(battle_layer,skill_parent,direction,skill_targer))
 		return false;

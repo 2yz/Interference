@@ -9,7 +9,7 @@ public:
 	CREATE_FUNC(Attack);
 	Attack();
 	virtual void onEnter() override;
-	virtual bool cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr) override;
+	virtual bool cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr) override;
 protected:
 	int skill_parent_;
 };

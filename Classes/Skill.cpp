@@ -18,7 +18,7 @@ bool Skill::init()
 	return true;
 }
 
-bool Skill::cast(cocos2d::Layer* battle_layer, BasePlane* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+bool Skill::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
 	if (battle_layer == nullptr)
 		return false;
