@@ -34,12 +34,10 @@ public:
 	void setVelocity(const cocos2d::Vect& velocity);
 	float getVelocityMagnitude();
 	float getVelocityDirection();
-	virtual void update(float deltaTime) override;
 protected:
 	Message _message;
 	float _timer;
 	float _HP;
-	bool _neverDie; // Is never under attack
 	float _velocityMagnitude; // Velocity unit is pixel per second
 	float _velocityDirection; // Velocity direction angle in radian measure
 	cocos2d::PhysicsBody* _physicsBody;

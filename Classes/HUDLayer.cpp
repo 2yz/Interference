@@ -42,11 +42,19 @@ bool HUDLayer::init()
 
 void HUDLayer::setEventListener()
 {
-	auto listener = EventListenerCustom::create("TimeEvent", [=](EventCustom* event){
+	auto listener = EventListenerCustom::create("TimeEvent", [=](EventCustom* event)
+	{
 		int* buf = static_cast<int*>(event->getUserData());
 		log("TimeEvent %d", *buf);
 	});
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	auto score_listener = EventListenerCustom::create("ScoreEvent", [=](EventCustom* event)
+	{
+		int* buf = static_cast<int*>(event->getUserData());
+		score += *buf;
+		log("# Score #\n%d", score);
+	});
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(score_listener, this);
 }
 
 void HUDLayer::addScoreBy(int addScore)
@@ -128,4 +136,9 @@ void HUDLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::E
 	default:
 		break;
 	}
+}
+
+void HUDLayer::update(float deltaTime)
+{
+
 }

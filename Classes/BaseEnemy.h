@@ -8,10 +8,10 @@ class BaseEnemy : public BasePlane
 public:
 	BaseEnemy();
 	virtual bool init() override;
-	virtual void onContact(Message& message) override;
 protected:
 	bool _beDestroyable; // Is destroyable when contact
 	float _destroyDamage; // Damage to Player when destroy for contact
+	int score_;
 };
 
 #endif /* BASEENEMY_H_ */

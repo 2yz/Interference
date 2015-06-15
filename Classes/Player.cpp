@@ -10,8 +10,7 @@ USING_NS_CC;
 
 Player::Player() : _accelerationMagnitude(800.0f)
 {
-	_HP = 1000.0f;
-	_neverDie = false;
+	_HP = 100000.0f;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
 	physics_radius_ = 50.0f;
@@ -92,8 +91,10 @@ void Player::onContact(Message& message)
 {
 	if (message.getInt("Tag") == ENEMY_TAG)
 		_HP -= message.getFloat("DestroyDamage");
-	if (message.getInt("Tag") == ENEMY_BULLET_TAG)
+	else if (message.getInt("Tag") == ENEMY_BULLET_TAG)
 		_HP -= message.getFloat("Damage");
+	if (_HP < 0.0f)
+		onDestroy();
 }
 
 float Player::getTraceCoefficient()

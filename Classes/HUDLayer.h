@@ -14,6 +14,11 @@ public:
 	void updateHPIndicator();
 	void setLaunchButtonEnable();
 	int getScore();
+	void updateScore();
+	void menuPauseCallback(cocos2d::Ref* pSender);
+	void menuLaunchCallback(cocos2d::Ref* pSender);
+	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) override;
+	virtual void update(float deltaTime) override;
 private:
 	int score;
 	cocos2d::Label* scoreLabel;
@@ -21,12 +26,7 @@ private:
 	cocos2d::MenuItemSprite* launchButtonItem;
 	cocos2d::ProgressTimer* HPIndicator;
 	cocos2d::Menu* pauseButton;
-	cocos2d::Menu* launchButton;
-
-	void updateScore();
-	void menuPauseCallback(cocos2d::Ref* pSender);
-	void menuLaunchCallback(cocos2d::Ref* pSender);
-	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) override;
+	cocos2d::Menu* launchButton;	
 };
 
 #endif /* UILAYER_H_ */

@@ -15,10 +15,6 @@ Block* Block::create(bool isEdge)
 Block::Block(bool isEdge) : _isEdge(isEdge)
 {
 	_HP = 1000.0f;
-	if (isEdge)
-		_neverDie = true;
-	else
-		_neverDie = false;
 	_velocityMagnitude = 100.0f;
 }
 
@@ -73,8 +69,10 @@ void Block::onDestroy()
 
 void Block::onContact(Message& message)
 {
-	if (message.getInt("Tag") == PLAYER_BULLET_TAG && !_neverDie)
+	if (message.getInt("Tag") == PLAYER_BULLET_TAG && !_isEdge)
 		_HP -= message.getFloat("Damage");
+	if (_HP <= 0.0f)
+		onDestroy();
 }
 
 void Block::initMessage()

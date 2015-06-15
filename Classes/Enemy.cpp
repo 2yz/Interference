@@ -9,7 +9,6 @@ USING_NS_CC;
 Enemy::Enemy()
 {
 	_HP = 500.0f;
-	_neverDie = false;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 0.0f;
 	physics_radius_ = 30.0f;
@@ -17,6 +16,7 @@ Enemy::Enemy()
 	_beDestroyable = true;
 	_destroyDamage = 100.0f;
 	_velocityMagnitude = 300.0f;
+	score_ = 50;
 }
 
 bool Enemy::init()
@@ -82,6 +82,24 @@ void Enemy::onDestroy()
     AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
     cocos2d::experimental::AudioEngine::play2d("Death.mp3");
 	BaseEnemy::onDestroy();
+}
+
+void Enemy::onContact(Message& message)
+{
+	if (message.getInt("Tag") == PLAYER_TAG && _beDestroyable)
+		_HP = 0.0f;
+	else if (message.getInt("Tag") == PLAYER_BULLET_TAG)
+		_HP -= message.getFloat("Damage");
+	// Check whether is die
+	if (_HP <= 0.0f)
+	{
+		int* buf = new int(score_);
+		EventCustom event("ScoreEvent");
+		event.setUserData(buf);
+		_eventDispatcher->dispatchEvent(&event);
+		CC_SAFE_DELETE(buf);
+		onDestroy();
+	}
 }
 
 void Enemy::updateStateMachine()

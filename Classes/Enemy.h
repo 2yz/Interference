@@ -12,6 +12,7 @@ public:
 	virtual void initMessage() override;
 	virtual void onEnter() override;
 	virtual void onDestroy() override;
+	void onContact(Message& message) override;
 	void updateStateMachine();
 	virtual void update(float deltaTime) override;
 };

@@ -73,13 +73,11 @@ bool BattleLayer::init()
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
-	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 5, 1.0f);
+	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 50, 1.0f);
 	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);  
 	// addEnemy(0.0f);
 
 	// Add BackgroundMusic
-	//CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
-	//CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
 	cocos2d::experimental::AudioEngine::play2d("Demo.mp3", true, 0.3f);
 
 	return true;
@@ -215,14 +213,13 @@ void BattleLayer::enemyStateMachine()
 
 void BattleLayer::addEnemy(float deltaTime)
 {
-	int num = random(4, 9);
+	int num = random(5, 15);
 	Enemy* enemy;
 	for (int i = 0; i < num; ++i)
 	{
 		enemy = Enemy::create();
 		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
 		this->addChild(enemy);
-		log("ENEMY CONTACT TEST %08X", enemy->getPhysicsBody()->getContactTestBitmask());
 	}
 }
 
@@ -286,12 +283,4 @@ void BattleLayer::update(float deltaTime)
 	updateCamera(deltaTime);
 	// Update ShootLine
 	updateShootLine(deltaTime);
-
-	int test = 10000.0f * deltaTime;
-	log("Update %d", test);
-	int* buf = new int(test);
-	EventCustom event("TimeEvent");
-	event.setUserData(buf);
-	_eventDispatcher->dispatchEvent(&event);
-	CC_SAFE_DELETE(buf);
 }

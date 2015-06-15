@@ -81,9 +81,3 @@ float BaseObject::getVelocityDirection()
 {
 	return 0.0f;
 }
-
-void BaseObject::update(float deltaTime)
-{
-	if (!_neverDie && _HP <= 0.0f)
-		this->onDestroy();
-}
