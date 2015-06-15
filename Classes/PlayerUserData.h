@@ -10,4 +10,5 @@ private:
 	int HP;
 };
 
+
 #endif /* PLAYERDATA_H_ */

@@ -59,12 +59,6 @@ bool Bullet::init()
 	return true;
 }
 
-void Bullet::onEnter()
-{
-	BaseBullet::onEnter();
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("bullet.mp3", false);
-}
-
 void Bullet::initMessage()
 {
 	_message.putString("Name", "Bullet");

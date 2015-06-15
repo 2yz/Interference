@@ -10,7 +10,7 @@ USING_NS_CC;
 
 Player::Player() : _accelerationMagnitude(800.0f)
 {
-	_HP = 300.0f;
+	_HP = 1000.0f;
 	_neverDie = false;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
@@ -36,11 +36,12 @@ bool Player::init()
 	_spriteVector.at(3)->setRotation(180.0f);
 	_spriteVector.at(2)->setScale(0.4f);
 	_spriteVector.at(3)->setScale(0.4f);
+	this->setScale(0.7f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
 	{
-		sprite->setSpriteFrame("hexagon.png");
+		sprite->setSpriteFrame(PLAYER_SPRITE_FRAME);
 	}
 
 	// Create Skill
@@ -51,7 +52,7 @@ bool Player::init()
 	this->setTraceCoefficient(_velocityMagnitude, _accelerationMagnitude, 1.0f / 60.0f);
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_PLANE));
+	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_PLAYER_PLANE));
 
 	// Set Node Tag
 	this->setTag(PLAYER_TAG);
@@ -78,11 +79,6 @@ void Player::onEnter()
 	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
 	_physicsBody->setLinearDamping(linear_damping_);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
-
-	for (auto sprite : _spriteVector)
-	{
-		sprite->setColor(Color3B(128, 0, 0));
-	}
 }
 
 void Player::onDestroy()

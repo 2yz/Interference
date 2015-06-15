@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="Interference" Version="2.2.6.0" Type="CocosStudio" />
+  <PropertyGroup Name="Interference" Version="2.2.9.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -13,6 +13,9 @@
         <Image Name="ShootBox.png" />
         <Image Name="ShootLine.png" />
         <Image Name="bullet.png" />
+        <Image Name="Border.png" />
+        <Image Name="Enemy.png" />
+        <Image Name="Player.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -40,15 +40,20 @@
 #define BLOCK_CONTACT_MASK 0xFF000000
 #define BLOCK_COLLISION_MASK 0xFFFFFFFF
 
-#define MATERIAL_PLANE PhysicsMaterial(10.0f, 0.0f, 0.0f)
+#define MATERIAL_PLAYER_PLANE PhysicsMaterial(10.0f, 0.0f, 0.0f)
+#define MATERIAL_ENEMY_PLANE PhysicsMaterial(10.0f, 1.0f, 0.0f)
 #define MATERIAL_BULLET PhysicsMaterial(0.5f, 0.0f, 0.0f)
-#define MATERIAL_BLOCK PhysicsMaterial(100.0f, 0.0f, 0.0f)
+#define MATERIAL_BLOCK PhysicsMaterial(100.0f, 1.0f, 0.0f)
+
+#define PLAYER_SPRITE_FRAME "Player.png" 
+#define ENEMY_SPRITE_FRAME "Enemy.png"
 
 class ConfigUtil
 {
 public:
 	static cocos2d::Size visibleSize;
 	static cocos2d::Vec2 visibleOrigin;
+	static cocos2d::Size border_size_;
 	static float visibleWidth;
 	static float visibleHeight;
 	static float battleSceneWidth;

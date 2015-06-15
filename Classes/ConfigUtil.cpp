@@ -2,6 +2,7 @@
 
 cocos2d::Size ConfigUtil::visibleSize = cocos2d::Size();
 cocos2d::Vec2 ConfigUtil::visibleOrigin = cocos2d::Vec2();
+cocos2d::Size ConfigUtil::border_size_ = cocos2d::Size(1440.0f, 1440.0f);
 float ConfigUtil::visibleWidth = 0;
 float ConfigUtil::visibleHeight = 0;
 float ConfigUtil::battleSceneWidth = 1280 * 2;

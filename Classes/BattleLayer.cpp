@@ -4,6 +4,7 @@
 #include "GameBackgroundLayer.h"
 #include "Block.h"
 #include "Enemy.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -42,7 +43,7 @@ bool BattleLayer::init()
 
 	// Create Edge
 	auto edgeBlock = Block::create(true);
-	edgeBlock->setPosition(ConfigUtil::visibleSize);
+	edgeBlock->setPosition(ConfigUtil::border_size_ / 2);
 	this->addChild(edgeBlock);
 
 	// Create Player
@@ -73,7 +74,13 @@ bool BattleLayer::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
 	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 5, 1.0f);
-	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);
+	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);  
+	// addEnemy(0.0f);
+
+	// Add BackgroundMusic
+	//CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Demo.mp3",true);
+	//CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+	cocos2d::experimental::AudioEngine::play2d("Demo.mp3", true, 0.3f);
 
 	return true;
 }
@@ -213,7 +220,7 @@ void BattleLayer::addEnemy(float deltaTime)
 	for (int i = 0; i < num; ++i)
 	{
 		enemy = Enemy::create();
-		enemy->setPosition(Vec2(random(50.0f, 2000.0f), random(50.0f, 1200.0f)));
+		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
 		this->addChild(enemy);
 		log("ENEMY CONTACT TEST %08X", enemy->getPhysicsBody()->getContactTestBitmask());
 	}

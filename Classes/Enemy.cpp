@@ -2,6 +2,7 @@
 #include "ConfigUtil.h"
 #include "AnimationUtil.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -35,8 +36,8 @@ bool Enemy::init()
 	auto sprite4 = Sprite::create();
 	sprite2->setRotation(180.0f);
 	sprite4->setRotation(180.0f);
-	sprite3->setScale(0.2f);
-	sprite4->setScale(0.2f);
+	sprite3->setScale(0.6f);
+	sprite4->setScale(0.6f);
 	_spriteVector.pushBack(sprite1);
 	_spriteVector.pushBack(sprite2);
 	_spriteVector.pushBack(sprite3);
@@ -45,16 +46,15 @@ bool Enemy::init()
 	this->addChild(sprite2);
 	this->addChild(sprite3);
 	this->addChild(sprite4);
-	this->setScale(0.7f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
 	{
-		sprite->setSpriteFrame("square.png");
+		sprite->setSpriteFrame(ENEMY_SPRITE_FRAME);
 	}
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_PLANE));
+	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_ENEMY_PLANE));
 
 	this->scheduleUpdate();
 
@@ -77,13 +77,16 @@ void Enemy::onEnter()
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_MASK);
 	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_MASK);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
-	_physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+    _physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+    auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+    for (auto sprite : _spriteVector)
+        sprite->runAction(tintTo->clone());
 }
 
 void Enemy::onDestroy()
 {
-	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3", false);
+    AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+    cocos2d::experimental::AudioEngine::play2d("Death.mp3");
 	BaseEnemy::onDestroy();
 }
 

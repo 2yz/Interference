@@ -1,6 +1,7 @@
 #include "Attack.h"
 #include "Bullet.h"
 #include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 Attack::Attack()
 {
@@ -34,5 +35,6 @@ bool Attack::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const 
 	auto bullet = Bullet::create(skill_parent_, direction);
 	bullet->setPosition(skill_parent->getPosition());
 	battle_layer->addChild(bullet);
+    cocos2d::experimental::AudioEngine::play2d("Shoot.mp3",false,0.3f);
 	return true;
 }

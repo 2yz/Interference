@@ -1,6 +1,7 @@
 #include "BaseBullet.h"
 #include "AnimationUtil.h"
 #include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -19,6 +20,7 @@ bool BaseBullet::init()
 
 void BaseBullet::onDestroy()
 {
+	cocos2d::experimental::AudioEngine::play2d("Impact.mp3", false, 1.5f);
 	AnimationUtil::runParticleAnimation("Boom", this->getParent(), this);
 	BaseObject::onDestroy();
 }
