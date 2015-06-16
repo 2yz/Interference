@@ -27,7 +27,7 @@ bool Enemy::init()
 	}
 
 	// Set Node Tag
-	this->setTag(ENEMY_TAG);
+	this->setTag(kEnemyTag);
 
 	// Create Sprite
 	for (int i = 0; i < 4; ++i)
@@ -44,11 +44,11 @@ bool Enemy::init()
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
 	{
-		sprite->setSpriteFrame(ENEMY_SPRITE_FRAME);
+		sprite->setSpriteFrame(kEnemySpriteFrame);
 	}
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_ENEMY_PLANE));
+	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, kEnemyMaterial));
 
 	this->scheduleUpdate();
 
@@ -57,21 +57,20 @@ bool Enemy::init()
 
 void Enemy::initMessage()
 {
-	_message.putString("Name", "Enemy");
-	_message.putInt("Tag", ENEMY_TAG);
-	_message.putFloat("DestroyDamage", _destroyDamage);
+	_message.putString(kNameKey, kEnemyName);
+	_message.putInt(kTagKey, kEnemyTag);
+	_message.putFloat(kDestroyDamageKey, _destroyDamage);
 }
 
 void Enemy::onEnter()
 {
 	BaseEnemy::onEnter();
 	// Set Physics Body
-	_physicsBody->setGroup(ENEMY_GROUP);
-	_physicsBody->setContactTestBitmask(ENEMY_CONTACT_MASK);
-	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_MASK);
-	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_MASK);
+	_physicsBody->setGroup(kEnemyGroup);
+	_physicsBody->setContactTestBitmask(kEnemyContactMask);
+	_physicsBody->setCollisionBitmask(kEnemyCollisionMask);
+	_physicsBody->setCategoryBitmask(kEnemyCategoryMask);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
-    _physicsBody->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
     auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
     for (auto sprite : _spriteVector)
         sprite->runAction(tintTo->clone());
@@ -79,22 +78,21 @@ void Enemy::onEnter()
 
 void Enemy::onDestroy()
 {
-    AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-    cocos2d::experimental::AudioEngine::play2d("Death.mp3");
+    AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
+	experimental::AudioEngine::play2d(kDeathAudio);
 	BaseEnemy::onDestroy();
 }
 
 void Enemy::onContact(Message& message)
 {
-	if (message.getInt("Tag") == PLAYER_TAG && _beDestroyable)
+	if (message.getInt(kTagKey) == kPlayerTag && _beDestroyable)
 		_HP = 0.0f;
-	else if (message.getInt("Tag") == PLAYER_BULLET_TAG)
-		_HP -= message.getFloat("Damage");
-	// Check whether is die
+	else if (message.getInt(kTagKey) == kPlayerBulletTag)
+		_HP -= message.getFloat(kDamageKey);
 	if (_HP <= 0.0f)
 	{
 		int* buf = new int(score_);
-		EventCustom event("ScoreEvent");
+		EventCustom event(kScoreEvent);
 		event.setUserData(buf);
 		_eventDispatcher->dispatchEvent(&event);
 		CC_SAFE_DELETE(buf);

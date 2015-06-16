@@ -1,0 +1,18 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Type="Plist" Name="main_texture" ID="3ca1531d-45a3-40e9-ac7e-614817244f4b" Version="2.2.9.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="True" AllowTrim="False" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="texture/bullet.png" />
+      <FilePathData Path="texture/edge.png" />
+      <FilePathData Path="texture/enemy.png" />
+      <FilePathData Path="texture/hexagon.png" />
+      <FilePathData Path="texture/pentagon.png" />
+      <FilePathData Path="texture/player.png" />
+      <FilePathData Path="texture/shoot_box.png" />
+      <FilePathData Path="texture/shoot_line.png" />
+      <FilePathData Path="texture/square.png" />
+      <FilePathData Path="texture/triangle.png" />
+    </ImageFiles>
+    <MaxSize Width="4096" Height="4096" />
+  </Content>
+</PlistInfoProjectFile>

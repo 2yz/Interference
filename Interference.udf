@@ -30,10 +30,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="MainScene.csd" />
-          <FilePathData Path="shape.csi" />
+          <FilePathData Path="main_texture.csi" />
         </OpenedDocuments>
-        <ActiveDocument Path="shape.csi" />
+        <ActiveDocument Path="main_texture.csi" />
       </Value>
     </Item>
   </Properties>

@@ -48,7 +48,6 @@ void BaseObject::onDestroy()
 
 void BaseObject::onContact(Message& message)
 {
-	log("BaseObject::onContact(Message& message)");
 }
 
 void BaseObject::initMessage()
@@ -68,7 +67,8 @@ void BaseObject::setParent(Node* parent)
 
 void BaseObject::setVelocity(const cocos2d::Vect& velocity)
 {
-	this->getPhysicsBody()->setVelocity(velocity);
+	if (_physicsBody)
+		_physicsBody->setVelocity(velocity);
 }
 
 float BaseObject::getVelocityMagnitude()

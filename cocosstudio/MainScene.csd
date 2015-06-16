@@ -89,25 +89,25 @@
             <PreSize />
           </AbstractNodeData>
           <AbstractNodeData Name="hexagon_1" ActionTag="-1075525838" Tag="7" IconVisible="False" LeftMargin="969.5000" RightMargin="160.5000" TopMargin="238.0000" BottomMargin="332.0000" ctype="SpriteObjectData">
-            <Size X="150.0000" Y="150.0000" />
+            <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1044.5000" Y="407.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8160" Y="0.5653" />
             <PreSize />
-            <FileData Type="MarkedSubImage" Path="hexagon.png" Plist="shape.plist" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="1" />
           </AbstractNodeData>
           <AbstractNodeData Name="pentagon_2" ActionTag="-1189305290" Tag="8" IconVisible="False" LeftMargin="993.5000" RightMargin="136.5000" TopMargin="196.0000" BottomMargin="374.0000" ctype="SpriteObjectData">
-            <Size X="150.0000" Y="150.0000" />
+            <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1068.5000" Y="449.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.8348" Y="0.6236" />
             <PreSize />
-            <FileData Type="MarkedSubImage" Path="pentagon.png" Plist="shape.plist" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="1" />
           </AbstractNodeData>
         </Children>

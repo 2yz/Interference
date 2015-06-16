@@ -1,5 +1,6 @@
 #include "MouseLayer.h"
 #include "Controller.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
@@ -13,7 +14,7 @@ bool MouseLayer::init()
 	{
 		return false;
 	}
-	mouseSprite = Sprite::createWithSpriteFrameName("ShootBox.png");
+	mouseSprite = Sprite::createWithSpriteFrameName(kShootBoxSpriteFrame);
 	this->addChild(mouseSprite);
 	this->scheduleUpdate();
 	return true;

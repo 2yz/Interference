@@ -31,10 +31,10 @@ bool BattleLayer::init()
 	}
 
 	// Create Battle Camera
-	_camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0.0f, 1000.0f);
+	_camera = Camera::createOrthographic(config::visible_width, config::visible_height, 0.0f, 1000.0f);
 	_camera->setCameraFlag(CameraFlag::USER1);
-	_camera->setPosition3D(Vec3((ConfigUtil::battleSceneWidth - ConfigUtil::visibleWidth) / 2, (ConfigUtil::battleSceneHeight - ConfigUtil::visibleHeight) / 2, 400));
-	_camera->lookAt(Vec3((ConfigUtil::battleSceneWidth - ConfigUtil::visibleWidth) / 2, (ConfigUtil::battleSceneHeight - ConfigUtil::visibleHeight) / 2, 0));
+	_camera->setPosition3D(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 400));
+	_camera->lookAt(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 0));
 	this->addChild(_camera);
 
 	// Create Background
@@ -43,14 +43,14 @@ bool BattleLayer::init()
 
 	// Create Edge
 	auto edgeBlock = Block::create(true);
-	edgeBlock->setPosition(ConfigUtil::border_size_ / 2);
+	edgeBlock->setPosition(config::kBattleScene / 2);
 	this->addChild(edgeBlock);
 
 	// Create Player
 	if (!_player)
 	{
 		auto player = Player::create();
-		player->setPosition(ConfigUtil::battleSceneWidth / 2, ConfigUtil::battleSceneHeight / 2);
+		player->setPosition(config::kBattleScene / 2);
 		auto fadeIn = FadeIn::create(1.0f);
 		player->runAction(fadeIn);
 		this->addChild(player);
@@ -78,7 +78,7 @@ bool BattleLayer::init()
 	// addEnemy(0.0f);
 
 	// Add BackgroundMusic
-	cocos2d::experimental::AudioEngine::play2d("Demo.mp3", true, 0.3f);
+	cocos2d::experimental::AudioEngine::play2d(kBackgroundMusic, true, kBackgroundMusicVolume);
 
 	return true;
 }
@@ -104,19 +104,19 @@ void BattleLayer::addLayerChild(Node* child)
 {
 	switch (child->getTag())
 	{
-	case PLAYER_TAG:
+	case kPlayerTag:
 		if (!_player)
 			_player = dynamic_cast<Player*>(child);
 		this->enableShootLine();
 		break;
-	case ENEMY_TAG:
+	case kEnemyTag:
 		if (_enemy.empty())
 		{
 			_enemy.reserve(4);
 		}
 		_enemy.pushBack(child);
 		break;
-	case BLOCK_TAG:
+	case kBlockTag:
 		if (_block.empty())
 		{
 			_block.reserve(4);
@@ -130,11 +130,11 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 {
 	switch (child->getTag())
 	{
-	case PLAYER_TAG:
+	case kPlayerTag:
 		_player = nullptr;
 		disableShootLine();
 		break;
-	case ENEMY_TAG:
+	case kEnemyTag:
 		if (!_enemy.empty())
 		{
 			auto index = _enemy.getIndex(child);
@@ -142,7 +142,7 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 				_enemy.erase(index);
 		}
 		break;
-	case BLOCK_TAG:
+	case kBlockTag:
 		if (!_block.empty())
 		{
 			auto index = _block.getIndex(child);
@@ -187,7 +187,7 @@ void BattleLayer::enableShootLine()
 	if (shootLine == nullptr)
 	{
 		// Create Shoot Assist Line
-		shootLine = Sprite::create("ShootLine.png");
+		shootLine = Sprite::createWithSpriteFrameName(kShootLineSpriteFrame);
 		shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
 		this->addChild(shootLine);
 	}
@@ -219,6 +219,7 @@ void BattleLayer::addEnemy(float deltaTime)
 	{
 		enemy = Enemy::create();
 		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
+		enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
 		this->addChild(enemy);
 	}
 }
@@ -243,7 +244,7 @@ void BattleLayer::updateCamera(float deltaTime)
 	if (_player == nullptr)
 		return;
 	// Use Default Camera
-	auto positionDelta = _player->getPosition() - Vec2(ConfigUtil::visibleWidth / 2, ConfigUtil::visibleHeight / 2) - _camera->getPosition();
+	auto positionDelta = _player->getPosition() - Vec2(config::visible_width / 2, config::visible_height / 2) - _camera->getPosition();
 	auto eye = _camera->getPosition3D() + Vec3(positionDelta.x * _player->getTraceCoefficient() * deltaTime, positionDelta.y * _player->getTraceCoefficient() * deltaTime, 0.0f);
 	_camera->setPosition3D(eye);
 	eye.z = 0.0f;

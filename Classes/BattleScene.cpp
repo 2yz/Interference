@@ -3,7 +3,6 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "MouseLayer.h"
-#include <SimpleAudioEngine.h>
 
 USING_NS_CC;
 
@@ -34,7 +33,7 @@ bool BattleScene::init()
 		return false;
 	}
 
-	if (!this->initWithSize(ConfigUtil::visibleSize*2.5))
+	if (!this->initWithSize(config::visible_size*2.5))
 	{
 		return false;
 	}
@@ -60,8 +59,8 @@ bool BattleScene::init()
 	this->addChild(mouseLayer);
 
 	// Add BackgroundMusic
-	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Title.mp3", true);
-	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+	// CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Title.mp3", true);
+	// CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
 
 	return true;
 }

@@ -1,14 +1,10 @@
 #include "AppDelegate.h"
 #include "BattleScene.h"
-#include "HelloWorldScene.h"
-#include "ConfigUtil.h"
-#include "AnimationUtil.h"
 
 USING_NS_CC;
 
 AppDelegate::AppDelegate() 
 {
-	initConfigXML();
 }
 
 AppDelegate::~AppDelegate()
@@ -33,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if (!glview) {
-		glview = GLViewImpl::createWithRect("Interference", Rect(0, 0, 1280, 720));
+		glview = GLViewImpl::createWithRect(PROGRAM_NAME, Rect(0, 0, 1280, 720));
 		director->setOpenGLView(glview);
 	}
 	director->getOpenGLView()->setCursorVisible(false);
@@ -47,27 +43,24 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// director->setAnimationInterval(1.0 / 60);
 	
 	// Initial ConfigUtil
-	ConfigUtil::visibleSize = Director::getInstance()->getVisibleSize();
-	ConfigUtil::visibleOrigin = Director::getInstance()->getVisibleOrigin();
-	ConfigUtil::visibleWidth = ConfigUtil::visibleOrigin.x + ConfigUtil::visibleSize.width;
-	ConfigUtil::visibleHeight = ConfigUtil::visibleOrigin.y + ConfigUtil::visibleSize.height;
+	config::visible_size = Director::getInstance()->getVisibleSize();
+	config::visible_origin = Director::getInstance()->getVisibleOrigin();
+	config::visible_width = config::visible_origin.x + config::visible_size.width;
+	config::visible_height = config::visible_origin.y + config::visible_size.height;
 
 	FileUtils::getInstance()->addSearchPath("res");
 	
-	// 读取纹理贴度集合
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(UserDefault::getInstance()->getStringForKey("textureFileName"));
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shape.plist");
-    
+	// Load Sprite Frames
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(kMainTexture);
     // Add Animation
-    Director::getInstance()->getTextureCache()->addImage("Death.png");
-    Director::getInstance()->getTextureCache()->addImage("Boom.png");
-    Director::getInstance()->getTextureCache()->addImage("Cloud.png");
-    Director::getInstance()->getTextureCache()->addImage("Birth.png");
-
+	Director::getInstance()->getTextureCache()->addImage(kBirthTexture);
+	Director::getInstance()->getTextureCache()->addImage(kDeathTexture);
+	Director::getInstance()->getTextureCache()->addImage(kBoomTexture);
+	Director::getInstance()->getTextureCache()->addImage(kCloudTexture);
+	
     
 	// create a scene. it's an autorelease object
 	auto scene = BattleScene::create();
-	// auto scene = HelloWorld::createScene();
 
 	// run
 	director->runWithScene(scene);
@@ -91,30 +84,4 @@ void AppDelegate::applicationWillEnterForeground()
 
 	// if you use SimpleAudioEngine, it must resume here
 	// SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
-}
-
-void AppDelegate::initConfigXML()
-{
-	UserDefault::getInstance()->setStringForKey("textureFileName", "texture.plist");
-	UserDefault::getInstance()->setFloatForKey("intervalOfAddBullet", 0.2f);
-	//UserDefault::getInstance()->setFloatForKey("intervalOfAddCloud",20.0f);
-	UserDefault::getInstance()->setFloatForKey("intervalOfAddEnemy", 0.5f);
-	UserDefault::getInstance()->setFloatForKey("intervalOfAddEnemyBullet", 0.2f);
-	UserDefault::getInstance()->setIntegerForKey("damageOfInitBullet", 100);
-	UserDefault::getInstance()->setIntegerForKey("damageOfDeltaWhenLevelUp", 50);
-	UserDefault::getInstance()->setIntegerForKey("damageOfBigBomb", 400);
-	UserDefault::getInstance()->setFloatForKey("probabilityOfBaseEnemyAppear", 0.4f);
-	UserDefault::getInstance()->setFloatForKey("probabilityOfDeltaEnemyAppear", 0.007f);
-	UserDefault::getInstance()->setIntegerForKey("HPOfEnemy1", 200);
-	UserDefault::getInstance()->setIntegerForKey("HPOfEnemy2", 400);
-	UserDefault::getInstance()->setIntegerForKey("HPOfEnemy3", 400);
-	UserDefault::getInstance()->setIntegerForKey("HPOfEnemyBoss", 18000);
-	//UserDefault::getInstance()->setIntegerForKey("FlytimeOfCloud",35);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfEnemy1", 10);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfEnemy2", 10);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfEnemy3", 5);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfEnemyBossAppear", 7);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfGiftLevelUp", 12);
-	UserDefault::getInstance()->setIntegerForKey("FlytimeOfGiftBigBomb", 12);
-	UserDefault::getInstance()->setFloatForKey("BackgroundScorllSpeed", 0.5);
 }

@@ -4,21 +4,10 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>Border.png</key>
+			<key>texture/bullet.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{1440,1440}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{1440,1440}</string>
-			</dict>
-			<key>bullet.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{88,2000},{15,15}}</string>
+				<string>{{150,2744},{15,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -26,10 +15,21 @@
 				<key>sourceSize</key>
 				<string>{15,15}</string>
 			</dict>
-			<key>Enemy.png</key>
+			<key>texture/edge.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2000},{48,48}}</string>
+				<string>{{0,0},{2160,2160}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{2160,2160}</string>
+			</dict>
+			<key>texture/enemy.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{150,2656},{48,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -37,10 +37,10 @@
 				<key>sourceSize</key>
 				<string>{48,48}</string>
 			</dict>
-			<key>hexagon.png</key>
+			<key>texture/hexagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,1440},{200,200}}</string>
+				<string>{{0,2160},{200,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -48,10 +48,10 @@
 				<key>sourceSize</key>
 				<string>{200,200}</string>
 			</dict>
-			<key>pentagon.png</key>
+			<key>texture/pentagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,1840},{150,150}}</string>
+				<string>{{0,2560},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -59,10 +59,10 @@
 				<key>sourceSize</key>
 				<string>{150,150}</string>
 			</dict>
-			<key>Player.png</key>
+			<key>texture/player.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,1440},{96,96}}</string>
+				<string>{{150,2560},{96,96}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -70,10 +70,10 @@
 				<key>sourceSize</key>
 				<string>{96,96}</string>
 			</dict>
-			<key>ShootBox.png</key>
+			<key>texture/shoot_box.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{48,2000},{40,40}}</string>
+				<string>{{150,2704},{40,40}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -81,10 +81,10 @@
 				<key>sourceSize</key>
 				<string>{40,40}</string>
 			</dict>
-			<key>ShootLine.png</key>
+			<key>texture/shoot_line.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,1990},{1500,10}}</string>
+				<string>{{0,2860},{1500,10}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -92,10 +92,10 @@
 				<key>sourceSize</key>
 				<string>{1500,10}</string>
 			</dict>
-			<key>square.png</key>
+			<key>texture/square.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,1840},{150,150}}</string>
+				<string>{{0,2710},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -103,10 +103,10 @@
 				<key>sourceSize</key>
 				<string>{150,150}</string>
 			</dict>
-			<key>triangle.png</key>
+			<key>texture/triangle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,1640},{200,200}}</string>
+				<string>{{0,2360},{200,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -120,18 +120,18 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>textureFileName</key>
-			<string>shape.png</string>
+			<string>main_texture.png</string>
 			<key>realTextureFileName</key>
-			<string>shape.png</string>
+			<string>main_texture.png</string>
 			<key>size</key>
-			<string>{1500,2048}</string>
+			<string>{2160,2870}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1500</integer>
+			<integer>2160</integer>
 			<key>height</key>
-			<integer>2048</integer>
+			<integer>2870</integer>
 		</dict>
 	</dict>
 </plist>

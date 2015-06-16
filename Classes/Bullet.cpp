@@ -27,31 +27,31 @@ bool Bullet::init()
 	}
 	
 	// Set Node Tag
-	if (_bulletParent == PLAYER)
-		this->setTag(PLAYER_BULLET_TAG);
-	else if (_bulletParent == ENEMY)
-		this->setTag(ENEMY_BULLET_TAG);
+	if (_bulletParent == kPlayerTag)
+		this->setTag(kPlayerBulletTag);
+	else if (_bulletParent == kEnemyTag)
+		this->setTag(kEnemyBulletTag);
 
 	// Set Sprite Texture
-	auto sprite = Sprite::createWithSpriteFrameName("bullet.png");
+	auto sprite = Sprite::createWithSpriteFrameName(kBulletSpriteFrame);
 	_spriteVector.pushBack(sprite);
 	this->addChild(sprite);
 
 	// Set Physics Body
-	_physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, MATERIAL_BULLET));
-	if (_bulletParent == PLAYER)
+	_physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, kBulletMaterial));
+	if (_bulletParent == kPlayerTag)
 	{
-		_physicsBody->setGroup(PLAYER_BULLET_GROUP);
-		_physicsBody->setCategoryBitmask(PLAYER_BULLET_CATEGORY_MASK);
-		_physicsBody->setContactTestBitmask(PLAYER_BULLET_CONTACT_MASK);
-		_physicsBody->setCollisionBitmask(PLAYER_BULLET_COLLISION_MASK);
+		_physicsBody->setGroup(kPlayerBulletGroup);
+		_physicsBody->setCategoryBitmask(kPlayerBulletCategoryMask);
+		_physicsBody->setContactTestBitmask(kPlayerBulletContactMask);
+		_physicsBody->setCollisionBitmask(kPlayerBulletCollisionMask);
 	}
-	else if (_bulletParent == ENEMY)
+	else if (_bulletParent == kEnemyTag)
 	{
-		_physicsBody->setGroup(ENEMY_BULLET_GROUP);
-		_physicsBody->setCategoryBitmask(ENEMY_BULLET_CATEGORY_MASK);
-		_physicsBody->setContactTestBitmask(ENEMY_BULLET_CONTACT_MASK);
-		_physicsBody->setCollisionBitmask(ENEMY_BULLET_COLLISION_MASK);
+		_physicsBody->setGroup(kEnemyBulletGroup);
+		_physicsBody->setCategoryBitmask(kEnemyBulletCategoryMask);
+		_physicsBody->setContactTestBitmask(kEnemyBulletContactMask);
+		_physicsBody->setCollisionBitmask(kEnemyBulletCollisionMask);
 	}
 	_physicsBody->setVelocity(_velocityVec);
 	
@@ -60,11 +60,11 @@ bool Bullet::init()
 
 void Bullet::initMessage()
 {
-	_message.putString("Name", "Bullet");
-	_message.putInt("BulletParent", _bulletParent);
-	if (_bulletParent == PLAYER)
-		_message.putInt("Tag", PLAYER_BULLET_TAG);
-	else if (_bulletParent == ENEMY)
-		_message.putInt("Tag", ENEMY_BULLET_TAG);
-	_message.putFloat("Damage", _damage);
+	_message.putString(kNameKey, kBulletName);
+	_message.putInt(kBulletParent, _bulletParent);
+	if (_bulletParent == kPlayerTag)
+		_message.putInt(kTagKey, kPlayerBulletTag);
+	else if (_bulletParent == kEnemyTag)
+		_message.putInt(kTagKey, kEnemyBulletTag);
+	_message.putFloat(kDamageKey, _damage);
 }

@@ -5,6 +5,7 @@
 #include "BattleLayer.h"
 #include <SimpleAudioEngine.h>
 #include "AnimationUtil.h"
+#include <AudioEngine.h>
 
 USING_NS_CC;
 
@@ -40,7 +41,7 @@ bool Player::init()
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)
 	{
-		sprite->setSpriteFrame(PLAYER_SPRITE_FRAME);
+		sprite->setSpriteFrame(kPlayerSpriteFrame);
 	}
 
 	// Create Skill
@@ -51,10 +52,10 @@ bool Player::init()
 	this->setTraceCoefficient(_velocityMagnitude, _accelerationMagnitude, 1.0f / 60.0f);
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, MATERIAL_PLAYER_PLANE));
+	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, kPlayerMaterial));
 
 	// Set Node Tag
-	this->setTag(PLAYER_TAG);
+	this->setTag(kPlayerTag);
 
 	this->scheduleUpdate();
 
@@ -63,8 +64,8 @@ bool Player::init()
 
 void Player::initMessage()
 {
-	_message.putString("Name", "Player");
-	_message.putInt("Tag", PLAYER_TAG);
+	_message.putString(kNameKey, kPlayerName);
+	_message.putInt(kTagKey, kPlayerTag);
 }
 
 void Player::onEnter()
@@ -72,27 +73,27 @@ void Player::onEnter()
 	BasePlane::onEnter();
 
 	// Set Physics Body
-	_physicsBody->setGroup(PLAYER_GROUP);
-	_physicsBody->setContactTestBitmask(PLAYER_CONTACT_MASK);
-	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_MASK);
-	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_MASK);
+	_physicsBody->setGroup(kPlayerGroup);
+	_physicsBody->setContactTestBitmask(kPlayerContactMask);
+	_physicsBody->setCollisionBitmask(kPlayerCollisionMask);
+	_physicsBody->setCategoryBitmask(kPlayerCategoryMask);
 	_physicsBody->setLinearDamping(linear_damping_);
 	_physicsBody->setVelocityLimit(_velocityMagnitude);
 }
 
 void Player::onDestroy()
 {
-	auto test = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Death.mp3", false, 1.0f);
+	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
+	experimental::AudioEngine::play2d(kDeathAudio);
 	BasePlane::onDestroy();
 }
 
 void Player::onContact(Message& message)
 {
-	if (message.getInt("Tag") == ENEMY_TAG)
-		_HP -= message.getFloat("DestroyDamage");
-	else if (message.getInt("Tag") == ENEMY_BULLET_TAG)
-		_HP -= message.getFloat("Damage");
+	if (message.getInt(kTagKey) == kEnemyTag)
+		_HP -= message.getFloat(kDestroyDamageKey);
+	else if (message.getInt(kTagKey) == kEnemyBulletTag)
+		_HP -= message.getFloat(kDamageKey);
 	if (_HP < 0.0f)
 		onDestroy();
 }

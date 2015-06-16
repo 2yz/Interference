@@ -61,8 +61,8 @@ bool HelloWorld::init()
 	// addChild(rootNode);
 
 	auto edgeSp = Sprite::create();
-	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
-	edgeSp->setPosition(Point(ConfigUtil::visibleSize.width / 2, ConfigUtil::visibleSize.height / 2));
+	auto body = PhysicsBody::createEdgeBox(config::visible_size, PHYSICSBODY_MATERIAL_DEFAULT, 3);
+	edgeSp->setPosition(Point(config::visible_size.width / 2, config::visible_size.height / 2));
 	edgeSp->setPhysicsBody(body);
 	addChild(edgeSp);
 	edgeSp->setTag(0);
@@ -107,7 +107,7 @@ bool HelloWorld::init()
 	this->addChild(test);
 
 
-	camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0, 1000);
+	camera = Camera::createOrthographic(config::visible_width, config::visible_height, 0, 1000);
 	camera->setCameraFlag(CameraFlag::USER1);
 	this->addChild(camera);
 	camera->setPosition3D(Vec3(0, 0, 500));

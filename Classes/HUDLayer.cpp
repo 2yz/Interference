@@ -2,6 +2,7 @@
 #include <strstream>
 #include "HelloWorldScene.h"
 #include "Message.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
@@ -23,17 +24,17 @@ bool HUDLayer::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
 
-	scoreLabel = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 60);
+	scoreLabel = Label::createWithTTF("0", kMarkerFeltFont, 60);
 	scoreLabel->setAnchorPoint(Vec2(1.0f, 1.0f));
 	scoreLabel->setPosition(visibleOrigin.x + visibleSize.width - 50, visibleOrigin.y + visibleSize.height - 50);
 	this->addChild(scoreLabel);
 
-	pauseButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("pauseButton.png"), Sprite::createWithSpriteFrameName("pauseButton.png"), CC_CALLBACK_1(HUDLayer::menuPauseCallback, this));
-	pauseButton = Menu::create(pauseButtonItem, nullptr);
-	//pauseButton->setAnchorPoint(Point(0.0f, 1.0f));
-	//pauseButton->setPosition(75, visibleOrigin.y + visibleSize.height - 75);
-	pauseButton->setPosition(500.0f, 500.0f);
-	this->addChild(pauseButton);
+	// pauseButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("pauseButton.png"), Sprite::createWithSpriteFrameName("pauseButton.png"), CC_CALLBACK_1(HUDLayer::menuPauseCallback, this));
+	// pauseButton = Menu::create(pauseButtonItem, nullptr);
+	// //pauseButton->setAnchorPoint(Point(0.0f, 1.0f));
+	// //pauseButton->setPosition(75, visibleOrigin.y + visibleSize.height - 75);
+	// pauseButton->setPosition(500.0f, 500.0f);
+	// this->addChild(pauseButton);
 
 	setEventListener();
 
@@ -48,7 +49,7 @@ void HUDLayer::setEventListener()
 		log("TimeEvent %d", *buf);
 	});
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	auto score_listener = EventListenerCustom::create("ScoreEvent", [=](EventCustom* event)
+	auto score_listener = EventListenerCustom::create(kScoreEvent, [=](EventCustom* event)
 	{
 		int* buf = static_cast<int*>(event->getUserData());
 		score += *buf;

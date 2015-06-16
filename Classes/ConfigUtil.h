@@ -3,67 +3,98 @@
 
 #include "cocos2d.h"
 
+#define PROGRAM_NAME "Interference"
+#define kMainTexture "texture/main_texture.plist"
+// Particles Config
+#define kBirthParticle "particle/Birth"
+#define kDeathParticle "particle/Death"
+#define kBoomParticle "particle/Boom"
+#define kCloudParticle "particle/Cloud"
+#define kBirthTexture "particle/Birth.png"
+#define kDeathTexture "particle/Death.png"
+#define kBoomTexture "particle/Boom.png"
+#define kCloudTexture "particle/Cloud.png"
+// Font
+#define kMarkerFeltFont "font/Marker Felt.ttf"
+// Audio
+#define kAttackAudio "audio/Shoot.mp3"
+#define kAttackVolume 0.3f
+#define kBackgroundMusic "audio/Demo.mp3"
+#define kBackgroundMusicVolume 0.3f
+#define kDeathAudio "audio/Death.mp3"
+#define kDeathVolume 1.5f
+#define kImpactAudio "audio/Impact.mp3"
+#define kImpactVolume 1.5f
+// Sprite Frame
+#define kPlayerSpriteFrame "texture/player.png"
+#define kEnemySpriteFrame "texture/enemy.png"
+#define kEdgeSpriteFrame "texture/edge.png"
+#define kBlockSpriteFrame "texture/square.png"
+#define kBulletSpriteFrame "texture/bullet.png"
+#define kShootBoxSpriteFrame "texture/shoot_box.png"
+#define kShootLineSpriteFrame "texture/shoot_line.png"
+// Texture
+#define kBackgroundTexture "texture/img_bg_test.jpg"
+// Tag and Physics Mask
+// Block
+#define kBlockName "Block"
+#define kBlockTag 10
+#define kBlockCategoryMask 0xFFFFFFFF
+#define kBlockContactMask 0xFF000000
+#define kBlockCollisionMask 0xFFFFFFFF
+// Bullet
+#define kBulletName "Bullet"
+// Player Bullet
+#define kPlayerBulletTag -3
+#define kPlayerBulletGroup -3
+#define kPlayerBulletCategoryMask 0xF000F000
+#define kPlayerBulletContactMask 0xF000F000
+#define kPlayerBulletCollisionMask 0xF0000000
+// Enemy Bullet
+#define kEnemyBulletTag -3
+#define kEnemyBulletGroup -3
+#define kEnemyBulletCategoryMask 0xF000F000
+#define kEnemyBulletContactMask 0xF000F000
+#define kEnemyBulletCollisionMask 0xF0000000
+// Player
+#define kPlayerName "Player"
+#define kPlayerTag 1
+#define kPlayerGroup 1
+#define kPlayerCategoryMask 0x00000F0F
+#define kPlayerContactMask 0x00000F0F
+#define kPlayerCollisionMask 0x0000000F
+// Enemy
+#define kEnemyName "Enemy"
+#define kEnemyTag 2
+#define kEnemyGroup 2
+#define kEnemyCategoryMask 0x0000F00F
+#define kEnemyContactMask 0x0000F00F
+#define kEnemyCollisionMask 0x0000000F
+// Physics Material
+#define kPlayerMaterial cocos2d::PhysicsMaterial(10.0f, 0.0f, 0.0f)
+#define kEnemyMaterial cocos2d::PhysicsMaterial(10.0f, 1.0f, 0.0f)
+#define kBulletMaterial cocos2d::PhysicsMaterial(0.5f, 0.0f, 0.0f)
+#define kBlockMaterial cocos2d::PhysicsMaterial(100.0f, 1.0f, 0.0f)
+// Key
+#define kNameKey "Name"
+#define kTagKey "Tag"
+#define kDamageKey "Damage"
+#define kDestroyDamageKey "DestroyDamage"
+#define kBulletParent "BulletParent"
+// Event Name
+#define kScoreEvent "ScoreEvent"
 
-#define PLAYER_TAG 1
-#define PLAYER_GROUP 1
-#define PLAYER_CATEGORY_MASK 0x00000F0F
-#define PLAYER_CONTACT_MASK 0x00000F0F
-#define PLAYER_COLLISION_MASK 0x0000000F
-
-#define ENEMY_TAG 2
-#define ENEMY_GROUP 2
-#define ENEMY_CATEGORY_MASK 0x0000F00F
-#define ENEMY_CONTACT_MASK 0x0000F00F
-#define ENEMY_COLLISION_MASK 0x0000000F
-
-#define PLAYER_BULLET_TAG -3
-#define PLAYER_BULLET_GROUP -3
-#define PLAYER_BULLET_CATEGORY_MASK 0xF000F000
-#define PLAYER_BULLET_CONTACT_MASK 0xF000F000
-#define PLAYER_BULLET_COLLISION_MASK 0xF0000000
-
-#define ENEMY_BULLET_TAG -4
-#define ENEMY_BULLET_GROUP -4
-#define ENEMY_BULLET_CATEGORY_MASK 0x0F000F00
-#define ENEMY_BULLET_CONTACT_MASK 0x0F000F00
-#define ENEMY_BULLET_COLLISION_MASK 0x0F000000
-
-// Bullet Parent
-#define PLAYER 1
-#define ENEMY 2
-
-//#define EDGE_TAG 10
-//#define EDGE_GROUP 1
-
-#define BLOCK_TAG 10
-#define BLOCK_CATEGORY_MASK 0xFFFFFFFF
-#define BLOCK_CONTACT_MASK 0xFF000000
-#define BLOCK_COLLISION_MASK 0xFFFFFFFF
-
-#define MATERIAL_PLAYER_PLANE PhysicsMaterial(10.0f, 0.0f, 0.0f)
-#define MATERIAL_ENEMY_PLANE PhysicsMaterial(10.0f, 1.0f, 0.0f)
-#define MATERIAL_BULLET PhysicsMaterial(0.5f, 0.0f, 0.0f)
-#define MATERIAL_BLOCK PhysicsMaterial(100.0f, 1.0f, 0.0f)
-
-#define PLAYER_SPRITE_FRAME "Player.png" 
-#define ENEMY_SPRITE_FRAME "Enemy.png"
-
-class ConfigUtil
+namespace config
 {
-public:
-	static cocos2d::Size visibleSize;
-	static cocos2d::Vec2 visibleOrigin;
-	static cocos2d::Size border_size_;
-	static float visibleWidth;
-	static float visibleHeight;
-	static float battleSceneWidth;
-	static float battleSceneHeight;
-	static float intervalOfAddBullet;
-	static float intervalOfAddEnemy;
-	static float intervalOfAddEnemyBullet;
-	
-	static float probabilityOfBaseEnemyAppear;
-	static float probabilityOfDeltaEnemyAppear;
-};
+	// Constant
+	// BattleScene and Edge
+	extern const cocos2d::Vec2 kBattleScene;
+	extern const cocos2d::Size kEdgeSize;
+	// Variable
+	extern cocos2d::Size visible_size;
+	extern cocos2d::Vec2 visible_origin;
+	extern float visible_width;
+	extern float visible_height;
+}
 
 #endif /* CONFIGUTIL_H_ */

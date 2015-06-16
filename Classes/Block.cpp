@@ -1,7 +1,6 @@
 #include "Block.h"
 #include "AnimationUtil.h"
 #include "ConfigUtil.h"
-#include "SimpleAudioEngine.h"
 #include "AudioEngine.h"
 
 USING_NS_CC;
@@ -25,27 +24,27 @@ bool Block::init()
 		return false;
 	}
 
-	this->setTag(BLOCK_TAG);
+	this->setTag(kBlockTag);
 
 	// Set Sprite and Physics Shape
 	if (_isEdge)
 	{
 		// Create Block
-		auto block = Sprite::createWithSpriteFrameName("Border.png");
+		auto block = Sprite::createWithSpriteFrameName(kEdgeSpriteFrame);
 		_spriteVector.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeEdgeBox::create(ConfigUtil::border_size_, MATERIAL_BLOCK, 20.0f));
+		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize, kBlockMaterial, 20.0f));
 	}
 	else
 	{
 		// Create Block
-		auto block = Sprite::createWithSpriteFrameName("square.png");
+		auto block = Sprite::createWithSpriteFrameName(kBlockSpriteFrame);
 		_spriteVector.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, MATERIAL_BLOCK));
+		_physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, kBlockMaterial));
 	}
 	// Set Physics Body
-	_physicsBody->setContactTestBitmask(BLOCK_CONTACT_MASK);
+	_physicsBody->setContactTestBitmask(kBlockContactMask);
 
 	return true;
 }
@@ -53,30 +52,32 @@ bool Block::init()
 void Block::onEnter()
 {
 	BaseObject::onEnter();
-	auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-	for (auto sprite : _spriteVector)
-		sprite->runAction(tintTo->clone());
-	AnimationUtil::runParticleAnimation("Cloud", this->getParent(), this);
+	if (!_isEdge)
+	{
+		auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
+		for (auto sprite : _spriteVector)
+			sprite->runAction(tintTo->clone());
+	}
+	AnimationUtil::runParticleAnimation(kCloudParticle, this->getParent(), this);
 }
 
 void Block::onDestroy()
 {
-	cocos2d::experimental::AudioEngine::play2d("Death.mp3", false, 1.5f);
-	auto particle = AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
-	particle->setTexture(Director::getInstance()->getTextureCache()->addImage("Death.png"));
+	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
+	experimental::AudioEngine::play2d(kDeathAudio, false, kDeathVolume);
 	BaseObject::onDestroy();
 }
 
 void Block::onContact(Message& message)
 {
-	if (message.getInt("Tag") == PLAYER_BULLET_TAG && !_isEdge)
-		_HP -= message.getFloat("Damage");
+	if (message.getInt(kTagKey) == kPlayerBulletTag && !_isEdge)
+		_HP -= message.getFloat(kDamageKey);
 	if (_HP <= 0.0f)
 		onDestroy();
 }
 
 void Block::initMessage()
 {
-	_message.putString("Name", "Block");
-	_message.putInt("Tag", BLOCK_TAG);
+	_message.putString(kNameKey, kBlockName);
+	_message.putInt(kTagKey, kBlockTag);
 }
