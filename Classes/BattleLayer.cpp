@@ -5,6 +5,8 @@
 #include "Block.h"
 #include "Enemy.h"
 #include "AudioEngine.h"
+#include "AnimationUtil.h"
+
 
 USING_NS_CC;
 
@@ -220,7 +222,9 @@ void BattleLayer::addEnemy(float deltaTime)
 		enemy = Enemy::create();
 		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
 		enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+        AnimationUtil::runParticleAnimation("Birth", this->getParent(), this);
 		this->addChild(enemy);
+        
 	}
 }
 

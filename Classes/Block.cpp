@@ -58,12 +58,10 @@ void Block::onEnter()
 		for (auto sprite : _spriteVector)
 			sprite->runAction(tintTo->clone());
 	}
-	AnimationUtil::runParticleAnimation(kCloudParticle, this->getParent(), this);
 }
 
 void Block::onDestroy()
 {
-	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
 	experimental::AudioEngine::play2d(kDeathAudio, false, kDeathVolume);
 	BaseObject::onDestroy();
 }

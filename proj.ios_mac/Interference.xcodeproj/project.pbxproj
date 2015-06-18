@@ -10,7 +10,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		41E34A81ACA2320B6C76C445 /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		503AE10117EB989F00D1A890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FC17EB989F00D1A890 /* main.m */; };
@@ -45,7 +44,6 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		68DF4CD48FF618773F3C8241 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */; };
-		7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */ = {isa = PBXBuildFile; fileRef = FA144D09A52357282113E0F8 /* res */; };
 		818C92B81B2FBF9600EFAA03 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C927E1B2FBF9600EFAA03 /* AppDelegate.cpp */; };
 		818C92B91B2FBF9600EFAA03 /* Attack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C92801B2FBF9600EFAA03 /* Attack.cpp */; };
 		818C92BA1B2FBF9600EFAA03 /* BaseBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C92821B2FBF9600EFAA03 /* BaseBullet.cpp */; };
@@ -76,15 +74,13 @@
 		818C92D31B2FBF9600EFAA03 /* Support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C92B41B2FBF9600EFAA03 /* Support.cpp */; };
 		818C92D41B2FBF9600EFAA03 /* TimeCoefficient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C92B61B2FBF9600EFAA03 /* TimeCoefficient.cpp */; };
 		818C92D71B2FBFDC00EFAA03 /* AnimationUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818C92D51B2FBFDC00EFAA03 /* AnimationUtil.cpp */; };
-		81DE67511B31B699006B4D17 /* Birth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DE67481B31B699006B4D17 /* Birth.plist */; };
-		81DE67521B31B699006B4D17 /* Birth.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DE67491B31B699006B4D17 /* Birth.png */; };
-		81DE67531B31B699006B4D17 /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674A1B31B699006B4D17 /* Boom.plist */; };
-		81DE67541B31B699006B4D17 /* Boom.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674B1B31B699006B4D17 /* Boom.png */; };
-		81DE67551B31B699006B4D17 /* Cloud.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674C1B31B699006B4D17 /* Cloud.plist */; };
-		81DE67561B31B699006B4D17 /* Cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674D1B31B699006B4D17 /* Cloud.png */; };
-		81DE67571B31B699006B4D17 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674E1B31B699006B4D17 /* Death.plist */; };
-		81DE67581B31B699006B4D17 /* Death.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DE674F1B31B699006B4D17 /* Death.png */; };
-		81DE67591B31B699006B4D17 /* emit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DE67501B31B699006B4D17 /* emit.plist */; };
+		81AF59DF1B3290AC0016DC54 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59DE1B3290AC0016DC54 /* res */; };
+		81AF59F41B32A1640016DC54 /* Birth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59EE1B32A1640016DC54 /* Birth.plist */; };
+		81AF59F51B32A1640016DC54 /* Birth.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59EF1B32A1640016DC54 /* Birth.png */; };
+		81AF59F61B32A1640016DC54 /* Boom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59F01B32A1640016DC54 /* Boom.plist */; };
+		81AF59F71B32A1640016DC54 /* Boom.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59F11B32A1640016DC54 /* Boom.png */; };
+		81AF59F81B32A1640016DC54 /* Death.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59F21B32A1640016DC54 /* Death.plist */; };
+		81AF59F91B32A1640016DC54 /* Death.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF59F31B32A1640016DC54 /* Death.png */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -198,15 +194,13 @@
 		818C92B71B2FBF9600EFAA03 /* TimeCoefficient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCoefficient.h; sourceTree = "<group>"; };
 		818C92D51B2FBFDC00EFAA03 /* AnimationUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationUtil.cpp; sourceTree = "<group>"; };
 		818C92D61B2FBFDC00EFAA03 /* AnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationUtil.h; sourceTree = "<group>"; };
-		81DE67481B31B699006B4D17 /* Birth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Birth.plist; path = res/particle/Birth.plist; sourceTree = "<group>"; };
-		81DE67491B31B699006B4D17 /* Birth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Birth.png; path = res/particle/Birth.png; sourceTree = "<group>"; };
-		81DE674A1B31B699006B4D17 /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Boom.plist; path = res/particle/Boom.plist; sourceTree = "<group>"; };
-		81DE674B1B31B699006B4D17 /* Boom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Boom.png; path = res/particle/Boom.png; sourceTree = "<group>"; };
-		81DE674C1B31B699006B4D17 /* Cloud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cloud.plist; path = res/particle/Cloud.plist; sourceTree = "<group>"; };
-		81DE674D1B31B699006B4D17 /* Cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cloud.png; path = res/particle/Cloud.png; sourceTree = "<group>"; };
-		81DE674E1B31B699006B4D17 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Death.plist; path = res/particle/Death.plist; sourceTree = "<group>"; };
-		81DE674F1B31B699006B4D17 /* Death.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death.png; path = res/particle/Death.png; sourceTree = "<group>"; };
-		81DE67501B31B699006B4D17 /* emit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = emit.plist; path = res/particle/emit.plist; sourceTree = "<group>"; };
+		81AF59DE1B3290AC0016DC54 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		81AF59EE1B32A1640016DC54 /* Birth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Birth.plist; sourceTree = "<group>"; };
+		81AF59EF1B32A1640016DC54 /* Birth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Birth.png; sourceTree = "<group>"; };
+		81AF59F01B32A1640016DC54 /* Boom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom.plist; sourceTree = "<group>"; };
+		81AF59F11B32A1640016DC54 /* Boom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom.png; sourceTree = "<group>"; };
+		81AF59F21B32A1640016DC54 /* Death.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Death.plist; sourceTree = "<group>"; };
+		81AF59F31B32A1640016DC54 /* Death.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death.png; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -215,7 +209,6 @@
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
-		FA144D09A52357282113E0F8 /* res */ = {isa = PBXFileReference; lastKnownFileType = "?"; name = res; path = ../Resources/res; sourceTree = "<group>"; };
 		FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "/Applications/Cocos/frameworks/cocos2d-x-3.6/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -326,16 +319,13 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				81DE67481B31B699006B4D17 /* Birth.plist */,
-				81DE67491B31B699006B4D17 /* Birth.png */,
-				81DE674A1B31B699006B4D17 /* Boom.plist */,
-				81DE674B1B31B699006B4D17 /* Boom.png */,
-				81DE674C1B31B699006B4D17 /* Cloud.plist */,
-				81DE674D1B31B699006B4D17 /* Cloud.png */,
-				81DE674E1B31B699006B4D17 /* Death.plist */,
-				81DE674F1B31B699006B4D17 /* Death.png */,
-				81DE67501B31B699006B4D17 /* emit.plist */,
-				FA144D09A52357282113E0F8 /* res */,
+				81AF59EE1B32A1640016DC54 /* Birth.plist */,
+				81AF59EF1B32A1640016DC54 /* Birth.png */,
+				81AF59F01B32A1640016DC54 /* Boom.plist */,
+				81AF59F11B32A1640016DC54 /* Boom.png */,
+				81AF59F21B32A1640016DC54 /* Death.plist */,
+				81AF59F31B32A1640016DC54 /* Death.png */,
+				81AF59DE1B3290AC0016DC54 /* res */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -547,25 +537,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81DE67551B31B699006B4D17 /* Cloud.plist in Resources */,
-				81DE67561B31B699006B4D17 /* Cloud.png in Resources */,
-				81DE67541B31B699006B4D17 /* Boom.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
-				81DE67511B31B699006B4D17 /* Birth.plist in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
-				81DE67521B31B699006B4D17 /* Birth.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
-				81DE67581B31B699006B4D17 /* Death.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				81DE67571B31B699006B4D17 /* Death.plist in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
-				81DE67591B31B699006B4D17 /* emit.plist in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -573,8 +555,6 @@
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
-				41E34A81ACA2320B6C76C445 /* res in Resources */,
-				81DE67531B31B699006B4D17 /* Boom.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,8 +562,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81AF59F71B32A1640016DC54 /* Boom.png in Resources */,
+				81AF59F41B32A1640016DC54 /* Birth.plist in Resources */,
+				81AF59F91B32A1640016DC54 /* Death.png in Resources */,
+				81AF59F81B32A1640016DC54 /* Death.plist in Resources */,
+				81AF59F51B32A1640016DC54 /* Birth.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				7AB94C6A95BCF2B4CA3DF1DC /* res in Resources */,
+				81AF59F61B32A1640016DC54 /* Boom.plist in Resources */,
+				81AF59DF1B3290AC0016DC54 /* res in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

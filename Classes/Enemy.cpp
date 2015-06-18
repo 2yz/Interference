@@ -78,9 +78,10 @@ void Enemy::onEnter()
 
 void Enemy::onDestroy()
 {
-    AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
+    AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
 	experimental::AudioEngine::play2d(kDeathAudio);
 	BaseEnemy::onDestroy();
+    
 }
 
 void Enemy::onContact(Message& message)

@@ -22,6 +22,7 @@ bool Skill::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const c
 {
 	if (battle_layer == nullptr)
 		return false;
+    
 	if (cd_)
 		return false;
 	cd_ = true;
