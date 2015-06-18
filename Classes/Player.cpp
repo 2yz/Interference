@@ -82,7 +82,6 @@ void Player::onEnter()
 
 void Player::onDestroy()
 {
-	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
 	experimental::AudioEngine::play2d(kDeathAudio);
 	BasePlane::onDestroy();
 }

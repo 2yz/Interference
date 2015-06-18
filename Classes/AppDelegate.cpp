@@ -56,8 +56,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 	Director::getInstance()->getTextureCache()->addImage(kBirthTexture);
 	Director::getInstance()->getTextureCache()->addImage(kDeathTexture);
 	Director::getInstance()->getTextureCache()->addImage(kBoomTexture);
-	Director::getInstance()->getTextureCache()->addImage(kCloudTexture);
-	
+    Director::getInstance()->getTextureCache()->addImage("Birth.png");
+    Director::getInstance()->getTextureCache()->addImage("Death.png");
+    Director::getInstance()->getTextureCache()->addImage("Boom.png");
     
 	// create a scene. it's an autorelease object
 	auto scene = BattleScene::create();
