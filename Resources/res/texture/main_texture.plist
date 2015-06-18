@@ -7,7 +7,7 @@
 			<key>texture/bullet.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2744},{15,15}}</string>
+				<string>{{150,2768},{15,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>texture/enemy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2656},{48,48}}</string>
+				<string>{{150,2680},{48,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,18 +62,18 @@
 			<key>texture/player.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2560},{96,96}}</string>
+				<string>{{150,2560},{120,120}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{96,96}</string>
+				<string>{120,120}</string>
 			</dict>
 			<key>texture/shoot_box.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2704},{40,40}}</string>
+				<string>{{150,2728},{40,40}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>

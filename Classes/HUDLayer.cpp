@@ -21,13 +21,16 @@ bool HUDLayer::init()
 	listener->onKeyReleased = CC_CALLBACK_2(HUDLayer::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
-
-	scoreLabel = Label::createWithTTF("0", kMarkerFeltFont, 60);
+	scoreLabel = Label::createWithTTF("0", MARKER_FELT_FONT, 60);
 	scoreLabel->setAnchorPoint(Vec2(1.0f, 1.0f));
-	scoreLabel->setPosition(visibleOrigin.x + visibleSize.width - 50, visibleOrigin.y + visibleSize.height - 50);
+	scoreLabel->setPosition(config::visible_origin.x + config::visible_size.width - 50, config::visible_origin.y + config::visible_size.height - 50);
 	this->addChild(scoreLabel);
+
+	auto test = Label::createWithBMFont(NUMBER_BMFONT, "01:23");
+	test->setScale(0.2f);
+	test->setBlendFunc(BlendFunc::ADDITIVE);
+	test->setPosition(200.0f, 200.0f);
+	addChild(test);
 
 	// pauseButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("pauseButton.png"), Sprite::createWithSpriteFrameName("pauseButton.png"), CC_CALLBACK_1(HUDLayer::menuPauseCallback, this));
 	// pauseButton = Menu::create(pauseButtonItem, nullptr);

@@ -3,7 +3,6 @@
 #include "Controller.h"
 #include "Attack.h"
 #include "BattleLayer.h"
-#include <SimpleAudioEngine.h>
 #include "AnimationUtil.h"
 #include <AudioEngine.h>
 
@@ -14,7 +13,7 @@ Player::Player() : _accelerationMagnitude(800.0f)
 	_HP = 100000.0f;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
-	physics_radius_ = 50.0f;
+	physics_radius_ = 60.0f;
 	rotate_velocity_ = 180.0f;
 }
 
@@ -34,9 +33,9 @@ bool Player::init()
 	}
 	_spriteVector.at(1)->setRotation(180.0f);
 	_spriteVector.at(3)->setRotation(180.0f);
-	_spriteVector.at(2)->setScale(0.5f);
-	_spriteVector.at(3)->setScale(0.5f);
-	this->setScale(0.6f);
+	_spriteVector.at(2)->setScale(0.4f);
+	_spriteVector.at(3)->setScale(0.4f);
+	this->setScale(1.5f);
 
 	// Set Sprite Frame
 	for (auto sprite : _spriteVector)

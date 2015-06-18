@@ -189,6 +189,7 @@ void BattleLayer::enableShootLine()
 		// Create Shoot Assist Line
 		shootLine = Sprite::createWithSpriteFrameName(kShootLineSpriteFrame);
 		shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
+		shootLine->setBlendFunc(BlendFunc::ADDITIVE);
 		this->addChild(shootLine);
 	}
 	auto fadeIn = FadeIn::create(10.0f);

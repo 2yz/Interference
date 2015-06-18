@@ -15,11 +15,12 @@
 #define kBoomTexture "particle/Boom.png"
 #define kCloudTexture "particle/Cloud.png"
 // Font
-#define kMarkerFeltFont "font/Marker Felt.ttf"
+#define MARKER_FELT_FONT "font/Marker Felt.ttf"
+#define NUMBER_BMFONT "font/number.fnt"
 // Audio
 #define kAttackAudio "audio/Shoot.mp3"
 #define kAttackVolume 0.3f
-#define kBackgroundMusic "audio/Demo.mp3"
+#define kBackgroundMusic "audio/Title.mp3"
 #define kBackgroundMusicVolume 0.3f
 #define kDeathAudio "audio/Death.mp3"
 #define kDeathVolume 1.5f

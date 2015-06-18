@@ -15,6 +15,7 @@ bool MouseLayer::init()
 		return false;
 	}
 	mouseSprite = Sprite::createWithSpriteFrameName(kShootBoxSpriteFrame);
+	mouseSprite->setBlendFunc(BlendFunc::ADDITIVE);
 	this->addChild(mouseSprite);
 	this->scheduleUpdate();
 	return true;
