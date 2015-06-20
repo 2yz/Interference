@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "BattleScene.h"
+#include "LogoScene.h"
 
 USING_NS_CC;
 
@@ -50,16 +51,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	FileUtils::getInstance()->addSearchPath("res");
 	
-	// Load Sprite Frames
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(kMainTexture);
-    // Add Animation
-	Director::getInstance()->getTextureCache()->addImage(kBirthTexture);
-	Director::getInstance()->getTextureCache()->addImage(kDeathTexture);
-	Director::getInstance()->getTextureCache()->addImage(kBoomTexture);
-    
-	// create a scene. it's an autorelease object
-	auto scene = BattleScene::create();
+	srand(time(nullptr));
 
+	// create a scene. it's an autorelease object
+	auto scene = LogoScene::create();
 	// run
 	director->runWithScene(scene);
 

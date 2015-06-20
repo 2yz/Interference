@@ -137,6 +137,9 @@ void Player::updateMove(float deltaTime)
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
+	EventCustom event(CAMERA_EVENT);
+	event.setUserData(this);
+	_eventDispatcher->dispatchEvent(&event);
 }
 
 void Player::updateSkillCast(float deltaTime)

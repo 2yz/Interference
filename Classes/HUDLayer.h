@@ -17,7 +17,6 @@ public:
 	void updateScore();
 	void menuPauseCallback(cocos2d::Ref* pSender);
 	void menuLaunchCallback(cocos2d::Ref* pSender);
-	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) override;
 	virtual void update(float deltaTime) override;
 private:
 	int score_;

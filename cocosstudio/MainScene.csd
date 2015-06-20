@@ -2,7 +2,7 @@
   <PropertyGroup Type="Scene" Name="MainScene" ID="a2ee0952-26b5-49ae-8bf9-4f1d6279b798" Version="2.2.9.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="0" Speed="1.0000">
+      <Animation Duration="40" Speed="1.0000" ActivedAnimationName="animation1">
         <Timeline ActionTag="953446860" Property="Position">
           <PointFrame FrameIndex="0" X="480.0000" Y="320.0000">
             <EasingData Type="0" />
@@ -18,7 +18,39 @@
             <EasingData Type="0" />
           </ScaleFrame>
         </Timeline>
+        <Timeline ActionTag="-1389119711" Property="Position">
+          <PointFrame FrameIndex="0" X="74.0000" Y="120.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="40" X="64.0000" Y="248.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+        </Timeline>
+        <Timeline ActionTag="-1389119711" Property="Scale">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="40" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="-1389119711" Property="RotationSkew">
+          <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="40" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
       </Animation>
+      <AnimationList>
+        <AnimationInfo Name="animation0" StartIndex="0" EndIndex="0">
+          <RenderColor A="150" R="255" G="218" B="185" />
+        </AnimationInfo>
+        <AnimationInfo Name="animation1" StartIndex="0" EndIndex="0">
+          <RenderColor A="150" R="64" G="224" B="208" />
+        </AnimationInfo>
+      </AnimationList>
       <ObjectData Name="Scene" ctype="GameNodeObjectData">
         <Size X="1280.0000" Y="720.0000" />
         <Children>
@@ -51,10 +83,10 @@
           <AbstractNodeData Name="Node_1" ActionTag="1057240493" Tag="4" IconVisible="True" LeftMargin="799.5000" RightMargin="480.5000" TopMargin="554.0000" BottomMargin="166.0000" ctype="SingleNodeObjectData">
             <Size />
             <Children>
-              <AbstractNodeData Name="Button_2" ActionTag="-1389119711" Tag="5" IconVisible="False" LeftMargin="-23.0000" RightMargin="-23.0000" TopMargin="-50.0000" BottomMargin="14.0000" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" OutlineSize="1" ShadowOffsetX="2" ShadowOffsetY="-2" ctype="ButtonObjectData">
+              <AbstractNodeData Name="Button_2" ActionTag="-1389119711" Tag="5" IconVisible="False" LeftMargin="51.0000" RightMargin="-97.0000" TopMargin="-138.0000" BottomMargin="102.0000" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" OutlineSize="1" ShadowOffsetX="2" ShadowOffsetY="-2" ctype="ButtonObjectData">
                 <Size X="46.0000" Y="36.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position Y="32.0000" />
+                <Position X="74.0000" Y="120.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -88,7 +120,7 @@
             <PrePosition X="0.6246" Y="0.2306" />
             <PreSize />
           </AbstractNodeData>
-          <AbstractNodeData Name="hexagon_1" ActionTag="-1075525838" Tag="7" IconVisible="False" LeftMargin="969.5000" RightMargin="160.5000" TopMargin="238.0000" BottomMargin="332.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="hexagon_1" ActionTag="-1075525838" Tag="7" IconVisible="False" LeftMargin="1021.5000" RightMargin="212.5000" TopMargin="290.0000" BottomMargin="384.0000" ctype="SpriteObjectData">
             <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1044.5000" Y="407.0000" />
@@ -99,7 +131,7 @@
             <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="1" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pentagon_2" ActionTag="-1189305290" Tag="8" IconVisible="False" LeftMargin="993.5000" RightMargin="136.5000" TopMargin="196.0000" BottomMargin="374.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="pentagon_2" ActionTag="-1189305290" Tag="8" IconVisible="False" LeftMargin="1045.5000" RightMargin="188.5000" TopMargin="248.0000" BottomMargin="426.0000" ctype="SpriteObjectData">
             <Size X="46.0000" Y="46.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1068.5000" Y="449.0000" />

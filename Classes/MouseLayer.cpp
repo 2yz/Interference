@@ -26,7 +26,7 @@ void MouseLayer::update(float deltaTime)
 	mouseSprite->setPosition(Controller::getMouseLocation());
 	if (Controller::getMouseDown())
 	{
-		auto scaleToSmall = ScaleTo::create(0.1f, 0.6f);
+		auto scaleToSmall = ScaleTo::create(0.1f, 0.7f);
 		auto scaleToBig = ScaleTo::create(0.1f, 1.0f);
 		mouseSprite->runAction(Sequence::create(scaleToSmall, scaleToBig, nullptr));
 	}

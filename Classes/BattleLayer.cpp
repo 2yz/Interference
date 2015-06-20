@@ -6,13 +6,14 @@
 #include "Enemy.h"
 #include "AudioEngine.h"
 #include "AnimationUtil.h"
+#include "CameraNode.h"
 
 
 USING_NS_CC;
 
 BattleLayer* BattleLayer::battle_layer_ = nullptr;
 
-BattleLayer::BattleLayer() : _timer(0.0f), camera_(nullptr), _player(nullptr), shootLine(nullptr)
+BattleLayer::BattleLayer() : _timer(0.0f), _player(nullptr), shootLine(nullptr), paused_(false)
 {
 	battle_layer_ = this;
 }
@@ -20,7 +21,6 @@ BattleLayer::BattleLayer() : _timer(0.0f), camera_(nullptr), _player(nullptr), s
 BattleLayer::~BattleLayer()
 {
 	battle_layer_ = nullptr;
-	camera_ = nullptr;
 	_player = nullptr;
 	shootLine = nullptr;
 }
@@ -32,57 +32,31 @@ bool BattleLayer::init()
 		return false;
 	}
 
-	// Create Battle Camera
-	camera_ = Camera::createOrthographic(config::visible_width, config::visible_height, 0.0f, 1000.0f);
-	camera_->setCameraFlag(CameraFlag::USER1);
-	camera_->setPosition3D(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 400));
-	camera_->lookAt(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 0));
-	this->addChild(camera_);
-
-	// Create Background
-	auto gameBackgroundLayer = GameBackgroundLayer::create();
-	this->addChild(gameBackgroundLayer);
-
-	// Create Edge
-	auto edgeBlock = Block::create(true);
-	edgeBlock->setPosition(config::kBattleScene / 2);
-	this->addChild(edgeBlock);
-
-	// Create Player
-	if (!_player)
-	{
-		auto player = Player::create();
-		player->setPosition(config::kBattleScene / 2);
-		auto fadeIn = FadeIn::create(1.0f);
-		player->runAction(fadeIn);
-		this->addChild(player);
-	}
-
-	// Create Block1
-	auto block1 = Block::create();
-	block1->setPosition(Point(1000, 500));
-	this->addChild(block1);
-
-	// Create Block2
-	auto block2 = Block::create();
-	block2->setPosition(Point(1400, 500));
-	this->addChild(block2);
-
-	// Schedule update per frame
-	this->scheduleUpdate();
-
 	auto physicsListener = EventListenerPhysicsContact::create();
 	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
-	schedule(schedule_selector(BattleLayer::addEnemy), 5.0f, 50, 1.0f);
-	// scheduleOnce(schedule_selector(BattleLayer::addEnemy), 1.0f);  
-	// addEnemy(0.0f);
-
-	// Add BackgroundMusic
-	cocos2d::experimental::AudioEngine::play2d(kBackgroundMusic, true, kBackgroundMusicVolume);
+	// Keyboard Listener
+	auto listenerKeyboard = EventListenerKeyboard::create();
+	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(BattleLayer::onKeyPressed, this);
+	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(BattleLayer::onKeyReleased, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
 
 	return true;
+}
+
+void BattleLayer::onEnter()
+{
+	Layer::onEnter();
+	this->scheduleUpdate();
+	enterState(BEGIN);
+	background_music = experimental::AudioEngine::play2d(kBackgroundMusic, true, kBackgroundMusicVolume);
+}
+
+void BattleLayer::onExit()
+{
+	experimental::AudioEngine::stop(background_music);
+	Layer::onExit();
 }
 
 BattleLayer* BattleLayer::getInstance()
@@ -130,29 +104,34 @@ void BattleLayer::addLayerChild(Node* child)
 
 void BattleLayer::removeChild(Node* child, bool cleanup)
 {
-	switch (child->getTag())
+	auto child_index = _children.getIndex(child);
+	if (child_index != CC_INVALID_INDEX)
 	{
-	case kPlayerTag:
-		_player = nullptr;
-		disableShootLine();
-		break;
-	case kEnemyTag:
-		if (!_enemy.empty())
+		switch (child->getTag())
 		{
-			auto index = _enemy.getIndex(child);
-			if (index != CC_INVALID_INDEX)
-				_enemy.erase(index);
+		case kPlayerTag:
+			_player = nullptr;
+			disableShootLine();
+			break;
+		case kEnemyTag:
+			if (!_enemy.empty())
+			{
+				auto index = _enemy.getIndex(child);
+				if (index != CC_INVALID_INDEX)
+					_enemy.erase(index);
+			}
+			break;
+		case kBlockTag:
+			if (!_block.empty())
+			{
+				auto index = _block.getIndex(child);
+				if (index != CC_INVALID_INDEX)
+					_block.erase(index);
+			}
+			break;
 		}
-		break;
-	case kBlockTag:
-		if (!_block.empty())
-		{
-			auto index = _block.getIndex(child);
-			if (index != CC_INVALID_INDEX)
-				_block.erase(index);
-		}
-		break;
 	}
+
 	Layer::removeChild(child, cleanup);
 }
 
@@ -164,12 +143,37 @@ void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
 	Layer::removeAllChildrenWithCleanup(cleanup);
 }
 
+void BattleLayer::pauseLayer()
+{
+	Layer::pause();
+	for (auto child : _children)
+		child->pause();
+	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.0f);
+	setTimeCoefficient(0.0f);
+	paused_ = true;
+}
+
+void BattleLayer::resumeLayer()
+{
+	Layer::resume();
+	for (auto child : _children)
+		child->resume();
+	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f);
+	setTimeCoefficient(1.0f);
+	paused_ = false;
+}
+
+bool BattleLayer::isPaused()
+{
+	return paused_;
+}
+
 cocos2d::Vec2 BattleLayer::getPlayerDirection()
 {
 	Vec2 direction;
-	if (_player != nullptr)
+	if (_player != nullptr && CameraNode::getCamera() != nullptr)
 	{
-		direction = camera_->getPosition() + Controller::getMouseLocation() - _player->getPosition();
+		direction = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation() - _player->getPosition();
 		direction.normalize();
 	}
 	return direction;
@@ -206,24 +210,31 @@ void BattleLayer::disableShootLine()
 	shootLine->runAction(fadeOut);
 }
 
-void BattleLayer::playerStateMachine()
+void BattleLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
 {
-}
-
-void BattleLayer::enemyStateMachine()
-{
-}
-
-void BattleLayer::addEnemy(float deltaTime)
-{
-	int num = random(5, 15);
-	Enemy* enemy;
-	for (int i = 0; i < num; ++i)
+	switch (keyCode)
 	{
-		enemy = Enemy::create();
-		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
-		enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
-		this->addChild(enemy);
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f);
+		setTimeCoefficient(0.2f);
+		break;
+	default:
+		break;
+	}
+}
+
+void BattleLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+{
+	switch (keyCode)
+	{
+	case EventKeyboard::KeyCode::KEY_E:
+	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
+		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f);
+		setTimeCoefficient(1.0f);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -242,23 +253,107 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	return true;
 }
 
-void BattleLayer::updateCamera(float deltaTime)
+void BattleLayer::update(float deltaTime)
 {
-	if (_player == nullptr)
+	_timer += deltaTime*getTimeCoefficient();
+	updateStateMachine(deltaTime);
+	updateShootLine(deltaTime);
+}
+
+void BattleLayer::updateStateMachine(float deltaTime)
+{
+	switch (battle_state_)
+	{
+	case BEGIN:
+		state_timer_ += deltaTime;
+		if (state_timer_>5.0f)
+		{
+			int num = random(5, 15);
+			for (int i = 0; i < num; ++i)
+			{
+				auto enemy = Enemy::create();
+				enemy->setPosition(Vec2(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f)));
+				enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
+				this->addChild(enemy);
+			}
+			state_timer_ -= 5.0f;
+		}
+		if (_timer > 90.0f)
+			setState(BOSS);
+		break;
+	case ROUND1:
+		break;
+	case ROUND2:
+		break;
+	case BOSS:
+		break;
+	default: break;
+	}
+}
+
+void BattleLayer::setState(BattleState battle_state)
+{
+	if (battle_state_ == battle_state)
 		return;
-	// Use Default Camera
-	auto positionDelta = _player->getPosition() - Vec2(config::visible_width / 2, config::visible_height / 2) - camera_->getPosition();
-	auto eye = camera_->getPosition3D() + Vec3(positionDelta.x * _player->getTraceCoefficient() * deltaTime, positionDelta.y * _player->getTraceCoefficient() * deltaTime, 0.0f);
-	camera_->setPosition3D(eye);
-	eye.z = 0.0f;
-	camera_->lookAt(eye);
+	exitState(battle_state_);
+	enterState(battle_state);
+}
+
+void BattleLayer::enterState(BattleState battle_state)
+{
+	battle_state_ = battle_state;
+	switch (battle_state)
+	{
+	case BEGIN:
+		if (!_player)
+		{
+			auto player = Player::create();
+			player->setPosition(config::kBattleScene / 2);
+			auto fadeIn = FadeIn::create(1.0f);
+			player->runAction(fadeIn);
+			this->addChild(player);
+			
+			int block_num = random(5, 15);
+			for (int i = 0; i < block_num; ++i)
+			{
+				auto block = Block::create();
+				block->setPosition(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f));
+				this->addChild(block);
+			}
+		}
+		state_timer_ = 0.0f;
+		break;
+	case ROUND1: 
+		break;
+	case ROUND2:
+		break;
+	case BOSS:
+		break;
+	default: break;
+	}
+}
+
+void BattleLayer::exitState(BattleState battle_state)
+{
+	switch (battle_state)
+	{
+	case BEGIN:
+		break;
+	case ROUND1: 
+		break;
+	case ROUND2:
+		break;
+	case BOSS:
+		break;
+	default: break;
+	}
 }
 
 void BattleLayer::updateShootLine(float deltaTime)
 {
 	if (_player == nullptr)
 		return;
-	auto mousePositionInLayer = camera_->getPosition() + Controller::getMouseLocation();
+	auto mousePositionInLayer = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation();
 	// Update Shoot Assist
 	shootLine->setPosition(_player->getPosition());
 	float shootLineRotateAngle;
@@ -275,16 +370,4 @@ void BattleLayer::updateShootLine(float deltaTime)
 		}
 	}
 	shootLine->setRotation(-shootLineRotateAngle);
-
-}
-
-void BattleLayer::update(float deltaTime)
-{
-	_timer += deltaTime*getTimeCoefficient();
-	// TODO setCameraMask at Every Node
-	setCameraMask(1 << 1);
-	// Update Camera
-	updateCamera(deltaTime);
-	// Update ShootLine
-	updateShootLine(deltaTime);
 }

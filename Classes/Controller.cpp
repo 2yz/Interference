@@ -30,7 +30,7 @@ bool Controller::init()
 		return false;
 	}
 
-	// ¼àÌý¼üÅÌÊÂ¼þ
+	// Keyboard Listener
 	auto listenerKeyboard = EventListenerKeyboard::create();
 	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(Controller::onKeyPressed, this);
 	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(Controller::onKeyReleased, this);
@@ -122,9 +122,9 @@ void Controller::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
 	case EventKeyboard::KeyCode::KEY_D:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_D:
 		moveRight = true; break;
-	case EventKeyboard::KeyCode::KEY_Q:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
-		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f); break;
+	// case EventKeyboard::KeyCode::KEY_Q:
+	// case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
+	// 	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.2f); break;
 	case EventKeyboard::KeyCode::KEY_E:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
 		keyEPressed = true; break;
@@ -147,9 +147,9 @@ void Controller::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	case EventKeyboard::KeyCode::KEY_D:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_D:
 		moveRight = false; break;
-	case EventKeyboard::KeyCode::KEY_Q:
-	case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
-		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f); break;
+	// case EventKeyboard::KeyCode::KEY_Q:
+	// case EventKeyboard::KeyCode::KEY_CAPITAL_Q:
+	// 	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f); break;
 	case EventKeyboard::KeyCode::KEY_E:
 	case EventKeyboard::KeyCode::KEY_CAPITAL_E:
 		keyEReleased = false;

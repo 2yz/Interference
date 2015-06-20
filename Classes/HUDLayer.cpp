@@ -20,10 +20,6 @@ bool HUDLayer::init()
 		return false;
 	}
 
-	auto listener = EventListenerKeyboard::create();
-	listener->onKeyReleased = CC_CALLBACK_2(HUDLayer::onKeyReleased, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
 	score_label_ = Label::createWithTTF("SCORE", MARKER_FELT_FONT, 20);
 	score_label_->setTextColor(Color4B(180, 240, 255, 255));
 	score_label_->setAnchorPoint(Vec2(0.0f, 1.0f));
@@ -184,21 +180,6 @@ void HUDLayer::menuLaunchCallback(cocos2d::Ref* pSender)
 {
 	launchButtonItem->setEnabled(false);
 	launchButton->setEnabled(false);
-}
-
-void HUDLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-	switch (keycode)
-	{
-	case EventKeyboard::KeyCode::KEY_BACK:
-		// Director::getInstance()->end();
-		Scene* helloWorld;
-		helloWorld = TransitionFade::create(2.0f, HelloWorld::createScene());
-		Director::getInstance()->replaceScene(helloWorld);
-		break;
-	default:
-		break;
-	}
 }
 
 void HUDLayer::update(float deltaTime)

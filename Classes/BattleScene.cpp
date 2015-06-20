@@ -3,21 +3,20 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "MouseLayer.h"
+#include "PlayerUserData.h"
 
 USING_NS_CC;
 
-BattleScene* BattleScene::battleScene = nullptr;
-// CameraNode* BattleScene::cameraNode = nullptr;
+BattleScene* BattleScene::battle_scene_ = nullptr;
 
-BattleScene::BattleScene() : _HUDLayer(nullptr)
+BattleScene::BattleScene() : battle_scene_state_(MENU), camera_node_(nullptr), hud_layer_(nullptr), battle_layer_(nullptr)
 {
-	battleScene = this;
+	battle_scene_ = this;
 }
 
 BattleScene::~BattleScene()
 {
-	_HUDLayer = nullptr;
-	battleScene = nullptr;
+	battle_scene_ = nullptr;
 }
 
 bool BattleScene::init()
@@ -44,37 +43,103 @@ bool BattleScene::init()
 
 	// Game Controller Node
 	auto controller = Controller::create();
-	this->addChild(controller);
-
-	// Battle Layer
-	battleLayer = BattleLayer::create();
-	this->addChild(battleLayer);
-
-	// UI Layer
-	_HUDLayer = HUDLayer::create();
-	this->addChild(_HUDLayer);
-
+	this->addChild(controller, 0);
 	// Mouse Layer
 	auto mouseLayer = MouseLayer::create();
-	this->addChild(mouseLayer);
+	this->addChild(mouseLayer, 4);
+	// Menu Layer
+	auto menu_layer_ = MenuLayer::create();
+	this->addChild(menu_layer_, 3);
 
-	// Add BackgroundMusic
-	// CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Title.mp3", true);
-	// CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8f);
+	camera_node_ = CameraNode::create();
+	this->addChild(camera_node_, 1);
+
+	// Keyboard Listener
+	auto listenerKeyboard = EventListenerKeyboard::create();
+	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(BattleScene::onKeyPressed, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
+	
+	setListener();
 
 	return true;
 }
 
-HUDLayer* BattleScene::getHUDLayer()
+void BattleScene::onEnter()
 {
-	return this->_HUDLayer;
+	Scene::onEnter();
 }
 
-// CameraNode* BattleScene::getCameraLayer()
-// {
-// 	return this->cameraNode;
-// }
-
-void BattleScene::update(float deltaTime)
+void BattleScene::setListener()
 {
+	// auto player_listener = EventListenerCustom::create(PLAYER_EVENT, [=](EventCustom* event)
+	// {
+	// 	PlayerUserData* player_user_data = static_cast<PlayerUserData*>(event->getUserData());
+	// 	if (!player_user_data->isAlive())
+	// 	{
+	// 		auto menu_layer_ = MenuLayer::create();
+	// 		this->addChild(menu_layer_, 3);
+	// 		this->removeChild(hud_layer_, true);
+	// 		hud_layer_ = nullptr;
+	// 		camera_node_->removeChild(battle_layer_, true);
+	// 		battle_layer_ = nullptr;
+	// 		battle_scene_state_ = MENU;
+	// 	}
+	// });
+	// _eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
+}
+
+BattleScene* BattleScene::getInstance()
+{
+	return battle_scene_;
+}
+
+HUDLayer* BattleScene::getHUDLayer()
+{
+	return this->hud_layer_;
+}
+
+void BattleScene::startBattle()
+{
+	// UI Layer
+	hud_layer_ = HUDLayer::create();
+	this->addChild(hud_layer_, 2);
+	// Battle Layer 
+	battle_layer_ = BattleLayer::create();
+	camera_node_->addChild(battle_layer_, 1);
+	battle_scene_state_ = BATTLE;
+}
+
+void BattleScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+{
+	switch (keyCode)
+	{
+	case EventKeyboard::KeyCode::KEY_ESCAPE:
+		if (battle_layer_ != nullptr && (battle_scene_state_ == BATTLE || battle_scene_state_ == BATTLE_PAUSE))
+		{
+			if (battle_layer_->isPaused())
+			{
+				battle_layer_->resumeLayer();
+				battle_scene_state_ = BATTLE;
+			}
+			else
+			{
+				battle_layer_->pauseLayer();
+				battle_scene_state_ = BATTLE_PAUSE;
+			}
+		}
+		break;
+	case EventKeyboard::KeyCode::KEY_BACKSPACE:
+		if (battle_scene_state_ == BATTLE)
+		{
+			auto menu_layer_ = MenuLayer::create();
+			this->addChild(menu_layer_, 3);
+			this->removeChild(hud_layer_, true);
+			hud_layer_ = nullptr;
+			camera_node_->removeChild(battle_layer_, true);
+			battle_layer_ = nullptr;
+			battle_scene_state_ = MENU;
+		}
+	default:
+		break;
+	}
 }

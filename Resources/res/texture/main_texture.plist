@@ -4,10 +4,21 @@
 	<dict>
 		<key>frames</key>
 		<dict>
+			<key>texture/alf_logo.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,2160},{1500,400}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{1500,400}</string>
+			</dict>
 			<key>texture/attack.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2680},{64,64}}</string>
+				<string>{{350,3780},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +29,7 @@
 			<key>texture/attack_dark.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2744},{64,64}}</string>
+				<string>{{350,3844},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +40,7 @@
 			<key>texture/blood_bar.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2420},{192,14}}</string>
+				<string>{{596,4070},{192,14}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,7 +51,7 @@
 			<key>texture/blood_bar_box.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2808},{200,20}}</string>
+				<string>{{0,4070},{200,20}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +62,7 @@
 			<key>texture/blood_bar_brighting.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2828},{200,20}}</string>
+				<string>{{200,4070},{200,20}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,18 +73,18 @@
 			<key>texture/blood_bar_dark.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2224},{196,16}}</string>
+				<string>{{400,4070},{196,16}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{196,16}</string>
 			</dict>
 			<key>texture/bullet.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2522},{15,15}}</string>
+				<string>{{788,4070},{15,15}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,7 +95,7 @@
 			<key>texture/control.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{214,2680},{64,64}}</string>
+				<string>{{414,3780},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +106,7 @@
 			<key>texture/defense.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{214,2744},{64,64}}</string>
+				<string>{{414,3844},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +128,7 @@
 			<key>texture/enemy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2434},{48,48}}</string>
+				<string>{{200,4003},{48,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +139,7 @@
 			<key>texture/hexagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2160},{200,200}}</string>
+				<string>{{0,3660},{200,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -136,10 +147,21 @@
 				<key>sourceSize</key>
 				<string>{200,200}</string>
 			</dict>
+			<key>texture/interference.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{200,3960},{437,43}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{437,43}</string>
+			</dict>
 			<key>texture/kill.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2160},{64,64}}</string>
+				<string>{{1500,2160},{64,64}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +172,7 @@
 			<key>texture/pentagon.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2560},{150,150}}</string>
+				<string>{{200,3660},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +183,7 @@
 			<key>texture/player.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{150,2560},{120,120}}</string>
+				<string>{{350,3660},{120,120}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,7 +194,7 @@
 			<key>texture/shoot_box.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{200,2482},{40,40}}</string>
+				<string>{{248,4003},{40,40}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -183,7 +205,7 @@
 			<key>texture/shoot_line.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2860},{1500,10}}</string>
+				<string>{{0,4060},{1500,10}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +216,7 @@
 			<key>texture/square.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2710},{150,150}}</string>
+				<string>{{200,3810},{150,150}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,7 +227,7 @@
 			<key>texture/triangle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,2360},{200,200}}</string>
+				<string>{{0,3860},{200,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -223,14 +245,14 @@
 			<key>realTextureFileName</key>
 			<string>main_texture.png</string>
 			<key>size</key>
-			<string>{2160,2870}</string>
+			<string>{2160,4090}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>2160</integer>
 			<key>height</key>
-			<integer>2870</integer>
+			<integer>4090</integer>
 		</dict>
 	</dict>
 </plist>

@@ -4,7 +4,8 @@
 #include "cocos2d.h"
 
 #define PROGRAM_NAME "Interference"
-#define kMainTexture "texture/main_texture.plist"
+#define MAIN_TEXTURE_PLIST "texture/main_texture.plist"
+#define MAIN_TEXTURE_PNG "texture/main_texture.png"
 // Particles Config
 #define kBirthParticle "particle/Birth"
 #define kDeathParticle "particle/Death"
@@ -38,9 +39,14 @@
 #define ATTACK_DARK_SPRITE_FRAME "texture/attack_dark.png"
 #define BLOOD_BAR_SPRITE_FRAME "texture/blood_bar.png"
 #define BLOOD_BAR_BOX_SPRITE_FRAME "texture/blood_bar_box.png"
+#define LOGO_SPRITE_FRAME "texture/interference.png"
 // Texture
 // #define kBackgroundTexture "texture/img_bg_test.jpg"
+#define ALF_LOGO_TEXTURE "texture/alf_logo.png"
 #define BACKGROUND_TEXTURE "texture/background.png"
+#define MENU_BACKGROUND_TEXTURE "texture/menu_background.png"
+#define START_BUTTON_TEXTURE "texture/start.png"
+#define EXIT_BUTTON_TEXTURE "texture/exit.png"
 // Tag and Physics Mask
 // Block
 #define kBlockName "Block"
@@ -91,6 +97,7 @@
 #define SCORE_EVENT "ScoreEvent"
 #define PLAYER_EVENT "PlayerEvent"
 #define SKILL_EVENT "SkillEvent"
+#define CAMERA_EVENT "CameraEvent"
 // Score
 #define SCORE_STRING_DIGIT 6
 #define SCORE_MAX 999999
