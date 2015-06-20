@@ -6,10 +6,19 @@
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
         <Folder Name="texture">
+          <Image Name="attack.png" />
+          <Image Name="attack_dark.png" />
+          <Image Name="blood_bar.png" />
+          <Image Name="blood_bar_box.png" />
+          <Image Name="blood_bar_brighting.png" />
+          <Image Name="blood_bar_dark.png" />
           <Image Name="bullet.png" />
+          <Image Name="control.png" />
+          <Image Name="defense.png" />
           <Image Name="edge.png" />
           <Image Name="enemy.png" />
           <Image Name="hexagon.png" />
+          <Image Name="kill.png" />
           <Image Name="pentagon.png" />
           <Image Name="player.png" />
           <Image Name="shoot_box.png" />

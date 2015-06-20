@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "BaseObject.h"
+#include "TimeCoefficient.h"
 
 enum SkillCategory
 {
@@ -12,7 +13,7 @@ enum SkillCategory
 	KILL
 };
 
-class Skill : public cocos2d::Node
+class Skill : public cocos2d::Node, public TimeCoefficient
 {
 public:
 	Skill();

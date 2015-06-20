@@ -20,8 +20,13 @@ public:
 	virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) override;
 	virtual void update(float deltaTime) override;
 private:
-	int score;
-	cocos2d::Label* scoreLabel;
+	int score_;
+	cocos2d::Label* score_label_;
+	cocos2d::Label* score_num_label_;
+	cocos2d::ProgressTimer* blood_bar_;
+	cocos2d::Sprite* blood_bar_box_;
+	cocos2d::ProgressTimer* attack_sprite_;
+	cocos2d::Sprite* attack_dark_sprite_;
 	cocos2d::MenuItemSprite* pauseButtonItem;
 	cocos2d::MenuItemSprite* launchButtonItem;
 	cocos2d::ProgressTimer* HPIndicator;

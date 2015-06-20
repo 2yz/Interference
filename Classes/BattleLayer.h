@@ -30,7 +30,7 @@ public:
 protected:
 	static BattleLayer* battle_layer_;
 	float _timer;
-	cocos2d::Camera* _camera;
+	cocos2d::Camera* camera_;
 	Player* _player;
 	cocos2d::Vector<Node*> _enemy;
 	cocos2d::Vector<Node*> _block;

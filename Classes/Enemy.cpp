@@ -8,7 +8,7 @@ USING_NS_CC;
 
 Enemy::Enemy()
 {
-	_HP = 500.0f;
+	hp_ = 500.0f;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 0.0f;
 	physics_radius_ = 30.0f;
@@ -74,11 +74,12 @@ void Enemy::onEnter()
     auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
     for (auto sprite : _spriteVector)
         sprite->runAction(tintTo->clone());
+	AnimationUtil::runParticleAnimation(kBirthParticle, this->getParent(), this);
 }
 
 void Enemy::onDestroy()
 {
-    AnimationUtil::runParticleAnimation("Death", this->getParent(), this);
+	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
 	experimental::AudioEngine::play2d(kDeathAudio);
 	BaseEnemy::onDestroy();
     
@@ -87,13 +88,13 @@ void Enemy::onDestroy()
 void Enemy::onContact(Message& message)
 {
 	if (message.getInt(kTagKey) == kPlayerTag && _beDestroyable)
-		_HP = 0.0f;
+		hp_ = 0.0f;
 	else if (message.getInt(kTagKey) == kPlayerBulletTag)
-		_HP -= message.getFloat(kDamageKey);
-	if (_HP <= 0.0f)
+		hp_ -= message.getFloat(kDamageKey);
+	if (hp_ <= 0.0f)
 	{
 		int* buf = new int(score_);
-		EventCustom event(kScoreEvent);
+		EventCustom event(SCORE_EVENT);
 		event.setUserData(buf);
 		_eventDispatcher->dispatchEvent(&event);
 		CC_SAFE_DELETE(buf);

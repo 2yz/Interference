@@ -8,6 +8,7 @@ class Player : public BasePlane
 public:
 	CREATE_FUNC(Player);
 	Player();
+	virtual ~Player();
 	virtual bool init() override;
 	virtual void initMessage() override;
 	virtual void onEnter() override;

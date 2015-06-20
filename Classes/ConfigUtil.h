@@ -34,8 +34,13 @@
 #define kBulletSpriteFrame "texture/bullet.png"
 #define kShootBoxSpriteFrame "texture/shoot_box.png"
 #define kShootLineSpriteFrame "texture/shoot_line.png"
+#define ATTACK_SPRITE_FRAME "texture/attack.png"
+#define ATTACK_DARK_SPRITE_FRAME "texture/attack_dark.png"
+#define BLOOD_BAR_SPRITE_FRAME "texture/blood_bar.png"
+#define BLOOD_BAR_BOX_SPRITE_FRAME "texture/blood_bar_box.png"
 // Texture
-#define kBackgroundTexture "texture/img_bg_test.jpg"
+// #define kBackgroundTexture "texture/img_bg_test.jpg"
+#define BACKGROUND_TEXTURE "texture/background.png"
 // Tag and Physics Mask
 // Block
 #define kBlockName "Block"
@@ -83,7 +88,14 @@
 #define kDestroyDamageKey "DestroyDamage"
 #define kBulletParent "BulletParent"
 // Event Name
-#define kScoreEvent "ScoreEvent"
+#define SCORE_EVENT "ScoreEvent"
+#define PLAYER_EVENT "PlayerEvent"
+#define SKILL_EVENT "SkillEvent"
+// Score
+#define SCORE_STRING_DIGIT 6
+#define SCORE_MAX 999999
+// Dynamic Background
+#define DYNAMIC_BACKGROUNd true
 
 namespace config
 {

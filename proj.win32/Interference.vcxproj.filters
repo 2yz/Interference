@@ -96,9 +96,6 @@
     <ClCompile Include="..\Classes\Kill.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Support.cpp">
-      <Filter>src\Skill</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\AnimationUtil.cpp">
       <Filter>src\Util</Filter>
     </ClCompile>
@@ -134,6 +131,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ConfigUtil.cpp">
       <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MenuLayer.cpp">
+      <Filter>src\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Control.cpp">
+      <Filter>src\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SkillUserData.cpp">
+      <Filter>src\UserData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +203,6 @@
     <ClInclude Include="..\Classes\Kill.h">
       <Filter>src\Skill</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Support.h">
-      <Filter>src\Skill</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\AnimationUtil.h">
       <Filter>src\Util</Filter>
     </ClInclude>
@@ -230,6 +236,18 @@
     <ClInclude Include="..\Classes\HUDLayer.h">
       <Filter>src\Layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\MenuLayer.h">
+      <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Control.h">
+      <Filter>src\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SkillUserData.h">
+      <Filter>src\UserData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -238,5 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

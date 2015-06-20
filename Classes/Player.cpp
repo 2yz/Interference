@@ -5,16 +5,23 @@
 #include "BattleLayer.h"
 #include "AnimationUtil.h"
 #include <AudioEngine.h>
+#include "PlayerUserData.h"
 
 USING_NS_CC;
 
 Player::Player() : _accelerationMagnitude(800.0f)
 {
-	_HP = 100000.0f;
+	hp_ = 1000.0f;
+	hp_max_ = 1000.0f;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
 	physics_radius_ = 50.0f;
 	rotate_velocity_ = 180.0f;
+}
+
+Player::~Player()
+{
+	CC_SAFE_DELETE(_userData);
 }
 
 bool Player::init()
@@ -56,6 +63,9 @@ bool Player::init()
 	// Set Node Tag
 	this->setTag(kPlayerTag);
 
+	// Set Player User Data
+	setUserData(new PlayerUserData(hp_, hp_max_));
+
 	this->scheduleUpdate();
 
 	return true;
@@ -89,10 +99,17 @@ void Player::onDestroy()
 void Player::onContact(Message& message)
 {
 	if (message.getInt(kTagKey) == kEnemyTag)
-		_HP -= message.getFloat(kDestroyDamageKey);
+		hp_ -= message.getFloat(kDestroyDamageKey);
 	else if (message.getInt(kTagKey) == kEnemyBulletTag)
-		_HP -= message.getFloat(kDamageKey);
-	if (_HP < 0.0f)
+		hp_ -= message.getFloat(kDamageKey);
+	if (_userData != nullptr)
+	{
+		static_cast<PlayerUserData*>(_userData)->setHP(hp_);
+		EventCustom event(PLAYER_EVENT);
+		event.setUserData(_userData);
+		_eventDispatcher->dispatchEvent(&event);
+	}
+	if (hp_ <= 0.0f)
 		onDestroy();
 }
 

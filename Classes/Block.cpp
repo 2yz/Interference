@@ -13,7 +13,7 @@ Block* Block::create(bool isEdge)
 
 Block::Block(bool isEdge) : _isEdge(isEdge)
 {
-	_HP = 1000.0f;
+	hp_ = 1000.0f;
 	_velocityMagnitude = 100.0f;
 }
 
@@ -33,7 +33,7 @@ bool Block::init()
 		auto block = Sprite::createWithSpriteFrameName(kEdgeSpriteFrame);
 		_spriteVector.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize, kBlockMaterial, 20.0f));
+		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize, kBlockMaterial, 30.0f));
 	}
 	else
 	{
@@ -69,8 +69,8 @@ void Block::onDestroy()
 void Block::onContact(Message& message)
 {
 	if (message.getInt(kTagKey) == kPlayerBulletTag && !_isEdge)
-		_HP -= message.getFloat(kDamageKey);
-	if (_HP <= 0.0f)
+		hp_ -= message.getFloat(kDamageKey);
+	if (hp_ <= 0.0f)
 		onDestroy();
 }
 

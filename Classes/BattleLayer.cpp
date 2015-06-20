@@ -12,7 +12,7 @@ USING_NS_CC;
 
 BattleLayer* BattleLayer::battle_layer_ = nullptr;
 
-BattleLayer::BattleLayer() : _timer(0.0f), _camera(nullptr), _player(nullptr), shootLine(nullptr)
+BattleLayer::BattleLayer() : _timer(0.0f), camera_(nullptr), _player(nullptr), shootLine(nullptr)
 {
 	battle_layer_ = this;
 }
@@ -20,7 +20,7 @@ BattleLayer::BattleLayer() : _timer(0.0f), _camera(nullptr), _player(nullptr), s
 BattleLayer::~BattleLayer()
 {
 	battle_layer_ = nullptr;
-	_camera = nullptr;
+	camera_ = nullptr;
 	_player = nullptr;
 	shootLine = nullptr;
 }
@@ -33,11 +33,11 @@ bool BattleLayer::init()
 	}
 
 	// Create Battle Camera
-	_camera = Camera::createOrthographic(config::visible_width, config::visible_height, 0.0f, 1000.0f);
-	_camera->setCameraFlag(CameraFlag::USER1);
-	_camera->setPosition3D(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 400));
-	_camera->lookAt(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 0));
-	this->addChild(_camera);
+	camera_ = Camera::createOrthographic(config::visible_width, config::visible_height, 0.0f, 1000.0f);
+	camera_->setCameraFlag(CameraFlag::USER1);
+	camera_->setPosition3D(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 400));
+	camera_->lookAt(Vec3((config::kBattleScene.x - config::visible_width) / 2, (config::kBattleScene.y - config::visible_height) / 2, 0));
+	this->addChild(camera_);
 
 	// Create Background
 	auto gameBackgroundLayer = GameBackgroundLayer::create();
@@ -169,7 +169,7 @@ cocos2d::Vec2 BattleLayer::getPlayerDirection()
 	Vec2 direction;
 	if (_player != nullptr)
 	{
-		direction = _camera->getPosition() + Controller::getMouseLocation() - _player->getPosition();
+		direction = camera_->getPosition() + Controller::getMouseLocation() - _player->getPosition();
 		direction.normalize();
 	}
 	return direction;
@@ -223,9 +223,7 @@ void BattleLayer::addEnemy(float deltaTime)
 		enemy = Enemy::create();
 		enemy->setPosition(Vec2(random(40.0f, 1400.0f), random(40.0f, 1400.0f)));
 		enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
-        AnimationUtil::runParticleAnimation("Birth", this->getParent(), this);
 		this->addChild(enemy);
-        
 	}
 }
 
@@ -249,18 +247,18 @@ void BattleLayer::updateCamera(float deltaTime)
 	if (_player == nullptr)
 		return;
 	// Use Default Camera
-	auto positionDelta = _player->getPosition() - Vec2(config::visible_width / 2, config::visible_height / 2) - _camera->getPosition();
-	auto eye = _camera->getPosition3D() + Vec3(positionDelta.x * _player->getTraceCoefficient() * deltaTime, positionDelta.y * _player->getTraceCoefficient() * deltaTime, 0.0f);
-	_camera->setPosition3D(eye);
+	auto positionDelta = _player->getPosition() - Vec2(config::visible_width / 2, config::visible_height / 2) - camera_->getPosition();
+	auto eye = camera_->getPosition3D() + Vec3(positionDelta.x * _player->getTraceCoefficient() * deltaTime, positionDelta.y * _player->getTraceCoefficient() * deltaTime, 0.0f);
+	camera_->setPosition3D(eye);
 	eye.z = 0.0f;
-	_camera->lookAt(eye);
+	camera_->lookAt(eye);
 }
 
 void BattleLayer::updateShootLine(float deltaTime)
 {
 	if (_player == nullptr)
 		return;
-	auto mousePositionInLayer = _camera->getPosition() + Controller::getMouseLocation();
+	auto mousePositionInLayer = camera_->getPosition() + Controller::getMouseLocation();
 	// Update Shoot Assist
 	shootLine->setPosition(_player->getPosition());
 	float shootLineRotateAngle;
@@ -284,7 +282,7 @@ void BattleLayer::update(float deltaTime)
 {
 	_timer += deltaTime*getTimeCoefficient();
 	// TODO setCameraMask at Every Node
-	this->setCameraMask(1 << 1);
+	setCameraMask(1 << 1);
 	// Update Camera
 	updateCamera(deltaTime);
 	// Update ShootLine

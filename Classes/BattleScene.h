@@ -26,7 +26,7 @@ protected:
 	BattleLayer* battleLayer;
 	HUDLayer* _HUDLayer;
 	// static CameraNode* cameraNode;
-	// cocos2d::Camera* _camera;
+	// cocos2d::Camera* camera_;
 	virtual void update(float deltaTime) override;
 	// static BulletLayer* bulletLayer;
 	// static PlayerLayer* playerLayer;

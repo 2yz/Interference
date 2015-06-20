@@ -37,7 +37,8 @@ public:
 protected:
 	Message _message;
 	float _timer;
-	float _HP;
+	float hp_;
+	float hp_max_;
 	float _velocityMagnitude; // Velocity unit is pixel per second
 	float _velocityDirection; // Velocity direction angle in radian measure
 	cocos2d::PhysicsBody* _physicsBody;

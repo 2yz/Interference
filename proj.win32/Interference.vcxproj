@@ -157,14 +157,17 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Kill.cpp" />
+    <ClCompile Include="..\Classes\MenuLayer.cpp" />
     <ClCompile Include="..\Classes\Message.cpp" />
     <ClCompile Include="..\Classes\MouseLayer.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PlayerUserData.cpp" />
     <ClCompile Include="..\Classes\Skill.cpp" />
-    <ClCompile Include="..\Classes\Support.cpp" />
+    <ClCompile Include="..\Classes\Control.cpp" />
+    <ClCompile Include="..\Classes\SkillUserData.cpp" />
     <ClCompile Include="..\Classes\TimeCoefficient.cpp" />
     <ClCompile Include="..\Classes\HUDLayer.cpp" />
+    <ClCompile Include="..\Classes\Utility.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,14 +193,17 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BattleScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\Kill.h" />
+    <ClInclude Include="..\Classes\MenuLayer.h" />
     <ClInclude Include="..\Classes\Message.h" />
     <ClInclude Include="..\Classes\MouseLayer.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PlayerUserData.h" />
     <ClInclude Include="..\Classes\Skill.h" />
-    <ClInclude Include="..\Classes\Support.h" />
+    <ClInclude Include="..\Classes\Control.h" />
+    <ClInclude Include="..\Classes\SkillUserData.h" />
     <ClInclude Include="..\Classes\TimeCoefficient.h" />
     <ClInclude Include="..\Classes\HUDLayer.h" />
+    <ClInclude Include="..\Classes\Utility.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
