@@ -8,9 +8,11 @@ class BaseEnemy : public BasePlane
 public:
 	BaseEnemy();
 	virtual bool init() override;
+	void setListener();
+	void destroyUpdate(float delta_time);
 protected:
-	bool _beDestroyable; // Is destroyable when contact
-	float _destroyDamage; // Damage to Player when destroy for contact
+	bool be_destroyable_; // Is destroyable when contact
+	float destroy_damage_; // Damage to Player when destroy for contact
 	int score_;
 };
 

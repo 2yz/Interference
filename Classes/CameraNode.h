@@ -19,8 +19,8 @@ public:
 	void removeBattleLayer();
 	// virtual void onEnter() override;
 	// virtual void onExit() override;
-	// void updateCamera(float deltaTime);
-	virtual void update(float deltaTime) override;
+	// void updateCamera(float delta_time);
+	virtual void update(float delta_time) override;
 protected:
 	static cocos2d::Camera* camera_;
 	GameBackgroundLayer* game_background_layer_;

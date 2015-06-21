@@ -94,18 +94,19 @@ bool MenuLayer::init()
 void MenuLayer::onEnter()
 {
 	Layer::onEnter();
-	help_instruction_->setOpacity(0.0f);
+	for (auto child : _children)
+		child->setOpacity(0.0f);
 	background_->runAction(FadeIn::create(0.5f));
 	logo_->runAction(FadeIn::create(0.5f));
 	start_button_->runAction(FadeIn::create(0.5f));
 	help_button_->runAction(FadeIn::create(0.5f));
 	exit_button_->runAction(FadeIn::create(0.5f));
-	background_music = experimental::AudioEngine::play2d(MENU_MUSIC, true, MENU_MUSIC_VOLUME);
+	background_music_ = experimental::AudioEngine::play2d(MENU_MUSIC, true, MENU_MUSIC_VOLUME);
 }
 
 void MenuLayer::onExit()
 {
-	experimental::AudioEngine::stop(background_music);
+	experimental::AudioEngine::stop(background_music_);
 	Layer::onExit();
 }
 
@@ -116,11 +117,11 @@ void MenuLayer::onDestroy()
 	scheduleOnce(schedule_selector(MenuLayer::exitSchedule), 0.6f);
 }
 
-void MenuLayer::exitSchedule(float deltaTime)
+void MenuLayer::exitSchedule(float delta_time)
 {
 	this->removeFromParentAndCleanup(true);
 }
 
-void MenuLayer::update(float deltaTime)
+void MenuLayer::update(float delta_time)
 {
 }

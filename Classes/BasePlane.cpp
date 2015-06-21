@@ -63,7 +63,7 @@ void BasePlane::castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& dir
 	}
 }
 
-void BasePlane::update(float deltaTime)
+void BasePlane::update(float delta_time)
 {
-	BaseObject::update(deltaTime);
+	BaseObject::update(delta_time);
 }

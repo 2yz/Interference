@@ -13,7 +13,7 @@ public:
 	virtual void onEnter() override;
 	virtual void onDestroy() override;
 	void onContact(Message& message) override;
-	virtual void update(float deltaTime) override;
+	virtual void update(float delta_time) override;
 };
 
 #endif /* ENEMY_H_ */

@@ -51,12 +51,6 @@
     <ClCompile Include="..\Classes\BaseObject.cpp">
       <Filter>src\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\BulletUserData.cpp">
-      <Filter>src\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\EnemyUserData.cpp">
-      <Filter>src\UserData</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PlayerUserData.cpp">
       <Filter>src\UserData</Filter>
     </ClCompile>
@@ -169,12 +163,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BaseObject.h">
       <Filter>src\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BulletUserData.h">
-      <Filter>src\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\EnemyUserData.h">
-      <Filter>src\UserData</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PlayerUserData.h">
       <Filter>src\UserData</Filter>

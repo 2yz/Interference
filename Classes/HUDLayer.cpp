@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-HUDLayer::HUDLayer() : score_(0), score_num_label_(nullptr), pauseButtonItem(nullptr), launchButtonItem(nullptr), HPIndicator(nullptr), pauseButton(nullptr), launchButton(nullptr)
+HUDLayer::HUDLayer() : score_(0), score_num_label_(nullptr)
 {
 }
 
@@ -55,12 +55,6 @@ bool HUDLayer::init()
 	attack_dark_sprite_->setPosition(attack_position);
 	addChild(attack_dark_sprite_, 10);
 
-	// pauseButtonItem = MenuItemSprite::create(Sprite::createWithSpriteFrameName("pauseButton.png"), Sprite::createWithSpriteFrameName("pauseButton.png"), CC_CALLBACK_1(HUDLayer::menuPauseCallback, this));
-	// pauseButton = Menu::create(pauseButtonItem, nullptr);
-	// //pauseButton->setAnchorPoint(Point(0.0f, 1.0f));
-	// //pauseButton->setPosition(75, visibleOrigin.y + visibleSize.height - 75);
-	// pauseButton->setPosition(500.0f, 500.0f);
-	// this->addChild(pauseButton);
 	setEventListener();
 
 	return true;
@@ -122,22 +116,6 @@ void HUDLayer::addScoreBy(int addScore)
 	updateScore();
 }
 
-void HUDLayer::updateHPIndicator()
-{
-	// int hp_ = static_cast<PlayerUserData*>(static_cast<BattleScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getMyPlane()->getUserData())->getHP();
-	// int initHP = static_cast<BattleScene*>(this->getParent())->getCameraLayer()->getPlayerLayer()->getInitHP();
-	// float HPOld = HPIndicator->getPercentage();
-	// float HPPercentage = static_cast<float>(hp_) / static_cast<float>(initHP);
-	// ProgressFromTo* animation = ProgressFromTo::create(0.2f, HPOld, HPPercentage * 100);
-	// HPIndicator->runAction(animation);
-}
-
-void HUDLayer::setLaunchButtonEnable()
-{
-	launchButtonItem->setEnabled(true);
-	launchButton->setEnabled(true);
-}
-
 int HUDLayer::getScore()
 {
 	return score_;
@@ -150,39 +128,9 @@ void HUDLayer::updateScore()
 	ss << this->score_;
 	ss >> strScore;
 	score_num_label_->setString(strScore.c_str());
-	// TODO GiftLayer
-	// if (this->score_ % 1000 == 0){
-	// 	static_cast<BattleScene*>(this->getParent())->getUFOLayer()->addGiftSprite();
-	// }
 }
 
-void HUDLayer::menuPauseCallback(cocos2d::Ref* pSender)
-{
-	//如果游戏已在暂停中
-	if (Director::getInstance()->isPaused())
-	{
-		Director::getInstance()->resume();
-		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1);
-		pauseButtonItem->setNormalImage(Sprite::createWithSpriteFrameName("pauseButton.png"));
-		pauseButtonItem->setSelectedImage(Sprite::createWithSpriteFrameName("startButton.png"));
-	}
-	else
-	{
-		//如果游戏正在进行
-		Director::getInstance()->pause();
-		Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0);
-		pauseButtonItem->setNormalImage(Sprite::createWithSpriteFrameName("startButton.png"));
-		pauseButtonItem->setSelectedImage(Sprite::createWithSpriteFrameName("pauseButton.png"));
-	}
-}
-
-void HUDLayer::menuLaunchCallback(cocos2d::Ref* pSender)
-{
-	launchButtonItem->setEnabled(false);
-	launchButton->setEnabled(false);
-}
-
-void HUDLayer::update(float deltaTime)
+void HUDLayer::update(float delta_time)
 {
 
 }

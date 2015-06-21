@@ -16,7 +16,7 @@ USING_NS_CC;
 
 BattleLayer* BattleLayer::battle_layer_ = nullptr;
 
-BattleLayer::BattleLayer() : _timer(0.0f), _player(nullptr), shootLine(nullptr), paused_(false)
+BattleLayer::BattleLayer() : timer_(0.0f), player_(nullptr), shoot_line_(nullptr), paused_(false)
 {
 	battle_layer_ = this;
 }
@@ -24,8 +24,8 @@ BattleLayer::BattleLayer() : _timer(0.0f), _player(nullptr), shootLine(nullptr),
 BattleLayer::~BattleLayer()
 {
 	battle_layer_ = nullptr;
-	_player = nullptr;
-	shootLine = nullptr;
+	player_ = nullptr;
+	shoot_line_ = nullptr;
 }
 
 bool BattleLayer::init()
@@ -69,30 +69,22 @@ void BattleLayer::onEnter()
 	Layer::onEnter();
 	this->scheduleUpdate();
 	enterState(BEGIN);
-	background_music = experimental::AudioEngine::play2d(BATTLE_MUSIC, true, BATTLE_MUSIC_VOLUME);
+	background_music_ = experimental::AudioEngine::play2d(BATTLE_MUSIC, true, BATTLE_MUSIC_VOLUME);
 }
 
 void BattleLayer::onExit()
 {
-	experimental::AudioEngine::stop(background_music);
+	experimental::AudioEngine::stop(background_music_);
 	Layer::onExit();
 }
 
 
-void BattleLayer::destroyAllObject()
-{
-	if (_player != nullptr)
-		_player->onDestroy();
-	for (auto enemy : _enemy)
-		enemy->onDestroy();
-	for (auto block : _block)
-		block->onDestroy();
-}
+
 
 void BattleLayer::pauseLayer()
 {
 	Layer::pause();
-	experimental::AudioEngine::pause(background_music);
+	experimental::AudioEngine::pause(background_music_);
 	for (auto child : _children)
 		child->pause();
 	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.0f);
@@ -103,7 +95,7 @@ void BattleLayer::pauseLayer()
 void BattleLayer::resumeLayer()
 {
 	Layer::resume();
-	experimental::AudioEngine::resume(background_music);
+	experimental::AudioEngine::resume(background_music_);
 	for (auto child : _children)
 		child->resume();
 	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f);
@@ -134,23 +126,23 @@ void BattleLayer::addLayerChild(Node* child)
 	switch (child->getTag())
 	{
 	case kPlayerTag:
-		if (!_player)
-			_player = dynamic_cast<Player*>(child);
+		if (!player_)
+			player_ = dynamic_cast<Player*>(child);
 		this->enableShootLine();
 		break;
 	case kEnemyTag:
-		if (_enemy.empty())
+		if (enemy_.empty())
 		{
-			_enemy.reserve(4);
+			enemy_.reserve(4);
 		}
-		_enemy.pushBack(static_cast<Enemy*>(child));
+		enemy_.pushBack(static_cast<Enemy*>(child));
 		break;
 	case kBlockTag:
-		if (_block.empty())
+		if (block_.empty())
 		{
-			_block.reserve(4);
+			block_.reserve(4);
 		}
-		_block.pushBack(static_cast<Block*>(child));
+		block_.pushBack(static_cast<Block*>(child));
 		break;
 	}
 }
@@ -163,23 +155,23 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 		switch (child->getTag())
 		{
 		case kPlayerTag:
-			_player = nullptr;
+			player_ = nullptr;
 			disableShootLine();
 			break;
 		case kEnemyTag:
-			if (!_enemy.empty())
+			if (!enemy_.empty())
 			{
-				auto index = _enemy.getIndex(static_cast<Enemy*>(child));
+				auto index = enemy_.getIndex(static_cast<Enemy*>(child));
 				if (index != CC_INVALID_INDEX)
-					_enemy.erase(index);
+					enemy_.erase(index);
 			}
 			break;
 		case kBlockTag:
-			if (!_block.empty())
+			if (!block_.empty())
 			{
-				auto index = _block.getIndex(static_cast<Block*>(child));
+				auto index = block_.getIndex(static_cast<Block*>(child));
 				if (index != CC_INVALID_INDEX)
-					_block.erase(index);
+					block_.erase(index);
 			}
 			break;
 		}
@@ -189,9 +181,9 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 
 void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
 {
-	_player = nullptr;
-	_enemy.clear();
-	_block.clear();
+	player_ = nullptr;
+	enemy_.clear();
+	block_.clear();
 	Layer::removeAllChildrenWithCleanup(cleanup);
 }
 
@@ -203,9 +195,9 @@ bool BattleLayer::isPaused()
 cocos2d::Vec2 BattleLayer::getPlayerDirection()
 {
 	Vec2 direction;
-	if (_player != nullptr && CameraNode::getCamera() != nullptr)
+	if (player_ != nullptr && CameraNode::getCamera() != nullptr)
 	{
-		direction = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation() - _player->getPosition();
+		direction = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation() - player_->getPosition();
 		direction.normalize();
 	}
 	return direction;
@@ -213,8 +205,8 @@ cocos2d::Vec2 BattleLayer::getPlayerDirection()
 
 cocos2d::Vec2 BattleLayer::getPlayerPosition()
 {
-	if (_player != nullptr)
-		return _player->getPosition();
+	if (player_ != nullptr)
+		return player_->getPosition();
 	return Vec2();
 }
 
@@ -227,28 +219,37 @@ void BattleLayer::sendBattleEvent(int event_data)
 	CC_SAFE_DELETE(buf);
 }
 
+void BattleLayer::sendDestroyEvent()
+{
+	auto buf = new int(DESTROY_EVENT_ALL);
+	EventCustom battle_event(DESTROY_EVENT);
+	battle_event.setUserData(buf);
+	_eventDispatcher->dispatchEvent(&battle_event);
+	CC_SAFE_DELETE(buf);
+}
+
 void BattleLayer::enableShootLine()
 {
-	if (_player == nullptr)
+	if (player_ == nullptr)
 		return;
-	if (shootLine == nullptr)
+	if (shoot_line_ == nullptr)
 	{
 		// Create Shoot Assist Line
-		shootLine = Sprite::createWithSpriteFrameName(kShootLineSpriteFrame);
-		shootLine->setAnchorPoint(Vec2(0.0f, 0.5f));
-		shootLine->setBlendFunc(BlendFunc::ADDITIVE);
-		this->addChild(shootLine);
+		shoot_line_ = Sprite::createWithSpriteFrameName(SHOOT_LINE_SPRITE_FRAME);
+		shoot_line_->setAnchorPoint(Vec2(0.0f, 0.5f));
+		shoot_line_->setBlendFunc(BlendFunc::ADDITIVE);
+		this->addChild(shoot_line_);
 	}
 	auto fadeIn = FadeIn::create(10.0f);
-	shootLine->runAction(fadeIn);
+	shoot_line_->runAction(fadeIn);
 }
 
 void BattleLayer::disableShootLine()
 {
-	if (shootLine == nullptr)
+	if (shoot_line_ == nullptr)
 		return;
 	auto fadeOut = FadeOut::create(1.0f);
-	shootLine->runAction(fadeOut);
+	shoot_line_->runAction(fadeOut);
 }
 
 void BattleLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
@@ -294,32 +295,32 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	return true;
 }
 
-void BattleLayer::update(float deltaTime)
+void BattleLayer::update(float delta_time)
 {
-	_timer += deltaTime*getTimeCoefficient();
-	updateStateMachine(deltaTime);
-	updateShootLine(deltaTime);
+	timer_ += delta_time*getTimeCoefficient();
+	updateStateMachine(delta_time);
+	updateShootLine(delta_time);
 }
 
-void BattleLayer::updateShootLine(float deltaTime)
+void BattleLayer::updateShootLine(float delta_time)
 {
-	if (_player == nullptr)
+	if (player_ == nullptr)
 		return;
 	auto mousePositionInLayer = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation();
 	// Update Shoot Assist
-	shootLine->setPosition(_player->getPosition());
+	shoot_line_->setPosition(player_->getPosition());
 	float shootLineRotateAngle;
-	if (mousePositionInLayer.x - _player->getPosition().x == 0)
+	if (mousePositionInLayer.x - player_->getPosition().x == 0)
 	{
 		shootLineRotateAngle = 90;
 	}
 	else
 	{
-		shootLineRotateAngle = atan((mousePositionInLayer.y - _player->getPosition().y) / (mousePositionInLayer.x - _player->getPosition().x)) / M_PI * 180;
-		if (mousePositionInLayer.x - _player->getPosition().x < 0)
+		shootLineRotateAngle = atan((mousePositionInLayer.y - player_->getPosition().y) / (mousePositionInLayer.x - player_->getPosition().x)) / M_PI * 180;
+		if (mousePositionInLayer.x - player_->getPosition().x < 0)
 		{
 			shootLineRotateAngle += 180;
 		}
 	}
-	shootLine->setRotation(-shootLineRotateAngle);
+	shoot_line_->setRotation(-shootLineRotateAngle);
 }

@@ -11,10 +11,10 @@ Block* Block::create(bool isEdge)
 	CALL_INIT();
 }
 
-Block::Block(bool isEdge) : _isEdge(isEdge), score_(300)
+Block::Block(bool isEdge) : is_edge_(isEdge), score_(300)
 {
 	hp_ = 1000.0f;
-	_velocityMagnitude = 100.0f;
+	velocity_magnitude_ = 100.0f;
 }
 
 bool Block::init()
@@ -27,24 +27,24 @@ bool Block::init()
 	this->setTag(kBlockTag);
 
 	// Set Sprite and Physics Shape
-	if (_isEdge)
+	if (is_edge_)
 	{
 		// Create Block
-		auto block = Sprite::createWithSpriteFrameName(kEdgeSpriteFrame);
-		_spriteVector.pushBack(block);
+		auto block = Sprite::createWithSpriteFrameName(EDGE_SPRITE_FRAME);
+		sprite_vector_.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize + Size(200.0f, 200.0f), kBlockMaterial, 120.0f));
+		physics_body_->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize + Size(200.0f, 200.0f), kBlockMaterial, 120.0f));
 	}
 	else
 	{
 		// Create Block
-		auto block = Sprite::createWithSpriteFrameName(kBlockSpriteFrame);
-		_spriteVector.pushBack(block);
+		auto block = Sprite::createWithSpriteFrameName(BLOCK_SPRITE_FRAME);
+		sprite_vector_.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeBox::create(block->getTextureRect().size, kBlockMaterial));
+		physics_body_->addShape(PhysicsShapeBox::create(block->getTextureRect().size, kBlockMaterial));
 	}
 	// Set Physics Body
-	_physicsBody->setContactTestBitmask(kBlockContactMask);
+	physics_body_->setContactTestBitmask(kBlockContactMask);
 
 	return true;
 }
@@ -52,23 +52,23 @@ bool Block::init()
 void Block::onEnter()
 {
 	BaseObject::onEnter();
-	if (!_isEdge)
+	if (!is_edge_)
 	{
 		auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-		for (auto sprite : _spriteVector)
+		for (auto sprite : sprite_vector_)
 			sprite->runAction(tintTo->clone());
 	}
 }
 
 void Block::onDestroy()
 {
-	experimental::AudioEngine::play2d(kDeathAudio, false, kDeathVolume);
+	experimental::AudioEngine::play2d(DEATH_AUDIO, false, DEATH_VOLUME);
 	BaseObject::onDestroy();
 }
 
 void Block::onContact(Message& message)
 {
-	if (message.getInt(kTagKey) == kPlayerBulletTag && !_isEdge)
+	if (message.getInt(kTagKey) == kPlayerBulletTag && !is_edge_)
 		hp_ -= message.getFloat(kDamageKey);
 	if (hp_ <= 0.0f)
 	{
@@ -83,6 +83,6 @@ void Block::onContact(Message& message)
 
 void Block::initMessage()
 {
-	_message.putString(kNameKey, kBlockName);
-	_message.putInt(kTagKey, kBlockTag);
+	message_.putString(kNameKey, kBlockName);
+	message_.putInt(kTagKey, kBlockTag);
 }

@@ -13,8 +13,8 @@ public:
 	virtual void onEnter() override;
 	virtual void onExit() override;
 	void onDestroy();
-	void exitSchedule(float deltaTime);
-	virtual void update(float deltaTime) override;
+	void exitSchedule(float delta_time);
+	virtual void update(float delta_time) override;
 protected:
 	bool isHelp_;
 	cocos2d::Sprite* logo_;
@@ -23,7 +23,7 @@ protected:
 	cocos2d::ui::Button* start_button_;
 	cocos2d::ui::Button* help_button_;
 	cocos2d::ui::Button* exit_button_;
-	int background_music;
+	int background_music_;
 };
 
 #endif /* MENULAYER_H_ */

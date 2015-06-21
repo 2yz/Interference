@@ -21,7 +21,7 @@ protected:
 	float physics_radius_;
 	float rotate_velocity_; // degree per second
 	cocos2d::Vector<Skill*> skill_vector_;
-	virtual void update(float deltaTime) override;
+	virtual void update(float delta_time) override;
 };
 
 #endif /* BASEPLANE_H_ */

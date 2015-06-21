@@ -20,8 +20,8 @@ bool BaseBullet::init()
 
 void BaseBullet::onDestroy()
 {
-	AnimationUtil::runParticleAnimation(kBoomParticle, this->getParent(), this);
-	cocos2d::experimental::AudioEngine::play2d(kImpactAudio, false, kImpactVolume);
+	AnimationUtil::runParticleAnimation(BOOM_PARTICLE, this->getParent(), this);
+	cocos2d::experimental::AudioEngine::play2d(IMPACT_AUDIO, false, IMPACT_VOLUME);
 	BaseObject::onDestroy();
 }
 

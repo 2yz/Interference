@@ -43,7 +43,7 @@ void PopupLayer::onDestroy()
 	scheduleOnce(schedule_selector(PopupLayer::exitSchedule), 0.5f);
 }
 
-void PopupLayer::exitSchedule(float deltaTime)
+void PopupLayer::exitSchedule(float delta_time)
 {
 	this->removeFromParentAndCleanup(true);
 }

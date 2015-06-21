@@ -9,8 +9,8 @@ public:
 	void setTimeCoefficient(float timeCoefficient);
 	float getTimeCoefficient();
 private:
-	TimeCoefficient* _parent;
-	float _timeCoefficient;
+	TimeCoefficient* parent_;
+	float time_coefficient_;
 };
 
 

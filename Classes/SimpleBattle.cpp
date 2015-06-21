@@ -5,12 +5,12 @@
 
 USING_NS_CC;
 
-void SimpleBattle::updateStateMachine(float deltaTime)
+void SimpleBattle::updateStateMachine(float delta_time)
 {
 	switch (battle_state_)
 	{
 	case BEGIN:
-		state_timer_ += deltaTime;
+		state_timer_ += delta_time;
 		if (state_timer_ > 5.0f)
 		{
 			int num = random(5, 15);
@@ -28,13 +28,13 @@ void SimpleBattle::updateStateMachine(float deltaTime)
 			setState(ROUND1);
 		break;
 	case ROUND1:
-		state_timer_ += deltaTime;
+		state_timer_ += delta_time;
 		if (state_timer_ > 5.0f)
 		{
 			Vec2 vector_vec2(1.0f, 0.0f);
 			Vec2 position;
-			if (_player != nullptr)
-				position = _player->getPosition();
+			if (player_ != nullptr)
+				position = player_->getPosition();
 			else
 				position = Vec2(config::kBattleScene / 2);
 			position += Vec2((rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f), (rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f));
@@ -58,10 +58,17 @@ void SimpleBattle::updateStateMachine(float deltaTime)
 			setState(END);
 		break;
 	case END:
-		if (_enemy.size() == 0)
+		if (enemy_.size() == 0)
 		{
 			sendBattleEvent(BATTLE_EVENT_WIN);
 			setState(WIN);
+		}
+		break;
+	case LOSS:
+		if (state_count_ == 0)
+		{
+			sendDestroyEvent();
+			state_count_ += 1;
 		}
 		break;
 	default: break;
@@ -84,7 +91,7 @@ void SimpleBattle::enterState(BattleState battle_state)
 	switch (battle_state)
 	{
 	case BEGIN:
-		if (!_player)
+		if (!player_)
 		{
 			auto player = Player::create();
 			player->setPosition(config::kBattleScene / 2);

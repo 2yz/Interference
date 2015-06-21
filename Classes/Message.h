@@ -14,9 +14,9 @@ public:
 	float getFloat(std::string key);
 	std::string getString(std::string key);
 protected:
-	std::map<std::string, int> _intMap;
-	std::map<std::string, float> _floatMap;
-	std::map<std::string, std::string> _stringMap;
+	std::map<std::string, int> int_map_;
+	std::map<std::string, float> float_map_;
+	std::map<std::string, std::string> string_map_;
 };
 
 #endif /* MESSAGE_H_ */

@@ -144,7 +144,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Block.cpp" />
     <ClCompile Include="..\Classes\Boss.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
-    <ClCompile Include="..\Classes\BulletUserData.cpp" />
     <ClCompile Include="..\Classes\CameraNode.cpp" />
     <ClCompile Include="..\Classes\ClearBullet.cpp" />
     <ClCompile Include="..\Classes\ConfigUtil.cpp" />
@@ -152,7 +151,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Defense.cpp" />
     <ClCompile Include="..\Classes\BaseEnemy.cpp" />
     <ClCompile Include="..\Classes\Enemy.cpp" />
-    <ClCompile Include="..\Classes\EnemyUserData.cpp" />
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
     <ClCompile Include="..\Classes\BattleLayer.cpp" />
     <ClCompile Include="..\Classes\BattleScene.cpp" />
@@ -185,7 +183,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Block.h" />
     <ClInclude Include="..\Classes\Boss.h" />
     <ClInclude Include="..\Classes\Bullet.h" />
-    <ClInclude Include="..\Classes\BulletUserData.h" />
     <ClInclude Include="..\Classes\CameraNode.h" />
     <ClInclude Include="..\Classes\ClearBullet.h" />
     <ClInclude Include="..\Classes\ConfigUtil.h" />
@@ -193,7 +190,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Defense.h" />
     <ClInclude Include="..\Classes\BaseEnemy.h" />
     <ClInclude Include="..\Classes\Enemy.h" />
-    <ClInclude Include="..\Classes\EnemyUserData.h" />
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
     <ClInclude Include="..\Classes\BattleLayer.h" />
     <ClInclude Include="..\Classes\BattleScene.h" />

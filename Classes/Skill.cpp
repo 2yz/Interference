@@ -53,12 +53,12 @@ SkillCategory Skill::getSkillCategory()
 	return skill_category_;
 }
 
-void Skill::update(float deltaTime)
+void Skill::update(float delta_time)
 {
-	Node::update(deltaTime);
+	Node::update(delta_time);
 	if (cd_)
 	{
-		timer_ += deltaTime*cd_time_coefficient_;
+		timer_ += delta_time*cd_time_coefficient_;
 		if (timer_ >= cd_time_)
 		{
 			cd_ = false;

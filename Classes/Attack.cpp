@@ -35,6 +35,6 @@ bool Attack::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const 
 	auto bullet = Bullet::create(skill_parent_, direction);
 	bullet->setPosition(skill_parent->getPosition());
 	battle_layer->addChild(bullet);
-	cocos2d::experimental::AudioEngine::play2d(kAttackAudio, false, kAttackVolume);
+	cocos2d::experimental::AudioEngine::play2d(ATTACK_AUDIO, false, ATTACK_VOLUME);
 	return true;
 }

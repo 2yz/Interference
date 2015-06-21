@@ -28,7 +28,7 @@ protected:
 	float cd_time_;
 	float cd_time_coefficient_;
 	SkillCategory skill_category_;
-	virtual void update(float deltaTime) override;
+	virtual void update(float delta_time) override;
 };
 
 #endif /* Skill_H_ */

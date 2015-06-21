@@ -14,7 +14,7 @@ public:
 	virtual void onDestroy() override;
 	virtual void onContact(Message& message) override;
 protected:
-	bool _isEdge;
+	bool is_edge_;
 	int score_;
 };
 

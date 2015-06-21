@@ -66,9 +66,9 @@ void CameraNode::removeBattleLayer()
 	battle_layer_ = nullptr;
 }
 
-void CameraNode::update(float deltaTime)
+void CameraNode::update(float delta_time)
 {
 	// TODO setCameraMask at Every Node
 	setCameraMask(1 << 1);
-	delta_time_ = deltaTime;
+	delta_time_ = delta_time;
 }

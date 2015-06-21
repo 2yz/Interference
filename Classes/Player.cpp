@@ -9,11 +9,11 @@
 
 USING_NS_CC;
 
-Player::Player() : _accelerationMagnitude(800.0f)
+Player::Player() : acceleration_magnitude_(800.0f)
 {
-	hp_ = 2000.0f;
-	hp_max_ = 2000.0f;
-	_velocityMagnitude = 400.0f;
+	hp_ = 200.0f;
+	hp_max_ = 200.0f;
+	velocity_magnitude_ = 400.0f;
 	linear_damping_ = 1.0f;
 	physics_radius_ = 50.0f;
 	rotate_velocity_ = 180.0f;
@@ -35,19 +35,19 @@ bool Player::init()
 	for (int i = 0; i < 4; ++i)
 	{
 		auto sprite = Sprite::create();
-		_spriteVector.pushBack(sprite);
+		sprite_vector_.pushBack(sprite);
 		this->addChild(sprite);
 	}
-	_spriteVector.at(1)->setRotation(180.0f);
-	_spriteVector.at(3)->setRotation(180.0f);
-	_spriteVector.at(2)->setScale(0.4f);
-	_spriteVector.at(3)->setScale(0.4f);
+	sprite_vector_.at(1)->setRotation(180.0f);
+	sprite_vector_.at(3)->setRotation(180.0f);
+	sprite_vector_.at(2)->setScale(0.4f);
+	sprite_vector_.at(3)->setScale(0.4f);
 	this->setScale(0.8f);
 
 	// Set Sprite Frame
-	for (auto sprite : _spriteVector)
+	for (auto sprite : sprite_vector_)
 	{
-		sprite->setSpriteFrame(kPlayerSpriteFrame);
+		sprite->setSpriteFrame(PLAYER_SPRITE_FRAME);
 	}
 
 	// Create Skill
@@ -55,10 +55,10 @@ bool Player::init()
 	addSkill(attack);
 
 	// Set Camera Trace Cofficient
-	this->setTraceCoefficient(_velocityMagnitude, _accelerationMagnitude, 1.0f / 60.0f);
+	this->setTraceCoefficient(velocity_magnitude_, acceleration_magnitude_, 1.0f / 60.0f);
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, kPlayerMaterial));
+	physics_body_->addShape(PhysicsShapeCircle::create(physics_radius_, kPlayerMaterial));
 
 	// Set Node Tag
 	this->setTag(kPlayerTag);
@@ -73,8 +73,8 @@ bool Player::init()
 
 void Player::initMessage()
 {
-	_message.putString(kNameKey, kPlayerName);
-	_message.putInt(kTagKey, kPlayerTag);
+	message_.putString(kNameKey, kPlayerName);
+	message_.putInt(kTagKey, kPlayerTag);
 }
 
 void Player::onEnter()
@@ -82,17 +82,17 @@ void Player::onEnter()
 	BasePlane::onEnter();
 
 	// Set Physics Body
-	_physicsBody->setGroup(kPlayerGroup);
-	_physicsBody->setContactTestBitmask(kPlayerContactMask);
-	_physicsBody->setCollisionBitmask(kPlayerCollisionMask);
-	_physicsBody->setCategoryBitmask(kPlayerCategoryMask);
-	_physicsBody->setLinearDamping(linear_damping_);
-	_physicsBody->setVelocityLimit(_velocityMagnitude);
+	physics_body_->setGroup(kPlayerGroup);
+	physics_body_->setContactTestBitmask(kPlayerContactMask);
+	physics_body_->setCollisionBitmask(kPlayerCollisionMask);
+	physics_body_->setCategoryBitmask(kPlayerCategoryMask);
+	physics_body_->setLinearDamping(linear_damping_);
+	physics_body_->setVelocityLimit(velocity_magnitude_);
 }
 
 void Player::onDestroy()
 {
-	experimental::AudioEngine::play2d(kDeathAudio);
+	experimental::AudioEngine::play2d(DEATH_AUDIO);
 	BasePlane::onDestroy();
 }
 
@@ -115,25 +115,25 @@ void Player::onContact(Message& message)
 
 float Player::getTraceCoefficient()
 {
-	return _traceCoefficient;
+	return trace_coefficient_;
 }
 
-void Player::setTraceCoefficient(float maxSpeed, float acceleration, float deltaTime)
+void Player::setTraceCoefficient(float maxSpeed, float acceleration, float delta_time)
 {
-	_traceCoefficient = 1.0f / (maxSpeed / acceleration + deltaTime);
+	trace_coefficient_ = 1.0f / (maxSpeed / acceleration + delta_time);
 }
 
-void Player::updateMove(float deltaTime)
+void Player::updateMove(float delta_time)
 {
 	if ((Controller::getMoveUp() ^ Controller::getMoveDown()) && (Controller::getMoveLeft() ^ Controller::getMoveRight()))
 	{
-		_physicsBody->setVelocity(_physicsBody->getVelocity() + _accelerationMagnitude * deltaTime *
+		physics_body_->setVelocity(physics_body_->getVelocity() + acceleration_magnitude_ * delta_time *
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()) / static_cast<float>(sqrt(2.0)),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown()) / static_cast<float>(sqrt(2.0))));
 	}
 	else if (Controller::getMoveUp() || Controller::getMoveDown() || Controller::getMoveLeft() || Controller::getMoveRight())
 	{
-		_physicsBody->setVelocity(_physicsBody->getVelocity() + _accelerationMagnitude * deltaTime *
+		physics_body_->setVelocity(physics_body_->getVelocity() + acceleration_magnitude_ * delta_time *
 			Vec2(static_cast<float>(Controller::getMoveRight() - Controller::getMoveLeft()),
 			static_cast<float>(Controller::getMoveUp() - Controller::getMoveDown())));
 	}
@@ -142,7 +142,7 @@ void Player::updateMove(float deltaTime)
 	_eventDispatcher->dispatchEvent(&event);
 }
 
-void Player::updateSkillCast(float deltaTime)
+void Player::updateSkillCast(float delta_time)
 {
 	if (Controller::getMouseDown())
 	{
@@ -152,20 +152,20 @@ void Player::updateSkillCast(float deltaTime)
 	}
 }
 
-void Player::update(float deltaTime)
+void Player::update(float delta_time)
 {
-	deltaTime *= getTimeCoefficient();
+	delta_time *= getTimeCoefficient();
 	// Sprite Rotation
-	float spriteRotation = _spriteVector.at(0)->getRotation() + rotate_velocity_*deltaTime*getTimeCoefficient();
+	float spriteRotation = sprite_vector_.at(0)->getRotation() + rotate_velocity_*delta_time*getTimeCoefficient();
 	if (spriteRotation > 360000.0f)
 		spriteRotation -= 360000.0f;
-	_spriteVector.at(0)->setRotation(spriteRotation);
-	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	sprite_vector_.at(0)->setRotation(spriteRotation);
+	sprite_vector_.at(1)->setRotation(180.0f - spriteRotation);
+	sprite_vector_.at(2)->setRotation(spriteRotation * 2.0f);
+	sprite_vector_.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
 
-	updateMove(deltaTime);
-	updateSkillCast(deltaTime);
+	updateMove(delta_time);
+	updateSkillCast(delta_time);
 
-	BasePlane::update(deltaTime);
+	BasePlane::update(delta_time);
 }

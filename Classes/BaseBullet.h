@@ -11,9 +11,9 @@ public:
 	virtual void onDestroy() override;
 	virtual void onContact(Message& message) override;
 protected:
-	cocos2d::Vec2 _velocityVec;
-	float _damage;
-	int _bulletParent;
+	cocos2d::Vec2 velocity_vec_;
+	float damage_;
+	int bullet_parent_;
 };
 
 #endif /* BASEBULLET_H_ */

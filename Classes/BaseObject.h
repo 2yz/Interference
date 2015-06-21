@@ -35,14 +35,14 @@ public:
 	float getVelocityMagnitude();
 	float getVelocityDirection();
 protected:
-	Message _message;
-	float _timer;
+	Message message_;
+	float timer_;
 	float hp_;
 	float hp_max_;
-	float _velocityMagnitude; // Velocity unit is pixel per second
-	float _velocityDirection; // Velocity direction angle in radian measure
-	cocos2d::PhysicsBody* _physicsBody;
-	cocos2d::Vector<cocos2d::Sprite*> _spriteVector;
+	float velocity_magnitude_; // Velocity unit is pixel per second
+	float velocity_direction_; // Velocity direction angle in radian measure
+	cocos2d::PhysicsBody* physics_body_;
+	cocos2d::Vector<cocos2d::Sprite*> sprite_vector_;
 };
 
 #endif /* BASEOBJECT_H_ */

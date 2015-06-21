@@ -27,9 +27,9 @@ void LoadScene::onEnter()
 	Scene::onEnter();
 	total_num_ = 11;
 	Director::getInstance()->getTextureCache()->addImageAsync(MAIN_TEXTURE_PNG, CC_CALLBACK_1(LoadScene::spriteFrameCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(kBirthTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(kDeathTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(kBoomTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync(BIRTH_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync(DEATH_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync(BOOM_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(MENU_BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_NORMAL_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));

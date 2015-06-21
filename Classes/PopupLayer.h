@@ -24,7 +24,7 @@ public:
 	virtual bool init() override;
 	virtual void onEnter() override;
 	void onDestroy();
-	void exitSchedule(float deltaTime);
+	void exitSchedule(float delta_time);
 	virtual void buttonListener(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 protected:
 	std::string label_text_;

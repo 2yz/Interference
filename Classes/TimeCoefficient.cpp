@@ -1,22 +1,22 @@
 #include "TimeCoefficient.h"
 
-TimeCoefficient::TimeCoefficient() : _parent(nullptr), _timeCoefficient(1.0f)
+TimeCoefficient::TimeCoefficient() : parent_(nullptr), time_coefficient_(1.0f)
 {
 }
 
 void TimeCoefficient::setTimeParent(TimeCoefficient* parent)
 {
-	_parent = parent;
+	parent_ = parent;
 }
 
 void TimeCoefficient::setTimeCoefficient(float timeCoefficient)
 {
-	_timeCoefficient = timeCoefficient;
+	time_coefficient_ = timeCoefficient;
 }
 
 float TimeCoefficient::getTimeCoefficient()
 {
-	if (_parent != nullptr)
-		return _timeCoefficient * _parent->getTimeCoefficient();
-	return _timeCoefficient;
+	if (parent_ != nullptr)
+		return time_coefficient_ * parent_->getTimeCoefficient();
+	return time_coefficient_;
 }

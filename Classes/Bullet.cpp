@@ -13,10 +13,10 @@ Bullet* Bullet::create(int bulletParent, const cocos2d::Vec2& unitVelocity)
 Bullet::Bullet(int bulletParent, const cocos2d::Vec2& unitVelocity)
 {
 	hp_ = 100.0f;
-	_velocityMagnitude = 800.0f;
-	_velocityVec = unitVelocity * _velocityMagnitude;
-	_damage = 100.0f;
-	_bulletParent = bulletParent;
+	velocity_magnitude_ = 800.0f;
+	velocity_vec_ = unitVelocity * velocity_magnitude_;
+	damage_ = 100.0f;
+	bullet_parent_ = bulletParent;
 }
 
 bool Bullet::init()
@@ -27,44 +27,44 @@ bool Bullet::init()
 	}
 	
 	// Set Node Tag
-	if (_bulletParent == kPlayerTag)
+	if (bullet_parent_ == kPlayerTag)
 		this->setTag(kPlayerBulletTag);
-	else if (_bulletParent == kEnemyTag)
+	else if (bullet_parent_ == kEnemyTag)
 		this->setTag(kEnemyBulletTag);
 
 	// Set Sprite Texture
-	auto sprite = Sprite::createWithSpriteFrameName(kBulletSpriteFrame);
-	_spriteVector.pushBack(sprite);
+	auto sprite = Sprite::createWithSpriteFrameName(BULLET_SPRITE_FRAME);
+	sprite_vector_.pushBack(sprite);
 	this->addChild(sprite);
 
 	// Set Physics Body
-	_physicsBody->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, kBulletMaterial));
-	if (_bulletParent == kPlayerTag)
+	physics_body_->addShape(PhysicsShapeBox::create(sprite->getTextureRect().size, kBulletMaterial));
+	if (bullet_parent_ == kPlayerTag)
 	{
-		_physicsBody->setGroup(kPlayerBulletGroup);
-		_physicsBody->setCategoryBitmask(kPlayerBulletCategoryMask);
-		_physicsBody->setContactTestBitmask(kPlayerBulletContactMask);
-		_physicsBody->setCollisionBitmask(kPlayerBulletCollisionMask);
+		physics_body_->setGroup(kPlayerBulletGroup);
+		physics_body_->setCategoryBitmask(kPlayerBulletCategoryMask);
+		physics_body_->setContactTestBitmask(kPlayerBulletContactMask);
+		physics_body_->setCollisionBitmask(kPlayerBulletCollisionMask);
 	}
-	else if (_bulletParent == kEnemyTag)
+	else if (bullet_parent_ == kEnemyTag)
 	{
-		_physicsBody->setGroup(kEnemyBulletGroup);
-		_physicsBody->setCategoryBitmask(kEnemyBulletCategoryMask);
-		_physicsBody->setContactTestBitmask(kEnemyBulletContactMask);
-		_physicsBody->setCollisionBitmask(kEnemyBulletCollisionMask);
+		physics_body_->setGroup(kEnemyBulletGroup);
+		physics_body_->setCategoryBitmask(kEnemyBulletCategoryMask);
+		physics_body_->setContactTestBitmask(kEnemyBulletContactMask);
+		physics_body_->setCollisionBitmask(kEnemyBulletCollisionMask);
 	}
-	_physicsBody->setVelocity(_velocityVec);
+	physics_body_->setVelocity(velocity_vec_);
 	
 	return true;
 }
 
 void Bullet::initMessage()
 {
-	_message.putString(kNameKey, kBulletName);
-	_message.putInt(kBulletParent, _bulletParent);
-	if (_bulletParent == kPlayerTag)
-		_message.putInt(kTagKey, kPlayerBulletTag);
-	else if (_bulletParent == kEnemyTag)
-		_message.putInt(kTagKey, kEnemyBulletTag);
-	_message.putFloat(kDamageKey, _damage);
+	message_.putString(kNameKey, kBulletName);
+	message_.putInt(kBulletParent, bullet_parent_);
+	if (bullet_parent_ == kPlayerTag)
+		message_.putInt(kTagKey, kPlayerBulletTag);
+	else if (bullet_parent_ == kEnemyTag)
+		message_.putInt(kTagKey, kEnemyBulletTag);
+	message_.putFloat(kDamageKey, damage_);
 }

@@ -11,10 +11,8 @@ public:
 	virtual bool init() override;
 
 protected:
-	// Mouse
-	cocos2d::Sprite* mouseSprite;
-	// cocos2d::Vec2 boxPosition;
-	virtual void update(float deltaTime) override;
+	cocos2d::Sprite* mouse_sprite_;
+	virtual void update(float delta_time) override;
 };
 
 #endif /* MOUSELAYER_H_ */

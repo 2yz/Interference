@@ -11,13 +11,9 @@ public:
 	virtual bool init() override;
 	void setEventListener();
 	void addScoreBy(int addScore);
-	void updateHPIndicator();
-	void setLaunchButtonEnable();
 	int getScore();
 	void updateScore();
-	void menuPauseCallback(cocos2d::Ref* pSender);
-	void menuLaunchCallback(cocos2d::Ref* pSender);
-	virtual void update(float deltaTime) override;
+	virtual void update(float delta_time) override;
 private:
 	int score_;
 	cocos2d::Label* score_label_;
@@ -26,11 +22,6 @@ private:
 	cocos2d::Sprite* blood_bar_box_;
 	cocos2d::ProgressTimer* attack_sprite_;
 	cocos2d::Sprite* attack_dark_sprite_;
-	cocos2d::MenuItemSprite* pauseButtonItem;
-	cocos2d::MenuItemSprite* launchButtonItem;
-	cocos2d::ProgressTimer* HPIndicator;
-	cocos2d::Menu* pauseButton;
-	cocos2d::Menu* launchButton;	
 };
 
 #endif /* UILAYER_H_ */

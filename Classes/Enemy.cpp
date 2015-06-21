@@ -8,14 +8,14 @@ USING_NS_CC;
 
 Enemy::Enemy()
 {
-	hp_ = 500.0f;
-	_velocityMagnitude = 400.0f;
+	hp_ = 200.0f;
+	velocity_magnitude_ = 400.0f;
 	linear_damping_ = 0.0f;
 	physics_radius_ = 30.0f;
 	rotate_velocity_ = 100.0f;
-	_beDestroyable = true;
-	_destroyDamage = 100.0f;
-	_velocityMagnitude = 300.0f;
+	be_destroyable_ = true;
+	destroy_damage_ = 100.0f;
+	velocity_magnitude_ = 300.0f;
 	score_ = 50;
 }
 
@@ -33,22 +33,22 @@ bool Enemy::init()
 	for (int i = 0; i < 4; ++i)
 	{
 		auto sprite = Sprite::create();
-		_spriteVector.pushBack(sprite);
+		sprite_vector_.pushBack(sprite);
 		this->addChild(sprite);
 	}
-	_spriteVector.at(1)->setRotation(180.0f);
-	_spriteVector.at(3)->setRotation(180.0f);
-	_spriteVector.at(2)->setScale(0.6f);
-	_spriteVector.at(3)->setScale(0.6f);
+	sprite_vector_.at(1)->setRotation(180.0f);
+	sprite_vector_.at(3)->setRotation(180.0f);
+	sprite_vector_.at(2)->setScale(0.6f);
+	sprite_vector_.at(3)->setScale(0.6f);
 
 	// Set Sprite Frame
-	for (auto sprite : _spriteVector)
+	for (auto sprite : sprite_vector_)
 	{
-		sprite->setSpriteFrame(kEnemySpriteFrame);
+		sprite->setSpriteFrame(ENEMY_SPRITE_FRAME);
 	}
 
 	// Set Physics Shape
-	_physicsBody->addShape(PhysicsShapeCircle::create(physics_radius_, kEnemyMaterial));
+	physics_body_->addShape(PhysicsShapeCircle::create(physics_radius_, kEnemyMaterial));
 
 	this->scheduleUpdate();
 
@@ -57,37 +57,37 @@ bool Enemy::init()
 
 void Enemy::initMessage()
 {
-	_message.putString(kNameKey, kEnemyName);
-	_message.putInt(kTagKey, kEnemyTag);
-	_message.putFloat(kDestroyDamageKey, _destroyDamage);
+	message_.putString(kNameKey, kEnemyName);
+	message_.putInt(kTagKey, kEnemyTag);
+	message_.putFloat(kDestroyDamageKey, destroy_damage_);
 }
 
 void Enemy::onEnter()
 {
 	BaseEnemy::onEnter();
 	// Set Physics Body
-	_physicsBody->setGroup(kEnemyGroup);
-	_physicsBody->setContactTestBitmask(kEnemyContactMask);
-	_physicsBody->setCollisionBitmask(kEnemyCollisionMask);
-	_physicsBody->setCategoryBitmask(kEnemyCategoryMask);
-	_physicsBody->setVelocityLimit(_velocityMagnitude);
+	physics_body_->setGroup(kEnemyGroup);
+	physics_body_->setContactTestBitmask(kEnemyContactMask);
+	physics_body_->setCollisionBitmask(kEnemyCollisionMask);
+	physics_body_->setCategoryBitmask(kEnemyCategoryMask);
+	physics_body_->setVelocityLimit(velocity_magnitude_);
     auto tintTo = TintTo::create(2.0f, random(0.0f, 255.0f), random(0.0f, 255.0f), random(0.0f, 255.0f));
-    for (auto sprite : _spriteVector)
+    for (auto sprite : sprite_vector_)
         sprite->runAction(tintTo->clone());
-	AnimationUtil::runParticleAnimation(kBirthParticle, this->getParent(), this);
+	AnimationUtil::runParticleAnimation(BIRTH_PARTICLE, this->getParent(), this);
 }
 
 void Enemy::onDestroy()
 {
-	AnimationUtil::runParticleAnimation(kDeathParticle, this->getParent(), this);
-	experimental::AudioEngine::play2d(kDeathAudio);
+	AnimationUtil::runParticleAnimation(DEATH_PARTICLE, this->getParent(), this);
+	experimental::AudioEngine::play2d(DEATH_AUDIO);
 	BaseEnemy::onDestroy();
     
 }
 
 void Enemy::onContact(Message& message)
 {
-	if (message.getInt(kTagKey) == kPlayerTag && _beDestroyable)
+	if (message.getInt(kTagKey) == kPlayerTag && be_destroyable_)
 		hp_ = 0.0f;
 	else if (message.getInt(kTagKey) == kPlayerBulletTag)
 		hp_ -= message.getFloat(kDamageKey);
@@ -102,15 +102,15 @@ void Enemy::onContact(Message& message)
 	}
 }
 
-void Enemy::update(float deltaTime)
+void Enemy::update(float delta_time)
 {
 	// Sprite Rotation
-	float spriteRotation = _spriteVector.at(0)->getRotation() + rotate_velocity_*deltaTime*getTimeCoefficient();
+	float spriteRotation = sprite_vector_.at(0)->getRotation() + rotate_velocity_*delta_time*getTimeCoefficient();
 	if (spriteRotation > 360000.0f)
 		spriteRotation -= 360000.0f;
-	_spriteVector.at(0)->setRotation(spriteRotation);
-	_spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	_spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	_spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
-	BaseEnemy::update(deltaTime);
+	sprite_vector_.at(0)->setRotation(spriteRotation);
+	sprite_vector_.at(1)->setRotation(180.0f - spriteRotation);
+	sprite_vector_.at(2)->setRotation(spriteRotation * 2.0f);
+	sprite_vector_.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+	BaseEnemy::update(delta_time);
 }

@@ -12,7 +12,8 @@ enum BattleSceneState
 {
 	MENU,
 	BATTLE,
-	BATTLE_PAUSE
+	BATTLE_PAUSE,
+	BATTLE_RESULT
 };
 
 class BattleScene : public cocos2d::Scene
@@ -30,28 +31,13 @@ public:
 	void startBattle();
 	void pauseBattle();
 	void resumeBattle();
-	// CameraNode* getCameraLayer();
-
-	// BulletLayer* getBulletLayer();
-	// PlayerLayer* getPlayerLayer();
-	// EnemyBulletLayer* getEnemyBulletLayer();
-	// EnemyLayer* getEnemyLayer();
 protected:
-	// static GameBackgroundLayer* game_background_layer_;
-	BattleSceneState battle_scene_state_;
 	static BattleScene* battle_scene_;
+	BattleSceneState battle_scene_state_;
 	CameraNode* camera_node_;
 	HUDLayer* hud_layer_;
 	BattleLayer* battle_layer_;
-	
-	// static CameraNode* cameraNode;
-	// cocos2d::Camera* camera_;
-	// virtual void update(float deltaTime) override;
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
-	// static BulletLayer* bulletLayer;
-	// static PlayerLayer* playerLayer;
-	// static EnemyBulletLayer* enemyBulletLayer;
-	// static EnemyLayer* enemyLayer;
 };
 
 #endif /* BattleScene_H_ */

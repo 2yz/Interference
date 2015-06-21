@@ -81,9 +81,11 @@ void BattleScene::setListener()
 		{
 		case BATTLE_EVENT_WIN:
 			this->addChild(ResultLayer::create("YOU WIN", "BACK"));
+			battle_scene_state_ = BATTLE_RESULT;
 			break;
 		case BATTLE_EVENT_LOSE:
 			this->addChild(ResultLayer::create("YOU LOSE", "BACK"));
+			battle_scene_state_ = BATTLE_RESULT;
 			break;
 		default: break;
 		}
