@@ -1,8 +1,7 @@
 <PlistInfoProjectFile>
   <PropertyGroup Type="Plist" Name="main_texture" ID="3ca1531d-45a3-40e9-ac7e-614817244f4b" Version="2.2.9.0" />
-  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="True" AllowAnySize="True" AllowTrim="False" ctype="PlistInfoData">
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="texture/alf_logo.png" />
       <FilePathData Path="texture/attack.png" />
       <FilePathData Path="texture/attack_dark.png" />
       <FilePathData Path="texture/blood_bar.png" />
@@ -14,6 +13,7 @@
       <FilePathData Path="texture/defense.png" />
       <FilePathData Path="texture/edge.png" />
       <FilePathData Path="texture/enemy.png" />
+      <FilePathData Path="texture/help_instruction.png" />
       <FilePathData Path="texture/hexagon.png" />
       <FilePathData Path="texture/interference.png" />
       <FilePathData Path="texture/kill.png" />

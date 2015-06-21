@@ -15,6 +15,7 @@ public:
 	virtual void onContact(Message& message) override;
 protected:
 	bool _isEdge;
+	int score_;
 };
 
 #endif /* BLOCK_H_ */

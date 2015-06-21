@@ -28,6 +28,8 @@ public:
 	HUDLayer* getHUDLayer();
 	void openMenu();
 	void startBattle();
+	void pauseBattle();
+	void resumeBattle();
 	// CameraNode* getCameraLayer();
 
 	// BulletLayer* getBulletLayer();

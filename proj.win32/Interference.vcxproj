@@ -161,10 +161,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MenuLayer.cpp" />
     <ClCompile Include="..\Classes\Message.cpp" />
     <ClCompile Include="..\Classes\MouseLayer.cpp" />
+    <ClCompile Include="..\Classes\PauseLayer.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PlayerUserData.cpp" />
     <ClCompile Include="..\Classes\PopupLayer.cpp" />
     <ClCompile Include="..\Classes\ResultLayer.cpp" />
+    <ClCompile Include="..\Classes\SimpleBattle.cpp" />
     <ClCompile Include="..\Classes\Skill.cpp" />
     <ClCompile Include="..\Classes\Control.cpp" />
     <ClCompile Include="..\Classes\SkillUserData.cpp" />
@@ -200,10 +202,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MenuLayer.h" />
     <ClInclude Include="..\Classes\Message.h" />
     <ClInclude Include="..\Classes\MouseLayer.h" />
+    <ClInclude Include="..\Classes\PauseLayer.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PlayerUserData.h" />
     <ClInclude Include="..\Classes\PopupLayer.h" />
     <ClInclude Include="..\Classes\ResultLayer.h" />
+    <ClInclude Include="..\Classes\SimpleBattle.h" />
     <ClInclude Include="..\Classes\Skill.h" />
     <ClInclude Include="..\Classes\Control.h" />
     <ClInclude Include="..\Classes\SkillUserData.h" />

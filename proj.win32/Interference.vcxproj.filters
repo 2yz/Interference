@@ -37,7 +37,10 @@
     <Filter Include="src\Object\Plane\Enemy">
       <UniqueIdentifier>{de5e8626-f11d-44de-b21e-4658ad76401f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Layer\Menu">
+    <Filter Include="src\Layer\Battle">
+      <UniqueIdentifier>{39d548d1-3a2b-4f92-a817-1b0c5b3b805e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Layer\UI">
       <UniqueIdentifier>{24fc6121-0c07-4cc3-9f77-9020498870e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -65,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\BattleScene.cpp">
       <Filter>src\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BattleLayer.cpp">
-      <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Player.cpp">
       <Filter>src\Object\Plane</Filter>
@@ -105,9 +105,6 @@
     <ClCompile Include="..\Classes\TimeCoefficient.cpp">
       <Filter>src\Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MouseLayer.cpp">
-      <Filter>src\Layer</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Boss.cpp">
       <Filter>src\Object\Plane\Enemy</Filter>
     </ClCompile>
@@ -122,9 +119,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Defense.cpp">
       <Filter>src\Skill</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HUDLayer.cpp">
-      <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ConfigUtil.cpp">
       <Filter>src\Util</Filter>
@@ -142,16 +136,31 @@
       <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MenuLayer.cpp">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\PopupLayer.cpp">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\ResultLayer.cpp">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\LoadScene.cpp">
       <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BattleLayer.cpp">
+      <Filter>src\Layer\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SimpleBattle.cpp">
+      <Filter>src\Layer\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PauseLayer.cpp">
+      <Filter>src\Layer\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HUDLayer.cpp">
+      <Filter>src\Layer\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MouseLayer.cpp">
+      <Filter>src\Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +187,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BattleScene.h">
       <Filter>src\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BattleLayer.h">
-      <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Player.h">
       <Filter>src\Object\Plane</Filter>
@@ -224,9 +230,6 @@
     <ClInclude Include="..\Classes\TimeCoefficient.h">
       <Filter>src\Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MouseLayer.h">
-      <Filter>src\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Boss.h">
       <Filter>src\Object\Plane\Enemy</Filter>
     </ClInclude>
@@ -238,9 +241,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Message.h">
       <Filter>src\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\HUDLayer.h">
-      <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Control.h">
       <Filter>src\Skill</Filter>
@@ -255,16 +255,31 @@
       <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MenuLayer.h">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PopupLayer.h">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ResultLayer.h">
-      <Filter>src\Layer\Menu</Filter>
+      <Filter>src\Layer\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\LoadScene.h">
       <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BattleLayer.h">
+      <Filter>src\Layer\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SimpleBattle.h">
+      <Filter>src\Layer\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PauseLayer.h">
+      <Filter>src\Layer\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HUDLayer.h">
+      <Filter>src\Layer\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MouseLayer.h">
+      <Filter>src\Layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

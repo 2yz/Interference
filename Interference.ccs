@@ -6,7 +6,6 @@
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
         <Folder Name="texture">
-          <Image Name="alf_logo.png" />
           <Image Name="attack.png" />
           <Image Name="attack_dark.png" />
           <Image Name="blood_bar.png" />
@@ -18,6 +17,7 @@
           <Image Name="defense.png" />
           <Image Name="edge.png" />
           <Image Name="enemy.png" />
+          <Image Name="help_instruction.png" />
           <Image Name="hexagon.png" />
           <Image Name="interference.png" />
           <Image Name="kill.png" />

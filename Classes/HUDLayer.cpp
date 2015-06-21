@@ -20,7 +20,7 @@ bool HUDLayer::init()
 		return false;
 	}
 
-	score_label_ = Label::createWithTTF("SCORE", MARKER_FELT_FONT, 20);
+	score_label_ = Label::createWithTTF("SCORE", HELVETICA_NEUE_FONT, 20);
 	score_label_->setTextColor(Color4B(180, 240, 255, 255));
 	score_label_->setAnchorPoint(Vec2(0.0f, 1.0f));
 	score_label_->setPosition(config::visible_origin.x + 60.0f, config::visible_size.height - 30.0f);

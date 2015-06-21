@@ -11,7 +11,7 @@ Block* Block::create(bool isEdge)
 	CALL_INIT();
 }
 
-Block::Block(bool isEdge) : _isEdge(isEdge)
+Block::Block(bool isEdge) : _isEdge(isEdge), score_(300)
 {
 	hp_ = 1000.0f;
 	_velocityMagnitude = 100.0f;
@@ -71,7 +71,14 @@ void Block::onContact(Message& message)
 	if (message.getInt(kTagKey) == kPlayerBulletTag && !_isEdge)
 		hp_ -= message.getFloat(kDamageKey);
 	if (hp_ <= 0.0f)
+	{
+		int* buf = new int(score_);
+		EventCustom event(SCORE_EVENT);
+		event.setUserData(buf);
+		_eventDispatcher->dispatchEvent(&event);
+		CC_SAFE_DELETE(buf);
 		onDestroy();
+	}
 }
 
 void Block::initMessage()

@@ -13,13 +13,13 @@ bool PopupLayer::init()
 		return false;
 	setColor(Color3B(0, 0, 0));
 	setOpacity(128);
-	label_ = Label::createWithTTF(label_text_, MARKER_FELT_FONT, 42.0f);
+	label_ = Label::createWithTTF(label_text_, HELVETICA_NEUE_FONT, 42.0f);
 	label_->setPosition(config::visible_size / 2 + Size(0.0f, 46.0f));
 	this->addChild(label_);
-	button_ = ui::Button::create(BUTTON_BACKGROUND_TEXTURE, BUTTON_BACKGROUND_TEXTURE, BUTTON_BACKGROUND_TEXTURE);
+	button_ = ui::Button::create(BUTTON_NORMAL_TEXTURE, BUTTON_PRESS_TEXTURE, BUTTON_NORMAL_TEXTURE);
 	button_->addTouchEventListener(CC_CALLBACK_2(PopupLayer::buttonListener, this));
 	button_->setTitleText(button_text_);
-	button_->setTitleFontName(MARKER_FELT_FONT);
+	button_->setTitleFontName(HELVETICA_NEUE_FONT);
 	button_->setTitleFontSize(28.0f);
 	button_->setPosition(config::visible_size / 2 - Size(0.0f, 36.0f));
 	this->addChild(button_);

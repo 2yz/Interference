@@ -25,14 +25,15 @@ bool LoadScene::init()
 void LoadScene::onEnter()
 {
 	Scene::onEnter();
-	total_num_ = 10;
+	total_num_ = 11;
 	Director::getInstance()->getTextureCache()->addImageAsync(MAIN_TEXTURE_PNG, CC_CALLBACK_1(LoadScene::spriteFrameCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(kBirthTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(kDeathTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(kBoomTexture, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync(MENU_BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_NORMAL_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_PRESS_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
 	std::string background_texture[3] = { "texture/background1.png", "texture/background2.png", "texture/background3.png" };
 	for (int i = 0; i < 3; ++i)
 		Director::getInstance()->getTextureCache()->addImageAsync(background_texture[i], CC_CALLBACK_1(LoadScene::loadingCallBack, this));

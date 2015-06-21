@@ -102,11 +102,6 @@ void Enemy::onContact(Message& message)
 	}
 }
 
-void Enemy::updateStateMachine()
-{
-
-}
-
 void Enemy::update(float deltaTime)
 {
 	// Sprite Rotation

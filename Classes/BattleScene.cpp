@@ -5,6 +5,8 @@
 #include "MouseLayer.h"
 #include "PlayerUserData.h"
 #include "ResultLayer.h"
+#include "SimpleBattle.h"
+#include "PauseLayer.h"
 
 USING_NS_CC;
 
@@ -59,7 +61,7 @@ bool BattleScene::init()
 	auto listenerKeyboard = EventListenerKeyboard::create();
 	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(BattleScene::onKeyPressed, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
-	
+
 	setListener();
 
 	return true;
@@ -75,10 +77,15 @@ void BattleScene::setListener()
 	auto player_listener = EventListenerCustom::create(BATTLE_EVENT, [=](EventCustom* event)
 	{
 		auto buf = static_cast<int*>(event->getUserData());
-		if (*buf == BATTLE_EVENT_LOSE)
+		switch (*buf)
 		{
-			auto result_layer = ResultLayer::create("YOU LOSE", "BACK");
-			this->addChild(result_layer);
+		case BATTLE_EVENT_WIN:
+			this->addChild(ResultLayer::create("YOU WIN", "BACK"));
+			break;
+		case BATTLE_EVENT_LOSE:
+			this->addChild(ResultLayer::create("YOU LOSE", "BACK"));
+			break;
+		default: break;
 		}
 	});
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
@@ -103,7 +110,7 @@ void BattleScene::openMenu()
 		this->removeChild(hud_layer_, true);
 		hud_layer_ = nullptr;
 	}
-	if (battle_layer_!= nullptr)
+	if (battle_layer_ != nullptr)
 	{
 		camera_node_->removeChild(battle_layer_, true);
 		battle_layer_ = nullptr;
@@ -117,8 +124,20 @@ void BattleScene::startBattle()
 	hud_layer_ = HUDLayer::create();
 	this->addChild(hud_layer_, 2);
 	// Battle Layer 
-	battle_layer_ = BattleLayer::create();
+	battle_layer_ = SimpleBattle::create();
 	camera_node_->addChild(battle_layer_, 1);
+	battle_scene_state_ = BATTLE;
+}
+
+void BattleScene::pauseBattle()
+{
+	battle_layer_->pauseLayer();
+	battle_scene_state_ = BATTLE_PAUSE;
+}
+
+void BattleScene::resumeBattle()
+{
+	battle_layer_->resumeLayer();
 	battle_scene_state_ = BATTLE;
 }
 
@@ -129,15 +148,14 @@ void BattleScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	case EventKeyboard::KeyCode::KEY_ESCAPE:
 		if (battle_layer_ != nullptr && (battle_scene_state_ == BATTLE || battle_scene_state_ == BATTLE_PAUSE))
 		{
-			if (battle_layer_->isPaused())
+			if (!battle_layer_->isPaused())
 			{
-				battle_layer_->resumeLayer();
-				battle_scene_state_ = BATTLE;
+				pauseBattle();
+				this->addChild(PauseLayer::create("GAME PAUSED", "RESUME"));
 			}
 			else
 			{
-				battle_layer_->pauseLayer();
-				battle_scene_state_ = BATTLE_PAUSE;
+				resumeBattle();
 			}
 		}
 		break;

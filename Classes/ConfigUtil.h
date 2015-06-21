@@ -16,17 +16,19 @@
 #define kBoomTexture "particle/Boom.png"
 #define kCloudTexture "particle/Cloud.png"
 // Font
-#define MARKER_FELT_FONT "font/Marker Felt.ttf"
+#define HELVETICA_NEUE_FONT "font/Helvetica Neue.ttf"
 #define NUMBER_BMFONT "font/number.fnt"
 // Audio
 #define kAttackAudio "audio/Shoot.mp3"
 #define kAttackVolume 0.3f
-#define kBackgroundMusic "audio/Title.mp3"
-#define kBackgroundMusicVolume 0.3f
+#define BATTLE_MUSIC "audio/Pedesis.mp3"
+#define BATTLE_MUSIC_VOLUME 0.3f
 #define kDeathAudio "audio/Death.mp3"
 #define kDeathVolume 1.5f
 #define kImpactAudio "audio/Impact.mp3"
 #define kImpactVolume 1.5f
+#define MENU_MUSIC "audio/Title.mp3"
+#define MENU_MUSIC_VOLUME 0.3f
 // Sprite Frame
 #define kPlayerSpriteFrame "texture/player.png"
 #define kEnemySpriteFrame "texture/enemy.png"
@@ -40,14 +42,13 @@
 #define BLOOD_BAR_SPRITE_FRAME "texture/blood_bar.png"
 #define BLOOD_BAR_BOX_SPRITE_FRAME "texture/blood_bar_box.png"
 #define LOGO_SPRITE_FRAME "texture/interference.png"
+#define HELP_SPRITE_FRAME "texture/help_instruction.png"
 // Texture
-// #define kBackgroundTexture "texture/img_bg_test.jpg"
 #define ALF_LOGO_TEXTURE "texture/alf_logo.png"
 #define BACKGROUND_TEXTURE "texture/background.png"
 #define MENU_BACKGROUND_TEXTURE "texture/menu_background.png"
-#define START_BUTTON_TEXTURE "texture/start.png"
-#define EXIT_BUTTON_TEXTURE "texture/exit.png"
-#define BUTTON_BACKGROUND_TEXTURE "texture/button_background.png"
+#define BUTTON_NORMAL_TEXTURE "texture/button_normal.png"
+#define BUTTON_PRESS_TEXTURE "texture/button_press.png"
 // Tag and Physics Mask
 // Block
 #define kBlockName "Block"
@@ -101,6 +102,7 @@
 #define CAMERA_EVENT "CameraEvent"
 #define BATTLE_EVENT "BattleEvent"
 // Event Data
+#define BATTLE_EVENT_WIN 1
 #define BATTLE_EVENT_LOSE 2
 // Score
 #define SCORE_STRING_DIGIT 6

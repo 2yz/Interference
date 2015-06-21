@@ -57,12 +57,8 @@ void BattleLayer::setListener()
 		PlayerUserData* player_user_data = static_cast<PlayerUserData*>(event->getUserData());
 		if (!player_user_data->isAlive())
 		{
-			battle_state_ = LOSS;
-			auto buf = new int(BATTLE_EVENT_LOSE);
-			EventCustom battle_event(BATTLE_EVENT);
-			battle_event.setUserData(buf);
-			_eventDispatcher->dispatchEvent(&battle_event);
-			CC_SAFE_DELETE(buf);
+			setState(LOSS);
+			sendBattleEvent(BATTLE_EVENT_LOSE);
 		}
 	});
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
@@ -73,7 +69,7 @@ void BattleLayer::onEnter()
 	Layer::onEnter();
 	this->scheduleUpdate();
 	enterState(BEGIN);
-	background_music = experimental::AudioEngine::play2d(kBackgroundMusic, true, kBackgroundMusicVolume);
+	background_music = experimental::AudioEngine::play2d(BATTLE_MUSIC, true, BATTLE_MUSIC_VOLUME);
 }
 
 void BattleLayer::onExit()
@@ -188,7 +184,6 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 			break;
 		}
 	}
-
 	Layer::removeChild(child, cleanup);
 }
 
@@ -221,6 +216,15 @@ cocos2d::Vec2 BattleLayer::getPlayerPosition()
 	if (_player != nullptr)
 		return _player->getPosition();
 	return Vec2();
+}
+
+void BattleLayer::sendBattleEvent(int event_data)
+{
+	auto buf = new int(event_data);
+	EventCustom battle_event(BATTLE_EVENT);
+	battle_event.setUserData(buf);
+	_eventDispatcher->dispatchEvent(&battle_event);
+	CC_SAFE_DELETE(buf);
 }
 
 void BattleLayer::enableShootLine()
@@ -295,128 +299,6 @@ void BattleLayer::update(float deltaTime)
 	_timer += deltaTime*getTimeCoefficient();
 	updateStateMachine(deltaTime);
 	updateShootLine(deltaTime);
-	log("ENEMY %d", _enemy.size());
-}
-
-void BattleLayer::updateStateMachine(float deltaTime)
-{
-	switch (battle_state_)
-	{
-	case BEGIN:
-		setState(ROUND1);
-		state_timer_ += deltaTime;
-		if (state_timer_ > 5.0f)
-		{
-			int num = random(5, 15);
-			for (int i = 0; i < num; ++i)
-			{
-				auto enemy = Enemy::create();
-				enemy->setPosition(Vec2(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f)));
-				enemy->setVelocity(Vec2(random(0.0f, 160.0f), random(0.0f, 160.0f)));
-				this->addChild(enemy);
-			}
-			state_timer_ -= 5.0f;
-			state_count_ += 1;
-		}
-		if (state_count_ >= 5)
-			setState(ROUND1);
-		break;
-	case ROUND1:
-		state_timer_ += deltaTime;
-		if (state_timer_ > 5.0f)
-		{
-			Vec2 vector_vec2(1.0f, 0.0f);
-			Vec2 position;
-			if (_player != nullptr)
-				position = _player->getPosition();
-			else
-				position = Vec2(config::kBattleScene / 2);
-			// position += Vec2(random(80.0f, 480.0f), random(80.0f, 480.0f));
-			position += Vec2((rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f), (rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f));
-			if (position.x < 120.0f) position.x = 120.0f;
-			else if (position.x > config::kEdgeSize.width - 120.0f) position.x = config::kEdgeSize.width - 120.0f;
-			if (position.y < 120.0f) position.y = 120.0f;
-			else if (position.y > config::kEdgeSize.height - 120.0f) position.y = config::kEdgeSize.height - 120.0f;
-			float speed = random(20.0f, 140.0f);
-			for (int i = 0; i < 8; ++i)
-			{
-				auto enemy = Enemy::create();
-				Vec2 direction = Utility::rotateVec2(vector_vec2, i*45.0f);
-				enemy->setPosition(position + direction*30.0f);
-				enemy->setVelocity(direction*speed);
-				this->addChild(enemy);
-			}
-			state_timer_ -= 10.0f;
-			state_count_ += 1;
-		}
-		if (state_count_ >= 50)
-			setState(ROUND2);
-		break;
-	case ROUND2:
-		break;
-	case BOSS:
-		break;
-	default: break;
-	}
-}
-
-void BattleLayer::setState(BattleState battle_state)
-{
-	if (battle_state_ == battle_state)
-		return;
-	exitState(battle_state_);
-	enterState(battle_state);
-}
-
-void BattleLayer::enterState(BattleState battle_state)
-{
-	battle_state_ = battle_state;
-	state_timer_ = 0.0f;
-	state_count_ = 0;
-	switch (battle_state)
-	{
-	case BEGIN:
-		if (!_player)
-		{
-			auto player = Player::create();
-			player->setPosition(config::kBattleScene / 2);
-			auto fadeIn = FadeIn::create(1.0f);
-			player->runAction(fadeIn);
-			this->addChild(player);
-
-			// int block_num = random(10, 20);
-			// for (int i = 0; i < block_num; ++i)
-			// {
-			// 	auto block = Block::create();
-			// 	block->setPosition(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f));
-			// 	this->addChild(block);
-			// }
-		}
-		break;
-	case ROUND1:
-		break;
-	case ROUND2:
-		break;
-	case BOSS:
-		break;
-	default: break;
-	}
-}
-
-void BattleLayer::exitState(BattleState battle_state)
-{
-	switch (battle_state)
-	{
-	case BEGIN:
-		break;
-	case ROUND1:
-		break;
-	case ROUND2:
-		break;
-	case BOSS:
-		break;
-	default: break;
-	}
 }
 
 void BattleLayer::updateShootLine(float deltaTime)
