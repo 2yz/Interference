@@ -4,13 +4,17 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "TimeCoefficient.h"
+#include "Block.h"
+#include "BaseEnemy.h"
 
 enum BattleState
 {
 	BEGIN,
 	ROUND1,
 	ROUND2,
-	BOSS
+	BOSS,
+	LOSS,
+	WIN
 };
 
 class BattleLayer : public cocos2d::Layer, public TimeCoefficient
@@ -20,8 +24,10 @@ public:
 	BattleLayer();
 	virtual ~BattleLayer();
 	virtual bool init() override;
+	void setListener();
 	virtual void onEnter() override;
 	virtual void onExit() override;
+	void destroyAllObject();
 	static BattleLayer* getInstance();
 	virtual void addChild(Node * child) override;
 	virtual void addChild(Node * child, int localZOrder) override;
@@ -46,13 +52,14 @@ protected:
 	float _timer;
 	
 	Player* _player;
-	cocos2d::Vector<Node*> _enemy;
-	cocos2d::Vector<Node*> _block;
+	cocos2d::Vector<BaseEnemy*> _enemy;
+	cocos2d::Vector<Block*> _block;
 	cocos2d::Sprite* shootLine; // Shoot Assist Line
 	bool paused_;
 	int background_music;
 	BattleState battle_state_;
 	float state_timer_;
+	float state_count_;
 	// float state_cd_limit_;
 	// bool state_cd_;
 	// int state_times_;

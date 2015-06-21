@@ -5,7 +5,7 @@
 
 Attack::Attack()
 {
-	cd_time_ = 0.25f;
+	cd_time_ = 0.15f;
 	skill_category_ = ATTACK;
 }
 

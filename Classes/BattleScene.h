@@ -26,6 +26,7 @@ public:
 	void setListener();
 	static BattleScene* getInstance();
 	HUDLayer* getHUDLayer();
+	void openMenu();
 	void startBattle();
 	// CameraNode* getCameraLayer();
 

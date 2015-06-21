@@ -7,6 +7,9 @@
 #include "AudioEngine.h"
 #include "AnimationUtil.h"
 #include "CameraNode.h"
+#include "Utility.h"
+#include "BattleScene.h"
+#include "PlayerUserData.h"
 
 
 USING_NS_CC;
@@ -42,7 +45,27 @@ bool BattleLayer::init()
 	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(BattleLayer::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
 
+	setListener();
+
 	return true;
+}
+
+void BattleLayer::setListener()
+{
+	auto player_listener = EventListenerCustom::create(PLAYER_EVENT, [=](EventCustom* event)
+	{
+		PlayerUserData* player_user_data = static_cast<PlayerUserData*>(event->getUserData());
+		if (!player_user_data->isAlive())
+		{
+			battle_state_ = LOSS;
+			auto buf = new int(BATTLE_EVENT_LOSE);
+			EventCustom battle_event(BATTLE_EVENT);
+			battle_event.setUserData(buf);
+			_eventDispatcher->dispatchEvent(&battle_event);
+			CC_SAFE_DELETE(buf);
+		}
+	});
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
 }
 
 void BattleLayer::onEnter()
@@ -58,6 +81,40 @@ void BattleLayer::onExit()
 	experimental::AudioEngine::stop(background_music);
 	Layer::onExit();
 }
+
+
+void BattleLayer::destroyAllObject()
+{
+	if (_player != nullptr)
+		_player->onDestroy();
+	for (auto enemy : _enemy)
+		enemy->onDestroy();
+	for (auto block : _block)
+		block->onDestroy();
+}
+
+void BattleLayer::pauseLayer()
+{
+	Layer::pause();
+	experimental::AudioEngine::pause(background_music);
+	for (auto child : _children)
+		child->pause();
+	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.0f);
+	setTimeCoefficient(0.0f);
+	paused_ = true;
+}
+
+void BattleLayer::resumeLayer()
+{
+	Layer::resume();
+	experimental::AudioEngine::resume(background_music);
+	for (auto child : _children)
+		child->resume();
+	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f);
+	setTimeCoefficient(1.0f);
+	paused_ = false;
+}
+
 
 BattleLayer* BattleLayer::getInstance()
 {
@@ -90,14 +147,14 @@ void BattleLayer::addLayerChild(Node* child)
 		{
 			_enemy.reserve(4);
 		}
-		_enemy.pushBack(child);
+		_enemy.pushBack(static_cast<Enemy*>(child));
 		break;
 	case kBlockTag:
 		if (_block.empty())
 		{
 			_block.reserve(4);
 		}
-		_block.pushBack(child);
+		_block.pushBack(static_cast<Block*>(child));
 		break;
 	}
 }
@@ -116,7 +173,7 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 		case kEnemyTag:
 			if (!_enemy.empty())
 			{
-				auto index = _enemy.getIndex(child);
+				auto index = _enemy.getIndex(static_cast<Enemy*>(child));
 				if (index != CC_INVALID_INDEX)
 					_enemy.erase(index);
 			}
@@ -124,7 +181,7 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 		case kBlockTag:
 			if (!_block.empty())
 			{
-				auto index = _block.getIndex(child);
+				auto index = _block.getIndex(static_cast<Block*>(child));
 				if (index != CC_INVALID_INDEX)
 					_block.erase(index);
 			}
@@ -141,26 +198,6 @@ void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
 	_enemy.clear();
 	_block.clear();
 	Layer::removeAllChildrenWithCleanup(cleanup);
-}
-
-void BattleLayer::pauseLayer()
-{
-	Layer::pause();
-	for (auto child : _children)
-		child->pause();
-	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(0.0f);
-	setTimeCoefficient(0.0f);
-	paused_ = true;
-}
-
-void BattleLayer::resumeLayer()
-{
-	Layer::resume();
-	for (auto child : _children)
-		child->resume();
-	Director::getInstance()->getRunningScene()->getPhysicsWorld()->setSpeed(1.0f);
-	setTimeCoefficient(1.0f);
-	paused_ = false;
 }
 
 bool BattleLayer::isPaused()
@@ -258,6 +295,7 @@ void BattleLayer::update(float deltaTime)
 	_timer += deltaTime*getTimeCoefficient();
 	updateStateMachine(deltaTime);
 	updateShootLine(deltaTime);
+	log("ENEMY %d", _enemy.size());
 }
 
 void BattleLayer::updateStateMachine(float deltaTime)
@@ -265,8 +303,9 @@ void BattleLayer::updateStateMachine(float deltaTime)
 	switch (battle_state_)
 	{
 	case BEGIN:
+		setState(ROUND1);
 		state_timer_ += deltaTime;
-		if (state_timer_>5.0f)
+		if (state_timer_ > 5.0f)
 		{
 			int num = random(5, 15);
 			for (int i = 0; i < num; ++i)
@@ -277,11 +316,41 @@ void BattleLayer::updateStateMachine(float deltaTime)
 				this->addChild(enemy);
 			}
 			state_timer_ -= 5.0f;
+			state_count_ += 1;
 		}
-		if (_timer > 90.0f)
-			setState(BOSS);
+		if (state_count_ >= 5)
+			setState(ROUND1);
 		break;
 	case ROUND1:
+		state_timer_ += deltaTime;
+		if (state_timer_ > 5.0f)
+		{
+			Vec2 vector_vec2(1.0f, 0.0f);
+			Vec2 position;
+			if (_player != nullptr)
+				position = _player->getPosition();
+			else
+				position = Vec2(config::kBattleScene / 2);
+			// position += Vec2(random(80.0f, 480.0f), random(80.0f, 480.0f));
+			position += Vec2((rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f), (rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f));
+			if (position.x < 120.0f) position.x = 120.0f;
+			else if (position.x > config::kEdgeSize.width - 120.0f) position.x = config::kEdgeSize.width - 120.0f;
+			if (position.y < 120.0f) position.y = 120.0f;
+			else if (position.y > config::kEdgeSize.height - 120.0f) position.y = config::kEdgeSize.height - 120.0f;
+			float speed = random(20.0f, 140.0f);
+			for (int i = 0; i < 8; ++i)
+			{
+				auto enemy = Enemy::create();
+				Vec2 direction = Utility::rotateVec2(vector_vec2, i*45.0f);
+				enemy->setPosition(position + direction*30.0f);
+				enemy->setVelocity(direction*speed);
+				this->addChild(enemy);
+			}
+			state_timer_ -= 10.0f;
+			state_count_ += 1;
+		}
+		if (state_count_ >= 50)
+			setState(ROUND2);
 		break;
 	case ROUND2:
 		break;
@@ -302,6 +371,8 @@ void BattleLayer::setState(BattleState battle_state)
 void BattleLayer::enterState(BattleState battle_state)
 {
 	battle_state_ = battle_state;
+	state_timer_ = 0.0f;
+	state_count_ = 0;
 	switch (battle_state)
 	{
 	case BEGIN:
@@ -312,18 +383,17 @@ void BattleLayer::enterState(BattleState battle_state)
 			auto fadeIn = FadeIn::create(1.0f);
 			player->runAction(fadeIn);
 			this->addChild(player);
-			
-			int block_num = random(5, 15);
-			for (int i = 0; i < block_num; ++i)
-			{
-				auto block = Block::create();
-				block->setPosition(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f));
-				this->addChild(block);
-			}
+
+			// int block_num = random(10, 20);
+			// for (int i = 0; i < block_num; ++i)
+			// {
+			// 	auto block = Block::create();
+			// 	block->setPosition(random(120.0f, config::kEdgeSize.width - 120.0f), random(120.0f, config::kEdgeSize.height - 120.0f));
+			// 	this->addChild(block);
+			// }
 		}
-		state_timer_ = 0.0f;
 		break;
-	case ROUND1: 
+	case ROUND1:
 		break;
 	case ROUND2:
 		break;
@@ -339,7 +409,7 @@ void BattleLayer::exitState(BattleState battle_state)
 	{
 	case BEGIN:
 		break;
-	case ROUND1: 
+	case ROUND1:
 		break;
 	case ROUND2:
 		break;

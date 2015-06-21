@@ -11,8 +11,8 @@ USING_NS_CC;
 
 Player::Player() : _accelerationMagnitude(800.0f)
 {
-	hp_ = 1000.0f;
-	hp_max_ = 1000.0f;
+	hp_ = 500.0f;
+	hp_max_ = 500.0f;
 	_velocityMagnitude = 400.0f;
 	linear_damping_ = 1.0f;
 	physics_radius_ = 50.0f;

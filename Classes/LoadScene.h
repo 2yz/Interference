@@ -3,11 +3,11 @@
 
 #include "cocos2d.h"
 
-class LogoScene : public cocos2d::Scene
+class LoadScene : public cocos2d::Scene
 {
 public:
-	CREATE_FUNC(LogoScene);
-	LogoScene();
+	CREATE_FUNC(LoadScene);
+	LoadScene();
 	virtual bool init() override;
 	virtual void onEnter() override;
 	void spriteFrameCallBack(cocos2d::Texture2D *texture);

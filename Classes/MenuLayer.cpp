@@ -26,10 +26,8 @@ bool MenuLayer::init()
 		case ui::Widget::TouchEventType::BEGAN:
 			break;
 		case ui::Widget::TouchEventType::ENDED:
-			for (auto child : _children)
-				child->runAction(FadeOut::create(0.5f));
 			BattleScene::getInstance()->startBattle();
-			scheduleOnce(schedule_selector(MenuLayer::exitSchedule), 0.6f);
+			onDestroy();
 			break;
 		default:
 			break;
@@ -62,6 +60,13 @@ void MenuLayer::onEnter()
 		child->setOpacity(0.0f);
 		child->runAction(FadeIn::create(0.5f));
 	}
+}
+
+void MenuLayer::onDestroy()
+{
+	for (auto child : _children)
+		child->runAction(FadeOut::create(0.5f));
+	scheduleOnce(schedule_selector(MenuLayer::exitSchedule), 0.6f);
 }
 
 void MenuLayer::exitSchedule(float deltaTime)

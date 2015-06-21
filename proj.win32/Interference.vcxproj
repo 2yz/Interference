@@ -157,12 +157,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BattleLayer.cpp" />
     <ClCompile Include="..\Classes\BattleScene.cpp" />
     <ClCompile Include="..\Classes\Kill.cpp" />
-    <ClCompile Include="..\Classes\LogoScene.cpp" />
+    <ClCompile Include="..\Classes\LoadScene.cpp" />
     <ClCompile Include="..\Classes\MenuLayer.cpp" />
     <ClCompile Include="..\Classes\Message.cpp" />
     <ClCompile Include="..\Classes\MouseLayer.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
     <ClCompile Include="..\Classes\PlayerUserData.cpp" />
+    <ClCompile Include="..\Classes\PopupLayer.cpp" />
+    <ClCompile Include="..\Classes\ResultLayer.cpp" />
     <ClCompile Include="..\Classes\Skill.cpp" />
     <ClCompile Include="..\Classes\Control.cpp" />
     <ClCompile Include="..\Classes\SkillUserData.cpp" />
@@ -194,12 +196,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BattleLayer.h" />
     <ClInclude Include="..\Classes\BattleScene.h" />
     <ClInclude Include="..\Classes\Kill.h" />
-    <ClInclude Include="..\Classes\LogoScene.h" />
+    <ClInclude Include="..\Classes\LoadScene.h" />
     <ClInclude Include="..\Classes\MenuLayer.h" />
     <ClInclude Include="..\Classes\Message.h" />
     <ClInclude Include="..\Classes\MouseLayer.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="..\Classes\PlayerUserData.h" />
+    <ClInclude Include="..\Classes\PopupLayer.h" />
+    <ClInclude Include="..\Classes\ResultLayer.h" />
     <ClInclude Include="..\Classes\Skill.h" />
     <ClInclude Include="..\Classes\Control.h" />
     <ClInclude Include="..\Classes\SkillUserData.h" />
@@ -210,6 +214,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

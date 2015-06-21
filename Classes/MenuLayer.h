@@ -11,6 +11,7 @@ public:
 	MenuLayer();
 	virtual bool init() override;
 	virtual void onEnter() override;
+	void onDestroy();
 	void exitSchedule(float deltaTime);
 	virtual void update(float deltaTime) override;
 protected:

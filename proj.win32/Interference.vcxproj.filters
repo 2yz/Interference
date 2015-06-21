@@ -37,6 +37,9 @@
     <Filter Include="src\Object\Plane\Enemy">
       <UniqueIdentifier>{de5e8626-f11d-44de-b21e-4658ad76401f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Layer\Menu">
+      <UniqueIdentifier>{24fc6121-0c07-4cc3-9f77-9020498870e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -126,9 +129,6 @@
     <ClCompile Include="..\Classes\ConfigUtil.cpp">
       <Filter>src\Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MenuLayer.cpp">
-      <Filter>src\Layer</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Control.cpp">
       <Filter>src\Skill</Filter>
     </ClCompile>
@@ -141,7 +141,16 @@
     <ClCompile Include="..\Classes\CameraNode.cpp">
       <Filter>src\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\LogoScene.cpp">
+    <ClCompile Include="..\Classes\MenuLayer.cpp">
+      <Filter>src\Layer\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PopupLayer.cpp">
+      <Filter>src\Layer\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ResultLayer.cpp">
+      <Filter>src\Layer\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadScene.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,9 +242,6 @@
     <ClInclude Include="..\Classes\HUDLayer.h">
       <Filter>src\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MenuLayer.h">
-      <Filter>src\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Control.h">
       <Filter>src\Skill</Filter>
     </ClInclude>
@@ -248,7 +254,16 @@
     <ClInclude Include="..\Classes\CameraNode.h">
       <Filter>src\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\LogoScene.h">
+    <ClInclude Include="..\Classes\MenuLayer.h">
+      <Filter>src\Layer\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PopupLayer.h">
+      <Filter>src\Layer\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ResultLayer.h">
+      <Filter>src\Layer\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadScene.h">
       <Filter>src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
@@ -256,5 +271,8 @@
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -33,7 +33,7 @@ bool Block::init()
 		auto block = Sprite::createWithSpriteFrameName(kEdgeSpriteFrame);
 		_spriteVector.pushBack(block);
 		this->addChild(block);
-		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize, kBlockMaterial, 30.0f));
+		_physicsBody->addShape(PhysicsShapeEdgeBox::create(config::kEdgeSize + Size(200.0f, 200.0f), kBlockMaterial, 120.0f));
 	}
 	else
 	{

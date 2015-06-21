@@ -42,7 +42,7 @@ void BaseObject::onEnter()
 
 void BaseObject::onDestroy()
 {
-	this->unscheduleUpdate();
+	// this->unscheduleUpdate();
 	this->removeFromParentAndCleanup(true);
 }
 

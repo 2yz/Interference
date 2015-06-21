@@ -4,6 +4,7 @@
 #include "Controller.h"
 #include "MouseLayer.h"
 #include "PlayerUserData.h"
+#include "ResultLayer.h"
 
 USING_NS_CC;
 
@@ -71,21 +72,16 @@ void BattleScene::onEnter()
 
 void BattleScene::setListener()
 {
-	// auto player_listener = EventListenerCustom::create(PLAYER_EVENT, [=](EventCustom* event)
-	// {
-	// 	PlayerUserData* player_user_data = static_cast<PlayerUserData*>(event->getUserData());
-	// 	if (!player_user_data->isAlive())
-	// 	{
-	// 		auto menu_layer_ = MenuLayer::create();
-	// 		this->addChild(menu_layer_, 3);
-	// 		this->removeChild(hud_layer_, true);
-	// 		hud_layer_ = nullptr;
-	// 		camera_node_->removeChild(battle_layer_, true);
-	// 		battle_layer_ = nullptr;
-	// 		battle_scene_state_ = MENU;
-	// 	}
-	// });
-	// _eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
+	auto player_listener = EventListenerCustom::create(BATTLE_EVENT, [=](EventCustom* event)
+	{
+		auto buf = static_cast<int*>(event->getUserData());
+		if (*buf == BATTLE_EVENT_LOSE)
+		{
+			auto result_layer = ResultLayer::create("YOU LOSE", "BACK");
+			this->addChild(result_layer);
+		}
+	});
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
 }
 
 BattleScene* BattleScene::getInstance()
@@ -96,6 +92,23 @@ BattleScene* BattleScene::getInstance()
 HUDLayer* BattleScene::getHUDLayer()
 {
 	return this->hud_layer_;
+}
+
+void BattleScene::openMenu()
+{
+	auto menu_layer_ = MenuLayer::create();
+	this->addChild(menu_layer_, 3);
+	if (hud_layer_ != nullptr)
+	{
+		this->removeChild(hud_layer_, true);
+		hud_layer_ = nullptr;
+	}
+	if (battle_layer_!= nullptr)
+	{
+		camera_node_->removeChild(battle_layer_, true);
+		battle_layer_ = nullptr;
+	}
+	battle_scene_state_ = MENU;
 }
 
 void BattleScene::startBattle()
@@ -130,15 +143,7 @@ void BattleScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 		break;
 	case EventKeyboard::KeyCode::KEY_BACKSPACE:
 		if (battle_scene_state_ == BATTLE)
-		{
-			auto menu_layer_ = MenuLayer::create();
-			this->addChild(menu_layer_, 3);
-			this->removeChild(hud_layer_, true);
-			hud_layer_ = nullptr;
-			camera_node_->removeChild(battle_layer_, true);
-			battle_layer_ = nullptr;
-			battle_scene_state_ = MENU;
-		}
+			openMenu();
 	default:
 		break;
 	}

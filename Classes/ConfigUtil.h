@@ -47,6 +47,7 @@
 #define MENU_BACKGROUND_TEXTURE "texture/menu_background.png"
 #define START_BUTTON_TEXTURE "texture/start.png"
 #define EXIT_BUTTON_TEXTURE "texture/exit.png"
+#define BUTTON_BACKGROUND_TEXTURE "texture/button_background.png"
 // Tag and Physics Mask
 // Block
 #define kBlockName "Block"
@@ -98,6 +99,9 @@
 #define PLAYER_EVENT "PlayerEvent"
 #define SKILL_EVENT "SkillEvent"
 #define CAMERA_EVENT "CameraEvent"
+#define BATTLE_EVENT "BattleEvent"
+// Event Data
+#define BATTLE_EVENT_LOSE 2
 // Score
 #define SCORE_STRING_DIGIT 6
 #define SCORE_MAX 999999
