@@ -22,7 +22,7 @@
 #define kAttackAudio "audio/Shoot.mp3"
 #define kAttackVolume 0.3f
 #define BATTLE_MUSIC "audio/Pedesis.mp3"
-#define BATTLE_MUSIC_VOLUME 0.3f
+#define BATTLE_MUSIC_VOLUME 1.0f
 #define kDeathAudio "audio/Death.mp3"
 #define kDeathVolume 1.5f
 #define kImpactAudio "audio/Impact.mp3"

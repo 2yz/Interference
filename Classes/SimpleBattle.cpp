@@ -10,7 +10,6 @@ void SimpleBattle::updateStateMachine(float deltaTime)
 	switch (battle_state_)
 	{
 	case BEGIN:
-		setState(ROUND1);
 		state_timer_ += deltaTime;
 		if (state_timer_ > 5.0f)
 		{
@@ -38,7 +37,6 @@ void SimpleBattle::updateStateMachine(float deltaTime)
 				position = _player->getPosition();
 			else
 				position = Vec2(config::kBattleScene / 2);
-			// position += Vec2(random(80.0f, 480.0f), random(80.0f, 480.0f));
 			position += Vec2((rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f), (rand_minus1_1() > 0 ? 1 : -1)*random(80.0f, 480.0f));
 			if (position.x < 120.0f) position.x = 120.0f;
 			else if (position.x > config::kEdgeSize.width - 120.0f) position.x = config::kEdgeSize.width - 120.0f;
@@ -56,7 +54,7 @@ void SimpleBattle::updateStateMachine(float deltaTime)
 			state_timer_ -= 10.0f;
 			state_count_ += 1;
 		}
-		if (state_count_ >= 1)
+		if (state_count_ >= 5)
 			setState(END);
 		break;
 	case END:
