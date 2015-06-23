@@ -1,7 +1,7 @@
 #include "MenuLayer.h"
 #include "ConfigUtil.h"
 #include "BattleScene.h"
-#include <AudioEngine.h>
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -33,8 +33,8 @@ bool MenuLayer::init()
 		case ui::Widget::TouchEventType::BEGAN:
 			break;
 		case ui::Widget::TouchEventType::ENDED:
-			BattleScene::getInstance()->startBattle();
-			onDestroy();
+			experimental::AudioEngine::play2d(START_AUDIO, false, START_AUDIO_VOLUME);
+			BattleScene::getInstance()->setSceneState(SceneState::BATTLE);
 			break;
 		default:
 			break;
@@ -81,7 +81,8 @@ bool MenuLayer::init()
 		case ui::Widget::TouchEventType::BEGAN:
 			break;
 		case ui::Widget::TouchEventType::ENDED:
-			Director::getInstance()->end();
+			experimental::AudioEngine::play2d(END_AUDIO, false, END_AUDIO_VOLUME);
+			BattleScene::getInstance()->setSceneState(SceneState::EXIT);
 			break;
 		default:
 			break;
@@ -120,8 +121,4 @@ void MenuLayer::onDestroy()
 void MenuLayer::exitSchedule(float delta_time)
 {
 	this->removeFromParentAndCleanup(true);
-}
-
-void MenuLayer::update(float delta_time)
-{
 }

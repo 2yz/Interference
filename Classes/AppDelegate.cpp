@@ -31,6 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	auto glview = director->getOpenGLView();
 	if (!glview) {
 		glview = GLViewImpl::createWithRect(PROGRAM_NAME, Rect(0, 0, 1280, 720));
+		//glview = GLViewImpl::createWithFullScreen(PROGRAM_NAME);
 		director->setOpenGLView(glview);
 	}
 	director->getOpenGLView()->setCursorVisible(false);

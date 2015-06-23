@@ -11,9 +11,9 @@ public:
 	virtual ~BasePlane();
 	virtual bool init() override;
 	virtual void addSkill(Skill* skill);
-	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
-	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer = nullptr);
-	virtual void castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer = nullptr);
+	virtual void castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
+	virtual void castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer = nullptr);
+	virtual void castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer = nullptr);
 	//virtual void castSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex = 0);
 	// static BasePlane* create();
 protected:

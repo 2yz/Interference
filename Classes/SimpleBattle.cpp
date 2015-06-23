@@ -64,26 +64,19 @@ void SimpleBattle::updateStateMachine(float delta_time)
 			setState(WIN);
 		}
 		break;
-	case LOSS:
-		if (state_count_ == 0)
-		{
-			sendDestroyEvent();
-			state_count_ += 1;
-		}
-		break;
 	default: break;
 	}
 }
 
-void SimpleBattle::setState(BattleState battle_state)
+void SimpleBattle::setState(BattleManagerState battle_state)
 {
 	if (battle_state_ == battle_state)
 		return;
-	exitState(battle_state_);
+	exitState();
 	enterState(battle_state);
 }
 
-void SimpleBattle::enterState(BattleState battle_state)
+void SimpleBattle::enterState(BattleManagerState battle_state)
 {
 	battle_state_ = battle_state;
 	state_timer_ = 0.0f;
@@ -108,13 +101,16 @@ void SimpleBattle::enterState(BattleState battle_state)
 			}
 		}
 		break;
+	case LOSS:
+		sendDestroyEvent();
+		break;
 	default: break;
 	}
 }
 
-void SimpleBattle::exitState(BattleState battle_state)
+void SimpleBattle::exitState()
 {
-	switch (battle_state)
+	switch (battle_state_)
 	{
 	case BEGIN: break;
 	default: break;

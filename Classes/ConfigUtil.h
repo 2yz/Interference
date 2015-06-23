@@ -29,6 +29,10 @@
 #define IMPACT_VOLUME 1.5f
 #define MENU_MUSIC "audio/Title.mp3"
 #define MENU_MUSIC_VOLUME 0.3f
+#define START_AUDIO "audio/Start.mp3"
+#define START_AUDIO_VOLUME 0.5f
+#define END_AUDIO "audio/End.mp3"
+#define END_AUDIO_VOLUME 0.3f
 // Sprite Frame
 #define PLAYER_SPRITE_FRAME "texture/player.png"
 #define ENEMY_SPRITE_FRAME "texture/enemy.png"

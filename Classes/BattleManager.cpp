@@ -1,34 +1,29 @@
-#include "BattleLayer.h"
+#include "BattleManager.h"
 #include "ConfigUtil.h"
 #include "Controller.h"
-#include "GameBackgroundLayer.h"
 #include "Block.h"
 #include "Enemy.h"
 #include "AudioEngine.h"
-#include "AnimationUtil.h"
-#include "CameraNode.h"
-#include "Utility.h"
-#include "BattleScene.h"
+#include "CameraManager.h"
 #include "PlayerUserData.h"
-
 
 USING_NS_CC;
 
-BattleLayer* BattleLayer::battle_layer_ = nullptr;
+BattleManager* BattleManager::battle_layer_ = nullptr;
 
-BattleLayer::BattleLayer() : timer_(0.0f), player_(nullptr), shoot_line_(nullptr), paused_(false)
+BattleManager::BattleManager() : timer_(0.0f), player_(nullptr), shoot_line_(nullptr), paused_(false)
 {
 	battle_layer_ = this;
 }
 
-BattleLayer::~BattleLayer()
+BattleManager::~BattleManager()
 {
 	battle_layer_ = nullptr;
 	player_ = nullptr;
 	shoot_line_ = nullptr;
 }
 
-bool BattleLayer::init()
+bool BattleManager::init()
 {
 	if (!Layer::init())
 	{
@@ -36,21 +31,22 @@ bool BattleLayer::init()
 	}
 
 	auto physicsListener = EventListenerPhysicsContact::create();
-	physicsListener->onContactBegin = CC_CALLBACK_1(BattleLayer::onContactBegin, this);
+	physicsListener->onContactBegin = CC_CALLBACK_1(BattleManager::onContactBegin, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(physicsListener, this);
 
 	// Keyboard Listener
 	auto listenerKeyboard = EventListenerKeyboard::create();
-	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(BattleLayer::onKeyPressed, this);
-	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(BattleLayer::onKeyReleased, this);
+	listenerKeyboard->onKeyPressed = CC_CALLBACK_2(BattleManager::onKeyPressed, this);
+	listenerKeyboard->onKeyReleased = CC_CALLBACK_2(BattleManager::onKeyReleased, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
-
+	
+	this->scheduleUpdate();
 	setListener();
 
 	return true;
 }
 
-void BattleLayer::setListener()
+void BattleManager::setListener()
 {
 	auto player_listener = EventListenerCustom::create(PLAYER_EVENT, [=](EventCustom* event)
 	{
@@ -64,24 +60,20 @@ void BattleLayer::setListener()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
 }
 
-void BattleLayer::onEnter()
+void BattleManager::onEnter()
 {
 	Layer::onEnter();
-	this->scheduleUpdate();
 	enterState(BEGIN);
 	background_music_ = experimental::AudioEngine::play2d(BATTLE_MUSIC, true, BATTLE_MUSIC_VOLUME);
 }
 
-void BattleLayer::onExit()
+void BattleManager::onExit()
 {
 	experimental::AudioEngine::stop(background_music_);
 	Layer::onExit();
 }
 
-
-
-
-void BattleLayer::pauseLayer()
+void BattleManager::pauseLayer()
 {
 	Layer::pause();
 	experimental::AudioEngine::pause(background_music_);
@@ -92,7 +84,7 @@ void BattleLayer::pauseLayer()
 	paused_ = true;
 }
 
-void BattleLayer::resumeLayer()
+void BattleManager::resumeLayer()
 {
 	Layer::resume();
 	experimental::AudioEngine::resume(background_music_);
@@ -104,24 +96,24 @@ void BattleLayer::resumeLayer()
 }
 
 
-BattleLayer* BattleLayer::getInstance()
+BattleManager* BattleManager::getInstance()
 {
 	return battle_layer_;
 }
 
-void BattleLayer::addChild(Node* child)
+void BattleManager::addChild(Node* child)
 {
 	Layer::addChild(child);
 	addLayerChild(child);
 }
 
-void BattleLayer::addChild(Node* child, int localZOrder)
+void BattleManager::addChild(Node* child, int localZOrder)
 {
 	Layer::addChild(child, localZOrder);
 	addLayerChild(child);
 }
 
-void BattleLayer::addLayerChild(Node* child)
+void BattleManager::addLayerChild(Node* child)
 {
 	switch (child->getTag())
 	{
@@ -147,7 +139,7 @@ void BattleLayer::addLayerChild(Node* child)
 	}
 }
 
-void BattleLayer::removeChild(Node* child, bool cleanup)
+void BattleManager::removeChild(Node* child, bool cleanup)
 {
 	auto child_index = _children.getIndex(child);
 	if (child_index != CC_INVALID_INDEX)
@@ -179,7 +171,7 @@ void BattleLayer::removeChild(Node* child, bool cleanup)
 	Layer::removeChild(child, cleanup);
 }
 
-void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
+void BattleManager::removeAllChildrenWithCleanup(bool cleanup)
 {
 	player_ = nullptr;
 	enemy_.clear();
@@ -187,30 +179,30 @@ void BattleLayer::removeAllChildrenWithCleanup(bool cleanup)
 	Layer::removeAllChildrenWithCleanup(cleanup);
 }
 
-bool BattleLayer::isPaused()
+bool BattleManager::isPaused()
 {
 	return paused_;
 }
 
-cocos2d::Vec2 BattleLayer::getPlayerDirection()
+cocos2d::Vec2 BattleManager::getPlayerDirection()
 {
 	Vec2 direction;
-	if (player_ != nullptr && CameraNode::getCamera() != nullptr)
+	if (player_ != nullptr && CameraManager::getCamera() != nullptr)
 	{
-		direction = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation() - player_->getPosition();
+		direction = CameraManager::getCamera()->getPosition() + Controller::getMouseLocation() - player_->getPosition();
 		direction.normalize();
 	}
 	return direction;
 }
 
-cocos2d::Vec2 BattleLayer::getPlayerPosition()
+cocos2d::Vec2 BattleManager::getPlayerPosition()
 {
 	if (player_ != nullptr)
 		return player_->getPosition();
 	return Vec2();
 }
 
-void BattleLayer::sendBattleEvent(int event_data)
+void BattleManager::sendBattleEvent(int event_data)
 {
 	auto buf = new int(event_data);
 	EventCustom battle_event(BATTLE_EVENT);
@@ -219,8 +211,13 @@ void BattleLayer::sendBattleEvent(int event_data)
 	CC_SAFE_DELETE(buf);
 }
 
-void BattleLayer::sendDestroyEvent()
+void BattleManager::sendDestroyEvent()
 {
+	// std::vector<BaseEnemy*> enemy_vector;
+	// for (auto enemy : enemy_)
+	// 	enemy_vector.push_back(enemy);
+	// for (auto enemy : enemy_vector)
+	// 	enemy->onDestroy();
 	auto buf = new int(DESTROY_EVENT_ALL);
 	EventCustom battle_event(DESTROY_EVENT);
 	battle_event.setUserData(buf);
@@ -228,7 +225,7 @@ void BattleLayer::sendDestroyEvent()
 	CC_SAFE_DELETE(buf);
 }
 
-void BattleLayer::enableShootLine()
+void BattleManager::enableShootLine()
 {
 	if (player_ == nullptr)
 		return;
@@ -244,7 +241,7 @@ void BattleLayer::enableShootLine()
 	shoot_line_->runAction(fadeIn);
 }
 
-void BattleLayer::disableShootLine()
+void BattleManager::disableShootLine()
 {
 	if (shoot_line_ == nullptr)
 		return;
@@ -252,7 +249,7 @@ void BattleLayer::disableShootLine()
 	shoot_line_->runAction(fadeOut);
 }
 
-void BattleLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+void BattleManager::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
 {
 	switch (keyCode)
 	{
@@ -266,7 +263,7 @@ void BattleLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	}
 }
 
-void BattleLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+void BattleManager::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
 {
 	switch (keyCode)
 	{
@@ -280,7 +277,7 @@ void BattleLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d
 	}
 }
 
-bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
+bool BattleManager::onContactBegin(cocos2d::PhysicsContact& contact)
 {
 
 	auto nodeA = dynamic_cast<BaseObject*>(contact.getShapeA()->getBody()->getNode());
@@ -295,18 +292,18 @@ bool BattleLayer::onContactBegin(cocos2d::PhysicsContact& contact)
 	return true;
 }
 
-void BattleLayer::update(float delta_time)
+void BattleManager::update(float delta_time)
 {
 	timer_ += delta_time*getTimeCoefficient();
 	updateStateMachine(delta_time);
 	updateShootLine(delta_time);
 }
 
-void BattleLayer::updateShootLine(float delta_time)
+void BattleManager::updateShootLine(float delta_time)
 {
 	if (player_ == nullptr)
 		return;
-	auto mousePositionInLayer = CameraNode::getCamera()->getPosition() + Controller::getMouseLocation();
+	auto mousePositionInLayer = CameraManager::getCamera()->getPosition() + Controller::getMouseLocation();
 	// Update Shoot Assist
 	shoot_line_->setPosition(player_->getPosition());
 	float shootLineRotateAngle;

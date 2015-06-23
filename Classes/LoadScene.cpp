@@ -5,7 +5,7 @@
 
 USING_NS_CC;
 
-LoadScene::LoadScene() : animation_finish_(false), load_finish_(false), loaded_num_(0), total_num_(0)
+LoadScene::LoadScene() : load_state_(LoadState::NA), animation_state_(AnimationState::NA), loaded_num_(0), total_num_(0), logo_(nullptr)
 {
 }
 
@@ -14,53 +14,55 @@ bool LoadScene::init()
 	if (!Scene::init())
 		return false;
 	Director::getInstance()->getTextureCache()->addImage(ALF_LOGO_TEXTURE);
-	auto logo = Sprite::createWithTexture(Director::getInstance()->getTextureCache()->getTextureForKey(ALF_LOGO_TEXTURE));
-	logo->setPosition(config::visible_size / 2);
-	this->addChild(logo);
-	logo->setOpacity(0.0f);
-	logo->runAction(Sequence::create(FadeIn::create(1.0f),MoveBy::create(1.0f,Vec2::ZERO), FadeOut::create(1.0f), CallFuncN::create([&](Node* sender){ animation_finish_ = true; startBattle(); }), nullptr));
+	logo_ = Sprite::createWithTexture(Director::getInstance()->getTextureCache()->getTextureForKey(ALF_LOGO_TEXTURE));
+	logo_->setPosition(config::visible_size / 2);
+	logo_->setOpacity(0.0f);
+	this->addChild(logo_);
+	animation_state_ = AnimationState::FADE_IN;
+	logo_->runAction(Sequence::create(DelayTime::create(0.4f), FadeIn::create(1.0f), DelayTime::create(0.2f), CallFuncN::create([&](Node* sender){ animation_state_ = AnimationState::WAIT_LOADING; }), nullptr));
+	scheduleUpdate();
 	return true;
 }
 
 void LoadScene::onEnter()
 {
 	Scene::onEnter();
-	total_num_ = 11;
-	Director::getInstance()->getTextureCache()->addImageAsync(MAIN_TEXTURE_PNG, CC_CALLBACK_1(LoadScene::spriteFrameCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BIRTH_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(DEATH_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BOOM_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(MENU_BACKGROUND_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_NORMAL_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	Director::getInstance()->getTextureCache()->addImageAsync(BUTTON_PRESS_TEXTURE, CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	std::string background_texture[3] = { "texture/background1.png", "texture/background2.png", "texture/background3.png" };
-	for (int i = 0; i < 3; ++i)
-		Director::getInstance()->getTextureCache()->addImageAsync(background_texture[i], CC_CALLBACK_1(LoadScene::loadingCallBack, this));
-	load_finish_ = true;
-}
-
-void LoadScene::spriteFrameCallBack(cocos2d::Texture2D* texture)
-{
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(MAIN_TEXTURE_PLIST,texture);
-	loadingCallBack(texture);
-}
-
-void LoadScene::loadingCallBack(cocos2d::Texture2D* texture)
-{
-	loaded_num_ += 1;
-	if (loaded_num_ = total_num_)
+	texture_vector_.push_back(BIRTH_TEXTURE);
+	texture_vector_.push_back(DEATH_TEXTURE);
+	texture_vector_.push_back(BOOM_TEXTURE);
+	texture_vector_.push_back(BACKGROUND_TEXTURE);
+	texture_vector_.push_back(MENU_BACKGROUND_TEXTURE);
+	texture_vector_.push_back(BUTTON_NORMAL_TEXTURE);
+	texture_vector_.push_back(BUTTON_PRESS_TEXTURE);
+	texture_vector_.push_back("texture/background1.png");
+	texture_vector_.push_back("texture/background2.png");
+	texture_vector_.push_back("texture/background3.png");
+	total_num_ = 1 + texture_vector_.size();
+	load_state_ = LoadState::LOADING;
+	for (auto texture_name : texture_vector_)
 	{
-		load_finish_ = true;
-		startBattle();
+		Director::getInstance()->getTextureCache()->addImageAsync(texture_name, [&](cocos2d::Texture2D* texture)
+		{
+			loaded_num_ += 1;
+		});
 	}
+	Director::getInstance()->getTextureCache()->addImageAsync(MAIN_TEXTURE_PNG, [&](cocos2d::Texture2D* texture)
+	{
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(MAIN_TEXTURE_PLIST, texture);
+		loaded_num_ += 1;
+	});
 }
 
-void LoadScene::startBattle()
+void LoadScene::update(float delta_time)
 {
-	if (animation_finish_&&load_finish_)
+	if (load_state_ == LoadState::LOADING && loaded_num_ == total_num_)
+		load_state_ = LoadState::LOADED;
+	if (load_state_ == LoadState::LOADED && animation_state_ == AnimationState::WAIT_LOADING)
 	{
-		auto battle_scene = BattleScene::create();
-		Director::getInstance()->replaceScene(battle_scene);
+		animation_state_ = AnimationState::FADE_OUT;
+		logo_->runAction(Sequence::create(FadeOut::create(1.0f), CallFuncN::create([&](Node* sender)
+		{
+			Director::getInstance()->replaceScene(BattleScene::create());
+		}), nullptr));
 	}
 }

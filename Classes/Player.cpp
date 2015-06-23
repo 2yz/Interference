@@ -2,9 +2,8 @@
 #include "ConfigUtil.h"
 #include "Controller.h"
 #include "Attack.h"
-#include "BattleLayer.h"
-#include "AnimationUtil.h"
-#include <AudioEngine.h>
+#include "BattleManager.h"
+#include "AudioEngine.h"
 #include "PlayerUserData.h"
 
 USING_NS_CC;
@@ -146,9 +145,9 @@ void Player::updateSkillCast(float delta_time)
 {
 	if (Controller::getMouseDown())
 	{
-		auto battle_layer = BattleLayer::getInstance();
-		if (battle_layer != nullptr)
-			castSkill(battle_layer, battle_layer->getPlayerDirection(), 0);
+		auto battle_manager = BattleManager::getInstance();
+		if (battle_manager != nullptr)
+			castSkill(battle_manager, battle_manager->getPlayerDirection(), 0);
 	}
 }
 

@@ -7,12 +7,13 @@
 #include "ResultLayer.h"
 #include "SimpleBattle.h"
 #include "PauseLayer.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
 BattleScene* BattleScene::battle_scene_ = nullptr;
 
-BattleScene::BattleScene() : battle_scene_state_(MENU), camera_node_(nullptr), hud_layer_(nullptr), battle_layer_(nullptr)
+BattleScene::BattleScene() : scene_state_(SceneState::NA), battle_state_(BattleState::NA), menu_layer_(nullptr), camera_node_(nullptr), hud_layer_(nullptr), battle_layer_(nullptr), result_layer_(nullptr), pause_layer_(nullptr)
 {
 	battle_scene_ = this;
 }
@@ -35,14 +36,14 @@ bool BattleScene::init()
 		return false;
 	}
 
-	if (!this->initWithSize(config::visible_size*2.5))
-	{
-		return false;
-	}
+	// if (!this->initWithSize(config::visible_size*2.5))
+	// {
+	// 	return false;
+	// }
 
+	this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 	// Set Physics Debug Mode
 	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-	this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 
 	// Game Controller Node
 	auto controller = Controller::create();
@@ -50,12 +51,6 @@ bool BattleScene::init()
 	// Mouse Layer
 	auto mouseLayer = MouseLayer::create();
 	this->addChild(mouseLayer, 4);
-	// Menu Layer
-	auto menu_layer_ = MenuLayer::create();
-	this->addChild(menu_layer_, 3);
-
-	camera_node_ = CameraNode::create();
-	this->addChild(camera_node_, 1);
 
 	// Keyboard Listener
 	auto listenerKeyboard = EventListenerKeyboard::create();
@@ -63,7 +58,8 @@ bool BattleScene::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listenerKeyboard, this);
 
 	setListener();
-
+	setSceneState(SceneState::INITIAL);
+	setSceneState(SceneState::MENU);
 	return true;
 }
 
@@ -80,12 +76,12 @@ void BattleScene::setListener()
 		switch (*buf)
 		{
 		case BATTLE_EVENT_WIN:
-			this->addChild(ResultLayer::create("YOU WIN", "BACK"));
-			battle_scene_state_ = BATTLE_RESULT;
+			if (scene_state_ == SceneState::BATTLE)
+				setBattleState(BattleState::BATTLE_RESULT_WIN);
 			break;
 		case BATTLE_EVENT_LOSE:
-			this->addChild(ResultLayer::create("YOU LOSE", "BACK"));
-			battle_scene_state_ = BATTLE_RESULT;
+			if (scene_state_ == SceneState::BATTLE)
+				setBattleState(BattleState::BATTLE_RESULT_LOSS);
 			break;
 		default: break;
 		}
@@ -103,44 +99,120 @@ HUDLayer* BattleScene::getHUDLayer()
 	return this->hud_layer_;
 }
 
-void BattleScene::openMenu()
+void BattleScene::setSceneState(SceneState scene_state)
 {
-	auto menu_layer_ = MenuLayer::create();
-	this->addChild(menu_layer_, 3);
-	if (hud_layer_ != nullptr)
+	if (scene_state_ == scene_state)
+		return;
+	exitSceneState();
+	enterSceneState(scene_state);
+}
+
+void BattleScene::enterSceneState(SceneState scene_state)
+{
+	scene_state_ = scene_state;
+	switch (scene_state)
 	{
-		this->removeChild(hud_layer_, true);
-		hud_layer_ = nullptr;
+	case SceneState::INITIAL:
+		camera_node_ = CameraManager::create();
+		this->addChild(camera_node_, 1);
+		camera_node_->addBackgroundManager(BackgroundManager::create());
+		break;
+	case SceneState::MENU:
+		camera_node_->setCameraPosition((config::kBattleScene - config::visible_size) / 2);
+		menu_layer_ = MenuLayer::create();
+		this->addChild(menu_layer_, 3);
+		break;
+	case SceneState::BATTLE:
+		// UI Layer
+		hud_layer_ = HUDLayer::create();
+		this->addChild(hud_layer_, 2);
+		// Battle Layer 
+		battle_layer_ = SimpleBattle::create();
+		camera_node_->addBattleManager(battle_layer_);
+		setBattleState(BattleState::BATTLE_ON);
+		break;
+	case SceneState::EXIT:
+		this->runAction(Sequence::create(DelayTime::create(0.7f), CallFuncN::create([&](Node* sender){ Director::getInstance()->end(); }), nullptr));
+		break;
+	default: break;
 	}
-	if (battle_layer_ != nullptr)
+}
+
+void BattleScene::exitSceneState()
+{
+	switch (scene_state_)
 	{
-		camera_node_->removeChild(battle_layer_, true);
-		battle_layer_ = nullptr;
+	case SceneState::MENU:
+		menu_layer_->onDestroy();
+		menu_layer_ = nullptr;
+		break;
+	case SceneState::BATTLE:
+		setBattleState(BattleState::NA);
+		if (hud_layer_ != nullptr)
+		{
+			this->removeChild(hud_layer_);
+			hud_layer_ = nullptr;
+		}
+		if (battle_layer_ != nullptr)
+		{
+			camera_node_->removeBattleManager();
+			battle_layer_ = nullptr;
+		}
+		break;
+	default: break;
 	}
-	battle_scene_state_ = MENU;
+	scene_state_ = SceneState::NA;
 }
 
-void BattleScene::startBattle()
+void BattleScene::setBattleState(BattleState battle_state)
 {
-	// UI Layer
-	hud_layer_ = HUDLayer::create();
-	this->addChild(hud_layer_, 2);
-	// Battle Layer 
-	battle_layer_ = SimpleBattle::create();
-	camera_node_->addChild(battle_layer_, 1);
-	battle_scene_state_ = BATTLE;
+	if (scene_state_ != SceneState::BATTLE)
+		return;
+	if (battle_state_ == battle_state)
+		return;
+	exitBattleState();
+	enterBattleState(battle_state);
 }
 
-void BattleScene::pauseBattle()
+void BattleScene::enterBattleState(BattleState battle_state)
 {
-	battle_layer_->pauseLayer();
-	battle_scene_state_ = BATTLE_PAUSE;
+	battle_state_ = battle_state;
+	switch (battle_state)
+	{
+	case BattleState::BATTLE_PAUSE:
+		battle_layer_->pauseLayer();
+		pause_layer_ = PauseLayer::create("GAME PAUSED", "RESUME");
+		this->addChild(pause_layer_, 10);
+		break;
+	case BattleState::BATTLE_RESULT_WIN:
+		result_layer_ = ResultLayer::create("YOU WIN", "BACK");
+		this->addChild(result_layer_, 10);
+		break;
+	case BattleState::BATTLE_RESULT_LOSS:
+		result_layer_ = ResultLayer::create("YOU LOSE", "BACK");
+		this->addChild(result_layer_, 10);
+		break;
+	default: break;
+	}
 }
 
-void BattleScene::resumeBattle()
+void BattleScene::exitBattleState()
 {
-	battle_layer_->resumeLayer();
-	battle_scene_state_ = BATTLE;
+	switch (battle_state_)
+	{
+	case BattleState::BATTLE_PAUSE:
+		battle_layer_->resumeLayer();
+		pause_layer_->onDestroy();
+		pause_layer_ = nullptr;
+		break;
+	case BattleState::BATTLE_RESULT_WIN:
+	case BattleState::BATTLE_RESULT_LOSS:
+		result_layer_->onDestroy();
+		result_layer_ = nullptr;
+		break;
+	default: break;
+	}
+	battle_state_ = BattleState::NA;
 }
 
 void BattleScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
@@ -148,23 +220,23 @@ void BattleScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d:
 	switch (keyCode)
 	{
 	case EventKeyboard::KeyCode::KEY_ESCAPE:
-		if (battle_layer_ != nullptr && (battle_scene_state_ == BATTLE || battle_scene_state_ == BATTLE_PAUSE))
+		if (scene_state_ == SceneState::BATTLE && battle_state_ == BattleState::BATTLE_ON)
 		{
-			if (!battle_layer_->isPaused())
-			{
-				pauseBattle();
-				this->addChild(PauseLayer::create("GAME PAUSED", "RESUME"));
-			}
-			else
-			{
-				resumeBattle();
-			}
+			experimental::AudioEngine::play2d(END_AUDIO, false, END_AUDIO_VOLUME);
+			setBattleState(BattleState::BATTLE_PAUSE);
+		}
+		else if (scene_state_ == SceneState::BATTLE && battle_state_ == BattleState::BATTLE_PAUSE)
+		{
+			experimental::AudioEngine::play2d(START_AUDIO, false, START_AUDIO_VOLUME);
+			setBattleState(BattleState::BATTLE_ON);
 		}
 		break;
 	case EventKeyboard::KeyCode::KEY_BACKSPACE:
-		if (battle_scene_state_ == BATTLE)
-			openMenu();
-	default:
-		break;
+		if (scene_state_ == SceneState::BATTLE)
+		{
+			experimental::AudioEngine::play2d(END_AUDIO, false, END_AUDIO_VOLUME);
+			setSceneState(SceneState::MENU);
+		}
+	default: break;
 	}
 }

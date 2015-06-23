@@ -30,9 +30,9 @@ void Skill::setParent(Node* parent)
 	setTimeParent(dynamic_cast<TimeCoefficient*>(parent));
 }
 
-bool Skill::cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+bool Skill::cast(cocos2d::Layer* battle_manager, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
-	if (battle_layer == nullptr)
+	if (battle_manager == nullptr)
 		return false;
 	if (cd_)
 		return false;

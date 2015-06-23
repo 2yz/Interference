@@ -1,16 +1,16 @@
 #ifndef SIMPLEBATTLE_H_
 #define SIMPLEBATTLE_H_
 
-#include "BattleLayer.h"
+#include "BattleManager.h"
 
-class SimpleBattle : public BattleLayer
+class SimpleBattle : public BattleManager
 {
 public:
 	CREATE_FUNC(SimpleBattle);
 	virtual void updateStateMachine(float delta_time) override;
-	virtual void setState(BattleState battle_state) override;
-	virtual void enterState(BattleState battle_state) override;
-	virtual void exitState(BattleState battle_state) override;
+	virtual void setState(BattleManagerState battle_state) override;
+	virtual void enterState(BattleManagerState battle_state) override;
+	virtual void exitState() override;
 };
 
 #endif /* SIMPLEBATTLE_H_ */

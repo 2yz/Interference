@@ -14,7 +14,6 @@ public:
 	virtual void onExit() override;
 	void onDestroy();
 	void exitSchedule(float delta_time);
-	virtual void update(float delta_time) override;
 protected:
 	bool isHelp_;
 	cocos2d::Sprite* logo_;

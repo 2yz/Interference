@@ -1,5 +1,7 @@
 #include "ResultLayer.h"
 #include "BattleScene.h"
+#include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -20,8 +22,8 @@ void ResultLayer::buttonListener(Ref* sender, cocos2d::ui::Widget::TouchEventTyp
 	case ui::Widget::TouchEventType::BEGAN:
 		break;
 	case ui::Widget::TouchEventType::ENDED:
-		BattleScene::getInstance()->openMenu();
-		this->onDestroy();
+		experimental::AudioEngine::play2d(END_AUDIO, false, END_AUDIO_VOLUME);
+		BattleScene::getInstance()->setSceneState(SceneState::MENU);
 		break;
 	default:
 		break;

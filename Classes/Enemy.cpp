@@ -104,13 +104,31 @@ void Enemy::onContact(Message& message)
 
 void Enemy::update(float delta_time)
 {
+	delta_time *= getTimeCoefficient();
+	BaseEnemy::update(delta_time);
+	updateStateMachine(delta_time);
 	// Sprite Rotation
-	float spriteRotation = sprite_vector_.at(0)->getRotation() + rotate_velocity_*delta_time*getTimeCoefficient();
+	float spriteRotation = sprite_vector_.at(0)->getRotation() + rotate_velocity_*delta_time;
 	if (spriteRotation > 360000.0f)
 		spriteRotation -= 360000.0f;
 	sprite_vector_.at(0)->setRotation(spriteRotation);
 	sprite_vector_.at(1)->setRotation(180.0f - spriteRotation);
 	sprite_vector_.at(2)->setRotation(spriteRotation * 2.0f);
 	sprite_vector_.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
-	BaseEnemy::update(delta_time);
+}
+
+void Enemy::updateStateMachine(float delta_time)
+{
+}
+
+void Enemy::setState(EnemyState battle_state)
+{
+}
+
+void Enemy::enterState(EnemyState battle_state)
+{
+}
+
+void Enemy::exitState()
+{
 }

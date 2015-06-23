@@ -38,9 +38,10 @@ void PopupLayer::onEnter()
 
 void PopupLayer::onDestroy()
 {
+	this->runAction(FadeOut::create(0.5f));
 	for (auto child : _children)
 		child->runAction(FadeOut::create(0.5f));
-	scheduleOnce(schedule_selector(PopupLayer::exitSchedule), 0.5f);
+	scheduleOnce(schedule_selector(PopupLayer::exitSchedule), 0.6f);
 }
 
 void PopupLayer::exitSchedule(float delta_time)

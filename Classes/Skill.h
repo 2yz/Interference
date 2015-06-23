@@ -20,7 +20,7 @@ public:
 	virtual ~Skill();
 	virtual bool init() override;
 	virtual void setParent(Node* parent) override;
-	virtual bool cast(cocos2d::Layer* battle_layer, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
+	virtual bool cast(cocos2d::Layer* battle_manager, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr);
 	SkillCategory getSkillCategory();
 protected:
 	float timer_;

@@ -32,32 +32,32 @@ void BasePlane::addSkill(Skill* skill)
 	addChild(skill);
 }
 
-void BasePlane::castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
-	if (battle_layer == nullptr)
+	if (battle_manager == nullptr)
 		return;
 	auto skill_iterator = skill_vector_.begin();
 	if (skill_iterator != skill_vector_.end())
-		(*skill_iterator)->cast(battle_layer, this, direction, skill_targer);
+		(*skill_iterator)->cast(battle_manager, this, direction, skill_targer);
 }
 
-void BasePlane::castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer)
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer)
 {
-	if (battle_layer == nullptr)
+	if (battle_manager == nullptr)
 		return;
 	if (skill_index < skill_vector_.size())
-		skill_vector_.at(skill_index)->cast(battle_layer, this, direction, skill_targer);
+		skill_vector_.at(skill_index)->cast(battle_manager, this, direction, skill_targer);
 }
 
-void BasePlane::castSkill(cocos2d::Layer* battle_layer, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer)
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer)
 {
-	if (battle_layer == nullptr)
+	if (battle_manager == nullptr)
 		return;
 	for (auto skill : skill_vector_)
 	{
 		if (skill->getSkillCategory() == skill_category)
 		{
-			skill->cast(battle_layer, this, direction, skill_targer);
+			skill->cast(battle_manager, this, direction, skill_targer);
 			break;
 		}
 	}

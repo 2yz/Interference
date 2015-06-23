@@ -1,10 +1,10 @@
-#include "GameBackgroundLayer.h"
+#include "BackgroundManager.h"
 #include "ConfigUtil.h"
 #include "Block.h"
 
 USING_NS_CC;
 
-bool GameBackgroundLayer::init()
+bool BackgroundManager::init()
 {
 	if (!Layer::init())
 	{
@@ -58,7 +58,7 @@ bool GameBackgroundLayer::init()
 	return true;
 }
 
-void GameBackgroundLayer::onEnter()
+void BackgroundManager::onEnter()
 {
 	Layer::onEnter();
 	for (auto child : _children)

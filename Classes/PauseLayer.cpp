@@ -1,5 +1,7 @@
 #include "PauseLayer.h"
 #include "BattleScene.h"
+#include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -31,7 +33,8 @@ void PauseLayer::buttonListener(Ref* sender, cocos2d::ui::Widget::TouchEventType
 	case ui::Widget::TouchEventType::BEGAN:
 		break;
 	case ui::Widget::TouchEventType::ENDED:
-		BattleScene::getInstance()->resumeBattle();
+		experimental::AudioEngine::play2d(START_AUDIO, false, START_AUDIO_VOLUME);
+		BattleScene::getInstance()->setBattleState(BattleState::BATTLE_ON);
 		this->onDestroy();
 		break;
 	default:

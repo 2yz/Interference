@@ -1,5 +1,5 @@
-#ifndef BattleLayer_H_
-#define BattleLayer_H_
+#ifndef BattleManager_H_
+#define BattleManager_H_
 
 #include "cocos2d.h"
 #include "Player.h"
@@ -7,7 +7,7 @@
 #include "Block.h"
 #include "BaseEnemy.h"
 
-enum BattleState
+enum BattleManagerState
 {
 	BEGIN,
 	ROUND1,
@@ -18,17 +18,17 @@ enum BattleState
 	WIN
 };
 
-class BattleLayer : public cocos2d::Layer, public TimeCoefficient
+class BattleManager : public cocos2d::Layer, public TimeCoefficient
 {
 public:
-	BattleLayer();
-	virtual ~BattleLayer();
+	BattleManager();
+	virtual ~BattleManager();
 	virtual bool init() override;
 	void setListener();
 	virtual void onEnter() override;
 	virtual void onExit() override;
 	void sendDestroyEvent();
-	static BattleLayer* getInstance();
+	static BattleManager* getInstance();
 	virtual void addChild(Node * child) override;
 	virtual void addChild(Node * child, int localZOrder) override;
 	void addLayerChild(Node * child);
@@ -48,11 +48,11 @@ public:
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) override;
 	virtual void update(float delta_time) override;
 	virtual void updateStateMachine(float delta_time) = 0;
-	virtual void setState(BattleState battle_state) = 0;
-	virtual void enterState(BattleState battle_state) = 0;
-	virtual void exitState(BattleState battle_state) = 0;
+	virtual void setState(BattleManagerState battle_state) = 0;
+	virtual void enterState(BattleManagerState battle_state) = 0;
+	virtual void exitState() = 0;
 protected:
-	static BattleLayer* battle_layer_;
+	static BattleManager* battle_layer_;
 	float timer_;
 	Player* player_;
 	cocos2d::Vector<BaseEnemy*> enemy_;
@@ -60,9 +60,9 @@ protected:
 	cocos2d::Sprite* shoot_line_;
 	bool paused_;
 	int background_music_;
-	BattleState battle_state_;
+	BattleManagerState battle_state_;
 	float state_timer_;
 	float state_count_;
 };
 
-#endif /* BattleLayer_H_ */
+#endif /* BattleManager_H_ */

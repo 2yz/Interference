@@ -43,6 +43,12 @@
     <Filter Include="src\Layer\UI">
       <UniqueIdentifier>{24fc6121-0c07-4cc3-9f77-9020498870e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Camera">
+      <UniqueIdentifier>{1c9db092-9fed-476f-b3cc-76ace835d9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Layer\Background">
+      <UniqueIdentifier>{a1fa1f8a-d48b-45a4-87e4-14a4734bae6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\PlayerUserData.cpp">
       <Filter>src\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
-      <Filter>src\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
@@ -126,9 +129,6 @@
     <ClCompile Include="..\Classes\SkillUserData.cpp">
       <Filter>src\UserData</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\CameraNode.cpp">
-      <Filter>src\Layer</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\MenuLayer.cpp">
       <Filter>src\Layer\UI</Filter>
     </ClCompile>
@@ -140,9 +140,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\LoadScene.cpp">
       <Filter>src\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\BattleLayer.cpp">
-      <Filter>src\Layer\Battle</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SimpleBattle.cpp">
       <Filter>src\Layer\Battle</Filter>
@@ -156,6 +153,15 @@
     <ClCompile Include="..\Classes\MouseLayer.cpp">
       <Filter>src\Layer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BattleManager.cpp">
+      <Filter>src\Layer\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CameraManager.cpp">
+      <Filter>src\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BackgroundManager.cpp">
+      <Filter>src\Layer\Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -166,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PlayerUserData.h">
       <Filter>src\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameBackgroundLayer.h">
-      <Filter>src\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
@@ -239,9 +242,6 @@
     <ClInclude Include="..\Classes\SkillUserData.h">
       <Filter>src\UserData</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\CameraNode.h">
-      <Filter>src\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\MenuLayer.h">
       <Filter>src\Layer\UI</Filter>
     </ClInclude>
@@ -254,9 +254,6 @@
     <ClInclude Include="..\Classes\LoadScene.h">
       <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\BattleLayer.h">
-      <Filter>src\Layer\Battle</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SimpleBattle.h">
       <Filter>src\Layer\Battle</Filter>
     </ClInclude>
@@ -268,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MouseLayer.h">
       <Filter>src\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BattleManager.h">
+      <Filter>src\Layer\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CameraManager.h">
+      <Filter>src\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BackgroundManager.h">
+      <Filter>src\Layer\Background</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

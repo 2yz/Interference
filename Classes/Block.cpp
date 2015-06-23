@@ -62,6 +62,7 @@ void Block::onEnter()
 
 void Block::onDestroy()
 {
+	AnimationUtil::runParticleAnimation(DEATH_PARTICLE, this->getParent(), this);
 	experimental::AudioEngine::play2d(DEATH_AUDIO, false, DEATH_VOLUME);
 	BaseObject::onDestroy();
 }

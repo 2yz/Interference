@@ -23,12 +23,12 @@ void BaseEnemy::setListener()
 	{
 		auto buf = static_cast<int*>(event->getUserData());
 		if (*buf == DESTROY_EVENT_ALL)
-			scheduleOnce(schedule_selector(BaseEnemy::destroyUpdate), random(0.5f, 2.0f));
+			scheduleOnce(schedule_selector(BaseEnemy::scheduleDestroy), random(0.5f, 2.0f));
 	});
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(player_listener, this);
 }
 
-void BaseEnemy::destroyUpdate(float delta_time)
+void BaseEnemy::scheduleDestroy(float delta_time)
 {
 	this->onDestroy();
 }
