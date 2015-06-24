@@ -1,18 +1,34 @@
 <Solution>
-  <PropertyGroup Name="Interference" Version="2.2.6.0" Type="CocosStudio" />
+  <PropertyGroup Name="Interference" Version="2.2.9.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="HelloWorld.png" />
-        <Image Name="hexagon.png" />
-        <Image Name="pentagon.png" />
-        <Image Name="square.png" />
-        <PlistInfo Name="shape.csi" Type="Plist" />
-        <Image Name="triangle.png" />
-        <Image Name="ShootBox.png" />
-        <Image Name="ShootLine.png" />
-        <Image Name="bullet.png" />
+        <Folder Name="texture">
+          <Image Name="attack.png" />
+          <Image Name="attack_dark.png" />
+          <Image Name="blood_bar.png" />
+          <Image Name="blood_bar_box.png" />
+          <Image Name="blood_bar_brighting.png" />
+          <Image Name="blood_bar_dark.png" />
+          <Image Name="bullet.png" />
+          <Image Name="control.png" />
+          <Image Name="defense.png" />
+          <Image Name="edge.png" />
+          <Image Name="enemy.png" />
+          <Image Name="help_instruction.png" />
+          <Image Name="hexagon.png" />
+          <Image Name="interference.png" />
+          <Image Name="kill.png" />
+          <Image Name="pentagon.png" />
+          <Image Name="player.png" />
+          <Image Name="shoot_box.png" />
+          <Image Name="shoot_line.png" />
+          <Image Name="square.png" />
+          <Image Name="triangle.png" />
+        </Folder>
+        <PlistInfo Name="main_texture.csi" Type="Plist" />
       </RootFolder>
     </Group>
   </SolutionFolder>

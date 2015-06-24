@@ -1,9 +1,15 @@
 #include "BaseObject.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
-BaseObject::BaseObject() : _HP(1000.0f), _neverDie(false), timeCoefficient(1.0f)
-{	
+BaseObject::BaseObject() : timer_(0.0f)
+{
+}
+
+BaseObject::~BaseObject()
+{
+	sprite_vector_.clear();
 }
 
 bool BaseObject::init()
@@ -12,54 +18,62 @@ bool BaseObject::init()
 	{
 		return false;
 	}
+	// Initial Message
+	initMessage();
 
 	// Create Physics Body
-	physicsBody = PhysicsBody::create();
-	physicsBody->setRotationEnable(false);
-	this->setPhysicsBody(physicsBody);
+	physics_body_ = PhysicsBody::create();
+	physics_body_->setRotationEnable(false);
+	this->setPhysicsBody(physics_body_);
 
+	this->scheduleUpdate();
+	
 	return true;
 }
 
 void BaseObject::onEnter()
 {
 	Node::onEnter();
-	for (auto sprite : spriteVector)
+	for (auto sprite : sprite_vector_)
 	{
 		sprite->setBlendFunc(BlendFunc::ADDITIVE);
-		sprite->setColor(Color3B(255, 0, 0));
-
 	}
+	this->setCameraMask(1 << 1);
 }
 
-void BaseObject::onDestory()
+void BaseObject::onDestroy()
+{
+	this->removeFromParentAndCleanup(true);
+}
+
+void BaseObject::onContact(Message& message)
 {
 }
 
-void BaseObject::onContact(BaseObject* contactNode)
+void BaseObject::initMessage()
 {
-	log("BaseObject::onContact(BaseObject* contactNode)");
 }
 
-void BaseObject::reduceHP(float reduceValue)
+Message BaseObject::getMessage()
 {
-	if (!_neverDie)
-		_HP -= reduceValue;
+	return message_;
+}
+
+void BaseObject::setParent(Node* parent)
+{
+	Node::setParent(parent);
+	setTimeParent(dynamic_cast<TimeCoefficient*>(parent));
 }
 
 void BaseObject::setVelocity(const cocos2d::Vect& velocity)
 {
-	this->getPhysicsBody()->setVelocity(velocity);
-}
-
-void BaseObject::setTimeCoefficient(float coefficient)
-{
-	this->timeCoefficient = coefficient;
+	if (physics_body_)
+		physics_body_->setVelocity(velocity);
 }
 
 float BaseObject::getVelocityMagnitude()
 {
-	return physicsBody->getVelocity().length();
+	return physics_body_->getVelocity().length();
 }
 
 // TODO getVelocityDirection

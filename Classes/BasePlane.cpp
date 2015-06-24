@@ -1,14 +1,15 @@
 #include "BasePlane.h"
+#include "ConfigUtil.h"
 
 USING_NS_CC;
 
-
-BasePlane::BasePlane(float radius) :BaseObject(), physicsRadius(radius), rotateVelocity(180.0f)
+BasePlane::BasePlane(float radius) :BaseObject(), physics_radius_(radius), rotate_velocity_(180.0f)
 {
 }
 
 BasePlane::~BasePlane()
 {
+	skill_vector_.clear();
 }
 
 bool BasePlane::init()
@@ -18,43 +19,51 @@ bool BasePlane::init()
 		return false;
 	}
 
-	auto sprite1 = Sprite::create();
-	auto sprite2 = Sprite::create();
-	auto sprite3 = Sprite::create();
-	auto sprite4 = Sprite::create();
-	sprite2->setRotation(180.0f);
-	sprite4->setRotation(180.0f);
-	sprite3->setScale(0.2f);
-	sprite4->setScale(0.2f);
-	spriteVector.pushBack(sprite1);
-	spriteVector.pushBack(sprite2);
-	spriteVector.pushBack(sprite3);
-	spriteVector.pushBack(sprite4);
-	this->addChild(sprite1);
-	this->addChild(sprite2);
-	this->addChild(sprite3);
-	this->addChild(sprite4);
-
-	physicsBody->addShape(PhysicsShapeCircle::create(physicsRadius));
-
 	this->scheduleUpdate();
 
 	return true;
 }
 
-void BasePlane::runSkill(const cocos2d::Vec2& velocity, SkillCategory skillCategory, int skillIndex)
+void BasePlane::addSkill(Skill* skill)
 {
+	if (skill_vector_.empty())
+		skill_vector_.reserve(4);
+	skill_vector_.pushBack(skill);
+	addChild(skill);
 }
 
-void BasePlane::update(float deltaTime)
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, BaseObject* skill_targer)
 {
-	BaseObject::update(deltaTime);
+	if (battle_manager == nullptr)
+		return;
+	auto skill_iterator = skill_vector_.begin();
+	if (skill_iterator != skill_vector_.end())
+		(*skill_iterator)->cast(battle_manager, this, direction, skill_targer);
+}
 
-	float spriteRotation = spriteVector.at(0)->getRotation() + rotateVelocity*deltaTime*timeCoefficient;
-	if (spriteRotation > 360000.0f)
-		spriteRotation -= 360000.0f;
-	spriteVector.at(0)->setRotation(spriteRotation);
-	spriteVector.at(1)->setRotation(180.0f - spriteRotation);
-	spriteVector.at(2)->setRotation(spriteRotation * 2.0f);
-	spriteVector.at(3)->setRotation(180.0f - spriteRotation * 2.0f);
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, int skill_index, BaseObject* skill_targer)
+{
+	if (battle_manager == nullptr)
+		return;
+	if (skill_index < skill_vector_.size())
+		skill_vector_.at(skill_index)->cast(battle_manager, this, direction, skill_targer);
+}
+
+void BasePlane::castSkill(cocos2d::Layer* battle_manager, const cocos2d::Vec2& direction, SkillCategory skill_category, BaseObject* skill_targer)
+{
+	if (battle_manager == nullptr)
+		return;
+	for (auto skill : skill_vector_)
+	{
+		if (skill->getSkillCategory() == skill_category)
+		{
+			skill->cast(battle_manager, this, direction, skill_targer);
+			break;
+		}
+	}
+}
+
+void BasePlane::update(float delta_time)
+{
+	BaseObject::update(delta_time);
 }

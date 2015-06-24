@@ -6,11 +6,10 @@
 class Bullet : public BaseBullet
 {
 public:
-	static Bullet* create(const cocos2d::Vec2& velocity);
-	explicit Bullet(const cocos2d::Vec2& velocity);
+	static Bullet* create(int bulletParent, const cocos2d::Vec2& unitVelocity);
+	explicit Bullet(int bulletParent, const cocos2d::Vec2& unitVelocity);
 	virtual bool init() override;
-protected:
-	int _bulletTag;
+	virtual void initMessage() override;
 };
 
 #endif /* BULLET_H_ */

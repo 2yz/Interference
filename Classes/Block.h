@@ -6,9 +6,16 @@
 class Block : public BaseObject
 {
 public:
-	CREATE_FUNC(Block);
-	Block();
+	static Block* create(bool isEdge = false);
+	explicit Block(bool isEdge = false);
 	virtual bool init() override;
+	virtual void initMessage() override;
+	virtual void onEnter() override;
+	virtual void onDestroy() override;
+	virtual void onContact(Message& message) override;
+protected:
+	bool is_edge_;
+	int score_;
 };
 
 #endif /* BLOCK_H_ */

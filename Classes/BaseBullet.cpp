@@ -1,10 +1,11 @@
 #include "BaseBullet.h"
 #include "AnimationUtil.h"
 #include "ConfigUtil.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
-BaseBullet::BaseBullet(int bulletParent) : _bulletParent(bulletParent)
+BaseBullet::BaseBullet()
 {
 }
 
@@ -17,19 +18,14 @@ bool BaseBullet::init()
 	return true;
 }
 
-void BaseBullet::onDestory()
+void BaseBullet::onDestroy()
 {
-	BaseObject::onDestory();
-	AnimationUtil::runParticleAnimation("Boom.plist", this->getParent(), this);
-	this->removeFromParentAndCleanup(true);
+	AnimationUtil::runParticleAnimation(BOOM_PARTICLE, this->getParent(), this);
+	cocos2d::experimental::AudioEngine::play2d(IMPACT_AUDIO, false, IMPACT_VOLUME);
+	BaseObject::onDestroy();
 }
 
-void BaseBullet::onContact(BaseObject* contactNode)
+void BaseBullet::onContact(Message& message)
 {
-	BaseObject::onContact(contactNode);
-	if (_bulletParent != contactNode->getTag())
-	{
-		contactNode->reduceHP(_damage);
-	}
-	this->onDestory();
+	this->onDestroy();
 }

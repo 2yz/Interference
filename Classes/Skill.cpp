@@ -1,11 +1,16 @@
 #include "Skill.h"
+#include "SkillUserData.h"
+#include "ConfigUtil.h"
 
-Skill::Skill() : _CD(false), _CDTime(1.0f), _timer(0.0f), _skillCategory(NA)
+USING_NS_CC;
+
+Skill::Skill() : timer_(0.0f), cd_(false), cd_time_coefficient_(1.0f)
 {
 }
 
 Skill::~Skill()
 {
+	CC_SAFE_DELETE(_userData);
 }
 
 bool Skill::init()
@@ -15,33 +20,49 @@ bool Skill::init()
 		return false;
 	}
 	this->scheduleUpdate();
+	setUserData(new SkillUserData(cd_time_, skill_category_));
 	return true;
 }
 
-bool Skill::run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target)
+void Skill::setParent(Node* parent)
 {
-	if (_CD)
-		return false;
-	_CD = true;
-	return true;
+	Node::setParent(parent);
+	setTimeParent(dynamic_cast<TimeCoefficient*>(parent));
 }
 
+bool Skill::cast(cocos2d::Layer* battle_manager, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer)
+{
+	if (battle_manager == nullptr)
+		return false;
+	if (cd_)
+		return false;
+	cd_ = true;
+	cd_time_coefficient_ = getTimeCoefficient() > 0 ? getTimeCoefficient() : 1.0f;
+	if (_userData != nullptr)
+	{
+		static_cast<SkillUserData*>(_userData)->setCDTime(cd_time_ / cd_time_coefficient_);
+		EventCustom event(SKILL_EVENT);
+		event.setUserData(_userData);
+		_eventDispatcher->dispatchEvent(&event);
+	}
+	return true;
+}
 
 SkillCategory Skill::getSkillCategory()
 {
-	return _skillCategory;
+	return skill_category_;
 }
 
-void Skill::update(float deltaTime)
+void Skill::update(float delta_time)
 {
-	Node::update(deltaTime);
-	if (_CD)
+	Node::update(delta_time);
+	if (cd_)
 	{
-		_timer += deltaTime;
-		if (_timer >= _CDTime)
+		timer_ += delta_time*cd_time_coefficient_;
+		if (timer_ >= cd_time_)
 		{
-			_CD = false;
-			_timer = 0.0f;
+			cd_ = false;
+			timer_ = 0.0f;
 		}
 	}
 }

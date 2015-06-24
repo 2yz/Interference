@@ -61,8 +61,8 @@ bool HelloWorld::init()
 	// addChild(rootNode);
 
 	auto edgeSp = Sprite::create();
-	auto body = PhysicsBody::createEdgeBox(ConfigUtil::visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);
-	edgeSp->setPosition(Point(ConfigUtil::visibleSize.width / 2, ConfigUtil::visibleSize.height / 2));
+	auto body = PhysicsBody::createEdgeBox(config::visible_size, PHYSICSBODY_MATERIAL_DEFAULT, 3);
+	edgeSp->setPosition(Point(config::visible_size.width / 2, config::visible_size.height / 2));
 	edgeSp->setPhysicsBody(body);
 	addChild(edgeSp);
 	edgeSp->setTag(0);
@@ -94,10 +94,11 @@ bool HelloWorld::init()
 
 	auto test = Player::create();
 	test->setPosition(200,200);
-	test->getPhysicsBody()->setGroup(random(-1, -2));
+	// test->getPhysicsBody()->setGroup(random(-1, -2));
+	test->getPhysicsBody()->setGroup(2);
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
-	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
+	//test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
 	// int index = random(-2, -1);
 	int index = 1;
@@ -106,11 +107,12 @@ bool HelloWorld::init()
 	this->addChild(test);
 
 
-	// camera = Camera::createOrthographic(ConfigUtil::visibleWidth, ConfigUtil::visibleHeight, 0, 1000);
-	// camera->setCameraFlag(CameraFlag::USER1);
-	// this->addChild(camera);
-	// camera->setPosition3D(Vec3(0, 0, 0));
-	// this->setCameraMask(1 << 1);
+	camera = Camera::createOrthographic(config::visible_width, config::visible_height, 0, 1000);
+	camera->setCameraFlag(CameraFlag::USER1);
+	this->addChild(camera);
+	camera->setPosition3D(Vec3(0, 0, 500));
+	camera->lookAt(Vec3(0, 0, 0));
+	this->setCameraMask(1 << 1);
 
 
 	return true;
@@ -133,11 +135,11 @@ void HelloWorld::addNewSpriteAtPosition(cocos2d::Point p)
 {
 	auto test = Player::create();
 	test->setPosition(p);
-    test->getPhysicsBody()->setGroup(random(-1,-2));
-	// test->getPhysicsBody()->setGroup(-2);
+    // test->getPhysicsBody()->setGroup(random(-1,-2));
+	test->getPhysicsBody()->setGroup(2);
 	test->getPhysicsBody()->setVelocity(Vec2(random(-200, 200), random(-200, 200)));
 	test->getPhysicsBody()->setGravityEnable(false);
-	test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
+	//test->getPhysicsBody()->setContactTestBitmask(0x00000FFF);
 
 	// test->setCameraMask(1 << 1);
 
@@ -172,9 +174,9 @@ bool HelloWorld::onContactBegin(cocos2d::PhysicsContact& contact)
         //this->addChild(runSp);
         //Animation* animation = AnimationUtil::createWithSingleSpriteNameAndNum("Shockwave", 25, 0.03f, 1);
         //runSp->runAction(Animate::create(animation));
-        auto particle = ParticleSystemQuad::create("Square.plist");
-        particle->setPosition(position);
-        this->addChild(particle);
+        //auto particle = ParticleSystemQuad::create("Square.plist");
+        //particle->setPosition(position);
+        //this->addChild(particle);
     }
 	log("CONTACT TEST A: %d B: %d", tag1, tag2);
 	if (tag1 == 1)

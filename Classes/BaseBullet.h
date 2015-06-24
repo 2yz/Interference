@@ -6,14 +6,14 @@
 class BaseBullet : public BaseObject
 {
 public:
-	BaseBullet(int bulletParent=0);
+	BaseBullet();
 	virtual bool init() override;
-	virtual void onDestory() override;
-	virtual void onContact(BaseObject* contactNode) override;
+	virtual void onDestroy() override;
+	virtual void onContact(Message& message) override;
 protected:
-	cocos2d::Vec2 velocityVec;
-	float _damage;
-	int _bulletParent;
+	cocos2d::Vec2 velocity_vec_;
+	float damage_;
+	int bullet_parent_;
 };
 
 #endif /* BASEBULLET_H_ */

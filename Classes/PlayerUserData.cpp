@@ -1,19 +1,33 @@
 #include "PlayerUserData.h"
 
-PlayerUserData::PlayerUserData(int initHP) : HP(initHP)
+PlayerUserData::PlayerUserData(float hp, float hp_max) : hp_(hp), hp_max_(hp_max)
 {
 }
 
-bool PlayerUserData::isAliveUnderAttack(int damage)
+float PlayerUserData::getHP()
 {
-	HP -= damage;
-	if (HP <= 0)
-		return false;
-	else
+	return hp_;
+}
+
+void PlayerUserData::setHP(float hp)
+{
+	hp_ = hp;
+}
+
+float PlayerUserData::getMaxHP()
+{
+	return hp_max_;
+}
+
+void PlayerUserData::setMaxHP(float hp_max)
+{
+	hp_max_ = hp_max;
+}
+
+bool PlayerUserData::isAlive()
+{
+	if (hp_ > 0.0f)
 		return true;
-}
-
-int PlayerUserData::getHP() const
-{
-	return HP;
+	else
+		return false;
 }

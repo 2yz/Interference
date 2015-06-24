@@ -8,7 +8,10 @@ class Attack : public Skill
 public:
 	CREATE_FUNC(Attack);
 	Attack();
-	virtual bool run(const cocos2d::Vec2& velocity, cocos2d::Node* parent, cocos2d::Node* target) override;
+	virtual void onEnter() override;
+	virtual bool cast(cocos2d::Layer* battle_manager, BaseObject* skill_parent, const cocos2d::Vec2& direction, BaseObject* skill_targer = nullptr) override;
+protected:
+	int skill_parent_;
 };
 
 #endif /* ATTACK_H_ */
