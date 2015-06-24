@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "BattleScene.h"
 #include "LoadScene.h"
+#include "tinyxml2/tinyxml2.h"
 
 USING_NS_CC;
 
@@ -26,12 +27,21 @@ void AppDelegate::initGLContextAttrs()
 
 bool AppDelegate::applicationDidFinishLaunching() 
 {
+	FileUtils::getInstance()->addSearchPath("res");
+
+	auto config = FileUtils::getInstance()->getValueMapFromFile("config.plist");
+	bool full_screen = config["FullScreen"].asBool();
+	float windows_width = config["WindowsWidth"].asFloat();
+	float windows_height = config["WindowsHeight"].asFloat();
+
 	// initialize director
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if (!glview) {
-		glview = GLViewImpl::createWithRect(PROGRAM_NAME, Rect(0, 0, 1280, 720));
-		//glview = GLViewImpl::createWithFullScreen(PROGRAM_NAME);
+		if (full_screen)
+			glview = GLViewImpl::createWithFullScreen(PROGRAM_NAME);
+		else
+			glview = GLViewImpl::createWithRect(PROGRAM_NAME, Rect(0, 0, windows_width, windows_height));
 		director->setOpenGLView(glview);
 	}
 	director->getOpenGLView()->setCursorVisible(false);
@@ -39,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	director->getOpenGLView()->setDesignResolutionSize(1280, 720, ResolutionPolicy::SHOW_ALL);
 
 	// turn on display FPS
-	director->setDisplayStats(true);
+	// director->setDisplayStats(true);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	// director->setAnimationInterval(1.0 / 60);
@@ -50,7 +60,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	config::visible_width = config::visible_origin.x + config::visible_size.width;
 	config::visible_height = config::visible_origin.y + config::visible_size.height;
 
-	FileUtils::getInstance()->addSearchPath("res");
+	
 	
 	srand(time(nullptr));
 

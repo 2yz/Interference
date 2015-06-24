@@ -36,11 +36,6 @@ bool BattleScene::init()
 		return false;
 	}
 
-	// if (!this->initWithSize(config::visible_size*2.5))
-	// {
-	// 	return false;
-	// }
-
 	this->getPhysicsWorld()->setGravity(Vec2(0.0f, 0.0f));
 	// Set Physics Debug Mode
 	// this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
@@ -50,7 +45,7 @@ bool BattleScene::init()
 	this->addChild(controller, 0);
 	// Mouse Layer
 	auto mouseLayer = MouseLayer::create();
-	this->addChild(mouseLayer, 4);
+	this->addChild(mouseLayer, 20);
 
 	// Keyboard Listener
 	auto listenerKeyboard = EventListenerKeyboard::create();
