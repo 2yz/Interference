@@ -70,13 +70,13 @@ bool AnimationUtil::runPictureAnimation(const char* name, Node* parent, Node* ta
 	return true;
 }
 
-ParticleSystemQuad* AnimationUtil::runParticleAnimation(const std::string& name, Node* parent, Node* target, bool remove_on_finish)
+ParticleSystemQuadCustom* AnimationUtil::runParticleAnimation(const std::string& name, Node* parent, Node* target, bool remove_on_finish)
 {
 	if (parent == nullptr || target == nullptr)
 	{
 		return nullptr;
 	}
-	auto particle = ParticleSystemQuad::create(name + ".plist");
+	auto particle = ParticleSystemQuadCustom::create(name + ".plist");
 	particle->setPosition(target->getPosition());
 	particle->setAutoRemoveOnFinish(remove_on_finish);
 	parent->addChild(particle);

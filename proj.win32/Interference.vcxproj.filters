@@ -162,6 +162,9 @@
     <ClCompile Include="..\Classes\BackgroundManager.cpp">
       <Filter>src\Layer\Background</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ParticleSystemQuadCustom.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BackgroundManager.h">
       <Filter>src\Layer\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ParticleSystemQuadCustom.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

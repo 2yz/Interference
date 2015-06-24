@@ -2,6 +2,8 @@
 #define __AnimationUtil_H__
 
 #include "cocos2d.h"
+#include "ParticleSystemQuadCustom.h"
+
 USING_NS_CC;
 
 class AnimationUtil
@@ -15,7 +17,7 @@ public:
 
 	// Run Picture Or Particle Animation
 	static bool runPictureAnimation(const char* name, Node* parent, Node* target);
-    static ParticleSystemQuad* runParticleAnimation(const std::string& name, Node* parent, Node* target, bool remove_on_finish = true);
+	static ParticleSystemQuadCustom* runParticleAnimation(const std::string& name, Node* parent, Node* target, bool remove_on_finish = true);
 };
 
 #endif

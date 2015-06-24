@@ -1,294 +1,280 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AppDelegate" Collapsed="true">
-    <Position X="32.25" Y="0.5" Width="1.5" />
+    <Position X="30.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAACAAQAAAEAAAAAAAAAAAAk=</HashCode>
       <FileName>C:\Develop\Interference\Classes\AppDelegate.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ParticleSystemQuadCustom" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABEAAA=</HashCode>
+      <FileName>C:\Develop\Interference\Classes\ParticleSystemQuadCustom.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="BattleScene" Collapsed="true">
-    <Position X="35.75" Y="0.5" Width="1.5" />
+    <Position X="34.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AhCiIQAAoAAAAAoAigAAAAAQAIAAAAYAARAgAACCAAQ=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BattleScene.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LoadScene">
-    <Position X="27.75" Y="6" Width="2" />
+  <Class Name="LoadScene" Collapsed="true">
+    <Position X="34.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAIAAAAAAAAAAAACAAAAAABACoAABBAAACEAgA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\LoadScene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseLayer" Collapsed="true">
-    <Position X="34" Y="2.5" Width="1.5" />
+    <Position X="32.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAABAAAAAEQAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\MouseLayer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleManager" Collapsed="true">
-    <Position X="5.5" Y="1.75" Width="1.5" />
+    <Position X="3" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACRDJQAAAEAAAAIIBhCBgBBAACAAEA4BAAMAAAGGJoY=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BattleManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SimpleBattle" Collapsed="true">
-    <Position X="5.5" Y="3.25" Width="1.5" />
+    <Position X="3" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAEAAAABAAAAACAAQ=</HashCode>
       <FileName>C:\Develop\Interference\Classes\SimpleBattle.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MenuLayer" Collapsed="true">
-    <Position X="30.5" Y="2.5" Width="1.5" />
+    <Position X="29" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABQAAAQAAAAgAAEQAAAABABAAABAAIBABAAAACAAwA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\MenuLayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PauseLayer" Collapsed="true">
-    <Position X="6.75" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAACAAAAAIAAABAAAAgAAA=</HashCode>
-      <FileName>C:\Develop\Interference\Classes\PauseLayer.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PopupLayer" Collapsed="true">
-    <Position X="5.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAEIAABAAAIAAAAAACAAAAAIEAAAAAACAAQA=</HashCode>
-      <FileName>C:\Develop\Interference\Classes\PopupLayer.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ResultLayer" Collapsed="true">
-    <Position X="4.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAQABAAAAAAAA=</HashCode>
-      <FileName>C:\Develop\Interference\Classes\ResultLayer.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="HUDLayer" Collapsed="true">
-    <Position X="34" Y="1.5" Width="1.5" />
+    <Position X="32.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAIAEAAAAAAAIQAAAAAAABAKgARAAAAAECAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\HUDLayer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BackgroundManager" Collapsed="true">
-    <Position X="34" Y="0.5" Width="1.5" />
+    <Position X="32.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAACAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BackgroundManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerUserData" Collapsed="true">
-    <Position X="35.75" Y="2.5" Width="1.5" />
+    <Position X="34.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAABAAAQCgAABAAEEAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\PlayerUserData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SkillUserData" Collapsed="true">
-    <Position X="30.5" Y="3.5" Width="1.5" />
+    <Position X="29" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAACAAAAIAAAABAQAAABAAAQAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\SkillUserData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseObject" Collapsed="true">
-    <Position X="13.5" Y="1.75" Width="1.5" />
+    <Position X="10.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQBAAAQAAAABAAEEAAgQACAACABAAJgAABAIADgAQA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BaseObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Block" Collapsed="true">
-    <Position X="19" Y="3.25" Width="1.5" />
+    <Position X="5.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAgAAAAAAAAEAAIAAAAAAAAAAJAAABAAACAAQA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Block.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClearBullet" Collapsed="true">
-    <Position X="7.75" Y="3.25" Width="1.5" />
+    <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAABAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\ClearBullet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BasePlane" Collapsed="true">
-    <Position X="14.5" Y="3.25" Width="1.5" />
+    <Position X="14.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAABAAAAAAIgAAAAAAAAAQAAQAAAAIAAAAACIAEAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BasePlane.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Player" Collapsed="true">
-    <Position X="12.25" Y="4.75" Width="1.5" />
+    <Position X="12" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAEAAAAAAQAAAAAAJAAhCAAQCFARE=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Boss" Collapsed="true">
-    <Position X="14.5" Y="6.25" Width="1.5" />
+    <Position X="16.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Boss.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseEnemy" Collapsed="true">
-    <Position X="15.75" Y="4.75" Width="1.5" />
+    <Position X="15.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAACgAIIACAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BaseEnemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Enemy" Collapsed="true">
-    <Position X="16.75" Y="6.25" Width="1.5" />
+    <Position X="14.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAIAEAAAAAAAAAAAEAJAABAAAACGAQQ=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BaseBullet" Collapsed="true">
-    <Position X="10" Y="3.25" Width="1.5" />
+    <Position X="9.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQEAAAAAAAAAAAAAAAQAJAACAAAAAAAQA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BaseBullet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bullet" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
+    <Position X="9.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAIAAABAAAAQAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Bullet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Attack" Collapsed="true">
-    <Position X="23.5" Y="3.25" Width="1.5" />
+    <Position X="19.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAACAAAAAIAAAAAAABAAAACAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Attack.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Defense" Collapsed="true">
-    <Position X="25.75" Y="3.25" Width="1.5" />
+    <Position X="21.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAgAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Defense.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Kill" Collapsed="true">
-    <Position X="28" Y="3.25" Width="1.5" />
+    <Position X="24" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Kill.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Skill" Collapsed="true">
-    <Position X="24.75" Y="1.75" Width="1.5" />
+    <Position X="20.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EgQAAAAAAABAABAAAAAAAAAAAAAAAAYAAABAAABMAAE=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Skill.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Control" Collapsed="true">
-    <Position X="21.25" Y="3.25" Width="1.5" />
+    <Position X="17.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Control.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AnimationUtil" Collapsed="true">
-    <Position X="30.5" Y="0.5" Width="1.5" />
+    <Position X="29" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAgAQAEAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\AnimationUtil.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Controller" Collapsed="true">
-    <Position X="32.25" Y="1.5" Width="1.5" />
+    <Position X="30.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAIBAQACQIAgFAAAEAAAEgCEAAAgABIACBAAAFAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Controller.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Message" Collapsed="true">
-    <Position X="32.25" Y="2.5" Width="1.5" />
+    <Position X="30.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAABAABAAAAAAgAAAAAAAAAARAAAAAAgAAIAGAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Message.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TimeCoefficient" Collapsed="true">
-    <Position X="16.75" Y="0.5" Width="1.5" />
+    <Position X="10.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAIAAIAAAgAAAAAAACAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\TimeCoefficient.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Utility" Collapsed="true">
-    <Position X="32.25" Y="3.5" Width="1.5" />
+    <Position X="30.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Utility.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CameraManager" Collapsed="true">
-    <Position X="30.5" Y="1.5" Width="1.5" />
+    <Position X="29" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAggAgWAQAAAAAAAAIIAABAAABIlAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\CameraManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="SceneState" Collapsed="true">
-    <Position X="32.25" Y="5.5" Width="1.5" />
+    <Position X="30.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAIAAEAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BattleScene.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BattleState" Collapsed="true">
-    <Position X="34" Y="4.75" Width="1.5" />
+    <Position X="32.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAIAAAAAAAAAAAABAAAAAAAAAAIBAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BattleScene.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="LoadState" Collapsed="true">
-    <Position X="30.5" Y="5.5" Width="1.5" />
+    <Position X="29" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\LoadScene.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="AnimationState" Collapsed="true">
-    <Position X="30.5" Y="4.75" Width="1.5" />
+    <Position X="29" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\LoadScene.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BattleManagerState" Collapsed="true">
-    <Position X="32.25" Y="4.75" Width="1.5" />
+    <Position X="30.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAAABAAAEAABIA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\BattleManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EnemyState" Collapsed="true">
-    <Position X="35.75" Y="4.75" Width="1.5" />
+    <Position X="34.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Enemy.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="SkillCategory" Collapsed="true">
-    <Position X="34" Y="5.5" Width="1.5" />
+    <Position X="32.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAIAAAAAAAAAAAAAAgAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Develop\Interference\Classes\Skill.h</FileName>
